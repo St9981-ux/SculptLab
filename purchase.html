@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander - Sculptures</title>
+    <style>
+        /* Reset et scrollbar */
+        *, *::before, *::after {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            box-sizing: border-box;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .content { 
+            flex: 1; 
+        }
+
+        .section { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            box-sizing: border-box; 
+            position: relative; 
+        }
+
+        .section-turquoise { 
+            background: linear-gradient(135deg, #00ffcc 50%, #00ffe1 100%); 
+            padding: 0; 
+            height: 5cm; 
+            display: flex; 
+            align-items: flex-end; 
+            justify-content: flex-start; 
+            margin-bottom: 20px; 
+        }
+
+        /* Header responsive */
+        .header-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            z-index: 100;
+        }
+
+        .header-menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 1.4em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .header-menu a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu hamburger pour mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 5px;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            gap: 20px;
+            min-width: 220px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #1a1a1a !important;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:last-of-type {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: #ff007f !important;
+            text-decoration: none;
+        }
+
+        /* Toggle langue */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .75);
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+
+        .lang-toggle button {
+            border: none;
+            background: transparent;
+            font: inherit;
+            padding: 2px 8px;
+            cursor: pointer;
+            opacity: .6;
+        }
+
+        .lang-toggle button.active {
+            opacity: 1;
+            background: #1a1a1a;
+            color: #fff;
+            border-radius: 999px;
+        }
+
+        .signature {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            height: auto;
+        }
+
+        .main-title {
+            font-size: 2em;
+            color: #ffffff;
+            margin-left: 20px;
+            margin-bottom: 0.3cm;
+        }
+
+        /* Section d'achat */
+        .purchase-section {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 100px;
+            padding: 40px 150px;
+            background-color: #f3f4f6;
+        }
+
+        .intro-text {
+            grid-column: 1 / -1;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.5em;
+        }
+
+        .sculpture-item {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 70px 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            justify-self: center;
+            max-width: 800px;
+            margin: 0;
+        }
+
+        .sculpture-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .sculpture-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .sculpture-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .sculpture-title {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sculpture-version {
+            font-size: 1em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .buy-button, .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            color: #ffffff;
+            background-color: #ff007f;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover, .cta-button:hover {
+            background-color: #e60074;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: #ffdd00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff6a00;
+        }
+
+        /* Curseur de frappe */
+        .typing-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            background-color: #333333;
+            width: 20px;
+            height: 1.2em;
+            animation: blink-caret 0.75s step-end infinite;
+            margin-left: 1px;
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Media queries pour responsive */
+        @media (max-width: 1400px) {
+            .purchase-section {
+                gap: 80px;
+                padding: 40px 100px;
+            }
+            
+            .sculpture-item {
+                padding: 60px 80px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .purchase-section {
+                gap: 60px;
+                padding: 40px 80px;
+            }
+            
+            .sculpture-item {
+                padding: 50px 70px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .header-menu {
+                gap: 20px;
+            }
+            
+            .purchase-section {
+                gap: 40px;
+                padding: 30px 50px;
+            }
+            
+            .sculpture-item {
+                padding: 40px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Menu mobile - CORRECTION PRINCIPALE */
+            .header-menu {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                flex-direction: column;
+                align-items: flex-end;
+                z-index: 1001;
+            }
+            
+            .header-menu > a {
+                display: none;
+            }
+            
+            .header-menu > .lang-toggle {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1002;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 70px;
+                right: 20px;
+            }
+            
+            .main-title {
+                font-size: 1.5em;
+                margin-left: 10px;
+            }
+            
+            .section-turquoise {
+                padding: 20px;
+                height: auto;
+                min-height: 4cm;
+            }
+            
+            .purchase-section {
+                gap: 30px;
+                padding: 20px 30px;
+            }
+            
+            .sculpture-item {
+                padding: 30px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .purchase-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 15px 20px;
+            }
+            
+            .sculpture-item {
+                padding: 20px 30px;
+                aspect-ratio: auto;
+            }
+            
+            .sculpture-title {
+                font-size: 1.3em;
+            }
+            
+            .buy-button {
+                padding: 8px 16px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-menu-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .mobile-menu {
+                top: 60px;
+                right: 15px;
+                min-width: 200px;
+                padding: 15px;
+            }
+            
+            .signature {
+                top: 15px;
+                left: 15px;
+                width: 120px;
+            }
+            
+            .section-turquoise {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .main-title {
+                font-size: 1.3em;
+                margin-left: 5px;
+            }
+            
+            .purchase-section {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .sculpture-item {
+                padding: 15px 20px;
+            }
+            
+            .intro-text {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+            
+            footer {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .main-title {
+                font-size: 1.2em;
+            }
+            
+            .sculpture-title {
+                font-size: 1.2em;
+            }
+            
+            .sculpture-version {
+                font-size: 0.9em;
+            }
+            
+            .buy-button {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
+            .intro-text {
+                font-size: 0.95em;
+            }
+
+            .mobile-menu {
+                min-width: 180px;
+                right: 10px;
+            }
+
+            .mobile-menu-toggle {
+                right: 10px;
+            }
+        }
+
+        /* Optimisation pour tablettes en mode paysage */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .purchase-section {
+                padding: 25px 40px;
+            }
+            
+            .sculpture-item {
+                padding: 35px 45px;
+            }
+        }
+
+        /* Amélioration de l'accessibilité */
+        @media (prefers-reduced-motion: reduce) {
+            .sculpture-item {
+                transition: none;
+            }
+            
+            .sculpture-item:hover {
+                transform: none;
+            }
+            
+            .sculpture-item:hover img {
+                transform: none;
+            }
+            
+            .buy-button, .cta-button {
+                transition: none;
+            }
+            
+            .typing-cursor {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="section section-turquoise">
+            <img src="signature.png" alt="Signature" class="signature">
+            
+            <!-- Menu hamburger mobile -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" data-i18n="menu.works">Œuvres</a>
+                <a href="about.html" data-i18n="menu.about">À propos</a>
+                <a href="contact.html" data-i18n="menu.contact">Contact</a>
+                <a href="purchase.html" data-i18n="menu.purchase">Acquérir</a>
+                <div class="lang-toggle">
+                    <button type="button" id="btn-fr-mobile" class="active">FR</button>
+                    <span>·</span>
+                    <button type="button" id="btn-en-mobile">EN</button>
+                </div>
+            </div>
+            
+            <!-- Menu desktop -->
+            <div class="header-menu">
+                <a href="index.html" data-i18n="menu.works">Œuvres</a>
+                <a href="about.html" data-i18n="menu.about">À propos</a>
+                <a href="contact.html" data-i18n="menu.contact">Contact</a>
+                <a href="purchase.html" data-i18n="menu.purchase">Acquérir</a>
+
+                <div class="lang-toggle">
+                    <button type="button" id="btn-fr" class="active">FR</button>
+                    <span>·</span>
+                    <button type="button" id="btn-en">EN</button>
+                </div>
+            </div>
+            
+            <h1 class="main-title" data-i18n="purchase.title">Acquérir une sculpture SculptLab</h1>
+        </div>
+
+        <div class="purchase-section">
+            <div class="intro-text typing-animation gray-caret" data-i18n="purchase.intro">
+                Chaque sculpture en résine est reproduite à partir d'un modèle original façonné à la main, puis minutieusement peinte à la main (spray, aérographe et pinceau). Numérotées et en édition limitée, elles sont livrées avec un certificat d'authenticité et peuvent également être commandées sur d'autres plateformes.
+            </div>
+
+            <div class="sculpture-item">
+                <img src="image1a.png" alt="Io version 1">
+                <h2 class="sculpture-title">Io</h2>
+                <div class="sculpture-version">Version 1</div>
+                <a href="io1.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+            <div class="sculpture-item">
+                <img src="image1b.png" alt="Io version 2">
+                <h2 class="sculpture-title">Io</h2>
+                <div class="sculpture-version">Version 2</div>
+                <a href="io2.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+            <div class="sculpture-item">
+                <img src="image2a.png" alt="Za'mu version 1">
+                <h2 class="sculpture-title">Za'mu</h2>
+                <div class="sculpture-version">Version 1</div>
+                <a href="zamu1.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+            <div class="sculpture-item">
+                <img src="image2b.png" alt="Za'mu version 2">
+                <h2 class="sculpture-title">Za'mu</h2>
+                <div class="sculpture-version">Version 2</div>
+                <a href="zamu2.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+            <div class="sculpture-item">
+                <img src="image3a.png" alt="Enigma version 1">
+                <h2 class="sculpture-title">Enigma</h2>
+                <div class="sculpture-version">Version 1</div>
+                <a href="enigma1.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+            <div class="sculpture-item">
+                <img src="image3b.png" alt="Enigma version 2">
+                <h2 class="sculpture-title">Enigma</h2>
+                <div class="sculpture-version">Version 2</div>
+                <a href="enigma2.html" class="buy-button" data-i18n="purchase.order">Commander</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a></p>
+    </footer>
+
+    <script>
+        // Année dynamique
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Fermer le menu mobile en cliquant ailleurs
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Dictionnaire FR / EN
+        const translations = {
+            fr: {
+                "menu.works": "Œuvres",
+                "menu.about": "À propos",
+                "menu.contact": "Contact",
+                "menu.purchase": "Acquérir",
+                "footer.rights": "Tous droits réservés.",
+                "footer.legal": "Mentions légales",
+                "purchase.title": "Obtenez votre œuvre SculptLab.",
+                "purchase.intro": "Chaque sculpture en résine est reproduite à partir d'un modèle original façonné à la main, puis minutieusement peinte à la main (spray, aérographe et pinceau). Numérotées et en édition limitée, elles sont livrées avec un certificat d'authenticité et peuvent également être commandées sur d'autres plateformes.",
+                "purchase.order": "Commander"
+            },
+            en: {
+                "menu.works": "Artworks",
+                "menu.about": "About",
+                "menu.contact": "Contact",
+                "menu.purchase": "Purchase",
+                "footer.rights": "All rights reserved.",
+                "footer.legal": "Legal notice",
+                "purchase.title": "Get your SculptLab creation",
+                "purchase.intro": "Each resin sculpture is reproduced from an original hand-crafted model and carefully hand-painted (spray, airbrush, and brush). Numbered and limited edition, they come with a certificate of authenticity and can also be ordered on other platforms.",
+                "purchase.order": "Order"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('lang', lang);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            
+            // Mise à jour des boutons desktop
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            
+            // Mise à jour des boutons mobile
+            document.getElementById('btn-fr-mobile').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
+
+            // Animation de frappe pour le texte d'introduction
+            document.querySelectorAll('.typing-animation').forEach(el => {
+                const text = el.textContent;
+                el.innerHTML = '<span class="typing-cursor"></span>';
+                let i = 0;
+                const cursor = el.querySelector('.typing-cursor');
+                
+                function type() {
+                    if (i < text.length) {
+                        cursor.insertAdjacentText('beforebegin', text.charAt(i));
+                        i++;
+                        setTimeout(type, 25);
+                    } else {
+                        setTimeout(() => {
+                            if (cursor) cursor.remove();
+                        }, 1000);
+                    }
+                }
+                type();
+            });
+        }
+
+        // Init langue
+        setLanguage(localStorage.getItem('lang') || 'fr');
+
+        // Boutons FR/EN desktop
+        document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
+        document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+
+        // Boutons FR/EN mobile
+        document.getElementById('btn-fr-mobile').addEventListener('click', () => {
+            setLanguage('fr');
+            document.getElementById('mobileMenu').classList.remove('active');
+        });
+        document.getElementById('btn-en-mobile').addEventListener('click', () => {
+            setLanguage('en');
+            document.getElementById('mobileMenu').classList.remove('active');
+        });
+
+        // Fermer le menu mobile lors du clic sur un lien
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // Afficher le message de succès si présent dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === '1') {
+            const msg = document.getElementById('success-message');
+            if (msg) {
+                msg.style.display = 'block';
+            }
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
+</body>
+</html>
