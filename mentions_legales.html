@@ -1,246 +1,704 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="legal.title">Mentions légales - Sculptures</title>
-<style>
-    *, *::before, *::after {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    *::-webkit-scrollbar { display: none; }
-    html, body {
-        margin: 0; padding: 0;
-        scrollbar-width: none !important;
-        -ms-overflow-style: none !important;
-    }
-    html::-webkit-scrollbar, body::-webkit-scrollbar {
-        display: none !important;
-        width: 0 !important;
-    }
-    body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        color: #333;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        overflow-y: scroll;
-    }
-    .content { flex: 1; }
-    .section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        box-sizing: border-box;
-        position: relative;
-    }
-    .section-turquoise {
-        background: linear-gradient(135deg, #00ffcc 50%, #00ffe1 100%);
-        height: 5cm;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
-        position: relative;
-        margin-bottom: 20px;
-    }
-    .header-menu {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 40px;
-        align-items: center;
-    }
-    .header-menu a {
-        color: #1a1a1a;
-        text-decoration: none;
-        font-size: 1.4em;
-        font-weight: bold;
-    }
-    .header-menu a:hover { text-decoration: underline; }
-    .lang-toggle {
-        display:flex;align-items:center;gap:6px;
-        border:1px solid rgba(0,0,0,.15);
-        border-radius:999px;
-        background:rgba(255,255,255,.75);
-        padding:4px 8px;
-        font-weight:bold;
-    }
-    .lang-toggle button {
-        border:none;background:transparent;font:inherit;
-        padding:2px 8px;cursor:pointer;opacity:.6;
-    }
-    .lang-toggle button.active {
-        opacity:1;background:#1a1a1a;color:#fff;border-radius:999px;
-    }
-    .signature {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        width: 150px;
-    }
-    .main-title {
-        font-size: 2em;
-        color: #ffffff;
-        margin-left: 20px;
-        margin-bottom: 0.3cm;
-    }
-    .legal-text {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        font-size: 1.1em;
-        line-height: 1.6;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    footer { 
-        background-color: #333; 
-        color: #fff; 
-        padding: 20px 0; 
-        text-align: center; 
-        margin-top: 40px;
-    }
-    footer p { margin: 0; }
-    footer a { 
-        color: #ffdd00; 
-        text-decoration: none; 
-        transition: color 0.3s ease; 
-    }
-    footer a:hover { color: #ff6a00; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales - Sculptures</title>
+    <style>
+        /* Reset et scrollbar */
+        *, *::before, *::after {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            box-sizing: border-box;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-y: scroll;
+            line-height: 1.6;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .section-turquoise {
+            background: linear-gradient(135deg, #00ffcc 50%, #00ffe1 100%);
+            padding: 0;
+            height: 5cm;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Header responsive */
+        .header-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            z-index: 100;
+        }
+
+        .header-menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 1.4em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .header-menu a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu hamburger pour mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 5px;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            gap: 20px;
+            min-width: 220px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #1a1a1a !important;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:last-of-type {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: #ff007f !important;
+            text-decoration: none;
+        }
+
+        /* Toggle langue */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .75);
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+
+        .lang-toggle button {
+            border: none;
+            background: transparent;
+            font: inherit;
+            padding: 2px 8px;
+            cursor: pointer;
+            opacity: .6;
+        }
+
+        .lang-toggle button.active {
+            opacity: 1;
+            background: #1a1a1a;
+            color: #fff;
+            border-radius: 999px;
+        }
+
+        .signature {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            height: auto;
+        }
+
+        .main-title {
+            font-size: 2em;
+            color: #ffffff;
+            margin-left: 20px;
+            margin-bottom: 0.3cm;
+        }
+
+        /* Contenu des mentions légales */
+        .legal-text {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .legal-text h2 {
+            color: #1a1a1a;
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .legal-text h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+            box-sizing: border-box;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: #ffdd00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff6a00;
+        }
+
+        /* Media queries pour responsive */
+        @media (max-width: 1024px) {
+            .header-menu {
+                gap: 20px;
+            }
+            
+            .legal-text {
+                max-width: 900px;
+                padding: 35px 18px;
+            }
+            
+            .legal-text h2 {
+                font-size: 1.3em;
+            }
+            
+            .legal-text p {
+                font-size: 1.05em;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: portrait) {
+            /* Menu mobile */
+            .header-menu {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                flex-direction: column;
+                align-items: flex-end;
+                z-index: 1001;
+            }
+            
+            .header-menu > a {
+                display: none;
+            }
+            
+            .header-menu > .lang-toggle {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1002;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 70px;
+                right: 20px;
+            }
+            
+            .section-turquoise {
+                height: auto;
+                min-height: 4cm;
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 1.5em;
+                margin-left: 0;
+            }
+            
+            .legal-text {
+                max-width: 100%;
+                padding: 30px 15px;
+                margin: 0 10px 15px 10px;
+            }
+
+            .legal-text h2 {
+                font-size: 1.2em;
+                margin-top: 25px;
+            }
+            
+            .legal-text p {
+                font-size: 1em;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) and (orientation: portrait) {
+            .legal-text {
+                padding: 25px 12px;
+                margin: 0 8px 12px 8px;
+            }
+            
+            .legal-text h2 {
+                font-size: 1.1em;
+                margin-top: 20px;
+            }
+            
+            .legal-text p {
+                font-size: 0.95em;
+                line-height: 1.5;
+            }
+        }
+
+        @media (max-width: 480px) and (orientation: portrait) {
+            .mobile-menu-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .mobile-menu {
+                top: 60px;
+                right: 15px;
+                min-width: 200px;
+                padding: 15px;
+            }
+            
+            .signature {
+                top: 15px;
+                left: 15px;
+                width: 120px;
+            }
+            
+            .section-turquoise {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .main-title {
+                font-size: 1.3em;
+            }
+            
+            .legal-text {
+                padding: 20px 10px;
+                margin: 0 5px 10px 5px;
+                border-radius: 6px;
+            }
+            
+            .legal-text h2 {
+                font-size: 1.05em;
+                margin-top: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .legal-text p {
+                font-size: 0.9em;
+                line-height: 1.4;
+                margin-bottom: 15px;
+            }
+            
+            footer {
+                padding: 20px 15px;
+                margin-top: 30px;
+            }
+            
+            footer p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 320px) and (orientation: portrait) {
+            .main-title {
+                font-size: 1.2em;
+            }
+            
+            .legal-text {
+                padding: 15px 8px;
+                margin: 0 3px 8px 3px;
+            }
+            
+            .legal-text h2 {
+                font-size: 1em;
+                margin-top: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .legal-text p {
+                font-size: 0.85em;
+                line-height: 1.3;
+                margin-bottom: 12px;
+            }
+            
+            footer {
+                margin-top: 25px;
+            }
+            
+            footer p {
+                font-size: 0.85em;
+            }
+
+            .mobile-menu {
+                min-width: 180px;
+                right: 10px;
+            }
+
+            .mobile-menu-toggle {
+                right: 10px;
+            }
+        }
+
+        /* Mode paysage mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .header-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                flex-direction: row;
+                align-items: center;
+                z-index: 100;
+            }
+            
+            .header-menu > a {
+                display: block;
+            }
+            
+            .header-menu > .lang-toggle {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: none;
+            }
+            
+            .legal-text {
+                max-width: 100%;
+                padding: 25px 15px;
+                margin: 0 15px 15px 15px;
+            }
+
+            .legal-text h2 {
+                font-size: 1.1em;
+            }
+            
+            .legal-text p {
+                font-size: 0.95em;
+                text-align: justify;
+            }
+        }
+
+        /* Optimisation pour tablettes en mode paysage */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .legal-text {
+                max-width: 95%;
+                padding: 35px 25px;
+            }
+            
+            .legal-text h2 {
+                font-size: 1.25em;
+            }
+            
+            .legal-text p {
+                font-size: 1em;
+            }
+        }
+
+        /* Amélioration de l'accessibilité */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+
+        /* Focus states pour l'accessibilité */
+        .header-menu a:focus,
+        .mobile-menu a:focus {
+            outline: 2px solid #ff007f;
+            outline-offset: 2px;
+        }
+
+        .lang-toggle button:focus {
+            outline: 2px solid #ff007f;
+            outline-offset: 2px;
+        }
+
+        /* Espacement amélioré pour très petits écrans */
+        @media (max-width: 360px) and (orientation: portrait) {
+            .legal-text {
+                margin-bottom: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="content">
-    <div class="section section-turquoise">
-        <img src="signature.png" alt="Signature" class="signature">
-        <div class="header-menu">
-            <a href="index.html" data-i18n="menu.works">Œuvres</a>
-            <a href="about.html" data-i18n="menu.about">À propos</a>
-            <a href="contact.html" data-i18n="menu.contact">Contact</a>
-            <a href="purchase.html" data-i18n="menu.purchase">Acquérir</a>
-            <div class="lang-toggle">
-                <button type="button" id="btn-fr" class="active">FR</button>
-                <span>·</span>
-                <button type="button" id="btn-en">EN</button>
-            </div>
-        </div>
-        <h1 class="main-title" data-i18n="legal.title">Mentions légales</h1>
-    </div>
-
-    <div class="legal-text">
-        <h2 data-i18n="legal.editorTitle">1. Éditeur du site</h2>
-        <p data-i18n="legal.editorText">
-            Le site SculptLab est édité par :<br>
-            Nom de l'entreprise : SculptLab<br>
-            Forme juridique : SARL<br>
-            Siège social : 123 Rue de la Sculpture, 06000 Nice, France<br>
-            SIRET : 123 456 789 00012<br>
-            Email : info@sculptlab.fr<br>
+    <div class="content">
+        <div class="section section-turquoise">
+            <img src="signature.png" alt="Signature" class="signature">
             
-        </p>
+            <!-- Menu hamburger mobile -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" data-i18n="menu.works">Œuvres</a>
+                <a href="about.html" data-i18n="menu.about">À propos</a>
+                <a href="contact.html" data-i18n="menu.contact">Contact</a>
+                <a href="purchase.html" data-i18n="menu.purchase">Acquérir</a>
+                <div class="lang-toggle">
+                    <button type="button" id="btn-fr-mobile" class="active">FR</button>
+                    <span>·</span>
+                    <button type="button" id="btn-en-mobile">EN</button>
+                </div>
+            </div>
+            
+            <!-- Menu desktop -->
+            <div class="header-menu">
+                <a href="index.html" data-i18n="menu.works">Œuvres</a>
+                <a href="about.html" data-i18n="menu.about">À propos</a>
+                <a href="contact.html" data-i18n="menu.contact">Contact</a>
+                <a href="purchase.html" data-i18n="menu.purchase">Acquérir</a>
 
-        <h2 data-i18n="legal.hostTitle">2. Hébergeur</h2>
-        <p data-i18n="legal.hostText">
-            OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>
-            Téléphone : +33 9 72 10 10 07
-        </p>
+                <div class="lang-toggle">
+                    <button type="button" id="btn-fr" class="active">FR</button>
+                    <span>·</span>
+                    <button type="button" id="btn-en">EN</button>
+                </div>
+            </div>
+            
+            <h1 class="main-title" data-i18n="legal.title">Mentions légales</h1>
+        </div>
 
-        <h2 data-i18n="legal.ipTitle">3. Propriété intellectuelle</h2>
-        <p data-i18n="legal.ipText">
-            Tous les contenus présents sur ce site (textes, images, graphismes, logo, icônes, etc.) sont protégés par le droit d'auteur. Toute reproduction ou diffusion sans autorisation est interdite.
-        </p>
+        <div class="legal-text">
+            <h2 data-i18n="legal.editorTitle">1. Éditeur du site</h2>
+            <p data-i18n="legal.editorText">
+                Le site SculptLab. est édité par :<br>
+                Nom de l'entreprise : SculptLab.<br>
+                Forme juridique : SARL<br>
+                Siège social : 123 Rue de la Sculpture, 06000 Nice, France<br>
+                SIRET : 123 456 789 00012<br>
+                Email : info@sculptlab.fr<br>
+            </p>
 
-        <h2 data-i18n="legal.dataTitle">4. Données personnelles</h2>
-        <p data-i18n="legal.dataText">
-            Les informations recueillies via les formulaires sont destinées à un usage interne et ne sont pas transmises à des tiers sans accord préalable.
-        </p>
+            <h2 data-i18n="legal.hostTitle">2. Hébergeur</h2>
+            <p data-i18n="legal.hostText">
+                OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>
+                Téléphone : +33 9 72 10 10 07
+            </p>
 
-        <h2 data-i18n="legal.cookiesTitle">5. Cookies</h2>
-        <p data-i18n="legal.cookiesText">
-            Ce site utilise des cookies pour améliorer l’expérience utilisateur. Vous pouvez configurer votre navigateur pour les refuser.
-        </p>
+            <h2 data-i18n="legal.ipTitle">3. Propriété intellectuelle</h2>
+            <p data-i18n="legal.ipText">
+                Tous les contenus présents sur ce site (textes, images, graphismes, logo, icônes, etc.) sont protégés par le droit d'auteur. Toute reproduction ou diffusion sans autorisation est interdite.
+            </p>
 
-        <h2 data-i18n="legal.lawTitle">6. Droit applicable</h2>
-        <p data-i18n="legal.lawText">
-            Les présentes mentions légales sont régies par la loi française. Tout litige sera soumis aux tribunaux français.
-        </p>
+            <h2 data-i18n="legal.dataTitle">4. Données personnelles</h2>
+            <p data-i18n="legal.dataText">
+                Les informations recueillies via les formulaires sont destinées à un usage interne et ne sont pas transmises à des tiers sans accord préalable.
+            </p>
+
+            <h2 data-i18n="legal.cookiesTitle">5. Cookies</h2>
+            <p data-i18n="legal.cookiesText">
+                Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez configurer votre navigateur pour les refuser.
+            </p>
+
+            <h2 data-i18n="legal.lawTitle">6. Droit applicable</h2>
+            <p data-i18n="legal.lawText">
+                Les présentes mentions légales sont régies par la loi française. Tout litige sera soumis aux tribunaux français.
+            </p>
+        </div>
     </div>
-</div>
 
-<footer>
-    <p>© <span id="year"></span> SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a></p>
-</footer>
+    <footer>
+        <p>© <span id="year"></span> SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a></p>
+    </footer>
 
-<script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    <script>
+        // Année dynamique
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-    const translations = {
-        fr: {
-            "menu.works":"Œuvres",
-            "menu.about":"À propos",
-            "menu.contact":"Contact",
-            "menu.purchase":"Acquérir",
-            "footer.rights":"Tous droits réservés.",
-            "footer.legal":"Mentions légales",
-            "legal.title":"Mentions légales",
-            "legal.editorTitle":"1. Éditeur du site",
-            "legal.editorText":"Le site SculptLab est édité par :\nNom de l'entreprise : SculptLab\nForme juridique : SARL\nSiège social : 123 Rue de la Sculpture, 06000 Nice, France\nSIRET : 123 456 789 00012\nEmail : contact@sculptlab.fr\nDirecteur de la publication : Jean Dupont",
-            "legal.hostTitle":"2. Hébergeur",
-            "legal.hostText":"OVH SAS, 2 rue Kellermann, 59100 Roubaix, France\nTéléphone : +33 9 72 10 10 07",
-            "legal.ipTitle":"3. Propriété intellectuelle",
-            "legal.ipText":"Tous les contenus présents sur ce site (textes, images, graphismes, logo, icônes, etc.) sont protégés par le droit d'auteur. Toute reproduction ou diffusion sans autorisation est interdite.",
-            "legal.dataTitle":"4. Données personnelles",
-            "legal.dataText":"Les informations recueillies via les formulaires sont destinées à un usage interne et ne sont pas transmises à des tiers sans accord préalable.",
-            "legal.cookiesTitle":"5. Cookies",
-            "legal.cookiesText":"Ce site utilise des cookies pour améliorer l’expérience utilisateur. Vous pouvez configurer votre navigateur pour les refuser.",
-            "legal.lawTitle":"6. Droit applicable",
-            "legal.lawText":"Les présentes mentions légales sont régies par la loi française. Tout litige sera soumis aux tribunaux français."
-        },
-        en: {
-            "menu.works":"Artworks",
-            "menu.about":"About",
-            "menu.contact":"Contact",
-            "menu.purchase":"Purchase",
-            "footer.rights":"All rights reserved.",
-            "footer.legal":"Legal notice",
-            "legal.title":"Legal Notice",
-            "legal.editorTitle":"1. Site Publisher",
-            "legal.editorText":"The SculptLab website is published by:\nCompany name: SculptLab\nLegal form: Limited Liability Company (SARL)\nHead office: 123 Rue de la Sculpture, 06000 Nice, France\nSIRET: 123 456 789 00012\nEmail: contact@sculptlab.fr\nPublication director: Jean Dupont",
-            "legal.hostTitle":"2. Hosting Provider",
-            "legal.hostText":"OVH SAS, 2 rue Kellermann, 59100 Roubaix, France\nPhone: +33 9 72 10 10 07",
-            "legal.ipTitle":"3. Intellectual Property",
-            "legal.ipText":"All content on this site (texts, images, graphics, logo, icons, etc.) is protected by copyright. Any reproduction or distribution without permission is prohibited.",
-            "legal.dataTitle":"4. Personal Data",
-            "legal.dataText":"Information collected via contact forms is for internal use only and will not be shared with third parties without prior consent.",
-            "legal.cookiesTitle":"5. Cookies",
-            "legal.cookiesText":"This site uses cookies to improve the user experience. You can configure your browser to refuse them.",
-            "legal.lawTitle":"6. Governing Law",
-            "legal.lawText":"These legal notices are governed by French law. Any dispute will be submitted to French courts."
+        // Menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
         }
-    };
 
-    function setLanguage(lang) {
-        localStorage.setItem('lang', lang);
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                el.innerHTML = translations[lang][key].replace(/\n/g, "<br>");
+        // Fermer le menu mobile en cliquant ailleurs
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
             }
         });
-        document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    }
 
-    setLanguage(localStorage.getItem('lang') || 'fr');
+        // Dictionnaire FR / EN
+        const translations = {
+            fr: {
+                "menu.works": "Œuvres",
+                "menu.about": "À propos",
+                "menu.contact": "Contact",
+                "menu.purchase": "Acquérir",
+                "footer.rights": "Tous droits réservés.",
+                "footer.legal": "Mentions légales",
+                "legal.title": "Mentions légales",
+                "legal.editorTitle": "1. Éditeur du site",
+                "legal.editorText": "Le site SculptLab. est édité par :<br>Nom de l'entreprise : SculptLab.<br>Forme juridique : SARL<br>Siège social : 123 Rue de la Sculpture, 06000 Nice, France<br>SIRET : 123 456 789 00012<br>Email : info@sculptlab.fr<br>",
+                "legal.hostTitle": "2. Hébergeur",
+                "legal.hostText": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>Téléphone : +33 9 72 10 10 07",
+                "legal.ipTitle": "3. Propriété intellectuelle",
+                "legal.ipText": "Tous les contenus présents sur ce site (textes, images, graphismes, logo, icônes, etc.) sont protégés par le droit d'auteur. Toute reproduction ou diffusion sans autorisation est interdite.",
+                "legal.dataTitle": "4. Données personnelles",
+                "legal.dataText": "Les informations recueillies via les formulaires sont destinées à un usage interne et ne sont pas transmises à des tiers sans accord préalable.",
+                "legal.cookiesTitle": "5. Cookies",
+                "legal.cookiesText": "Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez configurer votre navigateur pour les refuser.",
+                "legal.lawTitle": "6. Droit applicable",
+                "legal.lawText": "Les présentes mentions légales sont régies par la loi française. Tout litige sera soumis aux tribunaux français."
+            },
+            en: {
+                "menu.works": "Artworks",
+                "menu.about": "About",
+                "menu.contact": "Contact",
+                "menu.purchase": "Purchase",
+                "footer.rights": "All rights reserved.",
+                "footer.legal": "Legal notice",
+                "legal.title": "Legal Notice",
+                "legal.editorTitle": "1. Site Publisher",
+                "legal.editorText": "The SculptLab. website is published by:<br>Company name: SculptLab.<br>Legal form: Limited Liability Company (SARL)<br>Head office: 123 Rue de la Sculpture, 06000 Nice, France<br>SIRET: 123 456 789 00012<br>Email: info@sculptlab.fr<br>",
+                "legal.hostTitle": "2. Hosting Provider",
+                "legal.hostText": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>Phone: +33 9 72 10 10 07",
+                "legal.ipTitle": "3. Intellectual Property",
+                "legal.ipText": "All content on this site (texts, images, graphics, logo, icons, etc.) is protected by copyright. Any reproduction or distribution without permission is prohibited.",
+                "legal.dataTitle": "4. Personal Data",
+                "legal.dataText": "Information collected via contact forms is for internal use only and will not be shared with third parties without prior consent.",
+                "legal.cookiesTitle": "5. Cookies",
+                "legal.cookiesText": "This site uses cookies to improve the user experience. You can configure your browser to refuse them.",
+                "legal.lawTitle": "6. Governing Law",
+                "legal.lawText": "These legal notices are governed by French law. Any dispute will be submitted to French courts."
+            }
+        };
 
-    document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
-    document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
-</script>
+        function setLanguage(lang) {
+            localStorage.setItem('lang', lang);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Mise à jour des boutons desktop
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            
+            // Mise à jour des boutons mobile
+            document.getElementById('btn-fr-mobile').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
+        }
 
+        // Init langue
+        setLanguage(localStorage.getItem('lang') || 'fr');
+
+        // Boutons FR/EN desktop
+        document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
+        document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+
+        // Boutons FR/EN mobile
+        document.getElementById('btn-fr-mobile').addEventListener('click', () => {
+            setLanguage('fr');
+            document.getElementById('mobileMenu').classList.remove('active');
+        });
+        document.getElementById('btn-en-mobile').addEventListener('click', () => {
+            setLanguage('en');
+            document.getElementById('mobileMenu').classList.remove('active');
+        });
+
+        // Fermer le menu mobile lors du clic sur un lien
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
