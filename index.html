@@ -150,23 +150,50 @@ gtag('config', 'G-7BNG9RNN76');
 
 <!-- Script de gestion dynamique des langues -->
 <script>
-// Détection automatique de la langue du navigateur
 document.addEventListener('DOMContentLoaded', function() {
-const userLang = navigator.language || navigator.userLanguage;
-const isEnglish = userLang.startsWith('en');
+    // Récupérer la langue sauvegardée, sinon détecter la langue du navigateur
+    const savedLang = localStorage.getItem('lang');
+    let targetLang = 'fr'; // Par défaut français
+    
+    if (savedLang) {
+        // Si une langue est sauvegardée, l'utiliser en priorité
+        targetLang = savedLang;
+    } else {
+        // Sinon, détecter la langue du navigateur uniquement la première fois
+        const userLang = navigator.language || navigator.userLanguage;
+        const isEnglish = userLang.startsWith('en');
+        if (isEnglish) {
+            targetLang = 'en';
+        }
+        // Sauvegarder la langue détectée pour les prochaines visites
+        localStorage.setItem('lang', targetLang);
+    }
 
-if (isEnglish) {
-// Mise à jour des meta tags pour les anglophones
-document.title = document.querySelector('meta[name="title-en"]').content;
-document.querySelector('meta[name="description"]').content = document.querySelector('meta[name="description-en"]').content;
-document.documentElement.lang = 'en';
+    // Appliquer la langue détectée/sauvegardée
+    if (targetLang === 'en') {
+        // Mise à jour des meta tags pour les anglophones
+        const titleEn = document.querySelector('meta[name="title-en"]');
+        const descEn = document.querySelector('meta[name="description-en"]');
+        
+        if (titleEn) {
+            document.title = titleEn.content;
+        }
+        if (descEn) {
+            document.querySelector('meta[name="description"]').content = descEn.content;
+        }
+        document.documentElement.lang = 'en';
 
-// Mise à jour Open Graph
-if (document.querySelector('meta[property="og:title:en"]')) {
-document.querySelector('meta[property="og:title"]').content = document.querySelector('meta[property="og:title:en"]').content;
-document.querySelector('meta[property="og:description"]').content = document.querySelector('meta[property="og:description:en"]').content;
-}
-}
+        // Mise à jour Open Graph
+        const ogTitleEn = document.querySelector('meta[property="og:title:en"]');
+        const ogDescEn = document.querySelector('meta[property="og:description:en"]');
+        
+        if (ogTitleEn) {
+            document.querySelector('meta[property="og:title"]').content = ogTitleEn.content;
+        }
+        if (ogDescEn) {
+            document.querySelector('meta[property="og:description"]').content = ogDescEn.content;
+        }
+    }
 });
 </script>
 <style>
@@ -1245,8 +1272,11 @@ enigmaTypingTimer = null;
 }
 
 function setLanguage(lang) {
-// Mettre à jour tous les éléments avec data-i18n
-document.querySelectorAll('[data-i18n]').forEach(el => {
+    // Sauvegarder la langue choisie
+    localStorage.setItem('lang', lang);
+    
+    // Mettre à jour tous les éléments avec data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
 const key = el.getAttribute('data-i18n');
 if (translations[lang][key]) el.textContent = translations[lang][key];
 });
@@ -1265,8 +1295,9 @@ startZamuTyping(lang);
 startEnigmaTyping(lang);
 }
 
-// Init langue
-setLanguage('fr');
+        // Init langue
+        setLanguage(localStorage.getItem('lang') || 'fr');
+
 
 // Boutons FR/EN desktop
 document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
