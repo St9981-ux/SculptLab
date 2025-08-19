@@ -427,12 +427,27 @@ justify-content: center;
 align-items: center;
 }
 
+.image-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* évite les débordements */
+}
+
 .image-slider img {
-position: absolute;
-max-width: 100%;
-height: auto;
-transition: opacity 1s ease-in-out;
-opacity: 0;
+  width: 100%;          /* plutôt que max-width */
+  height: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.image-slider img.active {
+  opacity: 1;
+  position: relative;   /* ← ça permet de donner une hauteur au conteneur */
 }
 
 .image-slider img.active {
@@ -501,6 +516,42 @@ transition: background-color 0.3s ease;
 background-color: #ff66a3;
 }
 
+
+
+@media (min-width: 310px) and (max-width: 768px) and (max-height: 749px) {
+
+
+.cta-button {
+display: inline-block;
+padding: 10px 20px;
+font-size: 1em;
+color: #ffffff;
+background-color: #ff66a3;
+text-decoration: none;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+
+}
+
+
+.main-title {
+font-size: 4em;
+color: #ffffff;
+margin-bottom: 10px;
+font-weight: bold;
+line-height: 0.5;
+
+}
+
+.subtitle {
+font-size: 1.2em;
+color: #ffffff;
+margin-bottom: 20px;
+}
+
+}
+
+
 /* Animation texte - TAILLE ORIGINALE */
 .typing-animation {
 font-size: 1.4em;
@@ -561,6 +612,8 @@ display: none;
 }
 }
 
+
+
 @media (max-width: 768px) {
 /* Menu mobile - CORRECTION PRINCIPALE */
 .header-menu {
@@ -594,10 +647,6 @@ top: 70px;
 right: 20px;
 }
 
-/* Images vectorielles masquées sur mobile pour éviter l'encombrement */
-.vector-left, .vector-right {
-display: none;
-}
 
 /* CORRECTION PRINCIPALE : Sections empilées sur mobile avec ordre correct */
 .split-section {
@@ -888,6 +937,34 @@ padding-right: 40px;
 }
 }
 
+
+@media (min-width: 310px) and (max-width: 769px) {
+.vector-left, .vector-right {
+display: block;
+height: 100vh;
+}
+.vector-left {
+left: -130%;
+max-width: 233vw; /* 1000px/430px * 100 = 233vw */
+top: 4%;
+}
+.vector-right {
+right: -45%;
+max-width: 130vw; /* 600px/430px * 100 = 140vw */
+top: 50%;
+}
+}
+
+
+@media (max-height: 700px) {
+.vector-left, .vector-right {
+display: none;
+}
+}
+
+
+
+
 /* === STYLES SPÉCIFIQUES BLOC 4 (ENIGMA) === */
 .bloc-enigma {
 position: relative;
@@ -1038,6 +1115,7 @@ transition: none;
 <!-- Images vectorielles -->
 <img src="vect1.png" alt="Vector Left" class="vector-left">
 <img src="vect2.png" alt="Vector Right" class="vector-right">
+
 
 <!-- Menu hamburger mobile -->
 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
