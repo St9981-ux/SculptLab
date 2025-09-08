@@ -130,6 +130,15 @@
             position: relative;
         }
 
+.story-block .image-frame {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.05s ease, transform 0.05s ease;
+}
+.story-block .image-frame.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .section-turquoise {
 background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
@@ -782,27 +791,53 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
 
 
 function typeText(el, text, callback) {
-  // rendre visible uniquement quand on démarre cette étape
+  // rendre visible le texte au démarrage
   el.style.visibility = 'visible';
   el.innerHTML = '<span class="typing-cursor"></span>';
 
   const cursor = el.querySelector('.typing-cursor');
+  const block = el.closest('.story-block');
+  const image = block.querySelector('.image-frame');
+
+  // Initialiser l'image
+  if (image) {
+    image.style.opacity = 0;
+    image.style.transform = 'translateY(20px)';
+  }
+
   let i = 0;
 
   function type() {
     if (i < text.length) {
       cursor.insertAdjacentText('beforebegin', text.charAt(i));
       i++;
-      setTimeout(type, 15); // vitesse d’écriture
+
+      // faire apparaître progressivement l'image
+      if (image) {
+        const progress = Math.min(1, (i * 3) / text.length);
+        image.style.opacity = progress;
+        image.style.transform = `translateY(${20 * (1 - progress)}px)`;
+      }
+
+      setTimeout(type, 15); // vitesse d'écriture
     } else {
-      setTimeout(() => {
-        if (cursor) cursor.remove();
-        if (callback) callback(); // passer au suivant
-      }, 500); // petite pause avant d’enchaîner
+      // fin de frappe
+      if (cursor) cursor.remove();
+
+      // assurer que l'image est complètement visible
+      if (image) {
+        image.style.opacity = 1;
+        image.style.transform = 'translateY(0)';
+      }
+
+      // petite pause avant de passer au suivant
+      if (callback) setTimeout(callback, 500);
     }
   }
+
   type();
 }
+
 
 
 function animateSequentially(elements, lang) {
