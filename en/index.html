@@ -29,7 +29,7 @@ gtag('config', 'G-7BNG9RNN76');
 <!-- SEO Meta Tags - English -->
 <title>SculptLab. | Contemporary Artistic Sculptures</title>
 <meta name="description" content="Discover SculptLab's contemporary artistic sculptures. Unique artworks Io, Za'mu and Enigma. Modern and mysterious sculptural art to acquire.">
-<meta name="keywords" content="sculptures, contemporary art, artistic works, modern sculptures, sculptural art, sculpture gallery, buy sculpture, SculptLab, contemporary sculptures, modern art, artistic sculptures, sculpture gallery, purchase sculpture">
+<meta name="keywords" content="sculptures, contemporary art, artistic sculptures, modern sculptures, sculptural art, sculpture gallery, buy sculpture, SculptLab, contemporary sculptures, modern art, artistic sculptures, sculpture gallery, buy sculpture">
 <meta name="author" content="SculptLab.">
 <meta name="robots" content="index, follow">
 <meta name="language" content="en">
@@ -66,7 +66,7 @@ gtag('config', 'G-7BNG9RNN76');
 <!-- Canonical URL -->
 <link rel="canonical" href="https://sculptlab.fr/en/">
 
-<!-- Hreflang for multilingual -->
+<!-- Hreflang pour le multilinguisme -->
 <link rel="alternate" hreflang="fr" href="https://sculptlab.fr/">
 <link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/">
 <link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/">
@@ -83,7 +83,7 @@ gtag('config', 'G-7BNG9RNN76');
 
 <link rel="manifest" href="/site.webmanifest">
 
-<!-- Preload critical resources -->
+<!-- Preload critical resources - Toutes les images importantes -->
 <link rel="preload" href="../signature.png" as="image">
 <link rel="preload" href="../image1a.png" as="image">
 <link rel="preload" href="../image1b.png" as="image">
@@ -94,23 +94,23 @@ gtag('config', 'G-7BNG9RNN76');
 <link rel="preload" href="../vect1.png" as="image">
 <link rel="preload" href="../vect2.png" as="image">
 
-<!-- Font used only for the IO title -->
+<!-- Font utilisée uniquement pour le titre IO (le corps reste inchangé) -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Schema.org structured data with multilingual support -->
+<!-- Schema.org structured data avec support multilingue -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "ArtGallery",
 "name": "SculptLab",
-"description": "Gallery of contemporary artistic sculptures",
+"description": "Contemporary artistic sculpture gallery",
 "url": "https://sculptlab.fr/en/",
 "sameAs": [
 "https://www.instagram.com/sculptlab",
 "https://www.facebook.com/sculptlab"
 ],
 "artMedium": "Sculpture",
-"inLanguage": ["en","fr"],
+"inLanguage": ["en", "fr"],
 "artworkLocation": {
 "@type": "Place",
 "name": "SculptLab Gallery"
@@ -126,7 +126,10 @@ gtag('config', 'G-7BNG9RNN76');
 "name": "Io",
 "artMedium": "Sculpture",
 "image": "https://sculptlab.fr/image1a.png",
-"creator": { "@type": "Person", "name": "SculptLab Artist" }
+"creator": {
+"@type": "Person",
+"name": "SculptLab Artist"
+}
 }
 },
 {
@@ -136,7 +139,10 @@ gtag('config', 'G-7BNG9RNN76');
 "name": "Za'mu",
 "artMedium": "Sculpture",
 "image": "https://sculptlab.fr/image2a.png",
-"creator": { "@type": "Person", "name": "SculptLab Artist" }
+"creator": {
+"@type": "Person",
+"name": "SculptLab Artist"
+}
 }
 },
 {
@@ -146,7 +152,10 @@ gtag('config', 'G-7BNG9RNN76');
 "name": "Enigma",
 "artMedium": "Sculpture",
 "image": "https://sculptlab.fr/image3a.png",
-"creator": { "@type": "Person", "name": "SculptLab Artist" }
+"creator": {
+"@type": "Person",
+"name": "SculptLab Artist"
+}
 }
 }
 ]
@@ -379,24 +388,35 @@ text-align: justify;
 position: relative;
 width: 100%;
 max-width: 100%;
-overflow: hidden;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.image-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* évite les débordements */
 }
 
 .image-slider img {
-width: 100%;
-height: auto;
-display: block;
-position: absolute;
-top: 0;
-left: 0;
-opacity: 0;
-transition: opacity 1s ease-in-out;
+  width: 100%;          /* plutôt que max-width */
+  height: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .image-slider img.active {
-opacity: 1;
-position: relative;
+  opacity: 1;
+  position: relative;   /* ← ça permet de donner une hauteur au conteneur */
 }
+
 
 /* Couleurs des sections */
 .half-yellow { background: linear-gradient(135deg, #F4E04D 0%, #F6E27F 100%); }
@@ -429,7 +449,7 @@ footer a:hover {
 color: #ff6a00;
 }
 
-/* Titres et textes */
+/* Titres et textes - TAILLES ORIGINALES */
 .main-title {
 font-size: 4em;
 color: #ffffff;
@@ -444,7 +464,7 @@ color: #ffffff;
 margin-bottom: 40px;
 }
 
-/* BOUTON CTA */
+/* BOUTON CTA ORIGINAL */
 .cta-button {
 display: inline-block;
 padding: 15px 30px;
@@ -460,7 +480,11 @@ transition: background-color 0.3s ease;
 background-color: #ff66a3;
 }
 
+
+
 @media (min-width: 310px) and (max-width: 768px) and (max-height: 749px) {
+
+
 .cta-button {
 display: inline-block;
 padding: 10px 20px;
@@ -470,7 +494,9 @@ background-color: #ff66a3;
 text-decoration: none;
 border-radius: 5px;
 transition: background-color 0.3s ease;
+
 }
+
 
 .main-title {
 font-size: 4em;
@@ -478,6 +504,7 @@ color: #ffffff;
 margin-bottom: 10px;
 font-weight: bold;
 line-height: 0.5;
+
 }
 
 .subtitle {
@@ -485,9 +512,11 @@ font-size: 1.2em;
 color: #ffffff;
 margin-bottom: 20px;
 }
+
 }
 
-/* Animation texte */
+
+/* Animation texte - TAILLE ORIGINALE */
 .typing-animation {
 font-size: 1.4em;
 color: #1a1a1a;
@@ -541,12 +570,16 @@ gap: 20px;
 padding: 30px 40px;
 }
 
+/* Ajustement des images vectorielles sur tablette */
 .vector-left, .vector-right {
 display: none;
 }
 }
 
+
+
 @media (max-width: 768px) {
+/* Menu mobile - CORRECTION PRINCIPALE */
 .header-menu {
 position: fixed;
 top: 20px;
@@ -578,6 +611,8 @@ top: 70px;
 right: 20px;
 }
 
+
+/* CORRECTION PRINCIPALE : Sections empilées sur mobile avec ordre correct */
 .split-section {
 display: grid;
 grid-template-columns: 1fr;
@@ -594,15 +629,19 @@ font-size: 0.75em;
 }
 
 /* Ordre spécifique pour chaque bloc sur mobile */
-.split-section:nth-of-type(2) .half-section:nth-child(1) { order: 1; }
-.split-section:nth-of-type(2) .half-section:nth-child(2) { order: 2; }
+/* Bloc 2 : image puis texte */
+.split-section:nth-of-type(2) .half-section:nth-child(1) { order: 1; } /* image */
+.split-section:nth-of-type(2) .half-section:nth-child(2) { order: 2; } /* texte */
 
-.split-section:nth-of-type(3) .half-section:nth-child(1) { order: 2; }
-.split-section:nth-of-type(3) .half-section:nth-child(2) { order: 1; }
+/* Bloc 3 : texte puis image MAIS on inverse pour avoir image puis texte */
+.split-section:nth-of-type(3) .half-section:nth-child(1) { order: 2; } /* texte en 2e */
+.split-section:nth-of-type(3) .half-section:nth-child(2) { order: 1; } /* image en 1er */
 
-.split-section:nth-of-type(4) .half-section:nth-child(1) { order: 1; }
-.split-section:nth-of-type(4) .half-section:nth-child(2) { order: 2; }
+/* Bloc 4 : image puis texte */
+.split-section:nth-of-type(4) .half-section:nth-child(1) { order: 1; } /* image */
+.split-section:nth-of-type(4) .half-section:nth-child(2) { order: 2; } /* texte */
 
+/* Ajustements du contenu mobile */
 .section {
 height: auto;
 min-height: 100vh;
@@ -613,6 +652,7 @@ padding: 20px;
 padding: 100px 20px 40px;
 }
 
+/* Réduction légère pour mobile uniquement */
 .main-title {
 font-size: 3em;
 }
@@ -667,6 +707,7 @@ footer {
 padding: 20px 15px;
 }
 
+/* Réduction pour très petits écrans */
 .main-title {
 font-size: 2.5em;
 }
@@ -713,6 +754,7 @@ right: 10px;
 }
 }
 
+/* Optimisation pour tablettes en mode paysage */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
 .half-section {
 padding: 25px 40px;
@@ -723,8 +765,9 @@ max-width: 35%;
 }
 }
 
-/* === SHARED STYLES FOR ALL BLOCKS === */
+/* === STYLES PARTAGÉS POUR TOUS LES BLOCS === */
 
+/* Classe commune pour les conteneurs de texte */
 .text-content {
 display: flex;
 flex-direction: column;
@@ -737,6 +780,7 @@ padding-bottom: 80px;
 box-sizing: border-box;
 }
 
+/* Titre commun pour tous les blocs */
 .artwork-title {
 font-family: 'Futura', 'Circular Std', sans-serif;
 font-size: 72px;
@@ -750,12 +794,14 @@ display: flex;
 align-items: baseline;
 }
 
+/* Première lettre plus grande et décalée */
 .artwork-title .first-letter {
 font-size: 2.4em;
 transform: translateY(40px);
 margin-right: 0px;
 }
 
+/* Carte blanche commune */
 .artwork-card {
 background: #fff;
 border-radius: 10px;
@@ -772,6 +818,7 @@ font-family: inherit;
 position: relative;
 }
 
+/* Curseur commun */
 .artwork-card::after {
 content: '';
 position: absolute;
@@ -783,6 +830,7 @@ background: #333333;
 animation: artwork-blink-caret 0.75s step-end infinite;
 }
 
+/* Animation du curseur commune */
 @keyframes artwork-blink-caret {
 from, to { background-color: transparent; }
 50% { background-color: #333333; }
@@ -792,6 +840,7 @@ from, to { background-color: transparent; }
 margin: 0;
 }
 
+/* Conteneur pour la carte et le bouton */
 .artwork-content {
 display: flex;
 flex-direction: column;
@@ -800,6 +849,7 @@ width: 100%;
 gap: 20px;
 }
 
+/* Bouton Commander commun */
 .artwork-order {
 display: inline-block;
 background: #ff66a3;
@@ -818,7 +868,7 @@ background: #ff66a3;
 transform: translateY(-2px);
 }
 
-/* === SPECIFIC STYLES BLOCK 2 (IO) === */
+/* === STYLES SPÉCIFIQUES BLOC 2 (IO) === */
 .bloc-io {
 position: relative;
 background: linear-gradient(135deg, #F4E04D 0%, #F6E27F 100%);
@@ -828,7 +878,7 @@ background: linear-gradient(135deg, #F4E04D 0%, #F6E27F 100%);
 background: transparent; 
 }
 
-/* === SPECIFIC STYLES BLOCK 3 (ZA'MU) === */
+/* === STYLES SPÉCIFIQUES BLOC 3 (ZA'MU) === */
 .bloc-zamu {
 position: relative;
 background: linear-gradient(135deg, #00bfff 0%, #0091ff 100%);
@@ -838,16 +888,19 @@ background: linear-gradient(135deg, #00bfff 0%, #0091ff 100%);
 background: transparent; 
 }
 
+/* Couleur du titre Za'mu (blanc sur fond bleu) */
 .bloc-zamu .artwork-title {
 color: #fff;
 }
 
+/* Marge spécifique pour Za'mu (côté gauche) - SEULEMENT EN DESKTOP */
 @media (min-width: 1025px) {
 .bloc-zamu .text-content {
 padding-left: 80px;
 padding-right: 40px;
 }
 }
+
 
 @media (min-width: 310px) and (max-width: 769px) {
 .vector-left, .vector-right {
@@ -856,15 +909,16 @@ height: 100vh;
 }
 .vector-left {
 left: -130%;
-max-width: 233vw;
+max-width: 233vw; /* 1000px/430px * 100 = 233vw */
 top: 4%;
 }
 .vector-right {
 right: -45%;
-max-width: 130vw;
+max-width: 130vw; /* 600px/430px * 100 = 140vw */
 top: 50%;
 }
 }
+
 
 @media (max-height: 700px) {
 .vector-left, .vector-right {
@@ -872,7 +926,10 @@ display: none;
 }
 }
 
-/* === SPECIFIC STYLES BLOCK 4 (ENIGMA) === */
+
+
+
+/* === STYLES SPÉCIFIQUES BLOC 4 (ENIGMA) === */
 .bloc-enigma {
 position: relative;
 background: linear-gradient(135deg, #80ff9a 30%, #acff8d 100%); 
@@ -891,6 +948,7 @@ top: 20px;
 }
 }
 
+
 @media (min-width: 1025px) and (max-width: 1440px) {
 .artwork-title {
 font-size: 48px;
@@ -907,6 +965,7 @@ right: 20px;
 top: 5px;
 }
 
+/* Uniformiser les marges pour tous les blocs en format non-desktop */
 .text-content {
 padding-left: 30px;
 padding-right: 60px;
@@ -981,6 +1040,7 @@ gap: 16px;
 }
 }
 
+/* Responsive amélioré pour les cartes */
 @media (max-width: 1200px) {
 .artwork-card {
 max-width: 90%;
@@ -994,6 +1054,7 @@ max-width: none;
 }
 }
 
+/* Amélioration de l'accessibilité */
 @media (prefers-reduced-motion: reduce) {
 .typing-animation {
 animation: none;
@@ -1011,21 +1072,22 @@ transition: none;
 </style>
 </head>
 <body>
-<!-- Block 1 (TURQUOISE SPACE): with integrated vector images -->
+<!-- Bloc 1 (ESPACE TURQUOISE) : avec images vectorielles intégrées -->
 <div class="section section-turquoise">
 <img src="../signature.png" alt="Signature" class="signature">
 
-<!-- Vector images -->
+<!-- Images vectorielles -->
 <img src="../vect1.png" alt="Vector Left" class="vector-left">
 <img src="../vect2.png" alt="Vector Right" class="vector-right">
 
-<!-- Mobile hamburger menu -->
+
+<!-- Menu hamburger mobile -->
 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
 <div class="mobile-menu" id="mobileMenu">
-<a href="index.html">Artworks</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="purchase.html">Purchase</a>
+<a href="index.html" data-i18n="menu.works">Artworks</a>
+<a href="about.html" data-i18n="menu.about">About</a>
+<a href="contact.html" data-i18n="menu.contact">Contact</a>
+<a href="purchase.html" data-i18n="menu.purchase">Purchase</a>
 <div class="lang-toggle">
 <button type="button" id="btn-fr-mobile">FR</button>
 <span>·</span>
@@ -1033,12 +1095,12 @@ transition: none;
 </div>
 </div>
 
-<!-- Desktop menu -->
+<!-- Menu desktop -->
 <div class="header-menu">
-<a href="index.html">Artworks</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="purchase.html">Purchase</a>
+<a href="index.html" data-i18n="menu.works">Artworks</a>
+<a href="about.html" data-i18n="menu.about">About</a>
+<a href="contact.html" data-i18n="menu.contact">Contact</a>
+<a href="purchase.html" data-i18n="menu.purchase">Purchase</a>
 
 <div class="lang-toggle">
 <button type="button" id="btn-fr">FR</button>
@@ -1049,14 +1111,14 @@ transition: none;
 
 <div class="content-wrapper">
 <h1 class="main-title">SculptLab.</h1>
-<br>
-<a href="#about" class="cta-button">Discover the artworks</a>
+</br>
+<a href="#about" class="cta-button" data-i18n="cta.discover">Discover the artworks</a>
 </div>
 </div>
 
-<!-- Block 2 — Io -->
+<!-- Bloc 2 — Io (conservé tel quel) -->
 <div id="about" class="split-section bloc-io">
-<!-- Left: sculpture (fade preserved) -->
+<!-- Gauche : sculpture (fondu conservé) -->
 <div class="half-section">
 <div class="image-slider">
 <img src="../image1a.png" alt="Io" class="active">
@@ -1064,7 +1126,7 @@ transition: none;
 </div>
 </div>
 
-<!-- Right: offset IO title, extended white card, then button below on the right -->
+<!-- Droite : titre IO décalé, carte blanche étendue, puis bouton en dessous à droite -->
 <div class="half-section text-content">
 <div class="artwork-title" aria-hidden="true">
 <span class="first-letter">I</span><span class="rest-letters">o</span>
@@ -1072,15 +1134,15 @@ transition: none;
 
 <div class="artwork-content">
 <div class="artwork-card" aria-live="polite">
-<p class="io-text">At the far west of the world, where the horizon dissolves into nothingness, stretches a meadow that no atlas dares to name. There watches Io, mythical heifer, motionless at the threshold of all things. Her gaze, as vast as eternity, penetrates the soul of anyone who dares to venture there. To plunge into this immensity, they whisper, is to reveal oneself completely, stripped of all falsehoods. Some flee, others linger… but all end up lost in her silence.</p>
+<p class="io-text"></p>
 </div>
 
-<a href="purchase.html" class="artwork-order">Order</a>
+<a href="purchase.html" class="artwork-order" data-i18n="cta.order">Order</a>
 </div>
 </div>
 </div>
 
-<!-- Block 3 — Za'mu (MODIFIED with new layout) -->
+<!-- Bloc 3 — Za'mu (MODIFIÉ avec nouveau layout) -->
 <div id="contact" class="split-section bloc-zamu">
 <div class="half-section half-red text-content">
 <div class="artwork-title" aria-hidden="true">
@@ -1089,10 +1151,10 @@ transition: none;
 
 <div class="artwork-content">
 <div class="artwork-card" aria-live="polite">
-<p class="zamu-text">All that is deep loves the mask, and every mask is a doorway. What you see is only a face offered to the light. The other, the true one, dwells in shadow, waiting for the breath of the world to give it life. It does not reveal itself; it unfolds in fragments, and within these fragments, those who approach discover that the shadow often dances with the fire of the stars.</p>
+<p class="zamu-text"></p>
 </div>
 
-<a href="purchase.html" class="artwork-order">Order</a>
+<a href="purchase.html" class="artwork-order" data-i18n="cta.order">Order</a>
 </div>
 </div>
 <div class="half-section half-lightblue">
@@ -1103,7 +1165,7 @@ transition: none;
 </div>
 </div>
 
-<!-- Block 4 — Enigma (MODIFIED with new layout) -->
+<!-- Bloc 4 — Enigma (MODIFIÉ avec nouveau layout) -->
 <div id="purchase" class="split-section bloc-enigma">
 <div class="half-section half-inverse-yellow">
 <div class="image-slider">
@@ -1118,30 +1180,30 @@ transition: none;
 
 <div class="artwork-content">
 <div class="artwork-card" aria-live="polite">
-<p class="enigma-text">That presence… Its memory still chills me, even today. He loomed, imposing, with curved horns that carved through the night like a crescent moon. His single eye pierced me, probing the most secret folds of my heart, as if he were its master, awakening all that I had sought to bury. Around me, all bowed down, trembling, and I too could not resist. It was neither faith, nor even fear: it was something deeper still—the certainty of standing before something that infinitely surpassed me, an avatar of enigmatic powers my mind could never grasp.</p>
+<p class="enigma-text"></p>
 </div>
 
-<a href="purchase.html" class="artwork-order">Order</a>
+<a href="purchase.html" class="artwork-order" data-i18n="cta.order">Order</a>
 </div>
 </div>
 </div>
 
 <!-- Footer -->
 <footer>
-<p>© <span id="year"></span> by SculptLab. All rights reserved. | <a href="legal.html">Legal notice</a></p>
+<p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | <a href="../mentions_legales.html" data-i18n="footer.legal">Legal notice</a></p>
 </footer>
 
 <script>
-// Dynamic year
+// Année dynamique
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Mobile menu
+// Menu mobile
 function toggleMobileMenu() {
 const menu = document.getElementById('mobileMenu');
 menu.classList.toggle('active');
 }
 
-// Close mobile menu when clicking elsewhere
+// Fermer le menu mobile en cliquant ailleurs
 document.addEventListener('click', function(event) {
 const menu = document.getElementById('mobileMenu');
 const toggle = document.querySelector('.mobile-menu-toggle');
@@ -1151,7 +1213,7 @@ menu.classList.remove('active');
 }
 });
 
-// Image slideshow
+// Diaporama images
 document.querySelectorAll(".image-slider").forEach(slider => {
 const images = slider.querySelectorAll("img");
 let index = 0;
@@ -1162,56 +1224,56 @@ images[index].classList.add("active");
 }, 5000);
 });
 
-// Language switching functionality
-document.getElementById('btn-fr').addEventListener('click', function() {
-window.location.href = '../index.html';
-});
+// Dictionnaire FR / EN
+const translations = {
+fr: {
+"menu.works": "Œuvres",
+"menu.about": "À propos",
+"menu.contact": "Contact",
+"menu.purchase": "Acquérir",
+"cta.discover": "Découvrir les œuvres",
+"cta.order": "Commander",
+"work1.title": "\"Io\"",
+"work1.text": "À l'extrême occident du monde, là où l'horizon se dissout dans le néant, s'étend une prairie qu'aucun atlas n'ose nommer. Là veille Io, génisse mythique, immobile au seuil des choses. Son regard, vaste comme l'éternité, pénètre l'âme de quiconque ose s'y aventurer. Plonger dans cette immensité, murmure-t-on, c'est se révéler tout entier, dépouillé de mensonges. Certains fuient, d'autres s'attardent… mais tous finissent par se perdre dans son silence.",
+"work2.title": "\"Za'mu\"",
+"work2.text": "Tout ce qui est profond aime le masque, et tout masque est une porte. Ce que tu vois n'est qu'un visage offert à la lumière. L'autre, le vrai, demeure dans l'ombre et attend que le souffle du monde lui rende vie. Il ne se livre pas, il se révèle par fragments, et dans ces fragments, celui qui approche découvre que l'ombre danse, bien souvent, avec le feu des étoiles.",
+"work3.title": "\"Enigma\"",
+"work3.text": "Cette présence.. Son souvenir me glace encore, même aujourd'hui. Il se dressait, imposant, avec des cornes recourbées qui découpaient la nuit comme un croissant de lune. Son œil unique me transperçait, sondant les replis les plus secrets de mon cœur, comme s'il en était le maître, réveillant tout ce que j'avais voulu enfouir. Autour de moi, tous se prosternaient, tremblants, et moi aussi je n'ai pas pu résister. Ce n'était pas de la foi, ni même de la peur : c'était plus profond encore, l'évidence de se trouver face à quelque chose qui me dépassait infiniment, un avatar de puissances énigmatiques que mon esprit ne pourrait jamais saisir.",
+"footer.rights": "Tous droits réservés.",
+"footer.legal": "Mentions légales"
+},
+en: {
+"menu.works": "Artworks",
+"menu.about": "About",
+"menu.contact": "Contact",
+"menu.purchase": "Purchase",
+"cta.discover": "Discover the artworks",
+"cta.order": "Order",
+"work1.title": "\"Io\"",
+"work1.text": "At the far west of the world, where the horizon dissolves into nothingness, stretches a meadow that no atlas dares to name. There watches Io, mythical heifer, motionless at the threshold of all things. Her gaze, as vast as eternity, penetrates the soul of anyone who dares to venture there. To plunge into this immensity, they whisper, is to reveal oneself completely, stripped of all falsehoods. Some flee, others linger… but all end up lost in her silence.",
+"work2.title": "\"Za'mu\"",
+"work2.text": "All that is deep loves the mask, and every mask is a doorway. What you see is only a face offered to the light. The other, the true one, dwells in shadow, waiting for the breath of the world to give it life. It does not reveal itself; it unfolds in fragments, and within these fragments, those who approach discover that the shadow often dances with the fire of the stars.",
+"work3.title": "\"Enigma\"",
+"work3.text": "That presence… Its memory still chills me, even today. He loomed, imposing, with curved horns that carved through the night like a crescent moon. His single eye pierced me, probing the most secret folds of my heart, as if he were its master, awakening all that I had sought to bury. Around me, all bowed down, trembling, and I too could not resist. It was neither faith, nor even fear: it was something deeper still—the certainty of standing before something that infinitely surpassed me, an avatar of enigmatic powers my mind could never grasp.",
+"footer.rights": "All rights reserved.",
+"footer.legal": "Legal notice"
+}
+};
 
-document.getElementById('btn-fr-mobile').addEventListener('click', function() {
-window.location.href = '../index.html';
-});
-
-document.getElementById('btn-en').addEventListener('click', function() {
-// Already on English version
-});
-
-document.getElementById('btn-en-mobile').addEventListener('click', function() {
-// Already on English version
-document.getElementById('mobileMenu').classList.remove('active');
-});
-
-// Smooth scroll for CTA button
-document.addEventListener('DOMContentLoaded', function() {
-const ctaButton = document.querySelector('.cta-button');
-ctaButton.addEventListener('click', function(event) {
-event.preventDefault();
-document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-});
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-link.addEventListener('click', () => {
-document.getElementById('mobileMenu').classList.remove('active');
-});
-});
-
-// Typing animations for artwork descriptions
+// Fonctions de typing effect pour chaque bloc
 let ioTypingTimer = null;
 let zamuTypingTimer = null;
 let enigmaTypingTimer = null;
 
 function escapeHtml(str) {
-return str.replace(/[&<>"']/g, function (m) { 
-return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]; 
-});
+return str.replace(/[&<>"']/g, function (m) { return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]; });
 }
 
-function startIoTyping() {
+function startIoTyping(lang) {
 const target = document.querySelector('.io-text');
 if (!target) return;
 if (ioTypingTimer) { clearInterval(ioTypingTimer); ioTypingTimer = null; }
-const full = "At the far west of the world, where the horizon dissolves into nothingness, stretches a meadow that no atlas dares to name. There watches Io, mythical heifer, motionless at the threshold of all things. Her gaze, as vast as eternity, penetrates the soul of anyone who dares to venture there. To plunge into this immensity, they whisper, is to reveal oneself completely, stripped of all falsehoods. Some flee, others linger… but all end up lost in her silence.";
+const full = translations[lang] && translations[lang]['work1.text'] ? translations[lang]['work1.text'] : '';
 target.innerHTML = '';
 let i = 0;
 const speed = 16;
@@ -1225,11 +1287,11 @@ ioTypingTimer = null;
 }, speed);
 }
 
-function startZamuTyping() {
+function startZamuTyping(lang) {
 const target = document.querySelector('.zamu-text');
 if (!target) return;
 if (zamuTypingTimer) { clearInterval(zamuTypingTimer); zamuTypingTimer = null; }
-const full = "All that is deep loves the mask, and every mask is a doorway. What you see is only a face offered to the light. The other, the true one, dwells in shadow, waiting for the breath of the world to give it life. It does not reveal itself; it unfolds in fragments, and within these fragments, those who approach discover that the shadow often dances with the fire of the stars.";
+const full = translations[lang] && translations[lang]['work2.text'] ? translations[lang]['work2.text'] : '';
 target.innerHTML = '';
 let i = 0;
 const speed = 16;
@@ -1243,11 +1305,11 @@ zamuTypingTimer = null;
 }, speed);
 }
 
-function startEnigmaTyping() {
+function startEnigmaTyping(lang) {
 const target = document.querySelector('.enigma-text');
 if (!target) return;
 if (enigmaTypingTimer) { clearInterval(enigmaTypingTimer); enigmaTypingTimer = null; }
-const full = "That presence… Its memory still chills me, even today. He loomed, imposing, with curved horns that carved through the night like a crescent moon. His single eye pierced me, probing the most secret folds of my heart, as if he were its master, awakening all that I had sought to bury. Around me, all bowed down, trembling, and I too could not resist. It was neither faith, nor even fear: it was something deeper still—the certainty of standing before something that infinitely surpassed me, an avatar of enigmatic powers my mind could never grasp.";
+const full = translations[lang] && translations[lang]['work3.text'] ? translations[lang]['work3.text'] : '';
 target.innerHTML = '';
 let i = 0;
 const speed = 16;
@@ -1261,17 +1323,62 @@ enigmaTypingTimer = null;
 }, speed);
 }
 
-// Start typing animations when page loads
+function setLanguage(lang) {
+    // Sauvegarder la langue choisie
+    localStorage.setItem('lang', lang);
+    
+    // Mettre à jour tous les éléments avec data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+const key = el.getAttribute('data-i18n');
+if (translations[lang][key]) el.textContent = translations[lang][key];
+});
+
+// Mise à jour des boutons desktop
+document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+// Mise à jour des boutons mobile
+document.getElementById('btn-fr-mobile').classList.toggle('active', lang === 'fr');
+document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
+
+// Relancer toutes les animations de frappe
+startIoTyping(lang);
+startZamuTyping(lang);
+startEnigmaTyping(lang);
+}
+
+        // Init langue
+        setLanguage(localStorage.getItem('lang') || 'en');
+
+
+// Boutons FR/EN desktop
+document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
+document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+
+// Boutons FR/EN mobile
+document.getElementById('btn-fr-mobile').addEventListener('click', () => {
+setLanguage('fr');
+document.getElementById('mobileMenu').classList.remove('active');
+});
+document.getElementById('btn-en-mobile').addEventListener('click', () => {
+setLanguage('en');
+document.getElementById('mobileMenu').classList.remove('active');
+});
+
+// Scroll fluide pour bouton CTA
 document.addEventListener('DOMContentLoaded', function() {
-setTimeout(() => {
-startIoTyping();
-}, 500);
-setTimeout(() => {
-startZamuTyping();
-}, 1000);
-setTimeout(() => {
-startEnigmaTyping();
-}, 1500);
+const ctaButton = document.querySelector('.cta-button');
+ctaButton.addEventListener('click', function(event) {
+event.preventDefault();
+document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+});
+});
+
+// Fermer le menu mobile lors du clic sur un lien
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+link.addEventListener('click', () => {
+document.getElementById('mobileMenu').classList.remove('active');
+});
 });
 </script>
 </body>

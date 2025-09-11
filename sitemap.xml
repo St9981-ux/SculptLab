@@ -1,75 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Accueil -->
   <url>
     <loc>https://sculptlab.fr/</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/"/>
   </url>
+
+  <!-- About -->
   <url>
     <loc>https://sculptlab.fr/about.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/about.html"/>
   </url>
+
+  <!-- Contact -->
   <url>
     <loc>https://sculptlab.fr/contact.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/contact.html"/>
   </url>
+
+  <!-- Purchase -->
   <url>
     <loc>https://sculptlab.fr/purchase.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/purchase.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/purchase.html"/>
   </url>
+
+  <!-- Enigma1 -->
   <url>
     <loc>https://sculptlab.fr/enigma1.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma1.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma1.html"/>
   </url>
+
+  <!-- Enigma2 -->
   <url>
     <loc>https://sculptlab.fr/enigma2.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma2.html"/>
   </url>
+
+  <!-- Io1 -->
   <url>
     <loc>https://sculptlab.fr/io1.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io1.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io1.html"/>
   </url>
+
+  <!-- Io2 -->
   <url>
     <loc>https://sculptlab.fr/io2.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io2.html"/>
   </url>
+
+  <!-- Zamu1 -->
   <url>
     <loc>https://sculptlab.fr/zamu1.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu1.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu1.html"/>
   </url>
+
+  <!-- Zamu2 -->
   <url>
     <loc>https://sculptlab.fr/zamu2.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu2.html"/>
   </url>
+
+  <!-- CGV et mentions légales -->
   <url>
     <loc>https://sculptlab.fr/cgv.html</loc>
-    <lastmod>2025-09-07</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+
   <url>
     <loc>https://sculptlab.fr/mentions_legales.html</loc>
-    <lastmod>2025-09-07</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>
