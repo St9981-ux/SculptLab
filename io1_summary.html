@@ -67,12 +67,13 @@
             display: none;
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-        }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
 
         html::-webkit-scrollbar, body::-webkit-scrollbar {
             display: none !important;
@@ -86,6 +87,12 @@
             overflow-y: scroll;
             line-height: 1.6;
         }
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* occupe au moins la hauteur de la fenêtre */
+}
 
         /* Bandeau turquoise */
        
@@ -315,13 +322,14 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
         }
 
         /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            box-sizing: border-box;
-        }
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: auto; /* <-- pousse le footer en bas du wrapper flex */
+}
 
         footer p {
             margin: 0;
@@ -523,7 +531,7 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
-
+ <div class="page-wrapper">
     <!-- Bandeau turquoise -->
     <div class="section-turquoise">
         <img src="signature.png" alt="Signature" class="signature">
@@ -609,7 +617,7 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a>
         </p>
     </footer>
-
+   </div>
     <script>
         // Année dynamique
         document.getElementById("year").textContent = new Date().getFullYear();
