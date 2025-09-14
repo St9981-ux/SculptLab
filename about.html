@@ -11,6 +11,33 @@
 
       gtag('config', 'G-7BNG9RNN76');
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const banner = document.getElementById('cookie-banner');
+  const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+
+  // Détecter la langue du navigateur
+  if (userLang.startsWith('fr')) {
+    document.body.classList.add('lang-fr');
+  } else {
+    document.body.classList.add('lang-en');
+  }
+
+  // Vérifier si l'utilisateur a déjà accepté
+  if (!localStorage.getItem('cookiesAccepted')) {
+    banner.style.display = 'flex';
+    // déclenche l'animation après un petit délai
+    setTimeout(() => banner.classList.add('show'), 50);
+  }
+
+  // Quand on clique sur OK
+  document.getElementById('close-cookie-banner').addEventListener('click', function() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    banner.classList.remove('show');
+    setTimeout(() => banner.style.display = 'none', 400);
+  });
+});
+</script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -664,9 +691,69 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             }
         }
 
-    </style>
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+#cookie-banner.show {
+  transform: translateY(0);
+}
+
+#cookie-banner p {
+  margin: 0;
+  flex: 1;
+}
+
+#cookie-banner a {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+#cookie-banner button {
+  background-color: #ffd700;
+  color: #222;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.fr, .en {
+  display: none;
+}
+
+body.lang-fr .fr { display: inline; }
+body.lang-en .en { display: inline; }
+
+
+</style>
 </head>
 <body>
+
+<div id="cookie-banner" style="display: none;">
+  <p>
+    <span class="fr">Nous utilisons des cookies pour améliorer votre expérience. <a href="mentions_legales.html">En savoir plus</a>.</span>
+    <span class="en">We use cookies to improve your experience. <a href="mentions_legales.html">Learn more</a>.</span>
+  </p>
+  <button id="close-cookie-banner">
+    <span class="fr">OK</span>
+    <span class="en">OK</span>
+  </button>
+</div>
     <div class="content">
         <div class="section section-turquoise">
             <img src="signature.png" alt="Signature" class="signature">
@@ -811,7 +898,7 @@ if (image) {
 
       // faire apparaître progressivement l'image
 if (image) {
-    const progress = Math.min(1, (i * 3) / text.length);
+    const progress = Math.min(1, (i * 1) / text.length);
     image.style.opacity = progress;
 }
 
