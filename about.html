@@ -12,34 +12,7 @@
 
       gtag('config', 'G-7BNG9RNN76');
     </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const banner = document.getElementById('cookie-banner');
-  const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
 
-  // Détecter la langue du navigateur
-  if (userLang.startsWith('fr')) {
-    document.body.classList.add('lang-fr');
-  } else {
-    document.body.classList.add('lang-en');
-  }
-
-  // Vérifier si l'utilisateur a déjà accepté
-  if (!localStorage.getItem('cookiesAccepted') && !localStorage.getItem('cookiesRefused')) {
-    banner.style.display = 'flex';
-    // déclenche l'animation après un petit délai
-    setTimeout(() => banner.classList.add('show'), 50);
-  }
-
-  // Quand on clique sur OK
-  document.getElementById('close-cookie-banner').addEventListener('click', function() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    if(typeof gtag==='function'){ gtag('consent','update',{ ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); }
-    banner.classList.remove('show');
-    setTimeout(() => banner.style.display = 'none', 400);
-  });
-});
-</script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -442,6 +415,7 @@ body.lang-en .en{ display:inline; }
 #refuse-cookie-banner{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); border-radius:5px; padding:8px 18px; cursor:pointer; font-weight:700; }
 #refuse-cookie-banner:hover{ background:rgba(255,255,255,.12); }
 </style>
+<script src="site.js" defer></script>
 </head>
 <body>
 
@@ -697,15 +671,6 @@ animateSequentially(animatedEls, lang);
             });
         });
     </script>
-<script>
-(function(){
-  var r=document.getElementById('refuse-cookie-banner');
-  if(r){ r.addEventListener('click', function(){
-    localStorage.setItem('cookiesRefused','true');
-    var b=document.getElementById('cookie-banner');
-    if(b){ b.classList.remove('show'); setTimeout(function(){ if(b) b.style.display='none'; },400); }
-  }); }
-})();
-</script>
+
 </body>
 </html>

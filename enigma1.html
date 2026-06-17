@@ -161,34 +161,8 @@
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="sculptlab-chrome.css">
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const banner = document.getElementById('cookie-banner');
-  const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
 
-  // Détecter la langue du navigateur
-  if (userLang.startsWith('fr')) {
-    document.body.classList.add('lang-fr');
-  } else {
-    document.body.classList.add('lang-en');
-  }
-
-  // Vérifier si l'utilisateur a déjà accepté
-  if (!localStorage.getItem('cookiesAccepted') && !localStorage.getItem('cookiesRefused')) {
-    banner.style.display = 'flex';
-    // déclenche l'animation après un petit délai
-    setTimeout(() => banner.classList.add('show'), 50);
-  }
-
-  // Quand on clique sur OK
-  document.getElementById('close-cookie-banner').addEventListener('click', function() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    if(typeof gtag==='function'){ gtag('consent','update',{ ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); }
-    banner.classList.remove('show');
-    setTimeout(() => banner.style.display = 'none', 400);
-  });
-});
-</script>
+<script src="site.js" defer></script>
 </head>
 <body>
 <div id="cookie-banner" style="display: none;">
@@ -432,15 +406,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     </script>
 
-<script>
-(function(){
-  var r=document.getElementById('refuse-cookie-banner');
-  if(r){ r.addEventListener('click', function(){
-    localStorage.setItem('cookiesRefused','true');
-    var b=document.getElementById('cookie-banner');
-    if(b){ b.classList.remove('show'); setTimeout(function(){ if(b) b.style.display='none'; },400); }
-  }); }
-})();
-</script>
+
 </body>
 </html>

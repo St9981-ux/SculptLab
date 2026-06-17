@@ -48,6 +48,8 @@ def fix_paths(html):
     # préchargement d'images
     html = re.sub(r'(<link\b[^>]*\brel="preload"[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+)"', r'\1../\2"', html)
     html = re.sub(r'(<link\b[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+)"([^>]*\brel="preload")', r'\1../\2"\3', html)
+    # scripts locaux (.js)
+    html = re.sub(r'(<script\b[^>]*\bsrc=")(?!https?:|//|/|\.\./)([^"]+\.js)"', r'\1../\2"', html)
     # feuilles de style locales (.css)
     html = re.sub(r'(<link\b[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+\.css)"', r'\1../\2"', html)
     # url(...) dans le CSS inline (images, polices)

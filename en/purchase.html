@@ -12,34 +12,7 @@
 
       gtag('config', 'G-7BNG9RNN76');
     </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const banner = document.getElementById('cookie-banner');
-  const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
 
-  // Détecter la langue du navigateur
-  if (userLang.startsWith('fr')) {
-    document.body.classList.add('lang-fr');
-  } else {
-    document.body.classList.add('lang-en');
-  }
-
-  // Vérifier si l'utilisateur a déjà accepté
-  if (!localStorage.getItem('cookiesAccepted') && !localStorage.getItem('cookiesRefused')) {
-    banner.style.display = 'flex';
-    // déclenche l'animation après un petit délai
-    setTimeout(() => banner.classList.add('show'), 50);
-  }
-
-  // Quand on clique sur OK
-  document.getElementById('close-cookie-banner').addEventListener('click', function() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    if(typeof gtag==='function'){ gtag('consent','update',{ ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); }
-    banner.classList.remove('show');
-    setTimeout(() => banner.style.display = 'none', 400);
-  });
-});
-</script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -275,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../sculptlab-chrome.css">
+<script src="../site.js" defer></script>
 </head>
 <body>
 
@@ -506,15 +480,6 @@ document.addEventListener("DOMContentLoaded", function() {
             window.history.replaceState({}, document.title, window.location.pathname);
         }
     </script>
-<script>
-(function(){
-  var r=document.getElementById('refuse-cookie-banner');
-  if(r){ r.addEventListener('click', function(){
-    localStorage.setItem('cookiesRefused','true');
-    var b=document.getElementById('cookie-banner');
-    if(b){ b.classList.remove('show'); setTimeout(function(){ if(b) b.style.display='none'; },400); }
-  }); }
-})();
-</script>
+
 </body>
 </html>
