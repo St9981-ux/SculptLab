@@ -780,16 +780,16 @@ document.addEventListener("DOMContentLoaded", function() {
         <img src="../signature.png" alt="Signature" class="signature">
         
         <!-- Menu hamburger mobile -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-toggle" aria-label="Menu" aria-haspopup="true" onclick="toggleMobileMenu()">☰</button>
         <div class="mobile-menu" id="mobileMenu">
             <a href="index.html" data-i18n="menu.works">Works.</a>
             <a href="about.html" data-i18n="menu.about">About.</a>
             <a href="contact.html" data-i18n="menu.contact">Contact.</a>
             <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
             <div class="lang-toggle">
-                <button type="button" id="btn-fr-mobile">FR</button>
+                <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr">FR</button>
                 <span>·</span>
-                <button type="button" id="btn-en-mobile" class="active">EN</button>
+                <button type="button" id="btn-en-mobile" aria-label="English" lang="en" class="active">EN</button>
             </div>
         </div>
         
@@ -801,9 +801,9 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
 
             <div class="lang-toggle">
-                <button type="button" id="btn-fr">FR</button>
+                <button type="button" id="btn-fr" aria-label="Français" lang="fr">FR</button>
                 <span>·</span>
-                <button type="button" id="btn-en" class="active">EN</button>
+                <button type="button" id="btn-en" aria-label="English" lang="en" class="active">EN</button>
             </div>
         </div>
         
