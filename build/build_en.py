@@ -12,7 +12,10 @@ import re, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ['index.html','about.html','contact.html','purchase.html','io1.html','io2.html',
-         'zamu1.html','zamu2.html','enigma1.html','enigma2.html']
+         'zamu1.html','zamu2.html','enigma1.html','enigma2.html',
+         'cgv.html','mentions_legales.html',
+         'io1_summary.html','io2_summary.html','zamu1_summary.html','zamu2_summary.html',
+         'enigma1_summary.html','enigma2_summary.html']
 META = json.load(open(os.path.join(ROOT,'build','en_meta.json'), encoding='utf-8'))
 
 def parse_en_dict(html):
@@ -58,6 +61,11 @@ def fix_paths(html):
 
 def set_meta(html, page):
     m = META.get(page, {})
+    # Valeurs OG/Twitter par défaut = titre/description anglais (évite tout résiduel FR au partage)
+    og_title = m.get('og_title') or m.get('title')
+    og_desc  = m.get('og_description') or m.get('description')
+    tw_title = m.get('tw_title') or m.get('title')
+    tw_desc  = m.get('tw_description') or m.get('description')
     def rep_title(s):
         return re.sub(r'<title>.*?</title>', '<title>'+m['title']+'</title>', s, flags=re.S) if m.get('title') else s
     def rep_attr(s, sel, val):
@@ -67,10 +75,10 @@ def set_meta(html, page):
     html = rep_title(html)
     html = rep_attr(html, r'name="description"', m.get('description'))
     html = rep_attr(html, r'name="keywords"', m.get('keywords'))
-    html = rep_attr(html, r'property="og:title"', m.get('og_title'))
-    html = rep_attr(html, r'property="og:description"', m.get('og_description'))
-    html = rep_attr(html, r'property="twitter:title"', m.get('tw_title'))
-    html = rep_attr(html, r'property="twitter:description"', m.get('tw_description'))
+    html = rep_attr(html, r'property="og:title"', og_title)
+    html = rep_attr(html, r'property="og:description"', og_desc)
+    html = rep_attr(html, r'property="twitter:title"', tw_title)
+    html = rep_attr(html, r'property="twitter:description"', tw_desc)
     return html
 
 def transform(page):
@@ -83,9 +91,12 @@ def transform(page):
     # langue par défaut JS
     h = h.replace("setLanguage(localStorage.getItem('lang') || 'fr');", "setLanguage('en');")
     h = re.sub(r"setLanguage\(\s*localStorage\.getItem\('lang'\)\s*\|\|\s*'fr'\s*\)", "setLanguage('en')", h)
-    # URLs canoniques / OG / Twitter -> /en/
+    # URLs canoniques / OG / Twitter -> /en/ (cibler uniquement ces 3 ; NE PAS toucher aux hreflang,
+    # déjà corrects dans la source FR : fr=racine, en=/en/, x-default=racine)
     slug = '' if page == 'index.html' else page
-    h = h.replace(f'https://sculptlab.fr/{slug}', f'https://sculptlab.fr/en/{slug}')
+    fr_url, en_url = f'https://sculptlab.fr/{slug}', f'https://sculptlab.fr/en/{slug}'
+    for attr in ('rel="canonical" href', 'property="og:url" content', 'property="twitter:url" content'):
+        h = h.replace(f'{attr}="{fr_url}"', f'{attr}="{en_url}"')
     # locale
     h = h.replace('<meta property="og:locale" content="fr_FR">', '<meta property="og:locale" content="en_US">')
     h = h.replace('<meta property="og:locale:alternate" content="en_US">', '<meta property="og:locale:alternate" content="fr_FR">')
@@ -95,10 +106,6 @@ def transform(page):
     h = fix_paths(h)
     # pré-rendu des textes anglais
     h = prerender_i18n(h, en)
-    # liens vers pages SANS version EN (cgv, mentions, *_summary) -> racine FR (../),
-    # y compris dans le dictionnaire translations (formes échappées \"...\")
-    h = re.sub(r'(\\?")((?:[\w-]+_summary|cgv|mentions_legales)\.html)(\\?")',
-               lambda m: m.group(1) + '../' + m.group(2) + m.group(3), h)
     return h
 
 def main():

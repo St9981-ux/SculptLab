@@ -2,16 +2,12 @@
   "index.html": {
     "title": "SculptLab. | Contemporary Artistic Sculptures",
     "description": "Discover SculptLab's contemporary artistic sculptures. Unique artworks Io, Za'mu and Enigma. Modern and mysterious sculptural art to acquire.",
-    "keywords": "sculptures, art contemporain, œuvres artistiques, sculptures modernes, art sculptural, galerie sculpture, acheter sculpture, SculptLab, contemporary sculptures, modern art, artistic sculptures, sculpture gallery, buy sculpture",
-    "og_title": "SculptLab - Sculptures Artistiques Contemporaines",
-    "og_description": "Découvrez les sculptures artistiques contemporaines de SculptLab. Œuvres uniques Io, Za'mu et Enigma.",
-    "tw_title": "SculptLab - Sculptures Artistiques Contemporaines",
-    "tw_description": "Découvrez les sculptures artistiques contemporaines de SculptLab. Œuvres uniques Io, Za'mu et Enigma."
+    "keywords": "sculptures, art contemporain, œuvres artistiques, sculptures modernes, art sculptural, galerie sculpture, acheter sculpture, SculptLab, contemporary sculptures, modern art, artistic sculptures, sculpture gallery, buy sculpture"
   },
   "about.html": {
     "title": "About SculptLab. | Contemporary Art France",
     "description": "Discover the story of SculptLab., sculpture workshop. Unique creations combining traditional French craftsmanship with international contemporary art.",
-    "keywords": "SculptLab, ceramic sculptor, Vallauris, contemporary art, French sculpture, sculpture workshop, art gallery, private collection, unique artworks",
+    "keywords": "SculptLab, sculptor, Vallauris, contemporary art, French sculpture, art studio, art gallery, private collection, unique works",
     "og_title": "About SculptLab. - Sculptor Vallauris",
     "og_description": "Sculpture workshop in Vallauris. Unique creations combining French tradition with international contemporary art.",
     "tw_title": "About SculptLab. - Sculptor Vallauris",
@@ -29,7 +25,7 @@
   "purchase.html": {
     "title": "Purchase a SculptLab. Sculpture | Contemporary Art Works",
     "description": "Buy SculptLab. artistic sculptures: Io, Za'mu and Enigma. Hand-painted resin artworks, limited edition with certificate of authenticity.",
-    "keywords": "buy sculpture, order sculpture, contemporary art, resin sculptures, limited edition, certificate authenticity, SculptLab, acheter sculpture, commander sculpture, art contemporain, sculptures résine, édition limitée",
+    "keywords": "buy sculpture, purchase contemporary art, acquire sculpture, SculptLab, art collection, unique artwork",
     "og_title": "Purchase a SculptLab. Sculpture - Contemporary Art Works",
     "og_description": "Buy SculptLab. artistic sculptures: Io, Za'mu and Enigma. Hand-painted resin artworks, limited edition.",
     "tw_title": "Purchase a SculptLab. Sculpture - Contemporary Art Works",
@@ -88,5 +84,45 @@
     "og_description": "Enigma Dawn sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Enigma - Dawn | SculptLab.",
     "tw_description": "Enigma Dawn sculpture in hand-painted resin. Limited edition of 25 copies, French handmade."
+  },
+  "cgv.html": {
+    "title": "Terms and Conditions | SculptLab.",
+    "description": "SculptLab. Terms and Conditions of Sale — sculpture studio in Vallauris. Ordering, delivery and return terms for your unique artworks.",
+    "keywords": "SculptLab terms and conditions, terms of sale, sculpture order, delivery, returns, Vallauris art studio"
+  },
+  "mentions_legales.html": {
+    "title": "Legal Notice | SculptLab.",
+    "description": "Legal notice for SculptLab., sculpture studio in Vallauris. Unique creations blending traditional French craftsmanship and international contemporary art.",
+    "keywords": "SculptLab legal notice, sculpture studio, Vallauris, publisher, hosting, contemporary art"
+  },
+  "io1_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Io Sorbet hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
+  },
+  "io2_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Io Ultramarine hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
+  },
+  "zamu1_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Za'mu Mist hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
+  },
+  "zamu2_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Za'mu Primary hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
+  },
+  "enigma1_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Enigma Night hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
+  },
+  "enigma2_summary.html": {
+    "title": "Order Summary | SculptLab.",
+    "description": "Summary of your order for the Enigma Dawn hand-painted resin sculpture by SculptLab.",
+    "keywords": "order summary, SculptLab, sculpture order, contemporary art"
   }
 }
