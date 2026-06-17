@@ -498,7 +498,7 @@ body.lang-en .en{ display:inline; }
 .bloc-zamu{   background:linear-gradient(135deg,#00bfff 0%,#0091ff 100%); }
 .bloc-enigma{ background:linear-gradient(135deg,#80ff9a 30%,#acff8d 100%); }
 
-.half-section{ flex:1 1 360px; }
+.half-section{ flex:1 1 360px; min-width:0; }
 
 /* Côté image */
 .half-section:not(.text-content){
@@ -548,7 +548,7 @@ body.lang-en .en{ display:inline; }
 
 .bloc-zamu .artwork-title{ font-family:'Autography',var(--font-title); color:#fff; line-height:.9; }
 .bloc-zamu .first-letter,
-.bloc-zamu .rest-letters{ font-size:clamp(90px,13vw,180px); }
+.bloc-zamu .rest-letters{ font-size:clamp(64px,10vw,140px); }
 
 .bloc-enigma .artwork-title{ font-family:'Triathlon',var(--font-title); color:#111; line-height:.95; }
 .bloc-enigma .first-letter,
