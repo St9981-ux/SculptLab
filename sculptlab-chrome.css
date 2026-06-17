@@ -1,11 +1,12 @@
 /* ============================================================
    SculptLab — En-tête commun (chrome)
-   Aligne signature + menu + bascule FR/EN + footer + cookies
+   Aligne signature + menu + bascule FR/EN + footer + cookies + titre
    sur la page d'accueil, pour toutes les pages du site.
    Chargée APRÈS le <style> de chaque page : !important sur les
    propriétés porteuses pour neutraliser les anciennes règles.
-   Ne touche ni à la hauteur du banneau ni au titre de page.
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
+
 
 :root{
   --turquoise-500:#64eecd;
@@ -169,6 +170,19 @@ footer a:hover{ color:var(--orange-500) !important; }
   font-family:inherit !important;
 }
 
+/* ---- Titre de page : Jost blanc, en bas à gauche du banneau ---- */
+.main-title{
+  font-family:'Jost','Futura','Century Gothic',sans-serif !important;
+  font-weight:var(--fw-bold) !important;
+  color:#fff !important;
+  font-size:2em !important;
+  line-height:1.1 !important;
+  letter-spacing:-.01em !important;
+  margin:0 0 0.3cm clamp(20px,4vw,56px) !important;
+  position:relative;
+  z-index:10;
+}
+
 /* ---- Accessibilité : focus ---- */
 .header-menu a:focus,
 .mobile-menu a:focus,
@@ -181,4 +195,5 @@ footer a:hover{ color:var(--orange-500) !important; }
   .header-menu{ display:none !important; }
   .mobile-menu-toggle{ display:flex !important; }
   .signature{ height:40px !important; top:18px !important; }
+  .main-title{ font-size:1.5em !important; }
 }
