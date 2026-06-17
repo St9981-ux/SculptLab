@@ -8,9 +8,23 @@
    AVANT le chargement de gtag ; ce fichier ne gère que la mise à jour.
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
-  // Langue du navigateur -> classe sur <body> (pilote l'affichage .fr/.en de la bannière)
-  var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-  document.body.classList.add(userLang.indexOf('fr') === 0 ? 'lang-fr' : 'lang-en');
+  // Langue d'affichage de la bannière = langue de la PAGE (<html lang>), pas du navigateur,
+  // puis suit la bascule FR/EN. Pilote l'affichage .fr/.en de la bannière cookies.
+  function applyLang(l) {
+    var en = (l === 'en');
+    document.body.classList.toggle('lang-en', en);
+    document.body.classList.toggle('lang-fr', !en);
+  }
+  var pageLang = (document.documentElement.lang || 'fr').toLowerCase();
+  applyLang(pageLang.indexOf('en') === 0 ? 'en' : 'fr');
+
+  // Suivre le sélecteur de langue (FR · EN), desktop + mobile
+  ['btn-fr', 'btn-fr-mobile'].forEach(function (id) {
+    var b = document.getElementById(id); if (b) b.addEventListener('click', function () { applyLang('fr'); });
+  });
+  ['btn-en', 'btn-en-mobile'].forEach(function (id) {
+    var b = document.getElementById(id); if (b) b.addEventListener('click', function () { applyLang('en'); });
+  });
 
   var banner = document.getElementById('cookie-banner');
   if (!banner) return;
