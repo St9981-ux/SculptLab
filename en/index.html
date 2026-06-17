@@ -362,10 +362,11 @@ body.lang-en .en{ display:inline; }
   opacity:0;
   animation:heroCycle 16s linear infinite;
 }
-.hero-layer-1{ z-index:1; background-color:#5ce0c2; background-image:url('../hero1.webp'); animation-delay:-12s; }
-.hero-layer-2{ z-index:2; background-color:#0c0a12; background-image:url('../hero2.webp'); animation-delay:-8s; }
-.hero-layer-3{ z-index:3; background-image:url('../hero3.jpg'); animation-delay:-4s; }
-.hero-layer-4{ z-index:4; background-color:#5ce0c2; background-image:url('../hero4.webp'); opacity:1; animation-delay:0s; }
+/* z-index = ordre d'apparition (hero4→hero1→hero2→hero3) : l'image entrante passe devant la sortante */
+.hero-layer-4{ z-index:1; background-color:#5ce0c2; background-image:url('../hero4.webp'); opacity:1; animation-delay:0s; }
+.hero-layer-1{ z-index:2; background-color:#5ce0c2; background-image:url('../hero1.webp'); animation-delay:-12s; }
+.hero-layer-2{ z-index:3; background-color:#0c0a12; background-image:url('../hero2.webp'); animation-delay:-8s; }
+.hero-layer-3{ z-index:4; background-image:url('../hero3.jpg'); animation-delay:-4s; }
 
 @keyframes heroCycle{
   0%{opacity:1} 22%{opacity:1} 27%{opacity:0} 95%{opacity:0} 100%{opacity:1}
