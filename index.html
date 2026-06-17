@@ -360,16 +360,17 @@ body.lang-en .en{ display:inline; }
 .hero-layer{
   position:absolute;
   inset:0;
-  background-position:right center; /* sculptures cadrées à droite, équilibrées face au texte */
-  background-size:cover;
+  background-position:center center;
+  background-size:contain; /* image entière visible (dézoomée), pas de rognage */
   background-repeat:no-repeat;
   opacity:0;
   animation:heroCycle 16s linear infinite;
 }
-.hero-layer-1{ z-index:1; background-color:#5ce0c2; background-image:url('hero1.png'); opacity:1; animation-delay:0s; }
-.hero-layer-2{ z-index:2; background-color:#0c0a12; background-image:url('hero2.png'); animation-delay:-12s; }
-.hero-layer-3{ z-index:3; background-image:url('hero3.jpg'); animation-delay:-8s; }
-.hero-layer-4{ z-index:4; background-color:#5ce0c2; background-image:url('hero4.png'); background-position:center center; animation-delay:-4s; } /* couche silhouettes : recadrage centré */
+/* couleur de comblement = bords du dégradé, pour fondre les bandes éventuelles */
+.hero-layer-1{ z-index:1; background-color:#47dac9; background-image:url('hero1.png'); opacity:1; animation-delay:0s; }
+.hero-layer-2{ z-index:2; background-color:#010105; background-image:url('hero2.png'); animation-delay:-12s; }
+.hero-layer-3{ z-index:3; background-color:#a8a6cb; background-image:url('hero3.jpg'); animation-delay:-8s; }
+.hero-layer-4{ z-index:4; background-color:#5ce0c2; background-image:url('hero4.png'); background-size:cover; background-position:center center; animation-delay:-4s; } /* couche silhouettes : plein écran centré */
 
 @keyframes heroCycle{
   0%{opacity:1} 22%{opacity:1} 27%{opacity:0} 95%{opacity:0} 100%{opacity:1}
@@ -701,7 +702,7 @@ footer a:hover{ color:var(--orange-500); }
     text-align:center !important;
   }
   .cta-button{ align-self:center !important; }
-  .hero-layer{ background-position:center center !important; } /* mobile : recadrage centré */
+  .hero-layer{ background-size:cover !important; background-position:center center !important; } /* mobile : plein écran centré */
   .hero-layer-4{ background-image:url('hero4-mobile.png') !important; }
 
   .bloc-io .text-content,
