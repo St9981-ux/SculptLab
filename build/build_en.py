@@ -95,6 +95,10 @@ def transform(page):
     h = fix_paths(h)
     # pré-rendu des textes anglais
     h = prerender_i18n(h, en)
+    # liens vers pages SANS version EN (cgv, mentions, *_summary) -> racine FR (../),
+    # y compris dans le dictionnaire translations (formes échappées \"...\")
+    h = re.sub(r'(\\?")((?:[\w-]+_summary|cgv|mentions_legales)\.html)(\\?")',
+               lambda m: m.group(1) + '../' + m.group(2) + m.group(3), h)
     return h
 
 def main():
