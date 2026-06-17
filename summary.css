@@ -228,7 +228,7 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             color: #fff;
             background: #ff66a3;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 999px;
             transition: background-color 0.3s ease;
             text-align: center;
             margin-top: 20px;
