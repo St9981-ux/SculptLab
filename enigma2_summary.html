@@ -8,6 +8,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+  gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
 
       gtag('config', 'G-7BNG9RNN76');
     </script>
@@ -591,7 +592,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Vérifier si l'utilisateur a déjà accepté
-  if (!localStorage.getItem('cookiesAccepted')) {
+  if (!localStorage.getItem('cookiesAccepted') && !localStorage.getItem('cookiesRefused')) {
     banner.style.display = 'flex';
     // déclenche l'animation après un petit délai
     setTimeout(() => banner.classList.add('show'), 50);
@@ -600,6 +601,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Quand on clique sur OK
   document.getElementById('close-cookie-banner').addEventListener('click', function() {
     localStorage.setItem('cookiesAccepted', 'true');
+    if(typeof gtag==='function'){ gtag('consent','update',{ ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); }
     banner.classList.remove('show');
     setTimeout(() => banner.style.display = 'none', 400);
   });
@@ -612,6 +614,10 @@ document.addEventListener("DOMContentLoaded", function() {
     <span class="fr">Nous utilisons des cookies pour améliorer votre expérience. <a href="mentions_legales.html">En savoir plus</a>.</span>
     <span class="en">We use cookies to improve your experience. <a href="mentions_legales.html">Learn more</a>.</span>
   </p>
+  <button id="refuse-cookie-banner">
+    <span class="fr">Refuser</span>
+    <span class="en">Decline</span>
+  </button>
   <button id="close-cookie-banner">
     <span class="fr">OK</span>
     <span class="en">OK</span>
@@ -813,5 +819,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     </script>
 
+<script>
+(function(){
+  var r=document.getElementById('refuse-cookie-banner');
+  if(r){ r.addEventListener('click', function(){
+    localStorage.setItem('cookiesRefused','true');
+    var b=document.getElementById('cookie-banner');
+    if(b){ b.classList.remove('show'); setTimeout(function(){ if(b) b.style.display='none'; },400); }
+  }); }
+})();
+</script>
 </body>
 </html>
