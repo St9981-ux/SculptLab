@@ -5,7 +5,6 @@
    Chargée APRÈS le <style> de chaque page : !important sur les
    propriétés porteuses pour neutraliser les anciennes règles.
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
 
 
 :root{
