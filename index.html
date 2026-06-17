@@ -123,14 +123,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <!-- Preload critical resources - Toutes les images importantes -->
 <link rel="preload" href="signature.png" as="image">
+<link rel="preload" href="hero1.png" as="image">
 <link rel="preload" href="image1a.png" as="image">
 <link rel="preload" href="image1b.png" as="image">
 <link rel="preload" href="image2a.png" as="image">
 <link rel="preload" href="image2b.png" as="image">
 <link rel="preload" href="image3a.png" as="image">
 <link rel="preload" href="image3b.png" as="image">
-<link rel="preload" href="vect1.png" as="image">
-<link rel="preload" href="vect2.png" as="image">
 
 <!-- Font utilisée uniquement pour le titre IO (le corps reste inchangé) -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
@@ -251,6 +250,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <style>
+/* Polices décoratives des titres d'œuvres (Claude Design) */
+@font-face { font-family:'Olympus';   src:url('fonts/Olympus.ttf')   format('truetype'); font-display:swap; }
+@font-face { font-family:'Autography'; src:url('fonts/Autography.otf') format('opentype'); font-display:swap; }
+@font-face { font-family:'Triathlon';  src:url('fonts/Triathlon.ttf')  format('truetype'); font-display:swap; }
+
 /* Reset et scrollbar */
 *, *::before, *::after {
 scrollbar-width: none;
@@ -294,45 +298,62 @@ position: relative;
 }
 
 .section-turquoise {
-background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
+background: #5ce0c2;
 padding: 0;
 position: relative;
 overflow: hidden;
 }
 
-/* Images vectorielles pour la section turquoise */
-.vector-left, .vector-right {
+/* Hero : 4 images de fond qui s'enchaînent en fondu (turquoise → sombre → claire → silhouettes) */
+.hero-layer {
 position: absolute;
-height: 150vh;
-width: auto;
-top: 0;
-z-index: 1;
+inset: 0;
+background-position: center center;
+background-size: cover;
+background-repeat: no-repeat;
+animation: heroCycle 16s linear infinite;
+}
+.hero-layer-1 { z-index: 1; opacity: 1; background-color: #5ce0c2; background-image: url('hero1.png'); }
+.hero-layer-2 { z-index: 2; opacity: 0; background-color: #0c0a12; background-image: url('hero2.png'); animation-delay: -12s; }
+.hero-layer-3 { z-index: 3; opacity: 0; background-image: url('hero3.jpg'); animation-delay: -8s; }
+.hero-layer-4 { z-index: 4; opacity: 0; background-color: #5ce0c2; background-image: url('hero4.png'); animation-delay: -4s; }
+
+@keyframes heroCycle {
+0%   { opacity: 1; }
+22%  { opacity: 1; }
+27%  { opacity: 0; }
+95%  { opacity: 0; }
+100% { opacity: 1; }
 }
 
-.vector-left {
-left: -30%;
-max-width: 100%;
-object-fit: contain;
-object-position: left center;
-top: 12%;
+/* Hero sur mobile : contenu recentré + image de fond portrait pour la couche silhouettes */
+@media (max-width: 768px) {
+.content-wrapper {
+align-items: center;
+text-align: center;
+margin-right: 0;
+}
+.hero-layer-4 { background-image: url('hero4-mobile.png'); }
 }
 
-.vector-right {
-right: -20%;
-max-width: 60%;
-object-fit: contain;
-object-position: right center;
+@media (prefers-reduced-motion: reduce) {
+.hero-layer { animation: none; }
 }
 
-/* Contenu principal de la section turquoise */
+/* Contenu principal du hero — à gauche sur desktop (Claude Design) */
 .content-wrapper {
 position: relative;
 z-index: 10;
 display: flex;
 flex-direction: column;
-align-items: center;
+align-items: flex-start;
 justify-content: center;
-text-align: center;
+text-align: left;
+width: 100%;
+max-width: 900px;
+margin-right: auto;
+padding: 0 clamp(20px, 6vw, 90px);
+box-sizing: border-box;
 }
 
 /* Header responsive */
@@ -348,7 +369,7 @@ z-index: 100;
 }
 
 .header-menu a {
-color: #1a1a1a;
+color: #ffffff;
 text-decoration: none;
 font-size: 1.4em;
 font-weight: bold;
@@ -439,6 +460,19 @@ color: #fff;
 border-radius: 999px;
 }
 
+/* Toggle de langue du hero (desktop) : blanc, lisible sur les images de fond */
+.header-menu > .lang-toggle {
+border-color: rgba(255, 255, 255, .45);
+background: rgba(255, 255, 255, .15);
+}
+.header-menu > .lang-toggle button {
+color: #fff;
+}
+.header-menu > .lang-toggle button.active {
+background: #fff;
+color: #1a1a1a;
+}
+
 .signature {
 position: absolute;
 top: 20px;
@@ -446,6 +480,7 @@ left: 20px;
 width: 100px;
 height: auto;
 z-index: 100;
+filter: brightness(0) invert(1);
 }
 
 /* Sections divisées - responsive */
@@ -551,20 +586,24 @@ color: #ffffff;
 margin-bottom: 40px;
 }
 
-/* BOUTON CTA ORIGINAL */
+/* BOUTON CTA HERO (Claude Design : doré, pilule, largeur fixe) */
 .cta-button {
 display: inline-block;
-padding: 15px 30px;
-font-size: 1.2em;
+padding: 14px 34px;
+font-size: 1.125em;
+font-weight: bold;
 color: #ffffff;
-background-color: #ff66a3;
+background-color: #b9982f;
 text-decoration: none;
-border-radius: 5px;
-transition: background-color 0.3s ease;
+border-radius: 999px;
+min-width: 180px;
+text-align: center;
+transition: transform .12s ease, background-color .15s ease;
 }
 
 .cta-button:hover {
-background-color: #ff66a3;
+background-color: #a9881f;
+transform: translateY(-2px);
 }
 
 
@@ -574,13 +613,15 @@ background-color: #ff66a3;
 
 .cta-button {
 display: inline-block;
-padding: 10px 20px;
+padding: 12px 28px;
 font-size: 1em;
 color: #ffffff;
-background-color: #ff66a3;
+background-color: #b9982f;
 text-decoration: none;
-border-radius: 5px;
-transition: background-color 0.3s ease;
+border-radius: 999px;
+min-width: 180px;
+text-align: center;
+transition: transform .12s ease, background-color .15s ease;
 
 }
 
@@ -655,11 +696,6 @@ gap: 20px;
 
 .half-section {
 padding: 30px 40px;
-}
-
-/* Ajustement des images vectorielles sur tablette */
-.vector-left, .vector-right {
-display: none;
 }
 }
 
@@ -846,10 +882,6 @@ right: 10px;
 .half-section {
 padding: 25px 40px;
 }
-
-.vector-left, .vector-right {
-max-width: 35%;
-}
 }
 
 /* === STYLES PARTAGÉS POUR TOUS LES BLOCS === */
@@ -886,6 +918,19 @@ align-items: baseline;
 font-size: 2.4em;
 transform: translateY(40px);
 margin-right: 0px;
+}
+
+/* Polices décoratives des titres (Claude Design) */
+.bloc-io .artwork-title     { font-family: 'Olympus', 'Futura', sans-serif; }
+.bloc-zamu .artwork-title   { font-family: 'Autography', 'Futura', cursive; }
+.bloc-enigma .artwork-title { font-family: 'Triathlon', 'Futura', sans-serif; }
+
+/* Za'mu & Enigma : nom d'un seul tenant (pas d'initiale agrandie) */
+.bloc-zamu .artwork-title .first-letter,
+.bloc-enigma .artwork-title .first-letter {
+font-size: 1em;
+transform: none;
+margin-right: 0;
 }
 
 /* Carte blanche commune */
@@ -941,8 +986,10 @@ gap: 20px;
 display: inline-block;
 background: #ff66a3;
 color: #fff;
-padding: 12px 22px;
-border-radius: 8px;
+padding: 14px 34px;
+border-radius: 999px;
+min-width: 180px;
+text-align: center;
 text-decoration: none;
 font-weight: 700;
 box-shadow: none;
@@ -987,33 +1034,6 @@ padding-left: 80px;
 padding-right: 40px;
 }
 }
-
-
-@media (min-width: 310px) and (max-width: 769px) {
-.vector-left, .vector-right {
-display: block;
-height: 100vh;
-}
-.vector-left {
-left: -130%;
-max-width: 233vw; /* 1000px/430px * 100 = 233vw */
-top: 4%;
-}
-.vector-right {
-right: -45%;
-max-width: 130vw; /* 600px/430px * 100 = 140vw */
-top: 50%;
-}
-}
-
-
-@media (max-height: 700px) {
-.vector-left, .vector-right {
-display: none;
-}
-}
-
-
 
 
 /* === STYLES SPÉCIFIQUES BLOC 4 (ENIGMA) === */
@@ -1219,13 +1239,16 @@ body.lang-en .en { display: inline; }
     <span class="en">OK</span>
   </button>
 </div>
-<!-- Bloc 1 (ESPACE TURQUOISE) : avec images vectorielles intégrées -->
+<!-- Bloc 1 (HERO) : 4 images de fond qui s'enchaînent en fondu (Claude Design) -->
 <div class="section section-turquoise">
-<img src="signature.png" alt="Signature" class="signature">
 
-<!-- Images vectorielles -->
-<img src="vect1.png" alt="Vector Left" class="vector-left">
-<img src="vect2.png" alt="Vector Right" class="vector-right">
+<!-- Couches d'images : turquoise → sombre → claire → silhouettes -->
+<div class="hero-layer hero-layer-1"></div>
+<div class="hero-layer hero-layer-2"></div>
+<div class="hero-layer hero-layer-3"></div>
+<div class="hero-layer hero-layer-4"></div>
+
+<img src="signature.png" alt="Signature" class="signature">
 
 
 <!-- Menu hamburger mobile -->
@@ -1258,8 +1281,7 @@ body.lang-en .en { display: inline; }
 
 <div class="content-wrapper">
 <h1 class="main-title">SculptLab.</h1>
-</br>
-<a href="#about" class="cta-button" data-i18n="cta.discover">Découvrir les œuvres</a>
+<a href="#about" class="cta-button" data-i18n="cta.discover">Découvrir</a>
 </div>
 </div>
 
@@ -1378,7 +1400,7 @@ fr: {
 "menu.about": "À propos",
 "menu.contact": "Contact",
 "menu.purchase": "Acquérir",
-"cta.discover": "Découvrir les œuvres",
+"cta.discover": "Découvrir",
 "cta.order": "Découvrir",
 "work1.title": "\"Io\"",
 "work1.text": "À l'extrême occident du monde, là où l'horizon se dissout dans le néant, s'étend une prairie qu'aucun atlas n'ose nommer. Là veille Io, génisse mythique, immobile au seuil des choses. Son regard, vaste comme l'éternité, pénètre l'âme de quiconque ose s'y aventurer. Plonger dans cette immensité, murmure-t-on, c'est se révéler tout entier, dépouillé de mensonges. Certains fuient, d'autres s'attardent… mais tous finissent par se perdre dans son silence.",
@@ -1394,7 +1416,7 @@ en: {
 "menu.about": "About",
 "menu.contact": "Contact",
 "menu.purchase": "Purchase",
-"cta.discover": "Discover the artworks",
+"cta.discover": "Discover",
 "cta.order": "Discover",
 "work1.title": "\"Io\"",
 "work1.text": "At the far west of the world, where the horizon dissolves into nothingness, stretches a meadow that no atlas dares to name. There watches Io, mythical heifer, motionless at the threshold of all things. Her gaze, as vast as eternity, penetrates the soul of anyone who dares to venture there. To plunge into this immensity, they whisper, is to reveal oneself completely, stripped of all falsehoods. Some flee, others linger… but all end up lost in her silence.",
