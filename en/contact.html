@@ -12,7 +12,6 @@
 
       gtag('config', 'G-7BNG9RNN76');
     </script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const banner = document.getElementById('cookie-banner');
@@ -41,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,13 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     
-    <!-- SEO Meta Tags - English -->
+    <!-- SEO Meta Tags -->
     <title>Contact SculptLab. | Information Request</title>
     <meta name="description" content="Contact SculptLab., sculpture workshop in France. Information requests, custom orders. Quick response guaranteed.">
     <meta name="keywords" content="contact SculptLab, sculptor Vallauris, Cannes, information request, sculpture commission, sculpture">
     <meta name="author" content="SculptLab.">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="en">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -73,9 +72,9 @@ document.addEventListener("DOMContentLoaded", function() {
     <meta property="twitter:description" content="Contact the sculpture workshop in France.">
     <meta property="twitter:image" content="https://sculptlab.fr/signature.png">
     
-    <!-- Canonical links and languages -->
+    <!-- Liens canoniques et langues -->
     <link rel="canonical" href="https://sculptlab.fr/en/contact.html">
-    <link rel="alternate" hreflang="fr" href="https://sculptlab.fr/contact.html">
+    <link rel="alternate" hreflang="fr" href="https://sculptlab.fr/en/contact.html">
     <link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/contact.html">
     <link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/contact.html">
     
@@ -91,13 +90,13 @@ document.addEventListener("DOMContentLoaded", function() {
         "@context": "https://schema.org",
         "@type": "ContactPage",
         "name": "Contact SculptLab.",
-        "description": "Contact page for SculptLab sculpture workshop.",
+        "description": "Page de contact pour l'atelier de sculpture SculptLab.",
         "url": "https://sculptlab.fr/en/contact.html",
         "mainEntity": {
             "@type": "Organization",
             "name": "SculptLab.",
-            "description": "SculptLab sculpture workshop.",
-            "url": "https://sculptlab.fr/en/",
+            "description": "Atelier de sculpture SculptLab.",
+            "url": "https://sculptlab.fr",
             "logo": "https://sculptlab.fr/signature.png",
             "address": {
                 "@type": "PostalAddress",
@@ -108,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
                 "email": "info@sculptlab.fr",
-                "availableLanguage": ["English", "French"],
+                "availableLanguage": ["French", "English"],
                 "areaServed": "FR"
             },
             "sameAs": [
@@ -660,6 +659,56 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             footer p {
                 font-size: 0.85em;
             }
+
+            .mobile-menu {
+                min-width: 180px;
+                right: 10px;
+            }
+
+            .mobile-menu-toggle {
+                right: 10px;
+            }
+        }
+
+        /* Optimisation pour tablettes en mode paysage */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .contact-section {
+                padding: 35px 30px 20px 30px;
+            }
+            
+            .contact-form {
+                width: 480px;
+            }
+        }
+
+        /* Amélioration de l'accessibilité */
+        @media (prefers-reduced-motion: reduce) {
+            .contact-form button {
+                transition: none;
+            }
+        }
+
+        /* Focus states pour l'accessibilité */
+        .header-menu a:focus,
+        .mobile-menu a:focus {
+            outline: 2px solid #ff66a3;
+            outline-offset: 2px;
+        }
+
+        .lang-toggle button:focus {
+            outline: 2px solid #ff66a3;
+            outline-offset: 2px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: 2px solid #ff66a3;
+            outline-offset: 2px;
+        }
+
+        .contact-form button:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
 #cookie-banner {
   position: fixed;
@@ -743,9 +792,9 @@ body.lang-en .en { display: inline; }
                 <a href="contact.html" data-i18n="menu.contact">Contact.</a>
                 <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
                 <div class="lang-toggle">
-                    <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr">FR</button>
+                    <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
                     <span>·</span>
-                    <button type="button" id="btn-en-mobile" aria-label="English" lang="en" class="active">EN</button>
+                    <button type="button" id="btn-en-mobile" aria-label="English" lang="en">EN</button>
                 </div>
             </div>
             
@@ -757,9 +806,9 @@ body.lang-en .en { display: inline; }
                 <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
 
                 <div class="lang-toggle">
-                    <button type="button" id="btn-fr" aria-label="Français" lang="fr">FR</button>
+                    <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
                     <span>·</span>
-                    <button type="button" id="btn-en" aria-label="English" lang="en" class="active">EN</button>
+                    <button type="button" id="btn-en" aria-label="English" lang="en">EN</button>
                 </div>
             </div>
             
@@ -780,7 +829,7 @@ body.lang-en .en { display: inline; }
                 <form id="contact-form" action="https://formsubmit.co/info@sculptlab.fr" method="POST">
                     <!-- Configuration FormSubmit -->
                     <input type="hidden" name="_next" value="https://sculptlab.fr/en/contact.html?success=1">
-                    <input type="hidden" name="_subject" value="New message from SculptLab">
+                    <input type="hidden" name="_subject" value="Nouveau message depuis SculptLab">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
@@ -800,7 +849,7 @@ body.lang-en .en { display: inline; }
     </div>
 
     <footer>
-        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | <a href="../mentions_legales.html" data-i18n="footer.legal">Legal notice</a></p>
+        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Legal notice</a></p>
     </footer>
 
     <script>
@@ -876,7 +925,7 @@ body.lang-en .en { display: inline; }
         }
 
         // Init langue
-        setLanguage(localStorage.getItem('lang') || 'en');
+        setLanguage('en');
 
         // Boutons FR/EN desktop
         document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
@@ -911,7 +960,7 @@ body.lang-en .en { display: inline; }
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
-            submitBtn.textContent = localStorage.getItem('lang') === 'fr' ? 'Envoi...' : 'Sending...';
+            submitBtn.textContent = localStorage.getItem('lang') === 'en' ? 'Sending...' : 'Envoi...';
         });
     </script>
 <script>

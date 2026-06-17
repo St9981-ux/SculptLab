@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""
+SculptLab — Génère les pages du dossier en/ à partir des pages FR (source unique).
+Élimine la désynchronisation : structure, CSS et en-tête proviennent toujours
+des pages FR ; les textes anglais sont pré-rendus depuis le dictionnaire
+`translations.en` déjà présent dans chaque page, et les méta SEO anglaises
+viennent de build/en_meta.json.
+
+Usage :  python3 build/build_en.py
+"""
+import re, json, os, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PAGES = ['index.html','about.html','contact.html','purchase.html','io1.html','io2.html',
+         'zamu1.html','zamu2.html','enigma1.html','enigma2.html']
+META = json.load(open(os.path.join(ROOT,'build','en_meta.json'), encoding='utf-8'))
+
+def parse_en_dict(html):
+    """Extrait translations.en -> dict {clé: texte anglais}."""
+    m = re.search(r'const\s+translations\s*=\s*\{(.*)\};', html, re.S)
+    if not m: return {}
+    body = m.group(1)
+    em = re.search(r'\ben\s*:\s*\{(.*?)\}\s*\}?\s*;?\s*$', body, re.S)
+    # plus robuste : prendre le bloc en: { ... } jusqu'au } qui précède la fin
+    em = re.search(r'\ben\s*:\s*\{(.*)\}\s*$', body.strip(), re.S)
+    block = em.group(1) if em else ''
+    out = {}
+    for k, v in re.findall(r'"([\w.]+)"\s*:\s*"((?:\\.|[^"\\])*)"', block):
+        try: out[k] = json.loads('"'+v+'"')
+        except Exception: out[k] = v
+    return out
+
+def prerender_i18n(html, en):
+    """Remplace le texte des éléments data-i18n par leur version anglaise."""
+    return re.sub(
+        r'<(?P<tag>h1|h2|h3|p|a|span|button|li|label)((?:[^>]*?\s))data-i18n="([\w.]+)"([^>]*)>(.*?)</(?P=tag)>',
+        lambda m: _repl_el(m, en), html, flags=re.S)
+
+def _repl_el(m, en):
+    tag, pre, key, post, inner = m.group('tag'), m.group(2), m.group(3), m.group(4), m.group(5)
+    if key in en and '<' not in inner:
+        return f'<{tag}{pre}data-i18n="{key}"{post}>{en[key]}</{tag}>'
+    return m.group(0)
+
+def fix_paths(html):
+    # images <img src="...">
+    html = re.sub(r'(<img\b[^>]*?\bsrc=")(?!https?:|//|/|\.\./|data:)([^"]+)"', r'\1../\2"', html)
+    # préchargement d'images
+    html = re.sub(r'(<link\b[^>]*\brel="preload"[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+)"', r'\1../\2"', html)
+    html = re.sub(r'(<link\b[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+)"([^>]*\brel="preload")', r'\1../\2"\3', html)
+    # feuilles de style locales (.css)
+    html = re.sub(r'(<link\b[^>]*\bhref=")(?!https?:|//|/|\.\./)([^"]+\.css)"', r'\1../\2"', html)
+    # url(...) dans le CSS inline (images, polices)
+    html = re.sub(r"url\((['\"]?)(?!https?:|//|/|\.\./|data:)([^)'\"]+)\1\)", r"url(\1../\2\1)", html)
+    return html
+
+def set_meta(html, page):
+    m = META.get(page, {})
+    def rep_title(s):
+        return re.sub(r'<title>.*?</title>', '<title>'+m['title']+'</title>', s, flags=re.S) if m.get('title') else s
+    def rep_attr(s, sel, val):
+        if not val: return s
+        return re.sub(r'(<meta\s+'+sel+r'\s+content=")[^"]*(")',
+                      lambda mm: mm.group(1)+val+mm.group(2), s)
+    html = rep_title(html)
+    html = rep_attr(html, r'name="description"', m.get('description'))
+    html = rep_attr(html, r'name="keywords"', m.get('keywords'))
+    html = rep_attr(html, r'property="og:title"', m.get('og_title'))
+    html = rep_attr(html, r'property="og:description"', m.get('og_description'))
+    html = rep_attr(html, r'property="twitter:title"', m.get('tw_title'))
+    html = rep_attr(html, r'property="twitter:description"', m.get('tw_description'))
+    return html
+
+def transform(page):
+    src = open(os.path.join(ROOT, page), encoding='utf-8').read()
+    en = parse_en_dict(src)
+    h = src
+    # langue
+    h = h.replace('<html lang="fr">', '<html lang="en">')
+    h = re.sub(r'<meta\s+name="language"\s+content="fr">', '<meta name="language" content="en">', h)
+    # langue par défaut JS
+    h = h.replace("setLanguage(localStorage.getItem('lang') || 'fr');", "setLanguage('en');")
+    h = re.sub(r"setLanguage\(\s*localStorage\.getItem\('lang'\)\s*\|\|\s*'fr'\s*\)", "setLanguage('en')", h)
+    # URLs canoniques / OG / Twitter -> /en/
+    slug = '' if page == 'index.html' else page
+    h = h.replace(f'https://sculptlab.fr/{slug}', f'https://sculptlab.fr/en/{slug}')
+    # locale
+    h = h.replace('<meta property="og:locale" content="fr_FR">', '<meta property="og:locale" content="en_US">')
+    h = h.replace('<meta property="og:locale:alternate" content="en_US">', '<meta property="og:locale:alternate" content="fr_FR">')
+    # méta SEO anglaises
+    h = set_meta(h, page)
+    # chemins -> ../
+    h = fix_paths(h)
+    # pré-rendu des textes anglais
+    h = prerender_i18n(h, en)
+    return h
+
+def main():
+    n = 0
+    for p in PAGES:
+        out = transform(p)
+        open(os.path.join(ROOT, 'en', p), 'w', encoding='utf-8').write(out)
+        n += 1
+    print(f"{n} pages en/ générées depuis les sources FR.")
+
+if __name__ == '__main__':
+    main()

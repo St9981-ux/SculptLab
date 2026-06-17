@@ -48,13 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     
-    <!-- SEO Meta Tags - English -->
+    <!-- SEO Meta Tags -->
     <title>About SculptLab. | Contemporary Art France</title>
     <meta name="description" content="Discover the story of SculptLab., sculpture workshop. Unique creations combining traditional French craftsmanship with international contemporary art.">
     <meta name="keywords" content="SculptLab, ceramic sculptor, Vallauris, contemporary art, French sculpture, sculpture workshop, art gallery, private collection, unique artworks">
     <meta name="author" content="SculptLab.">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="en">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     <!-- Liens canoniques et langues -->
     <link rel="canonical" href="https://sculptlab.fr/en/about.html">
-    <link rel="alternate" hreflang="fr" href="https://sculptlab.fr/about.html">
+    <link rel="alternate" hreflang="fr" href="https://sculptlab.fr/en/about.html">
     <link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/about.html">
     <link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/about.html">
     
@@ -91,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "SculptLab.",
-        "description": "Sculpture workshop in Vallauris, creating unique contemporary art",
-        "url": "https://sculptlab.fr/en/",
+        "description": "Atelier de sculpture à Vallauris, créations d'art contemporain uniques",
+        "url": "https://sculptlab.fr",
         "logo": "https://sculptlab.fr/signature.png",
         "image": "https://sculptlab.fr/photo1.webp",
         "address": {
@@ -102,11 +101,10 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         "founder": {
             "@type": "Person",
-            "name": "SculptLab Artist"
+            "name": "Artiste SculptLab."
         },
         "artform": "Sculpture",
-        "specialty": "Contemporary ceramic art",
-        "inLanguage": ["en","fr"],
+        "specialty": "Céramique d'art contemporain",
         "sameAs": [
             "https://www.instagram.com/sculptlab",
             "https://www.facebook.com/sculptlab"
@@ -114,640 +112,334 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     </script>
 
-  <style>
-        /* Reset et scrollbar */
-        *, *::before, *::after {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            box-sizing: border-box;
-        }
-
-        *::-webkit-scrollbar {
-            display: none;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-        }
-
-        html::-webkit-scrollbar, body::-webkit-scrollbar {
-            display: none !important;
-            width: 0 !important;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-y: scroll;
-            line-height: 1.6;
-        }
-
-        .content {
-            flex: 1;
-        }
-
-        .section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-.story-block .image-frame {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.story-block .image-frame.visible {
-  opacity: 1;
-}
-
-.section-turquoise {
-background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
-            padding: 0;
-            height: 5cm;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        /* Header responsive */
-        .header-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-            z-index: 100;
-        }
-
-        .header-menu a {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 1.4em;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .header-menu a:hover {
-            text-decoration: underline;
-        }
-
-        /* Menu hamburger pour mobile */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8em;
-            cursor: pointer;
-            color: #1a1a1a;
-            padding: 5px;
-            z-index: 1001;
-            position: relative;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            flex-direction: column;
-            gap: 20px;
-            min-width: 220px;
-            z-index: 1000;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            color: #1a1a1a !important;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu a:last-of-type {
-            border-bottom: none;
-        }
-
-        .mobile-menu a:hover {
-            color: #ff007f !important;
-            text-decoration: none;
-        }
-
-        /* Toggle langue */
-        .lang-toggle {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid rgba(0, 0, 0, .15);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .75);
-            padding: 4px 8px;
-            font-weight: bold;
-        }
-
-        .lang-toggle button {
-            border: none;
-            background: transparent;
-            font: inherit;
-            padding: 2px 8px;
-            cursor: pointer;
-            opacity: .6;
-        }
-
-        .lang-toggle button.active {
-            opacity: 1;
-            background: #1a1a1a;
-            color: #fff;
-            border-radius: 999px;
-        }
-
-        .signature {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100px;
-            height: auto;
-        }
-
-        .main-title {
-            font-size: 2em;
-            color: #ffffff;
-            margin-left: 20px;
-            margin-bottom: 0.3cm;
-        }
-
-        /* Sections histoire + images */
-        .story-block {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 20px;
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            margin-bottom: 20px;
-        }
-
-        .story-block .image-frame {
-            flex: 1 1 350px;
-            height: 350px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .story-block .image-frame:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .story-block .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .story-block p {
-            flex: 1 1 350px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            text-align: justify;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 40px;
-            box-sizing: border-box;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1em;
-        }
-
-        footer a {
-            color: #ffdd00;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #ff6a00;
-        }
-
-	/* Curseur de frappe */
-.typing-animation {
-    display: inline-block;
-    text-align: justify;
-    position: relative;
-}
-
-.typing-cursor {
-    display: inline-block;
-    background-color: #333333;
-    width: 20px;
-    height: 1.2em;
-    animation: blink-caret 0.75s step-end infinite;
-    margin-left: 1px;
-}
-
-@keyframes blink-caret {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-        /* Media queries pour responsive */
-        @media (max-width: 1024px) {
-            .header-menu {
-                gap: 20px;
-            }
-            
-            .story-block {
-                max-width: 900px;
-                padding: 18px;
-                gap: 18px;
-            }
-            
-            .story-block .image-frame {
-                flex: 1 1 300px;
-                height: 300px;
-            }
-            
-            .story-block p {
-                flex: 1 1 300px;
-                font-size: 1.05em;
-            }
-        }
-
-        @media (max-width: 768px) and (orientation: portrait) {
-            /* Menu mobile - CORRECTION PRINCIPALE */
-            .header-menu {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                flex-direction: column;
-                align-items: flex-end;
-                z-index: 1001;
-            }
-            
-            .header-menu > a {
-                display: none;
-            }
-            
-            .header-menu > .lang-toggle {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1002;
-            }
-            
-            .mobile-menu {
-                position: fixed;
-                top: 70px;
-                right: 20px;
-            }
-            
-            .section-turquoise {
-                height: auto;
-                min-height: 4cm;
-                padding: 20px;
-            }
-            
-            .main-title {
-                font-size: 1.5em;
-                margin-left: 0;
-            }
-            
-            /* Story blocks en colonne avec ordre correct */
-            .story-block {
-                flex-direction: column;
-                max-width: 100%;
-                padding: 20px 15px;
-                gap: 20px;
-                margin-bottom: 15px;
-            }
-
-            /* Forcer l'ordre : texte puis image pour tous les blocs */
-            .story-block p {
-                order: 1;
-                flex: none;
-                width: 100%;
-                font-size: 1em;
-                text-align: justify;
-            }
-            
-            .story-block .image-frame {
-                order: 2;
-                flex: none;
-                width: 100%;
-                max-width: 500px;
-                height: 250px;
-            }
-        }
-
-        @media (max-width: 600px) and (orientation: portrait) {
-            .story-block {
-                padding: 15px 10px;
-                gap: 15px;
-            }
-            
-            .story-block .image-frame {
-                height: 220px;
-                max-width: 100%;
-            }
-            
-            .story-block p {
-                font-size: 0.95em;
-                line-height: 1.5;
-            }
-        }
-
-        @media (max-width: 480px) and (orientation: portrait) {
-            .mobile-menu-toggle {
-                top: 15px;
-                right: 15px;
-            }
-            
-            .mobile-menu {
-                top: 60px;
-                right: 15px;
-                min-width: 200px;
-                padding: 15px;
-            }
-            
-            .signature {
-                top: 10px;
-                left: 10px;
-                width: 80px;
-            }
-            
-            .section-turquoise {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-            
-            .main-title {
-                font-size: 1.3em;
-            }
-            
-            .story-block {
-                padding: 12px 8px;
-                gap: 12px;
-                margin-bottom: 12px;
-            }
-            
-            .story-block .image-frame {
-                height: 200px;
-                border-radius: 6px;
-            }
-            
-            .story-block p {
-                font-size: 0.9em;
-                line-height: 1.4;
-            }
-            
-            footer {
-                padding: 20px 15px;
-                margin-top: 30px;
-            }
-            
-            footer p {
-                font-size: 0.9em;
-            }
-        }
-
-        @media (max-width: 320px) and (orientation: portrait) {
-            .main-title {
-                font-size: 1.2em;
-            }
-            
-            .story-block {
-                padding: 10px 5px;
-                gap: 10px;
-            }
-            
-            .story-block .image-frame {
-                height: 180px;
-                border-radius: 5px;
-            }
-            
-            .story-block p {
-                font-size: 0.85em;
-                line-height: 1.3;
-            }
-            
-            footer {
-                margin-top: 25px;
-            }
-            
-            footer p {
-                font-size: 0.85em;
-            }
-
-            .mobile-menu {
-                min-width: 180px;
-                right: 10px;
-            }
-
-            .mobile-menu-toggle {
-                right: 10px;
-            }
-        }
-
-        /* Optimisation pour tablettes en mode paysage - GARDE L'ORDRE ORIGINAL */
-        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-            .story-block {
-                flex-direction: row;
-                max-width: 95%;
-                padding: 25px 20px;
-            }
-            
-            .story-block .image-frame {
-                flex: 1 1 320px;
-                height: 280px;
-            }
-            
-            .story-block p {
-                flex: 1 1 320px;
-                font-size: 1em;
-            }
-        }
-
-        /* Mode paysage mobile - GARDE L'ORDRE ORIGINAL */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .header-menu {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                flex-direction: row;
-                align-items: center;
-                z-index: 100;
-            }
-            
-            .header-menu > a {
-                display: block;
-            }
-            
-            .header-menu > .lang-toggle {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle {
-                display: none;
-            }
-            
-            .story-block {
-                flex-direction: row;
-                max-width: 100%;
-                padding: 20px 15px;
-                gap: 20px;
-                margin-bottom: 15px;
-            }
-
-            .story-block p {
-                order: initial;
-                flex: 1 1 350px;
-                font-size: 0.95em;
-                text-align: justify;
-            }
-            
-            .story-block .image-frame {
-                order: initial;
-                flex: 1 1 300px;
-                width: auto;
-                max-width: none;
-                height: 200px;
-            }
-        }
-
-        /* Amélioration de l'accessibilité */
-        @media (prefers-reduced-motion: reduce) {
-            .story-block .image-frame {
-                transition: none;
-            }
-            
-            .story-block .image-frame:hover {
-                transform: none;
-            }
-        }
-
-        /* Focus states pour l'accessibilité */
-        .header-menu a:focus,
-        .mobile-menu a:focus {
-            outline: 2px solid #ff007f;
-            outline-offset: 2px;
-        }
-
-        .lang-toggle button:focus {
-            outline: 2px solid #ff007f;
-            outline-offset: 2px;
-        }
-
-        /* Optimisation des images pour mobile */
-        @media (max-width: 768px) and (orientation: portrait) {
-            .story-block .image-frame img {
-                object-position: center;
-            }
-        }
-
-        /* Espacement amélioré pour très petits écrans */
-        @media (max-width: 360px) and (orientation: portrait) {
-            .story-block {
-                margin-bottom: 8px;
-            }
-            
-            .story-block .image-frame {
-                height: 160px;
-            }
-        }
-
-#cookie-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #222;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  font-family: Arial, sans-serif;
-  z-index: 9999;
-  transform: translateY(100%);
-  transition: transform 0.4s ease-in-out;
-}
-
-#cookie-banner.show {
-  transform: translateY(0);
-}
-
-#cookie-banner p {
-  margin: 0;
-  flex: 1;
-}
-
-#cookie-banner a {
-  color: #ffd700;
-  text-decoration: underline;
-}
-
-#cookie-banner button {
-  background-color: #ffd700;
-  color: #222;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
-}
-
-.fr, .en {
-  display: none;
-}
-
-body.lang-fr .fr { display: inline; }
-body.lang-en .en { display: inline; }
-
-
-</style>
+  <!-- Polices : Cinzel + Jost (alignées sur index) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../sculptlab-chrome.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+
+/* ============================================================
+   SculptLab — À propos
+   En-tête (signature + menu + bascule FR/EN), couleurs et footer
+   alignés sur index.html. Styles de contenu propres à la page conservés.
+   ============================================================ */
+
+/* ---- Jetons de design (alignés sur index) ---- */
+:root{
+  --turquoise-500:#64eecd;
+  --turquoise-550:#64f0e5;
+  --pink-hot:#ff007f;
+  --ink-900:#1a1a1a;
+  --ink-800:#222222;
+  --ink-700:#333333;
+  --ink-400:#777777;
+  --line-300:rgba(0,0,0,.15);
+  --gold-500:#ffdd00;
+  --gold-600:#ffd700;
+  --orange-500:#ff6a00;
+  --font-title:'Jost','Futura','Century Gothic',sans-serif;
+  --font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --fw-bold:700;
+  --fs-16:1rem;
+  --fs-18:1.125rem;
+  --radius-sm:5px;
+  --radius-lg:10px;
+  --radius-pill:999px;
+  --gutter-page-sm:20px;
+  --grad-hero:linear-gradient(135deg,#64eecd 50%,#64f0e5 100%);
+  --ease-soft:cubic-bezier(.25,.1,.25,1);
+  --dur-base:.3s;
+}
+
+/* ---- Reset ---- */
+*,*::before,*::after{ box-sizing:border-box; scrollbar-width:none; }
+*::-webkit-scrollbar{ display:none; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:var(--font-body);
+  color:var(--ink-700);
+  line-height:1.6;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.content{ flex:1; }
+
+/* ============================================================
+   EN-TÊTE / HERO (banneau) — aligné sur index
+   ============================================================ */
+.section{ position:relative; box-sizing:border-box; }
+
+.section-turquoise{
+  position:relative;
+  background:var(--grad-hero);
+  height:5cm;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-start;
+  padding:0;
+  margin-bottom:20px;
+  overflow:hidden;
+}
+
+/* Signature (marque) — blanche, comme index */
+.signature{
+  position:absolute;
+  top:24px;
+  left:clamp(20px,4vw,56px);
+  z-index:20;
+  height:54px;
+  width:auto;
+  filter:brightness(0) invert(1);
+}
+
+/* Navigation desktop */
+.header-menu{
+  position:absolute;
+  top:0; left:0; right:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(16px,2.2vw,34px);
+  padding:28px clamp(20px,4vw,56px);
+  flex-wrap:wrap;
+  color:#fff;
+}
+.header-menu a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+  cursor:pointer;
+  white-space:nowrap;
+}
+.header-menu a:hover{ text-decoration:underline; }
+
+/* Bouton hamburger (mobile) */
+.mobile-menu-toggle{
+  display:none;
+  position:absolute;
+  top:16px;
+  right:clamp(16px,4vw,40px);
+  z-index:40;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:32px;
+  line-height:1;
+  cursor:pointer;
+  padding:6px;
+}
+
+/* Menu mobile déroulant */
+.mobile-menu{
+  position:absolute;
+  top:62px;
+  right:clamp(16px,4vw,40px);
+  z-index:40;
+  display:none;
+  flex-direction:column;
+  gap:16px;
+  background:#fff;
+  border-radius:12px;
+  padding:20px 22px;
+  box-shadow:0 10px 34px rgba(0,0,0,.22);
+  min-width:210px;
+}
+.mobile-menu.active{ display:flex; }
+.mobile-menu a{
+  color:var(--ink-900);
+  text-decoration:none;
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+}
+.mobile-menu a:hover{ color:var(--pink-hot); }
+
+/* Bascule de langue (pilule FR · EN) */
+.lang-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid var(--line-300);
+  border-radius:var(--radius-pill);
+  background:rgba(255,255,255,.75);
+  padding:4px 8px;
+  font-family:var(--font-body);
+  font-weight:var(--fw-bold);
+}
+.lang-toggle span{ opacity:.5; }
+.lang-toggle button{
+  border:none;
+  background:transparent;
+  font:inherit;
+  color:var(--ink-900);
+  padding:2px 10px;
+  cursor:pointer;
+  opacity:.6;
+  border-radius:var(--radius-pill);
+  transition:opacity var(--dur-base) var(--ease-soft);
+}
+.lang-toggle button:hover{ opacity:.85; }
+.lang-toggle button.active{ opacity:1; background:var(--ink-900); color:#fff; }
+.mobile-menu .lang-toggle{ margin-top:2px; }
+
+/* Titre de page (wordmark en bas à gauche, police Jost comme index) */
+.main-title{
+  position:relative;
+  z-index:10;
+  margin:0 0 0.3cm clamp(20px,4vw,56px);
+  font-family:var(--font-title);
+  font-weight:var(--fw-bold);
+  color:#fff;
+  font-size:2em;
+  line-height:1.1;
+  letter-spacing:-.01em;
+}
+
+/* ============================================================
+   CONTENU — récit (propre à la page about)
+   ============================================================ */
+.story-block{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:20px;
+  max-width:1100px;
+  margin:auto auto 20px;
+  padding:20px;
+  background-color:#f9f9f9;
+}
+.story-block .image-frame{
+  flex:1 1 350px;
+  height:350px;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+  opacity:0;
+  transition:opacity .3s ease, transform .4s ease, box-shadow .4s ease;
+}
+.story-block .image-frame.visible{ opacity:1; }
+.story-block .image-frame:hover{
+  transform:scale(1.02);
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.story-block .image-frame img{
+  width:100%; height:100%; object-fit:cover;
+}
+.story-block p{
+  flex:1 1 350px;
+  font-size:1.1em;
+  line-height:1.6;
+  text-align:justify;
+}
+
+/* Curseur de frappe (machine à écrire) */
+.typing-animation{ display:inline-block; text-align:justify; position:relative; }
+.typing-cursor{
+  display:inline-block;
+  background-color:var(--ink-700);
+  width:20px;
+  height:1.2em;
+  animation:blink-caret .75s step-end infinite;
+  margin-left:1px;
+}
+@keyframes blink-caret{ from,to{ opacity:1 } 50%{ opacity:0 } }
+
+/* ============================================================
+   FOOTER — aligné sur index
+   ============================================================ */
+footer{
+  background:var(--ink-700);
+  color:#fff;
+  padding:20px var(--gutter-page-sm);
+  text-align:center;
+  font-family:var(--font-body);
+  margin-top:40px;
+}
+footer p{ margin:0; font-size:var(--fs-16); }
+footer a{
+  color:var(--gold-500);
+  text-decoration:none;
+  transition:color var(--dur-base) var(--ease-soft);
+}
+footer a:hover{ color:var(--orange-500); }
+
+/* ============================================================
+   BANNIÈRE COOKIES — alignée sur index
+   ============================================================ */
+#cookie-banner{
+  position:fixed; left:0; bottom:0; width:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:15px 20px;
+  background:var(--ink-800); color:#fff;
+  font-family:var(--font-body);
+  z-index:9999;
+  transform:translateY(100%);
+  transition:transform .4s ease-in-out;
+}
+#cookie-banner.show{ transform:translateY(0); }
+#cookie-banner p{ margin:0; flex:1; font-size:var(--fs-16); }
+#cookie-banner a{ color:var(--gold-600); text-decoration:underline; }
+#close-cookie-banner{
+  background:var(--gold-600); color:var(--ink-800); border:none;
+  padding:8px 18px; cursor:pointer; font-weight:var(--fw-bold);
+  border-radius:var(--radius-sm); font-family:inherit;
+}
+
+.fr,.en{ display:none; }
+body.lang-fr .fr{ display:inline; }
+body.lang-en .en{ display:inline; }
+
+/* Accessibilité — focus */
+.header-menu a:focus,
+.mobile-menu a:focus,
+.lang-toggle button:focus{ outline:2px solid var(--pink-hot); outline-offset:2px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+/* Chrome mobile (≤640px) — identique à index */
+@media (max-width:640px){
+  .header-menu{ display:none !important; }
+  .mobile-menu-toggle{ display:flex !important; }
+  .signature{ height:40px !important; top:18px !important; }
+  .main-title{ font-size:1.5em !important; }
+}
+
+/* Contenu — récit responsive (propre à about) */
+@media (max-width:1024px){
+  .story-block{ max-width:900px; padding:18px; gap:18px; }
+  .story-block .image-frame{ flex:1 1 300px; height:300px; }
+  .story-block p{ flex:1 1 300px; font-size:1.05em; }
+}
+@media (max-width:768px){
+  .story-block{ flex-direction:column; max-width:100%; padding:20px 15px; }
+  .story-block p{ order:1; flex:none; width:100%; font-size:1em; }
+  .story-block .image-frame{ order:2; flex:none; width:100%; max-width:500px; height:250px; }
+}
+@media (max-width:600px){
+  .story-block .image-frame{ height:220px; max-width:100%; }
+  .story-block p{ font-size:.95em; line-height:1.5; }
+}
+@media (max-width:480px){
+  .story-block{ padding:12px 8px; gap:12px; }
+  .story-block .image-frame{ height:200px; border-radius:6px; }
+  .story-block p{ font-size:.9em; line-height:1.4; }
+}
+
+/* Accessibilité — mouvement réduit */
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .story-block .image-frame{ transition:none; }
+  .story-block .image-frame:hover{ transform:none; }
+}
+
+#refuse-cookie-banner{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); border-radius:5px; padding:8px 18px; cursor:pointer; font-weight:700; }
+#refuse-cookie-banner:hover{ background:rgba(255,255,255,.12); }
+</style>
 </head>
 <body>
 
@@ -777,9 +469,9 @@ body.lang-en .en { display: inline; }
                 <a href="contact.html" data-i18n="menu.contact">Contact.</a>
                 <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
                 <div class="lang-toggle">
-                    <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr">FR</button>
+                    <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
                     <span>·</span>
-                    <button type="button" id="btn-en-mobile" aria-label="English" lang="en" class="active">EN</button>
+                    <button type="button" id="btn-en-mobile" aria-label="English" lang="en">EN</button>
                 </div>
             </div>
             
@@ -791,9 +483,9 @@ body.lang-en .en { display: inline; }
                 <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
 
                 <div class="lang-toggle">
-                    <button type="button" id="btn-fr" aria-label="Français" lang="fr">FR</button>
+                    <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
                     <span>·</span>
-                    <button type="button" id="btn-en" aria-label="English" lang="en" class="active">EN</button>
+                    <button type="button" id="btn-en" aria-label="English" lang="en">EN</button>
                 </div>
             </div>
             
@@ -802,9 +494,7 @@ body.lang-en .en { display: inline; }
 
         <!-- Bloc 1 -->
         <div class="story-block">
-            <p class="typing-animation" data-i18n="about.p1">
-                I have wandered through lands forgotten by time, regions erased from the memory of men, and others still untouched by any name. There, I encountered peoples with vanished rites, civilizations emerging from the secret folds of eternity, as if by enchantment, and landscapes suspended beyond the world, floating between wakefulness and dream, between light and silence.
-            </p>
+            <p class="typing-animation" data-i18n="about.p1">I have wandered through lands forgotten by time, regions erased from the memory of men, and others still untouched by any name. There, I encountered peoples with vanished rites, civilizations emerging from the secret folds of eternity, as if by enchantment, and landscapes suspended beyond the world, floating between wakefulness and dream, between light and silence.</p>
             <div class="image-frame">
                 <img src="../photo1.webp" alt="Atelier et outils de sculpture" loading="lazy" decoding="async">
             </div>
@@ -815,16 +505,12 @@ body.lang-en .en { display: inline; }
             <div class="image-frame">
                 <img src="../photo2.webp" alt="Processus de création" loading="lazy" decoding="async">
             </div>
-            <p class="typing-animation" data-i18n="about.p2">
-                From these wanderings, I bring back only fragments: shapes, colors, textures. Some reveal themselves fully, like offerings; others remain elusive, keeping their secrets like timeless sphinxes. Yet each of them preserves the memory of the places and beings I have encountered.
-            </p>
+            <p class="typing-animation" data-i18n="about.p2">From these wanderings, I bring back only fragments: shapes, colors, textures. Some reveal themselves fully, like offerings; others remain elusive, keeping their secrets like timeless sphinxes. Yet each of them preserves the memory of the places and beings I have encountered.</p>
         </div>
 
         <!-- Bloc 3 -->
         <div class="story-block">
-            <p class="typing-animation" data-i18n="about.p3">
-                Each creation thus becomes the living testimony of my journeys, the tangible echo of what my eyes have captured and my memory preserved. It extends to whoever lingers before it an invisible thread, inviting them to walk in my footsteps, to cross those uncertain thresholds where imagination mingles with matter, where the unknown reveals itself to us—stranger, more spellbinding than anything we might ever have dared to conceive.
-            </p>
+            <p class="typing-animation" data-i18n="about.p3">Each creation thus becomes the living testimony of my journeys, the tangible echo of what my eyes have captured and my memory preserved. It extends to whoever lingers before it an invisible thread, inviting them to walk in my footsteps, to cross those uncertain thresholds where imagination mingles with matter, where the unknown reveals itself to us—stranger, more spellbinding than anything we might ever have dared to conceive.</p>
             <div class="image-frame">
                 <img src="../photo3.webp" alt="Exposition d'œuvres" loading="lazy" decoding="async">
             </div>
@@ -832,7 +518,7 @@ body.lang-en .en { display: inline; }
     </div>
 
     <footer>
-        <p>© <span id="year"></span> SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | <a href="../mentions_legales.html" data-i18n="footer.legal">Legal notice</a></p>
+        <p>© <span id="year"></span> SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Legal notice</a></p>
     </footer>
 
     <script>
@@ -865,9 +551,10 @@ body.lang-en .en { display: inline; }
                 "footer.rights": "Tous droits réservés.",
                 "footer.legal": "Mentions légales",
                 "about.title": "À propos de moi",
-                "about.p1": "J'ai arpenté des terres que le temps a oubliées, des contrées effacées de la mémoire des hommes, et d'autres encore vierges de tout nom. J'y ai rencontré des peuples aux rites disparus, des civilisations surgies des replis secrets de l'éternité, comme par enchantement, et des paysages suspendus hors du monde, flottant entre veille et songe, entre lumière et silence.",
-                "about.p2": "De ces errances, je ne rapporte que des éclats : formes, couleurs, matières. Certains se donnent tout entiers, comme des offrandes ; d'autres se dérobent, gardant leurs secrets tels des sphinx immémoraux. Pourtant, chacun d'eux conserve la mémoire des lieux et des êtres que j'ai croisés.",
-                "about.p3": "Chaque création devient alors le témoignage vivant de mes traversées, l'écho tangible de ce que mes yeux ont saisi et que ma mémoire a préservé. Elle tend à celui qui s'y attarde un fil invisible, l'invitant à marcher dans mes pas, à franchir ces seuils incertains où l'imaginaire se mêle à la matière, où l'inconnu se révèle alors à nous, plus étrange, plus envoûtant que tout ce que nous aurions jamais osé concevoir."
+                "about.p1": "J’ai arpenté des terres que le temps a oubliées, des contrées effacées de la mémoire des hommes, et d’autres encore vierges de tout nom. J’y ai rencontré des peuples aux rites disparus, des civilisations surgies des replis secrets de l’éternité, comme par enchantement, et des paysages suspendus hors du monde, flottant entre veille et songe, entre lumière et silence.",
+                "about.p2": "De ces errances, je ne rapporte que des éclats : formes, couleurs, matières. Certains se donnent tout entiers, comme des offrandes ; d’autres se dérobent, gardant leurs secrets tels des sphinx immémoriaux. Pourtant, chacun d’eux conserve la mémoire des lieux et des êtres que j’ai croisés.",
+                "about.p3": "Chaque création devient alors le témoignage vivant de mes traversées, l’écho tangible de ce que mes yeux ont saisi et que ma mémoire a préservé. Elle tend à celui qui s’y attarde un fil invisible, l’invitant à marcher dans mes pas, à franchir ces seuils incertains où l’imaginaire se mêle à la matière, où l’inconnu se révèle alors à nous, plus étrange, plus envoûtant que tout ce que nous aurions jamais osé concevoir."
+
             },
             en: {
                 "menu.works": "Works.",
@@ -880,70 +567,75 @@ body.lang-en .en { display: inline; }
                 "about.p1": "I have wandered through lands forgotten by time, regions erased from the memory of men, and others still untouched by any name. There, I encountered peoples with vanished rites, civilizations emerging from the secret folds of eternity, as if by enchantment, and landscapes suspended beyond the world, floating between wakefulness and dream, between light and silence.",
                 "about.p2": "From these wanderings, I bring back only fragments: shapes, colors, textures. Some reveal themselves fully, like offerings; others remain elusive, keeping their secrets like timeless sphinxes. Yet each of them preserves the memory of the places and beings I have encountered.",
                 "about.p3": "Each creation thus becomes the living testimony of my journeys, the tangible echo of what my eyes have captured and my memory preserved. It extends to whoever lingers before it an invisible thread, inviting them to walk in my footsteps, to cross those uncertain thresholds where imagination mingles with matter, where the unknown reveals itself to us—stranger, more spellbinding than anything we might ever have dared to conceive."
+
             }
         };
 
-        function typeText(el, text, callback) {
-            // rendre visible le texte au démarrage
-            el.style.visibility = 'visible';
-            el.innerHTML = '<span class="typing-cursor"></span>';
 
-            const cursor = el.querySelector('.typing-cursor');
-            const block = el.closest('.story-block');
-            const image = block.querySelector('.image-frame');
+function typeText(el, text, callback) {
+  // rendre visible le texte au démarrage
+  el.style.visibility = 'visible';
+  el.innerHTML = '<span class="typing-cursor"></span>';
 
-            // Initialiser l'image
-          if (image) {
+  const cursor = el.querySelector('.typing-cursor');
+  const block = el.closest('.story-block');
+  const image = block.querySelector('.image-frame');
+
+  // Initialiser l'image
+if (image) {
     image.style.opacity = 0;
 }
 
-            let i = 0;
+  let i = 0;
 
-            function type() {
-                if (i < text.length) {
-                    cursor.insertAdjacentText('beforebegin', text.charAt(i));
-                    i++;
+  function type() {
+    if (i < text.length) {
+      cursor.insertAdjacentText('beforebegin', text.charAt(i));
+      i++;
 
-                    // faire apparaître progressivement l'image
-                   if (image) {
+      // faire apparaître progressivement l'image
+if (image) {
     const progress = Math.min(1, (i * 1) / text.length);
     image.style.opacity = progress;
 }
 
-                    setTimeout(type, 15); // vitesse d'écriture
-                } else {
-                    // fin de frappe
-                    if (cursor) cursor.remove();
+      setTimeout(type, 15); // vitesse d'écriture
+    } else {
+      // fin de frappe
+      if (cursor) cursor.remove();
 
-                    // assurer que l'image est complètement visible
-                    if (image) {
-                        image.style.opacity = 1;
-                        image.style.transform = 'translateY(0)';
-                    }
+      // assurer que l'image est complètement visible
+      if (image) {
+        image.style.opacity = 1;
+        image.style.transform = 'translateY(0)';
+      }
 
-                    // petite pause avant de passer au suivant
-                    if (callback) setTimeout(callback, 500);
-                }
-            }
+      // petite pause avant de passer au suivant
+      if (callback) setTimeout(callback, 500);
+    }
+  }
 
-            type();
+  type();
+}
+
+
+
+function animateSequentially(elements, lang) {
+    let index = 0;
+    function next() {
+        if (index < elements.length) {
+            const el = elements[index];
+            const key = el.getAttribute('data-i18n');
+            const text = translations[lang][key] || el.textContent;
+            typeText(el, text, () => {
+                index++;
+                next(); // lancer le suivant
+            });
         }
+    }
+    next();
+}
 
-        function animateSequentially(elements, lang) {
-            let index = 0;
-            function next() {
-                if (index < elements.length) {
-                    const el = elements[index];
-                    const key = el.getAttribute('data-i18n');
-                    const text = translations[lang][key] || el.textContent;
-                    typeText(el, text, () => {
-                        index++;
-                        next(); // lancer le suivant
-                    });
-                }
-            }
-            next();
-        }
 
        function setLanguage(lang) {
     localStorage.setItem('lang', lang);
@@ -974,7 +666,7 @@ animateSequentially(animatedEls, lang);
 }
 
         // Init langue
-        setLanguage(localStorage.getItem('lang') || 'fr');
+        setLanguage('en');
 
         // Boutons FR/EN desktop
         document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
