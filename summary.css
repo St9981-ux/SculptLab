@@ -172,7 +172,7 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             flex-wrap: wrap;
             gap: 40px;
             padding: 40px 80px;
-            background: #f3f4f6;
+            background: #fff;
         }
 
         .order-product {

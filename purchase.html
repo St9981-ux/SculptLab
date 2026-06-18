@@ -433,12 +433,9 @@
                     if (i < text.length) {
                         cursor.insertAdjacentText('beforebegin', text.charAt(i));
                         i++;
-                        setTimeout(type, 25);
-                    } else {
-                        setTimeout(() => {
-                            if (cursor) cursor.remove();
-                        }, 1000);
+                        setTimeout(type, 14);
                     }
+                    // le curseur reste affiché (clignotant) une fois la frappe terminée
                 }
                 type();
             });

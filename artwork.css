@@ -165,7 +165,8 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             flex-wrap: wrap;
             gap: 40px;
             padding: 40px 80px;
-            background: #f3f4f6;
+            background: #fff;
+            align-items: flex-start;
         }
 
         .product-images {
@@ -200,11 +201,17 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             opacity: 1;
         }
 
+        /* Détails de l'article : panneau distinct (carte) sur fond blanc */
         .product-info {
             flex: 1 1 40%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 14px;
+            padding: 32px 34px;
+            box-shadow: 0 8px 28px rgba(0,0,0,.07);
         }
 
         .product-title {
@@ -247,6 +254,7 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             gap: 40px;
             padding: 40px 80px;
             background: #fff;
+            border-top: 1px solid rgba(0,0,0,.08);
         }
 
         .product-description h3 {
