@@ -206,9 +206,9 @@ footer a:hover{ color:var(--orange-500) !important; }
 }
 
 /* ---- Accessibilité : focus ---- */
-.header-menu a:focus,
-.mobile-menu a:focus,
-.lang-toggle button:focus{ outline:2px solid var(--pink-hot); outline-offset:2px; }
+.header-menu a:focus-visible,
+.mobile-menu a:focus-visible,
+.lang-toggle button:focus-visible{ outline:2px solid var(--pink-hot); outline-offset:2px; }
 
 /* ============================================================
    Responsive — un seul point de rupture chrome (640px), comme l'accueil
