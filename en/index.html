@@ -97,7 +97,8 @@ gtag('config', 'G-7BNG9RNN76');
 
 <!-- Preload critical resources - Toutes les images importantes -->
 <link rel="preload" href="../signature.png" as="image">
-<link rel="preload" href="../hero4.webp" as="image">
+<link rel="preload" href="../hero4.webp" as="image" fetchpriority="high" media="(min-width:641px)">
+<link rel="preload" href="../hero4-mobile.webp" as="image" fetchpriority="high" media="(max-width:640px)">
 
 <!-- Polices : Cinzel + Jost (wordmark/nav, substitut Futura) — Claude Design -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -339,7 +340,7 @@ body.lang-en .en{ display:inline; }
 .hero-layer-1{ z-index:1; background-color:#5ce0c2; background-image:url('../hero1.webp'); animation-delay:-12s; }
 .hero-layer-2{ z-index:2; background-color:#0c0a12; background-image:url('../hero2.webp'); animation-delay:-8s; }
 .hero-layer-3{ z-index:3; background-image:url('../hero3.jpg'); animation-delay:-4s; }
-.hero-layer-4{ z-index:4; background-color:#5ce0c2; background-image:url('../hero4.webp'); opacity:1; animation-delay:0s; }
+.hero-layer-4{ z-index:4; background-color:#50dbe0; background-image:url('../hero4.webp'), url('data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAADwBACdASogABEAPrFMnkmnJKMhMBgMAOAWCWwAnS+gAtDWy88JAC8ffkvH0CDqE4AA/uph/bHKzauJ+1Tf/ylf7/dQD8nXxj5u8/N0Mi12zJhXfXt9wBEINlr2WrCtinnxv9ILHJ1Kbpgt6FZl6i+mr562wpvan8NPr0XF2TmRovVVJbmfqAAA'); opacity:1; animation-delay:0s; }
 
 @keyframes heroCycle{
   0%{opacity:1} 22%{opacity:1} 27%{opacity:0} 95%{opacity:0} 100%{opacity:1}
@@ -671,7 +672,7 @@ footer a:hover{ color:var(--orange-500); }
     text-align:center !important;
   }
   .cta-button{ align-self:center !important; }
-  .hero-layer-4{ background-image:url('../hero4-mobile.webp') !important; }
+  .hero-layer-4{ background-color:#60e6da !important; background-image:url('../hero4-mobile.webp'), url('data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADQBgCdASogADgAPrVKn0mnJCKhM/ZoAOAWiWYAsSAFSYhrRrQNMrkfNeGjXDPZLJYetWmf2KjJg38zuFoZVoAA/u+qEUc//mCf1+/Pnsjn2F4AOIxzVssGx14CFGpMGkVJrCzMYPETHCwa172q54e/xbx4/X/T6066xHIDjIQAK8714UTIdBDgm2k48yGtHKG8pf5/4yMf8/bLcBT0z/X/f+okkAVk6/BNqZnbes6B7NWpIHFLlht9cfd1ArwtFMGx+R4KQ9cAAA==') !important; }
 
   .bloc-io .text-content,
   .bloc-zamu .text-content,
