@@ -295,10 +295,26 @@ background: linear-gradient(135deg, #64eecd 50%, #64f0e5 100%);
             width: 560px;
             max-width: 90%;
             background-color: #ffffff;
-            /* Bandeau turquoise tout autour */
-            border: 6px solid #64eecd;
             border-radius: 14px;
+            border: 1px solid rgba(0,0,0,.1);
+            box-shadow: 0 8px 28px rgba(0,0,0,.07);
         }
+
+        /* Tirets de couleur au-dessus du titre "Me contacter" */
+        .title-dashes {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .title-dashes span {
+            display: block;
+            width: 26px;
+            height: 6px;
+            border-radius: 999px;
+        }
+        .title-dashes span:nth-child(1) { background: #64eecd; }
+        .title-dashes span:nth-child(2) { background: #F4E04D; }
+        .title-dashes span:nth-child(3) { background: #ff66a3; }
 
         .contact-form h2 {
             margin-top: 0;
@@ -801,6 +817,7 @@ body.lang-en .en { display: inline; }
             </div>
 
             <div class="contact-form">
+                <div class="title-dashes" aria-hidden="true"><span></span><span></span><span></span></div>
                 <h2 data-i18n="contact.formTitle">Me contacter</h2>
                 <form id="contact-form" action="https://formsubmit.co/info@sculptlab.fr" method="POST">
                     <!-- Configuration FormSubmit -->
