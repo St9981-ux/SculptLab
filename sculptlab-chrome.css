@@ -189,6 +189,19 @@ footer a:hover{ color:var(--orange-500) !important; }
   z-index:10;
 }
 
+/* ---- Banneau (hors page d'accueil) : source unique, identique partout ---- */
+.section-turquoise{
+  background:linear-gradient(135deg,#64eecd 50%,#64f0e5 100%) !important;
+  height:5cm !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:flex-start !important;
+  position:relative !important;
+  margin-bottom:20px !important;
+  overflow:visible !important;   /* ne jamais rogner le menu burger */
+}
+
 /* ---- Accessibilité : focus ---- */
 .header-menu a:focus,
 .mobile-menu a:focus,
@@ -202,4 +215,11 @@ footer a:hover{ color:var(--orange-500) !important; }
   .mobile-menu-toggle{ display:flex !important; }
   .signature{ height:40px !important; top:18px !important; }
   .main-title{ font-size:1.5em !important; }
+}
+/* Banneau responsive — identique sur toutes les pages */
+@media (max-width:768px){
+  .section-turquoise{ height:auto !important; min-height:4cm !important; padding:20px !important; }
+}
+@media (max-width:480px){
+  .section-turquoise{ padding:15px !important; margin-bottom:15px !important; }
 }
