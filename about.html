@@ -427,7 +427,7 @@ body.lang-en .en{ display:inline; }
 .ac-dark{ background:#15131a; color:#fff; }
 .ac-light{ background:#fff; color:#1a1a1a; }
 .ac-yellow{ background:linear-gradient(135deg,#F4E04D 0%,#F6E27F 100%); color:#111; }
-.ac-blue{ background:linear-gradient(135deg,#00bfff 0%,#0091ff 100%); color:#fff; }
+.ac-pink{ background:linear-gradient(135deg,#ff66a3 0%,#ff4d94 100%); color:#fff; }
 .ac-text .prose{ max-width:480px; font-size:18px; line-height:1.72; text-align:justify; margin:0; }
 .ac-rev .ac-text .prose{ margin-left:auto; }
 .ac-turq .prose{ color:#64eecd; }
@@ -438,10 +438,11 @@ body.lang-en .en{ display:inline; }
 .tw-caret{ display:inline-block; width:.5em; height:1.05em; background:currentColor; margin-left:.06em; vertical-align:-.16em; animation:tw-blink .75s step-end infinite; }
 @keyframes tw-blink{ from,to{opacity:1} 50%{opacity:0} }
 @media (max-width:768px){
+  /* Empilé : bloc image et bloc texte de hauteur identique à chaque chapitre */
   .about-chapter{ grid-template-columns:1fr; min-height:0; }
-  .about-chapter .ac-img{ order:-1 !important; min-height:300px; height:300px; }
-  .about-chapter .ac-text{ order:0 !important; padding:36px 22px; }
-  .ac-text .prose, .ac-rev .ac-text .prose{ max-width:none; margin:0; }
+  .about-chapter .ac-img{ order:-1 !important; height:360px; min-height:360px; }
+  .about-chapter .ac-text{ order:0 !important; min-height:360px; padding:28px 22px; justify-content:center; }
+  .ac-text .prose, .ac-rev .ac-text .prose{ max-width:none; margin:0; font-size:16px; }
 }
 
 </style>
@@ -519,7 +520,7 @@ body.lang-en .en{ display:inline; }
         <!-- CHAPITRE III — image / texte (sombre, blanc) -->
         <section class="about-chapter">
             <div class="ac-img"><img src="about3.webp" alt="L'atelier" loading="lazy" decoding="async"></div>
-            <div class="ac-text ac-blue"><p class="prose tw" data-i18n="about.ch3"></p></div>
+            <div class="ac-text ac-pink"><p class="prose tw" data-i18n="about.ch3"></p></div>
         </section>
 
         <!-- CLÔTURE -->
@@ -555,7 +556,7 @@ body.lang-en .en{ display:inline; }
                 "about.lead":"J'ai arpenté des terres que le temps a oubliées, des contrées effacées de la mémoire des hommes, et d'autres encore vierges de tout nom.",
                 "about.ch1":"J'y ai rencontré des peuples aux rites disparus, des civilisations surgies des replis secrets de l'éternité, comme par enchantement, et des paysages suspendus hors du monde, flottant entre veille et songe, entre lumière et silence.",
                 "about.ch2":"De ces errances, je ne rapporte que des éclats : formes, couleurs, matières. Certains se donnent tout entiers, comme des offrandes ; d'autres se dérobent, gardant leurs secrets tels des sphinx immémoriaux. Pourtant, chacun d'eux conserve la mémoire des lieux et des êtres que j'ai croisés.",
-                "about.ch3":"Chaque création devient alors le témoignage vivant de mes traversées, l'écho tangible de ce que mes yeux ont saisi et que ma mémoire a préservé. Dans la matière façonnée se déposent le silence des déserts, la rumeur des cités englouties et la lumière oblique des aubes lointaines. Chaque forme garde l'empreinte d'un instant arraché à l'oubli ; chaque courbe murmure le souvenir d'un visage, d'un rite, d'un horizon. Ainsi mes œuvres ne racontent pas seulement ce que j'ai vu : elles prolongent ces mondes et leur offrent une seconde existence, plus dense et plus durable que la mienne.",
+                "about.ch3":"Chaque création devient alors le témoignage vivant de mes traversées, l'écho tangible de ce que mes yeux ont saisi et que ma mémoire a préservé. Dans la matière façonnée se déposent le silence des déserts, la rumeur des cités englouties et la lumière oblique des aubes lointaines.",
                 "about.closing":"Elle tend alors, à qui s'y attarde, un fil invisible, et l'invite à son tour à franchir le seuil de l'inconnu."
             },
             en: {
@@ -565,7 +566,7 @@ body.lang-en .en{ display:inline; }
                 "about.lead":"I have wandered lands that time forgot, regions erased from the memory of men, and others still untouched by any name.",
                 "about.ch1":"There I met peoples of vanished rites, civilisations risen from the secret folds of eternity, as if by enchantment, and landscapes suspended out of the world, floating between waking and dream, between light and silence.",
                 "about.ch2":"From these wanderings, I bring back only fragments: shapes, colors, textures. Some reveal themselves fully, like offerings; others remain elusive, keeping their secrets like timeless sphinxes. Yet each of them preserves the memory of the places and beings I have encountered.",
-                "about.ch3":"Each creation thus becomes the living testimony of my journeys, the tangible echo of what my eyes have captured and my memory preserved. Into the shaped matter settle the silence of deserts, the murmur of sunken cities, and the slanting light of distant dawns. Every form holds the imprint of a moment wrested from oblivion; every curve whispers the memory of a face, a rite, a horizon. So my works do not merely recount what I have seen: they prolong those worlds and grant them a second existence — denser and more lasting than my own.",
+                "about.ch3":"Each creation thus becomes the living testimony of my journeys, the tangible echo of what my eyes have captured and my memory preserved. Into the shaped matter settle the silence of deserts, the murmur of sunken cities, and the slanting light of distant dawns.",
                 "about.closing":"To whoever lingers before it, it then extends an invisible thread, and invites them, in turn, to cross the threshold of the unknown."
             }
         };
