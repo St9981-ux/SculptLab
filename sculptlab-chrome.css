@@ -169,12 +169,12 @@ footer a:hover{ color:var(--orange-500) !important; }
   font-family:inherit !important;
 }
 #cookie-banner{ gap:12px !important; flex-wrap:wrap !important; }
-#refuse-cookie-banner{
+#cookie-banner #refuse-cookie-banner{
   background:transparent !important;
   color:#fff !important;
   border:1px solid rgba(255,255,255,.6) !important;
 }
-#refuse-cookie-banner:hover{ background:rgba(255,255,255,.12) !important; }
+#cookie-banner #refuse-cookie-banner:hover{ background:rgba(255,255,255,.12) !important; }
 
 /* ---- Titre de page : Jost blanc, en bas à gauche du banneau ---- */
 .main-title{
