@@ -366,9 +366,11 @@ body.lang-fr .fr{ display:inline; }
 body.lang-en .en{ display:inline; }
 
 /* Accessibilité — focus */
+.header-menu a:focus, .header-menu a:focus-visible,
+.mobile-menu a:focus, .mobile-menu a:focus-visible,
+.lang-toggle button:focus, .lang-toggle button:focus-visible{ outline:none; }
 .header-menu a:focus-visible,
-.mobile-menu a:focus-visible,
-.lang-toggle button:focus-visible{ outline:2px solid var(--pink-hot); outline-offset:2px; }
+.mobile-menu a:focus-visible{ text-decoration:underline; }
 
 /* ============================================================
    RESPONSIVE

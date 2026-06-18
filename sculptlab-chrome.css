@@ -206,9 +206,12 @@ footer a:hover{ color:var(--orange-500) !important; }
 }
 
 /* ---- Accessibilité : focus ---- */
+/* Pas de rectangle de focus (souris). Repère clavier discret = soulignement. */
+.header-menu a:focus, .header-menu a:focus-visible,
+.mobile-menu a:focus, .mobile-menu a:focus-visible,
+.lang-toggle button:focus, .lang-toggle button:focus-visible{ outline:none !important; }
 .header-menu a:focus-visible,
-.mobile-menu a:focus-visible,
-.lang-toggle button:focus-visible{ outline:2px solid var(--pink-hot); outline-offset:2px; }
+.mobile-menu a:focus-visible{ text-decoration:underline !important; }
 
 /* ============================================================
    Responsive — un seul point de rupture chrome (640px), comme l'accueil

@@ -378,6 +378,10 @@ body.lang-en .en{ display:inline; }
   cursor:pointer;
 }
 .header-menu a:hover{ text-decoration:underline; }
+.header-menu a:focus, .header-menu a:focus-visible,
+.mobile-menu a:focus, .mobile-menu a:focus-visible,
+.lang-toggle button:focus, .lang-toggle button:focus-visible{ outline:none; }
+.header-menu a:focus-visible, .mobile-menu a:focus-visible{ text-decoration:underline; }
 
 /* Bouton hamburger (mobile) */
 .mobile-menu-toggle{
