@@ -61,9 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ============================================================
-   Curseur personnalisé — anneau turquoise (desktop uniquement)
-   • S'affiche PAR-DESSUS le curseur natif (aucune perte de précision)
-   • Grossit / se remplit au survol des éléments interactifs
+   Curseur personnalisé — remplace la souris par un rond plein (desktop)
+   • Rond turquoise ; devient rose au-dessus des zones turquoise
+   • Suit le pointeur exactement (clics précis, curseur natif masqué)
+   • Grossit au survol des éléments interactifs, se contracte au clic
    • Désactivé sur tactile et si "réduire les animations"
    ============================================================ */
 (function () {
@@ -73,40 +74,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var style = document.createElement('style');
   style.textContent =
-    '.sl-cursor{position:fixed;top:0;left:0;width:26px;height:26px;border:2px solid #64eecd;' +
-    'border-radius:50%;background:transparent;pointer-events:none;z-index:99999;opacity:0;' +
-    'transition:width .18s ease,height .18s ease,background-color .18s ease,opacity .25s ease;' +
+    'html.sl-cursor-active, html.sl-cursor-active *{cursor:none !important}' +
+    '.sl-cursor{position:fixed;top:0;left:0;width:16px;height:16px;border-radius:50%;' +
+    'background:#64eecd;pointer-events:none;z-index:99999;opacity:0;' +
+    'transition:width .15s ease,height .15s ease,background-color .15s ease,opacity .25s ease;' +
     'will-change:transform}' +
-    '.sl-cursor.is-hover{width:42px;height:42px;background:rgba(100,238,205,.18)}' +
-    '.sl-cursor.is-down{width:20px;height:20px;background:rgba(100,238,205,.35)}';
+    '.sl-cursor.is-hover{width:28px;height:28px}' +
+    '.sl-cursor.is-down{width:12px;height:12px}' +
+    '.sl-cursor.on-turq{background:#ff007f}';
   document.head.appendChild(style);
 
-  var ring = document.createElement('div');
-  ring.className = 'sl-cursor';
-  ring.setAttribute('aria-hidden', 'true');
-  (document.body || document.documentElement).appendChild(ring);
+  var dot = document.createElement('div');
+  dot.className = 'sl-cursor';
+  dot.setAttribute('aria-hidden', 'true');
+  (document.body || document.documentElement).appendChild(dot);
+  document.documentElement.classList.add('sl-cursor-active');
 
-  var x = window.innerWidth / 2, y = window.innerHeight / 2, rx = x, ry = y, shown = false;
-  document.addEventListener('mousemove', function (e) {
-    x = e.clientX; y = e.clientY;
-    if (!shown) { ring.style.opacity = '1'; shown = true; }
-  }, { passive: true });
-
-  (function loop() {
-    rx += (x - rx) * 0.22;
-    ry += (y - ry) * 0.22;
-    ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
-    requestAnimationFrame(loop);
-  })();
-
+  var shown = false;
   var interactive = 'a,button,input,textarea,select,label,summary,[role="button"],[onclick],.buy-button,.artwork-order';
-  document.addEventListener('mouseover', function (e) {
-    if (e.target.closest && e.target.closest(interactive)) ring.classList.add('is-hover');
+  var turquoise = '.section-turquoise,.about-closing';
+
+  document.addEventListener('mousemove', function (e) {
+    var x = e.clientX, y = e.clientY;
+    dot.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
+    if (!shown) { dot.style.opacity = '1'; shown = true; }
+    var el = document.elementFromPoint(x, y);
+    if (el && el.closest) {
+      dot.classList.toggle('on-turq', !!el.closest(turquoise));
+      dot.classList.toggle('is-hover', !!el.closest(interactive));
+    }
   }, { passive: true });
-  document.addEventListener('mouseout', function (e) {
-    if (e.target.closest && e.target.closest(interactive)) ring.classList.remove('is-hover');
-  }, { passive: true });
-  document.addEventListener('mousedown', function () { ring.classList.add('is-down'); }, { passive: true });
-  document.addEventListener('mouseup', function () { ring.classList.remove('is-down'); }, { passive: true });
-  document.addEventListener('mouseleave', function () { ring.style.opacity = '0'; shown = false; }, { passive: true });
+
+  document.addEventListener('mousedown', function () { dot.classList.add('is-down'); }, { passive: true });
+  document.addEventListener('mouseup', function () { dot.classList.remove('is-down'); }, { passive: true });
+  document.addEventListener('mouseleave', function () { dot.style.opacity = '0'; shown = false; }, { passive: true });
 })();
