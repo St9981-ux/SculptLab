@@ -88,7 +88,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/Marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+
+/* Police d'affichage (récit) — Marcellus, auto-hébergée (fidèle au design) */
+@font-face{
+  font-family:'Marcellus';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("fonts/Marcellus-latinext.woff2") format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Marcellus';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("fonts/Marcellus-latin.woff2") format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 /* ============================================================
    SculptLab — À propos
@@ -329,7 +348,7 @@ footer{
   padding:20px var(--gutter-page-sm);
   text-align:center;
   font-family:var(--font-body);
-  margin-top:40px;
+  margin-top:0;
 }
 footer p{ margin:0; font-size:var(--fs-16); }
 footer a{
@@ -415,28 +434,29 @@ body.lang-en .en{ display:inline; }
 #refuse-cookie-banner:hover{ background:rgba(255,255,255,.12); }
 
 /* ===== Page À propos — récit (design Claude Design) ===== */
-.about-intro{ background:#f9f9f9; padding:clamp(56px,8vw,120px) clamp(24px,5vw,80px); border-bottom:1px solid rgba(0,0,0,.08); }
+.about-intro{ background:#fff; padding:clamp(56px,8vw,120px) clamp(24px,5vw,80px); }
 .about-intro .lead{ max-width:920px; margin:0 auto; text-align:center; }
-.lead{ font-family:'Cinzel','Times New Roman',serif; font-style:italic; font-size:clamp(26px,3.4vw,46px); line-height:1.35; color:#1a1a1a; }
-.about-chapter{ display:grid; grid-template-columns:1fr 1fr; }
-.about-chapter .ac-img{ position:relative; min-height:clamp(320px,42vw,560px); overflow:hidden; }
+.lead{ font-family:'Marcellus','Cinzel','Times New Roman',serif; font-style:italic; font-size:clamp(28px,3.4vw,46px); line-height:1.35; color:#1a1a1a; }
+.about-chapter{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; min-height:clamp(420px,46vw,640px); }
+.about-chapter .ac-img{ position:relative; height:100%; min-height:100%; overflow:hidden; }
 .about-chapter .ac-img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
 .about-chapter .ac-text{ display:flex; flex-direction:column; justify-content:center; padding:clamp(40px,5vw,88px); }
 .ac-rev .ac-img{ order:2; }
 .ac-rev .ac-text{ order:1; }
 .ac-dark{ background:#15131a; color:#fff; }
-.ac-light{ background:#f9f9f9; color:#1a1a1a; }
+.ac-light{ background:#fff; color:#1a1a1a; }
 .ac-text .prose{ max-width:480px; font-size:18px; line-height:1.72; text-align:justify; margin:0; }
 .ac-rev .ac-text .prose{ margin-left:auto; }
 .ac-turq .prose{ color:#64eecd; }
 .about-closing{ background:linear-gradient(135deg,#64eecd 50%,#64f0e5 100%); padding:clamp(56px,7vw,110px) clamp(24px,5vw,80px); text-align:center; }
 .about-closing .lead{ max-width:840px; margin:0 auto 40px; }
 .about-closing .closing-sig{ height:60px; width:auto; }
-.tw-caret{ display:inline-block; width:3px; height:1.05em; background:currentColor; margin-left:2px; vertical-align:-.15em; animation:tw-blink .75s step-end infinite; }
+/* Curseur machine à écrire — gros bloc, persistant (fidèle au design) */
+.tw-caret{ display:inline-block; width:.5em; height:1.05em; background:currentColor; margin-left:.06em; vertical-align:-.16em; animation:tw-blink .75s step-end infinite; }
 @keyframes tw-blink{ from,to{opacity:1} 50%{opacity:0} }
 @media (max-width:768px){
-  .about-chapter{ grid-template-columns:1fr; }
-  .about-chapter .ac-img{ order:-1 !important; min-height:300px; }
+  .about-chapter{ grid-template-columns:1fr; min-height:0; }
+  .about-chapter .ac-img{ order:-1 !important; min-height:300px; height:300px; }
   .about-chapter .ac-text{ order:0 !important; padding:36px 22px; }
   .ac-text .prose, .ac-rev .ac-text .prose{ max-width:none; margin:0; }
 }
@@ -503,19 +523,19 @@ body.lang-en .en{ display:inline; }
 
         <!-- CHAPITRE I — image / texte (sombre, turquoise) -->
         <section class="about-chapter">
-            <div class="ac-img"><img src="photo3.webp" alt="Paysages et rencontres" loading="lazy" decoding="async"></div>
+            <div class="ac-img"><img src="about1.webp" alt="Paysages et rencontres" loading="lazy" decoding="async"></div>
             <div class="ac-text ac-dark ac-turq"><p class="prose tw" data-i18n="about.ch1"></p></div>
         </section>
 
         <!-- CHAPITRE II — texte / image (clair) -->
         <section class="about-chapter ac-rev">
-            <div class="ac-img"><img src="photo1.webp" alt="Modelage à la main" loading="lazy" decoding="async"></div>
+            <div class="ac-img"><img src="about2.webp" alt="Modelage à la main" loading="lazy" decoding="async"></div>
             <div class="ac-text ac-light"><p class="prose tw" data-i18n="about.ch2"></p></div>
         </section>
 
         <!-- CHAPITRE III — image / texte (sombre, blanc) -->
         <section class="about-chapter">
-            <div class="ac-img"><img src="photo2.webp" alt="L'atelier" loading="lazy" decoding="async"></div>
+            <div class="ac-img"><img src="about3.webp" alt="L'atelier" loading="lazy" decoding="async"></div>
             <div class="ac-text ac-dark"><p class="prose tw" data-i18n="about.ch3"></p></div>
         </section>
 
@@ -579,7 +599,7 @@ body.lang-en .en{ display:inline; }
             var i=0;
             (function step(){
                 if(i<text.length){ caret.insertAdjacentText('beforebegin', text.charAt(i)); i++; el._t=setTimeout(step,14); }
-                else { caret.remove(); }
+                // le curseur reste affiché (clignotant) une fois la frappe terminée
             })();
         }
 
