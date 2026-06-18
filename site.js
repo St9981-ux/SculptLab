@@ -8,15 +8,16 @@
    AVANT le chargement de gtag ; ce fichier ne gère que la mise à jour.
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
-  // Langue d'affichage de la bannière = langue de la PAGE (<html lang>), pas du navigateur,
-  // puis suit la bascule FR/EN. Pilote l'affichage .fr/.en de la bannière cookies.
+  // Langue d'affichage de la bannière = choix mémorisé (localStorage 'lang') en priorité,
+  // sinon langue de la page (<html lang>). Suit aussi la bascule FR/EN.
   function applyLang(l) {
     var en = (l === 'en');
     document.body.classList.toggle('lang-en', en);
     document.body.classList.toggle('lang-fr', !en);
   }
-  var pageLang = (document.documentElement.lang || 'fr').toLowerCase();
-  applyLang(pageLang.indexOf('en') === 0 ? 'en' : 'fr');
+  var saved = (localStorage.getItem('lang') || '').toLowerCase();
+  var lang = saved || (document.documentElement.lang || 'fr').toLowerCase();
+  applyLang(lang.indexOf('en') === 0 ? 'en' : 'fr');
 
   // Suivre le sélecteur de langue (FR · EN), desktop + mobile
   ['btn-fr', 'btn-fr-mobile'].forEach(function (id) {
