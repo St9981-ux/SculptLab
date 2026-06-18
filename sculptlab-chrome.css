@@ -90,6 +90,8 @@
   left:auto !important;
   z-index:40 !important;
   flex-direction:column !important;
+  align-items:stretch !important;   /* alignement identique sur toutes les pages */
+  text-align:left !important;
   gap:16px !important;
   background:#fff !important;
   border:none !important;
@@ -103,6 +105,7 @@
   text-decoration:none !important;
   border:none !important;
   padding:0 !important;
+  text-align:left !important;
   font-family:var(--font-body) !important;
   font-weight:var(--fw-bold) !important;
   font-size:var(--fs-18) !important;
