@@ -201,7 +201,7 @@
     .acq-intro-text{ font-family:var(--font-body); font-size:clamp(15px,1.5vw,18px); line-height:1.7; color:#333333; max-width:62ch; margin:0 auto; text-align:center; }
 
     /* Sections œuvres */
-    .acq-sec{ position:relative; overflow:hidden; padding:clamp(40px,5.5vw,80px) clamp(20px,5vw,80px); }
+    .acq-sec{ position:relative; overflow:hidden; scroll-margin-top:16px; padding:clamp(40px,5.5vw,80px) clamp(20px,5vw,80px); }
     .acq-io{     background:linear-gradient(135deg,#F4E04D 0%,#F6E27F 100%); color:#1a1a1a; }
     .acq-zamu{   background:linear-gradient(135deg,#00bfff 0%,#0091ff 100%); color:#ffffff; }
     .acq-enigma{ background:linear-gradient(135deg,#80ff9a 30%,#acff8d 100%); color:#1a1a1a; }
@@ -296,7 +296,7 @@
         </section>
 
         <!-- IO -->
-        <section class="acq-sec acq-io">
+        <section class="acq-sec acq-io" id="io">
             <div class="acq-wrap">
                 <div class="acq-media" id="media-io"></div>
                 <div class="acq-info">
@@ -310,7 +310,7 @@
         </section>
 
         <!-- ZA'MU -->
-        <section class="acq-sec acq-zamu">
+        <section class="acq-sec acq-zamu" id="zamu">
             <div class="acq-wrap">
                 <div class="acq-media" id="media-zamu"></div>
                 <div class="acq-info">
@@ -324,7 +324,7 @@
         </section>
 
         <!-- ENIGMA -->
-        <section class="acq-sec acq-enigma">
+        <section class="acq-sec acq-enigma" id="enigma">
             <div class="acq-wrap">
                 <div class="acq-media" id="media-enigma"></div>
                 <div class="acq-info">

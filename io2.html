@@ -237,8 +237,7 @@
                 Hauteur 30 cm<br>
                 Largeur 15 cm<br>
                 Profondeur 15 cm<br><br>
-                Fabrication artisanale, en France<br>
-                Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires<br><br>
+                Fabrication artisanale, en France<span class="ed-cert"></span><br><br>
                 Livré dans un emballage protégé et soigné
             </p>
 
@@ -258,7 +257,7 @@
         <div>
             <h3 data-i18n="desc.detailsTitle">Détails de l'article</h3>
             <p data-i18n="desc.detailsText">Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br>
-            Édition limitée et numérotée sur 25.<br>
+            <span class="ed-num"></span>
             Hauteur 30 cm<br>
             Largeur 15 cm<br>
             Profondeur 15 cm</p>
@@ -334,11 +333,11 @@
                 "purchase.title": "Descriptif de la commande",
                 "product.version": "Outremer",
                 "product.price": "855 €",
-                "product.desc": "Sculpture en résine peinte à la main<br><br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm<br><br>Fabrication artisanale, en France<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires<br><br>Livré dans un emballage protégé et soigné",
+                "product.desc": "Sculpture en résine peinte à la main<br><br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm<br><br>Fabrication artisanale, en France<span class="ed-cert"></span><br><br>Livré dans un emballage protégé et soigné",
                 "product.order": "Commander",
                 "product.back": "← Retour à toutes les sculptures",
                 "desc.detailsTitle": "Détails de l'article",
-                "desc.detailsText": "Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br>Édition limitée et numérotée sur 25.<br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm",
+                "desc.detailsText": "Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br><span class="ed-num"></span>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm",
                 "desc.shippingTitle": "Informations de livraison",
                 "desc.shippingText": "Livraison sous 7 à 10 jours ouvrés en France métropolitaine et sous 10 à 15 jours ouvrés à l’international, selon la destination.<br><br>Expédition sécurisée et assurée.",
                 "desc.policyTitle": "Politique d'échange et de remboursement",
@@ -358,11 +357,11 @@
                 "product.title": "Io",
                 "product.version": "Ultramarine",
                 "product.price": "€855",
-                "product.desc": "Hand-painted resin sculpture<br><br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm<br><br>Handcrafted in France<br>Numbered series with cryptographic certificate of authenticity – 25 copies<br><br>Delivered in a protected and neat packaging",
+                "product.desc": "Hand-painted resin sculpture<br><br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm<br><br>Handcrafted in France<span class="ed-cert"></span><br><br>Delivered in a protected and neat packaging",
                 "product.order": "Order",
                 "product.back": "← Back to all sculptures",
                 "desc.detailsTitle": "Item details",
-                "desc.detailsText": "Resin sculpture reproduced from an original model, hand-painted.<br>Limited edition, numbered to 25.<br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm",
+                "desc.detailsText": "Resin sculpture reproduced from an original model, hand-painted.<br><span class="ed-num"></span>Height 30 cm<br>Width 15 cm<br>Depth 15 cm",
                 "desc.shippingTitle": "Shipping information",
                 "desc.shippingText": "Delivery within 7 to 10 business days in mainland France and 10 to 15 business days internationally, depending on the destination.<br><br>Secure and insured shipping.",
                 "desc.policyTitle": "Exchange and refund policy",
@@ -415,5 +414,18 @@
     </script>
 
 
+
+<script id="sl-edition">
+var ED_MAP = {"ecarlate": "open", "pomme": "open", "sorbet": "limited", "outremer": "limited", "poudre": "limited", "arlequin": "unique", "berlingot": "unique", "cyan": "open"};
+var ED_DEFAULT = 'limited';
+var ED_CERT = {"fr": {"limited": "<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires", "unique": "<br>Pièce unique avec certificat d'authenticité en format cryptographique", "open": ""}, "en": {"limited": "<br>Numbered series with cryptographic certificate of authenticity – 25 copies", "unique": "<br>Unique piece with cryptographic certificate of authenticity", "open": ""}};
+var ED_NUM = {"fr": {"limited": "Édition limitée et numérotée sur 25.<br>", "unique": "Pièce unique.<br>", "open": ""}, "en": {"limited": "Limited edition, numbered to 25.<br>", "unique": "Unique piece.<br>", "open": ""}};
+var __curEd = ED_DEFAULT;
+function __edLang(){var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr');return l.indexOf('en')===0?'en':'fr';}
+function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').forEach(function(e){e.innerHTML=ED_CERT[L][__curEd]||'';});document.querySelectorAll('.ed-num').forEach(function(e){e.innerHTML=ED_NUM[L][__curEd]||'';});}
+(function(){var p=new URLSearchParams(location.search).get('couleur');if(p){var k=p.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(ED_MAP[k])__curEd=ED_MAP[k];}
+if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
+function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
+</script>
 </body>
 </html>
