@@ -15,6 +15,7 @@
 
 
     <meta charset="UTF-8">
+    <script src="sl-head.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -488,7 +489,7 @@
         function renderAcqSection(sec, lang){
             var data = ACQ_DATA[sec], sel = ACQ_SEL[sec], cur = data.colors[sel], copy = ACQ_COPY[lang].ed;
             document.getElementById('media-'+sec).innerHTML = acqMedia(cur);
-            document.getElementById('name-'+sec).textContent = cur.name;
+            document.getElementById('name-'+sec).textContent = (window.slColorName ? slColorName(cur.name, lang) : cur.name);
             var pill = document.getElementById('pill-'+sec);
             pill.textContent = copy[cur.ed].badge;
             pill.setAttribute('style', acqPillStyle(cur.ed));
@@ -500,7 +501,8 @@
                 if(!items.length) return;
                 html += '<div class="acq-group"><div class="acq-group-head">'+esc(copy[type].head)+'</div><div class="acq-row">';
                 items.forEach(function(it){
-                    html += '<button type="button" title="'+esc(it.c.name)+'" aria-label="'+esc(it.c.name)+'" '
+                    var dn = (window.slColorName ? slColorName(it.c.name, lang) : it.c.name);
+                    html += '<button type="button" title="'+esc(dn)+'" aria-label="'+esc(dn)+'" '
                           + 'data-sec="'+sec+'" data-i="'+it.i+'" style="'+acqCircle(it.c, it.i===sel)+'"></button>';
                 });
                 html += '</div></div>';

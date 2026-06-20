@@ -13,6 +13,7 @@
     </script>
 
     <meta charset="UTF-8">
+    <script src="../sl-head.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -294,10 +295,11 @@
   var img = PROD[key] || 'box.png';
   function apply(){
     var lang = L();
-    var im = document.querySelector('.product-image'); if(im){ im.src = BASE+img; im.alt = LABEL+' - '+p; }
-    var sub = document.querySelector('.order-subtitle'); if(sub){ sub.removeAttribute('data-i18n'); sub.textContent = LABEL+' - '+p; }
+    var d = (window.slColorName ? slColorName(p, lang) : p);
+    var im = document.querySelector('.product-image'); if(im){ im.src = BASE+img; im.alt = LABEL+' - '+d; }
+    var sub = document.querySelector('.order-subtitle'); if(sub){ sub.removeAttribute('data-i18n'); sub.textContent = LABEL+' - '+d; }
     var det = document.querySelector('td[data-i18n="summary.productDetails"]');
-    if(det){ det.removeAttribute('data-i18n'); det.textContent = (lang==='en' ? LABEL+' Sculpture - '+p : 'Sculpture '+LABEL+' - '+p); }
+    if(det){ det.removeAttribute('data-i18n'); det.textContent = (lang==='en' ? LABEL+' Sculpture - '+d : 'Sculpture '+LABEL+' - '+d); }
     var note = document.getElementById('sl-ed-note');
     if(!note && sub){ note=document.createElement('div'); note.id='sl-ed-note';
       note.style.cssText='font-size:.9em;color:#555;margin:-4px 0 14px;';
