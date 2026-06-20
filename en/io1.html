@@ -184,10 +184,10 @@
         <!-- Menu hamburger mobile -->
         <button class="mobile-menu-toggle" aria-label="Menu" aria-haspopup="true" onclick="toggleMobileMenu()">☰</button>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html" data-i18n="menu.works">Works.</a>
-            <a href="about.html" data-i18n="menu.about">About.</a>
+            <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+            <a href="about.html" data-i18n="menu.about">À propos.</a>
             <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-            <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
+            <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
             <div class="lang-toggle">
                 <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
                 <span>·</span>
@@ -197,10 +197,10 @@
         
         <!-- Menu desktop -->
         <div class="header-menu">
-            <a href="index.html" data-i18n="menu.works">Works.</a>
-            <a href="about.html" data-i18n="menu.about">About.</a>
+            <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+            <a href="about.html" data-i18n="menu.about">À propos.</a>
             <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-            <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
+            <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
 
             <div class="lang-toggle">
                 <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
@@ -243,16 +243,20 @@
                 Livré dans un emballage protégé et soigné
             </p>
 
-            <a href="io1_summary.html" class="buy-button" data-i18n="product.order">Order</a>
+            <a href="io1_summary.html" class="buy-button" data-i18n="product.order">
+    Commander
+</a>
 
-            <a href="purchase.html" style="font-size:0.9em; color:#555; text-decoration:none; margin-top:40px; display:inline-block;" data-i18n="product.back">← Back to all sculptures</a>
+            <a href="purchase.html" style="font-size:0.9em; color:#555; text-decoration:none; margin-top:40px; display:inline-block;" data-i18n="product.back">
+                ← Retour à toutes les sculptures
+            </a>
         </div>
     </div>
 
     <!-- Description -->
     <div class="product-description">
         <div>
-            <h3 data-i18n="desc.detailsTitle">Item details</h3>
+            <h3 data-i18n="desc.detailsTitle">Détails de l'article</h3>
             <p data-i18n="desc.detailsText">Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br>
             Édition limitée et numérotée sur 25.<br>
             Hauteur 30 cm<br>
@@ -260,19 +264,19 @@
             Profondeur 15 cm</p>
         </div>
         <div>
-            <h3 data-i18n="desc.shippingTitle">Shipping information</h3>
-            <p data-i18n="desc.shippingText">Delivery within 7 to 10 business days in mainland France and 10 to 15 business days internationally, depending on the destination.<br><br>Secure and insured shipping.</p>
+            <h3 data-i18n="desc.shippingTitle">Informations de livraison</h3>
+            <p data-i18n="desc.shippingText">Livraison sous 7 à 10 jours ouvrés en France métropolitaine. Expédition sécurisée et assurée. Possibilité de retrait à l'atelier sur rendez-vous.</p>
         </div>
         <div>
-            <h3 data-i18n="desc.policyTitle">Exchange and refund policy</h3>
-            <p data-i18n="desc.policyText">You have 14 days after receipt to request an exchange or a refund. For more details, please see our <a href="cgv.html" style="color:#333333; text-decoration:underline;">Terms and Conditions</a>.</p>
+            <h3 data-i18n="desc.policyTitle">Politique d'échange et de remboursement</h3>
+            <p data-i18n="desc.policyText">Vous disposez de 14 jours après réception pour demander un échange ou un remboursement. Les frais de retour sont à la charge de l'acheteur, sauf en cas de produit défectueux.</p>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | 
-            <a href="mentions_legales.html" data-i18n="footer.legal">Legal notice</a>
+        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | 
+            <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a>
         </p>
     </footer>
 
@@ -403,5 +407,23 @@
     </script>
 
 
+
+<script id="sl-color-param">
+(function(){
+  var IMG = {"Écarlate": "acquerir/io-ecarlate.webp", "Citron": "acquerir/io-citron.webp", "Fushia": "acquerir/io-fushia.webp", "Pomme": "acquerir/io-pomme.webp", "Sorbet": "acquerir/io.webp", "Outremer": "acquerir/io-b.webp", "Poudre": "acquerir/io-poudre.webp", "Arlequin": "acquerir/io-arlequin.webp", "Berlingot": "acquerir/io-berlingot.webp", "Prairie": "acquerir/io-prairie.webp", "Ocre": "acquerir/io-ocre.webp", "Cyan": "acquerir/io-cyan.webp", "Cobalt": "acquerir/io-cobalt.webp"};
+  var LABEL = "Io";
+  var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  var p = new URLSearchParams(location.search).get('couleur');
+  if(!p) return;
+  var key = Object.keys(IMG).find(function(k){return k.toLowerCase()===p.toLowerCase();});
+  if(!key) return;
+  function apply(){
+    var main=document.getElementById('main-image'); if(main){ main.src=BASE+IMG[key]; main.alt=LABEL+' - '+key; }
+    var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=key; }
+    var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML='<img src="../'+BASE+IMG[key]+'" class="active" alt="'+key+'">'; }
+  }
+  if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
+})();
+</script>
 </body>
 </html>

@@ -302,7 +302,7 @@
                     <div class="acq-name" id="name-io"></div>
                     <div><span class="acq-pill" id="pill-io"></span></div>
                     <div class="acq-swatches" id="sw-io"></div>
-                    <div><a href="io1.html" class="acq-order" data-i18n="purchase.order">Commander</a></div>
+                    <div><a href="io1.html" id="order-io" class="acq-order" data-i18n="purchase.order">Commander</a></div>
                 </div>
             </div>
         </section>
@@ -316,7 +316,7 @@
                     <div class="acq-name" id="name-zamu"></div>
                     <div><span class="acq-pill" id="pill-zamu"></span></div>
                     <div class="acq-swatches" id="sw-zamu"></div>
-                    <div><a href="zamu1.html" class="acq-order" data-i18n="purchase.order">Commander</a></div>
+                    <div><a href="zamu1.html" id="order-zamu" class="acq-order" data-i18n="purchase.order">Commander</a></div>
                 </div>
             </div>
         </section>
@@ -330,7 +330,7 @@
                     <div class="acq-name" id="name-enigma"></div>
                     <div><span class="acq-pill" id="pill-enigma"></span></div>
                     <div class="acq-swatches" id="sw-enigma"></div>
-                    <div><a href="enigma1.html" class="acq-order" data-i18n="purchase.order">Commander</a></div>
+                    <div><a href="enigma1.html" id="order-enigma" class="acq-order" data-i18n="purchase.order">Commander</a></div>
                 </div>
             </div>
         </section>
@@ -490,6 +490,8 @@
             var pill = document.getElementById('pill-'+sec);
             pill.textContent = copy[cur.ed].badge;
             pill.setAttribute('style', acqPillStyle(cur.ed));
+            var ord = document.getElementById('order-'+sec);
+            if(ord) ord.href = data.href + '?couleur=' + encodeURIComponent(cur.name);
             var order = ['open','limited','unique'], html = '';
             order.forEach(function(type){
                 var items = data.colors.map(function(c,i){ return {c:c,i:i}; }).filter(function(it){ return it.c.ed===type; });

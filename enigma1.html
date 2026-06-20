@@ -405,5 +405,23 @@
     </script>
 
 
+
+<script id="sl-color-param">
+(function(){
+  var IMG = {"Nova": "acquerir/enigma-nova.webp", "Glitch": "acquerir/enigma-glitch.webp", "Loop": "acquerir/enigma-loop.webp", "Vapeur": "acquerir/enigma-vapeur.webp", "Éclipse": "acquerir/enigma-eclipse.webp", "Néon": "acquerir/enigma-neon.webp", "Écho": "acquerir/enigma-echo.webp", "Majorelle": "acquerir/enigma-majorelle.webp", "Soleil": "acquerir/enigma-soleil.webp", "Outremer": "acquerir/enigma-outremer.webp", "Vide": "acquerir/enigma-vide.webp", "Neige": "acquerir/enigma-neige.webp", "Vague": "acquerir/enigma-vague.webp", "Vibe": "acquerir/enigma-vibe.webp", "Zigzag": "acquerir/enigma-zigzag.webp", "Pulse": "acquerir/enigma-pulse.webp", "Plasma": "acquerir/enigma-plasma.webp", "Pixel": "acquerir/enigma-pixel.webp", "Electric": "acquerir/enigma-electric.webp", "Doodle": "acquerir/enigma-doodle.webp", "Glow": "acquerir/enigma-glow.webp", "Braise": "acquerir/enigma-braise.webp", "Kiko": "acquerir/enigma-kiko.webp", "Rêve": "acquerir/enigma-reve.webp", "Sorbet": "acquerir/enigma-sorbet.webp"};
+  var LABEL = "Enigma";
+  var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  var p = new URLSearchParams(location.search).get('couleur');
+  if(!p) return;
+  var key = Object.keys(IMG).find(function(k){return k.toLowerCase()===p.toLowerCase();});
+  if(!key) return;
+  function apply(){
+    var main=document.getElementById('main-image'); if(main){ main.src=BASE+IMG[key]; main.alt=LABEL+' - '+key; }
+    var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=key; }
+    var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML='<img src="'+BASE+IMG[key]+'" class="active" alt="'+key+'">'; }
+  }
+  if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
+})();
+</script>
 </body>
 </html>
