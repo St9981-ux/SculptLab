@@ -88,9 +88,9 @@ def transform(page):
     # langue
     h = h.replace('<html lang="fr">', '<html lang="en">')
     h = re.sub(r'<meta\s+name="language"\s+content="fr">', '<meta name="language" content="en">', h)
-    # langue par défaut JS
-    h = h.replace("setLanguage(localStorage.getItem('lang') || 'fr');", "setLanguage('en');")
-    h = re.sub(r"setLanguage\(\s*localStorage\.getItem\('lang'\)\s*\|\|\s*'fr'\s*\)", "setLanguage('en')", h)
+    # langue par défaut JS : défaut anglais sur /en/, mais respecte un choix de langue mémorisé
+    h = h.replace("setLanguage(localStorage.getItem('lang') || 'fr');", "setLanguage(localStorage.getItem('lang') || 'en');")
+    h = re.sub(r"setLanguage\(\s*localStorage\.getItem\('lang'\)\s*\|\|\s*'fr'\s*\)", "setLanguage(localStorage.getItem('lang') || 'en')", h)
     # URLs canoniques / OG / Twitter -> /en/ (cibler uniquement ces 3 ; NE PAS toucher aux hreflang,
     # déjà corrects dans la source FR : fr=racine, en=/en/, x-default=racine)
     slug = '' if page == 'index.html' else page

@@ -617,7 +617,7 @@ body.lang-en .en{ display:inline; }
             startTypewriters();
         }
 
-        setLanguage('en');
+        setLanguage(localStorage.getItem('lang') || 'en');
         document.getElementById('btn-fr').addEventListener('click', function(){ setLanguage('fr'); });
         document.getElementById('btn-en').addEventListener('click', function(){ setLanguage('en'); });
         document.getElementById('btn-fr-mobile').addEventListener('click', function(){ setLanguage('fr'); document.getElementById('mobileMenu').classList.remove('active'); });

@@ -988,7 +988,7 @@ startEnigmaTyping(lang);
 }
 
         // Init langue
-        setLanguage('en');
+        setLanguage(localStorage.getItem('lang') || 'en');
 
 
 // Boutons FR/EN desktop

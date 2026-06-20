@@ -390,7 +390,7 @@
         }
 
         // Init langue
-        setLanguage('en');
+        setLanguage(localStorage.getItem('lang') || 'en');
 
         // Boutons FR/EN desktop
         document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
