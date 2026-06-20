@@ -56,3 +56,32 @@ window.slColorName = function (name, lang) {
   if (l.indexOf('en') !== 0) return name;
   return window.SL_COLORS_EN[window.slNormColor(name)] || name;
 };
+
+/* --- Tarifs par édition (ouverte / limitée / unique) --- */
+window.SL_PRICES = {
+  io:     { open: 455, limited: 855,  unique: 1455 },
+  zamu:   { open: 455, limited: 855,  unique: 1455 },
+  enigma: { open: 475, limited: 925,  unique: 1695 }
+};
+/* Prix d'un coloris : base selon l'édition, avec exceptions Enigma plasma & electric (uniques) à 1455 € */
+window.slPrice = function (sculpt, colorName, ed) {
+  var P = window.SL_PRICES[sculpt];
+  if (!P) return null;
+  if (sculpt === 'enigma' && ed === 'unique') {
+    var k = window.slNormColor(colorName);
+    if (k === 'plasma' || k === 'electric') return 1455;
+  }
+  return P[ed];
+};
+window.slPriceFmt = function (sculpt, colorName, ed) {
+  var v = window.slPrice(sculpt, colorName, ed);
+  return v == null ? '' : (v + ' €');
+};
+/* Clé sculpture à partir du libellé affiché (Io / Za'mu / Enigma) */
+window.slSculptKey = function (label) {
+  var l = (label || '').toLowerCase();
+  if (l.indexOf('io') === 0) return 'io';
+  if (l.indexOf('za') === 0) return 'zamu';
+  if (l.indexOf('enig') === 0) return 'enigma';
+  return '';
+};

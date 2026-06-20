@@ -135,7 +135,7 @@
                 </tr>
                 <tr>
                     <td data-i18n="summary.productDetails">Sculpture Enigma - Nuit</td>
-                    <td class="price-column">900 €</td>
+                    <td class="price-column">925 €</td>
                 </tr>
                 <tr>
                     <td data-i18n="summary.shipping">Livraison</td>
@@ -143,7 +143,7 @@
                 </tr>
                 <tr>
                     <td data-i18n="summary.total">Total</td>
-                    <td class="price-column">900 €</td>
+                    <td class="price-column">925 €</td>
                 </tr>
             </table>
             
@@ -305,6 +305,7 @@
       note.style.cssText='font-size:.9em;color:#555;margin:-4px 0 14px;';
       sub.parentNode.insertBefore(note, sub.nextSibling); }
     if(note){ var t=EDTXT[lang][ed]||''; note.textContent=t; note.style.display = t?'':'none'; }
+    if(window.slPriceFmt){ var __ps=window.slPriceFmt(window.slSculptKey(LABEL), p, ed); if(__ps){ document.querySelectorAll('td.price-column').forEach(function(td){ if(/\u20ac/.test(td.textContent)) td.textContent=__ps; }); } }
   }
   if(typeof setLanguage==='function'){ var o=setLanguage; setLanguage=function(l){ o(l); apply(); }; }
   if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded', apply);
