@@ -391,7 +391,6 @@
                 { name:'Arlequin', hex:'#00bec8', img:'acquerir/io-arlequin.webp', ed:'unique' },
                 { name:'Berlingot', hex:'#e6e600', img:'acquerir/io-berlingot.webp', ed:'unique' },
                 { name:'Prairie', hex:'#46c800', img:'acquerir/io-prairie.webp', ed:'open' },
-                { name:'Ocre', hex:'#c8aa00', img:'acquerir/io-ocre.webp', ed:'open' },
                 { name:'Cyan', hex:'#00e6e6', img:'acquerir/io-cyan.webp', ed:'open' },
                 { name:'Cobalt', hex:'#0078fa', img:'acquerir/io-cobalt.webp', ed:'open' }
             ]},
@@ -407,7 +406,6 @@
                 { name:'Sable', hex:'#f0c88c', img:'acquerir/zamu-sable.webp', ed:'unique' },
                 { name:'Antipode', hex:'#1e1e1e', img:'acquerir/zamu-antipode.webp', ed:'unique' },
                 { name:'Anémone', hex:'#db9a78', img:'acquerir/zamu-anemone.webp', ed:'open' },
-                { name:'Nectar', hex:'#1e1e1e', img:'acquerir/zamu-nectar.webp', ed:'open' },
                 { name:'Parme', hex:'#a06ec8', img:'acquerir/zamu-parme.webp', ed:'open' },
                 { name:'Brume', hex:'#f4c2d4', img:'acquerir/zamu-brume.webp', ed:'limited' },
                 { name:'Primaire', hex:'#e02828', img:'acquerir/zamu-primaire.webp', ed:'limited' }
@@ -421,7 +419,7 @@
                 { name:'Néon', hex:'#3cb4b4', img:'acquerir/enigma-neon.webp', ed:'open' },
                 { name:'Écho', hex:'#bea0d2', img:'acquerir/enigma-echo.webp', ed:'open' },
                 { name:'Majorelle', hex:'#0032aa', img:'acquerir/enigma-majorelle.webp', ed:'open' },
-                { name:'Soleil', hex:'#f0e6e6', img:'acquerir/enigma-soleil.webp', ed:'limited' },
+                { name:'Soleil', hex:'#d4af37', img:'acquerir/enigma-soleil.webp', ed:'limited' },
                 { name:'Outremer', hex:'#000aaa', img:'acquerir/enigma-outremer.webp', ed:'limited' },
                 { name:'Vide', hex:'#141414', img:'acquerir/enigma-vide.webp', ed:'limited' },
                 { name:'Neige', hex:'#e6e6e6', img:'acquerir/enigma-neige.webp', ed:'limited' },
@@ -431,13 +429,10 @@
                 { name:'Pulse', hex:'#f0d26e', img:'acquerir/enigma-pulse.webp', ed:'unique' },
                 { name:'Plasma', hex:'#dc0a0a', img:'acquerir/enigma-plasma.webp', ed:'unique' },
                 { name:'Pixel', hex:'#e63c78', img:'acquerir/enigma-pixel.webp', ed:'unique' },
-                { name:'Electric', hex:'#1e1e1e', img:'acquerir/enigma-electric.webp', ed:'unique' },
+                { name:'Electric', hex:'#f4d000', img:'acquerir/enigma-electric.webp', ed:'unique' },
                 { name:'Doodle', hex:'#e6dcd2', img:'acquerir/enigma-doodle.webp', ed:'unique' },
-                { name:'Glow', hex:'#f08ca0', img:'acquerir/enigma-glow.webp', ed:'open' },
-                { name:'Braise', hex:'#f00a5a', img:'acquerir/enigma-braise.webp', ed:'open' },
-                { name:'Kiko', hex:'#f01e5a', img:'acquerir/enigma-kiko.webp', ed:'open' },
-                { name:'Rêve', hex:'#0ab4b4', img:'acquerir/enigma-reve.webp', ed:'open' },
-                { name:'Sorbet', hex:'#b4d2c8', img:'acquerir/enigma-sorbet.webp', ed:'open' }
+                { name:'Nuit', hex:'#2d2d33', img:'acquerir/enigma-nuit.webp', ed:'limited' },
+                { name:'Aube', hex:'#c5b3e0', img:'acquerir/enigma-aube.webp', ed:'limited' }
             ]}
         };
         const ACQ_SEL = { io: 4, zamu: 3, enigma: 9 };
@@ -547,6 +542,26 @@
         document.getElementById('btn-en').addEventListener('click', function(){ setLanguage('en'); });
         document.getElementById('btn-fr-mobile').addEventListener('click', function(){ setLanguage('fr'); document.getElementById('mobileMenu').classList.remove('active'); });
         document.getElementById('btn-en-mobile').addEventListener('click', function(){ setLanguage('en'); document.getElementById('mobileMenu').classList.remove('active'); });
+
+        // Préchargement en arrière-plan de toutes les photos de coloris
+        // -> le changement de pastille devient instantané (images en cache)
+        (function(){
+            try { if (navigator.connection && navigator.connection.saveData) return; } catch(e){}
+            var urls = [];
+            Object.keys(ACQ_DATA).forEach(function(s){
+                ACQ_DATA[s].colors.forEach(function(c){ if(c.img) urls.push(ACQ_BASE + c.img); });
+            });
+            var i = 0;
+            function next(){
+                if(i >= urls.length) return;
+                var im = new Image();
+                im.onload = im.onerror = next;
+                im.src = urls[i++];
+            }
+            function start(){ setTimeout(next, 600); }
+            if(document.readyState === 'complete') start();
+            else window.addEventListener('load', start);
+        })();
     </script>
 
 </body>
