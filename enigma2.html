@@ -210,7 +210,7 @@
             </div>
         </div>
         
-        <h1 class="main-title" data-i18n="purchase.title">Enigma - Aube</h1>
+        <h1 class="main-title" data-i18n="purchase.title">Descriptif de la commande</h1>
     </div>
 
     <!-- Fiche produit -->
@@ -301,16 +301,25 @@
         });
 
         // Galerie d'images
-        const mainImage = document.getElementById("main-image");
-        const thumbnails = document.querySelectorAll(".thumbnail-row img");
-
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener("click", () => {
-                document.querySelector(".thumbnail-row img.active").classList.remove("active");
-                thumb.classList.add("active");
-                mainImage.src = thumb.src;
+                const mainImage = document.getElementById("main-image");
+        const thumbRow = document.querySelector(".thumbnail-row");
+        function setActiveThumb(thumb){
+            if(!thumb || !thumbRow) return;
+            var cur = thumbRow.querySelector("img.active"); if(cur) cur.classList.remove("active");
+            thumb.classList.add("active");
+            mainImage.src = thumb.src;
+        }
+        if(thumbRow){ thumbRow.addEventListener("click", function(e){ var t=e.target.closest("img"); if(t) setActiveThumb(t); }); }
+        if(mainImage){
+            mainImage.style.cursor = "pointer";
+            mainImage.addEventListener("click", function(){
+                if(!thumbRow) return;
+                var imgs = Array.prototype.slice.call(thumbRow.querySelectorAll("img"));
+                if(!imgs.length) return;
+                var i = imgs.indexOf(thumbRow.querySelector("img.active"));
+                setActiveThumb(imgs[(i+1) % imgs.length]);
             });
-        });
+        }
 
       // Dictionnaire FR / EN
         const translations = {
@@ -323,7 +332,7 @@
                 "footer.legal": "Mentions légales",
                 "product.title": "Enigma",
                 "product.version": "Aube",
-                "purchase.title": "Enigma - Aube",
+                "purchase.title": "Descriptif de la commande",
                 "product.price": "900 €",
                 "product.desc": "Sculpture en résine peinte à la main<br><br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm<br><br>Fabrication artisanale, en France<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires<br><br>Livré dans un emballage protégé et soigné",
                 "product.order": "Commander",
@@ -347,7 +356,7 @@
                 "footer.legal": "Legal notice",
                 "product.title": "Enigma",
                 "product.version": "Dawn",
-                "purchase.title": "Enigma - Dawn",
+                "purchase.title": "Order description",
                 "product.price": "€900",
                 "product.desc": "Hand-painted resin sculpture<br><br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm<br><br>Handcrafted in France<br>Numbered series with cryptographic certificate of authenticity – 25 copies<br><br>Delivered in a protected and neat packaging",
                 "product.order": "Order",
