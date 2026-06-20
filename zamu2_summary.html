@@ -273,5 +273,38 @@
     </script>
 
 
+
+<script id="sl-summary-color">
+(function(){
+  var LABEL = "Za'mu";
+  var PROD = {"brume": "zamuv1a.webp", "primaire": "zamuv2a.webp", "lagon": "commander/zamu-lagon.webp", "anemone": "commander/zamu-anemone.webp", "plasma": "commander/zamu-plasma.webp", "sable": "commander/zamu-sable.webp", "corail": "commander/zamu-corail.webp", "antipode": "commander/zamu-antipode.webp", "venin": "commander/zamu-venin.webp", "dragee": "commander/zamu-dragee.webp", "acide": "commander/zamu-acide.webp", "albizia": "commander/zamu-albizia.webp", "parme": "commander/zamu-parme.webp"};
+  var ED_MAP = {"acide": "open", "albizia": "open", "dragee": "open", "corail": "open", "venin": "open", "lagon": "open", "givre": "limited", "plasma": "unique", "sable": "unique", "antipode": "unique", "anemone": "open", "parme": "open", "brume": "limited", "primaire": "limited"};
+  var EDTXT = { fr:{ open:'', limited:'\u00c9dition limit\u00e9e et num\u00e9rot\u00e9e sur 25.', unique:'Pi\u00e8ce unique.' },
+                en:{ open:'', limited:'Limited edition, numbered to 25.', unique:'Unique piece.' } };
+  var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+  function L(){ var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr'); return l.indexOf('en')===0?'en':'fr'; }
+  var p = new URLSearchParams(location.search).get('couleur');
+  if(!p) return;
+  var key = nm(p);
+  var ed = ED_MAP[key] || 'limited';
+  var img = PROD[key] || 'box.png';
+  function apply(){
+    var lang = L();
+    var im = document.querySelector('.product-image'); if(im){ im.src = BASE+img; im.alt = LABEL+' - '+p; }
+    var sub = document.querySelector('.order-subtitle'); if(sub){ sub.removeAttribute('data-i18n'); sub.textContent = LABEL+' - '+p; }
+    var det = document.querySelector('td[data-i18n="summary.productDetails"]');
+    if(det){ det.removeAttribute('data-i18n'); det.textContent = (lang==='en' ? LABEL+' Sculpture - '+p : 'Sculpture '+LABEL+' - '+p); }
+    var note = document.getElementById('sl-ed-note');
+    if(!note && sub){ note=document.createElement('div'); note.id='sl-ed-note';
+      note.style.cssText='font-size:.9em;color:#555;margin:-4px 0 14px;';
+      sub.parentNode.insertBefore(note, sub.nextSibling); }
+    if(note){ var t=EDTXT[lang][ed]||''; note.textContent=t; note.style.display = t?'':'none'; }
+  }
+  if(typeof setLanguage==='function'){ var o=setLanguage; setLanguage=function(l){ o(l); apply(); }; }
+  if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded', apply);
+})();
+</script>
+
 </body>
 </html>

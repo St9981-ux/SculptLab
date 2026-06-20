@@ -23,7 +23,7 @@
     <meta name="description" content="Sculpture Enigma Nuit en résine peinte à la main par SculptLab. Édition limitée 25 exemplaires, Fabrication artisanale française avec certificat d'authenticité.">
     <meta name="keywords" content="Enigma sculpture, SculptLab, sculpture résine, art contemporain, édition limitée, Vallauris, sculpture française, œuvre d'art, collection, certificat authenticité">
     <meta name="author" content="SculptLab.">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="product">
@@ -238,7 +238,7 @@
                 Hauteur 30 cm<br>
                 Largeur 15 cm<br>
                 Profondeur 15 cm<br><br>
-                Fabrication artisanale, en France<span class="ed-cert"></span><br><br>
+                Fabrication artisanale, en France<span class='ed-cert'></span><br><br>
                 Livré dans un emballage protégé et soigné
             </p>
 
@@ -256,7 +256,7 @@
         <div>
             <h3 data-i18n="desc.detailsTitle">Détails de l'article</h3>
             <p data-i18n="desc.detailsText">Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br>
-            <span class="ed-num"></span>
+            <span class='ed-num'></span>
             Hauteur 30 cm<br>
             Largeur 15 cm<br>
             Profondeur 15 cm</p>
@@ -332,11 +332,11 @@
                 "product.version": "Nuit",
                 "purchase.title": "Descriptif de la commande",
                 "product.price": "900 €",
-                "product.desc": "Sculpture en résine peinte à la main<br><br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm<br><br>Fabrication artisanale, en France<span class="ed-cert"></span><br><br>Livré dans un emballage protégé et soigné",
+                "product.desc": "Sculpture en résine peinte à la main<br><br>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm<br><br>Fabrication artisanale, en France<span class='ed-cert'></span><br><br>Livré dans un emballage protégé et soigné",
                 "product.order": "Commander",
                 "product.back": "← Retour à toutes les sculptures",
                 "desc.detailsTitle": "Détails de l'article",
-                "desc.detailsText": "Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br><span class="ed-num"></span>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm",
+                "desc.detailsText": "Sculpture en résine reproduite à partir d'un modèle original, peinte à la main.<br><span class='ed-num'></span>Hauteur 30 cm<br>Largeur 15 cm<br>Profondeur 15 cm",
                 "desc.shippingTitle": "Informations de livraison",
                 "desc.shippingText": "Livraison sous 7 à 10 jours ouvrés en France métropolitaine et sous 10 à 15 jours ouvrés à l’international, selon la destination.<br><br>Expédition sécurisée et assurée.",
                 "desc.policyTitle": "Politique d'échange et de remboursement",
@@ -356,11 +356,11 @@
                 "product.version": "Night",
                 "purchase.title": "Order description",
                 "product.price": "€900",
-                "product.desc": "Hand-painted resin sculpture<br><br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm<br><br>Handcrafted in France<span class="ed-cert"></span><br><br>Delivered in a protected and neat packaging",
+                "product.desc": "Hand-painted resin sculpture<br><br>Height 30 cm<br>Width 15 cm<br>Depth 15 cm<br><br>Handcrafted in France<span class='ed-cert'></span><br><br>Delivered in a protected and neat packaging",
                 "product.order": "Order",
                 "product.back": "← Back to all sculptures",
                 "desc.detailsTitle": "Item details",
-                "desc.detailsText": "Resin sculpture reproduced from an original model, hand-painted.<br><span class="ed-num"></span>Height 30 cm<br>Width 15 cm<br>Depth 15 cm",
+                "desc.detailsText": "Resin sculpture reproduced from an original model, hand-painted.<br><span class='ed-num'></span>Height 30 cm<br>Width 15 cm<br>Depth 15 cm",
                 "desc.shippingTitle": "Shipping information",
                 "desc.shippingText": "Delivery within 7 to 10 business days in mainland France and 10 to 15 business days internationally, depending on the destination.<br><br>Secure and insured shipping.",
                 "desc.policyTitle": "Exchange and refund policy",
@@ -439,6 +439,7 @@ function go(){applyEdition();}if(document.readyState!=='loading')go();else docum
   var thumbs = PROD[nm(p)] ? [main,'box.png','box.png','box.png','box.png'] : ['box.png','box.png','box.png','box.png','box.png'];
   function apply(){
     var mi=document.getElementById('main-image'); if(mi){ mi.src=BASE+main; mi.alt=LABEL+' - '+p; }
+    var buy=document.querySelector('.buy-button'); if(buy){ buy.setAttribute('href', buy.getAttribute('href').split('?')[0] + '?couleur=' + encodeURIComponent(p)); }
     var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=p; }
     var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML=thumbs.map(function(t,i){return '<img src="'+BASE+t+'" class="'+(i===0?'active':'')+'" alt="'+p+'">';}).join(''); }
   }

@@ -434,6 +434,15 @@
             ]}
         };
         const ACQ_SEL = { io: 2, zamu: 3, enigma: 9 };
+        // Arrivée via « Découvrir » (ancre) -> on présélectionne la version vedette
+        // de la sculpture : Io → Sorbet, Za'mu → Brume, Enigma → Nuit.
+        (function(){
+            var DEF = { io:'Sorbet', zamu:'Brume', enigma:'Nuit' };
+            var h = (location.hash||'').replace('#','');
+            if(!DEF.hasOwnProperty(h) || !ACQ_DATA[h]) return;
+            var cols = ACQ_DATA[h].colors;
+            for(var i=0;i<cols.length;i++){ if(cols[i].name===DEF[h]){ ACQ_SEL[h]=i; break; } }
+        })();
         const ACQ_COPY = {
             fr: { ed: {
                 open:    { head:'Éditions ouvertes',          badge:'Édition ouverte' },

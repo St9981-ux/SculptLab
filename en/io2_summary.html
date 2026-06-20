@@ -86,10 +86,10 @@
         <!-- Menu hamburger mobile -->
         <button class="mobile-menu-toggle" aria-label="Menu" aria-haspopup="true" onclick="toggleMobileMenu()">☰</button>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html" data-i18n="menu.works">Works.</a>
-            <a href="about.html" data-i18n="menu.about">About.</a>
+            <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+            <a href="about.html" data-i18n="menu.about">À propos.</a>
             <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-            <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
+            <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
             <div class="lang-toggle">
                 <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
                 <span>·</span>
@@ -99,10 +99,10 @@
         
         <!-- Menu desktop -->
         <div class="header-menu">
-            <a href="index.html" data-i18n="menu.works">Works.</a>
-            <a href="about.html" data-i18n="menu.about">About.</a>
+            <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+            <a href="about.html" data-i18n="menu.about">À propos.</a>
             <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-            <a href="purchase.html" data-i18n="menu.purchase">Acquire.</a>
+            <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
 
             <div class="lang-toggle">
                 <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
@@ -111,7 +111,7 @@
             </div>
         </div>
         
-        <h1 class="main-title" data-i18n="summary.title">Order Summary</h1>
+        <h1 class="main-title" data-i18n="summary.title">Récapitulatif de commande</h1>
     </div>
 
     <!-- Récapitulatif de commande -->
@@ -123,7 +123,7 @@
 
         <!-- Détails de la commande -->
         <div class="order-details">
-            <h2 class="order-title" data-i18n="summary.orderTitle">Your order</h2>
+            <h2 class="order-title" data-i18n="summary.orderTitle">Votre commande</h2>
             <div class="order-subtitle" data-i18n="summary.productName">Io - Outremert</div>
             
             <table class="order-summary-table">
@@ -152,14 +152,16 @@
                 Expédition sécurisée et assurée.
             </p>
 
-            <a href="https://buy.stripe.com/test_6oUbJ32xL0OS5w86EMbII01" class="payment-button" data-i18n="summary.payment">Payment</a>
+            <a href="https://buy.stripe.com/test_6oUbJ32xL0OS5w86EMbII01" class="payment-button" data-i18n="summary.payment">
+                Paiement
+            </a>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">All rights reserved.</span> | 
-            <a href="mentions_legales.html" data-i18n="footer.legal">Legal notice</a>
+        <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | 
+            <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a>
         </p>
     </footer>
  </div>
@@ -270,6 +272,39 @@
         });
     </script>
 
+
+
+<script id="sl-summary-color">
+(function(){
+  var LABEL = "Io";
+  var PROD = {"sorbet": "iov1a.webp", "outremer": "iov2a.webp", "arlequin": "commander/io-arlequin.webp", "cyan": "commander/io-cyan.webp", "poudre": "commander/io-poudre.webp", "berlingot": "commander/io-berlingot.webp", "ecarlate": "commander/io-ecarlate.webp", "pomme": "commander/io-pomme.webp"};
+  var ED_MAP = {"ecarlate": "open", "pomme": "open", "sorbet": "limited", "outremer": "limited", "poudre": "limited", "arlequin": "unique", "berlingot": "unique", "cyan": "open"};
+  var EDTXT = { fr:{ open:'', limited:'\u00c9dition limit\u00e9e et num\u00e9rot\u00e9e sur 25.', unique:'Pi\u00e8ce unique.' },
+                en:{ open:'', limited:'Limited edition, numbered to 25.', unique:'Unique piece.' } };
+  var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+  function L(){ var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr'); return l.indexOf('en')===0?'en':'fr'; }
+  var p = new URLSearchParams(location.search).get('couleur');
+  if(!p) return;
+  var key = nm(p);
+  var ed = ED_MAP[key] || 'limited';
+  var img = PROD[key] || 'box.png';
+  function apply(){
+    var lang = L();
+    var im = document.querySelector('.product-image'); if(im){ im.src = BASE+img; im.alt = LABEL+' - '+p; }
+    var sub = document.querySelector('.order-subtitle'); if(sub){ sub.removeAttribute('data-i18n'); sub.textContent = LABEL+' - '+p; }
+    var det = document.querySelector('td[data-i18n="summary.productDetails"]');
+    if(det){ det.removeAttribute('data-i18n'); det.textContent = (lang==='en' ? LABEL+' Sculpture - '+p : 'Sculpture '+LABEL+' - '+p); }
+    var note = document.getElementById('sl-ed-note');
+    if(!note && sub){ note=document.createElement('div'); note.id='sl-ed-note';
+      note.style.cssText='font-size:.9em;color:#555;margin:-4px 0 14px;';
+      sub.parentNode.insertBefore(note, sub.nextSibling); }
+    if(note){ var t=EDTXT[lang][ed]||''; note.textContent=t; note.style.display = t?'':'none'; }
+  }
+  if(typeof setLanguage==='function'){ var o=setLanguage; setLanguage=function(l){ o(l); apply(); }; }
+  if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded', apply);
+})();
+</script>
 
 </body>
 </html>
