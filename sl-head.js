@@ -70,6 +70,7 @@ window.slPrice = function (sculpt, colorName, ed) {
   if (sculpt === 'enigma' && ed === 'unique') {
     var k = window.slNormColor(colorName);
     if (k === 'plasma' || k === 'electric') return 1455;
+    if (k === 'pixel' || k === 'zigzag') return 1755;
   }
   return P[ed];
 };
