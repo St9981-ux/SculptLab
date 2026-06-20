@@ -67,8 +67,8 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="signature.png" as="image">
     <link rel="preload" href="acquerir/io.webp" as="image">
-    <link rel="preload" href="acquerir/zamu.webp" as="image">
-    <link rel="preload" href="acquerir/enigma.webp" as="image">
+    <link rel="preload" href="acquerir/zamu-corail.webp" as="image">
+    <link rel="preload" href="acquerir/enigma-outremer.webp" as="image">
 
   <!-- Schema.org structured data pour e-commerce -->
 <script type="application/ld+json">
@@ -209,7 +209,7 @@
     .acq-media img{ max-width:97%; max-height:clamp(360px,44vw,560px); object-fit:contain; display:block; }
     .acq-info{ flex:1 1 360px; min-width:280px; display:flex; flex-direction:column; gap:clamp(14px,1.8vw,20px); }
 
-    .acq-title{ display:inline-flex; align-items:baseline; font-weight:700; margin:0; color:#333333; }
+    .acq-title{ display:inline-flex; align-items:baseline; font-weight:400; margin:0; color:#333333; }
     .acq-title-io{     font-family:'Olympus',var(--font-title);    line-height:.8;  align-items:center; }
     .acq-title-io span:first-child{ font-size:clamp(120px,17vw,220px); }
     .acq-title-io span:last-child{  font-size:clamp(56px,8vw,104px); }
@@ -393,47 +393,60 @@
                 { name:'Berlingot',hex:'#f7d827', ed:'unique' }
             ]},
             zamu: { href: 'zamu1.html', colors: [
-                { name:'Acide',   hex:'#c6e63a', ed:'open' },
-                { name:'Albizia', hex:'#ff5fa2', ed:'open' },
-                { name:'Dragée',  hex:'#c9e6d8', ed:'open' },
-                { name:'Corail',  hex:'#ff6f5e', ed:'open' },
-                { name:'Venin',   hex:'#7b3fa0', ed:'open' },
-                { name:'Parme',   hex:'#9b6fc0', ed:'open' },
-                { name:'Lagon',   hex:'#157a8c', ed:'open' },
-                { name:'Brume',    hex:'#cbb6e6', img:'acquerir/zamu.webp',   ed:'limited' },
-                { name:'Primaire', hex:'#e02828', img:'acquerir/zamu-b.webp', ed:'limited' },
-                { name:'Givre',    hex:'#9cc4e4', ed:'limited' },
-                { name:'Plasma',   hex:'#ff5fa2', ed:'unique' },
-                { name:'Sable',    hex:'#e6d6a0', ed:'unique' },
-                { name:'Antipode', hex:'#1f1f24', ed:'unique' }
+                { name:'Acide', hex:'#1e1e1e', img:'acquerir/zamu-acide.webp', ed:'open' },
+                { name:'Albizia', hex:'#dc1e64', img:'acquerir/zamu-albizia.webp', ed:'open' },
+                { name:'Dragée', hex:'#282828', img:'acquerir/zamu-dragee.webp', ed:'open' },
+                { name:'Corail', hex:'#fa8200', img:'acquerir/zamu-corail.webp', ed:'open' },
+                { name:'Venin', hex:'#282828', img:'acquerir/zamu-venin.webp', ed:'open' },
+                { name:'Parme', hex:'#a06ec8', img:'acquerir/zamu-parme.webp', ed:'open' },
+                { name:'Lagon', hex:'#00a0a0', img:'acquerir/zamu-lagon.webp', ed:'open' },
+                { name:'Givre', hex:'#002864', img:'acquerir/zamu-givre.webp', ed:'limited' },
+                { name:'Plasma', hex:'#1e2828', img:'acquerir/zamu-plasma.webp', ed:'unique' },
+                { name:'Sable', hex:'#f0c88c', img:'acquerir/zamu-sable.webp', ed:'unique' },
+                { name:'Antipode', hex:'#1e1e1e', img:'acquerir/zamu-antipode.webp', ed:'unique' },
+                { name:'Anémone', hex:'#283232', img:'acquerir/zamu-anemone.webp', ed:'open' },
+                { name:'Arlequin', hex:'#00bec8', img:'acquerir/zamu-arlequin.webp', ed:'open' },
+                { name:'Berlingot', hex:'#e6e600', img:'acquerir/zamu-berlingot.webp', ed:'open' },
+                { name:'Citron', hex:'#aadc00', img:'acquerir/zamu-citron.webp', ed:'open' },
+                { name:'Cobalt', hex:'#0078fa', img:'acquerir/zamu-cobalt.webp', ed:'open' },
+                { name:'Cyan', hex:'#00e6e6', img:'acquerir/zamu-cyan.webp', ed:'open' },
+                { name:'Ecarlate', hex:'#f0000a', img:'acquerir/zamu-ecarlate.webp', ed:'open' },
+                { name:'Fushia', hex:'#fa78a0', img:'acquerir/zamu-fushia.webp', ed:'open' },
+                { name:'Nectar', hex:'#1e1e1e', img:'acquerir/zamu-nectar.webp', ed:'open' },
+                { name:'Ocre', hex:'#c8aa00', img:'acquerir/zamu-ocre.webp', ed:'open' },
+                { name:'Pomme', hex:'#82f032', img:'acquerir/zamu-pomme.webp', ed:'open' },
+                { name:'Poudre', hex:'#c8f0f0', img:'acquerir/zamu-poudre.webp', ed:'open' },
+                { name:'Prairie', hex:'#46c800', img:'acquerir/zamu-prairie.webp', ed:'open' }
             ]},
             enigma: { href: 'enigma1.html', colors: [
-                { name:'Nova',      hex:'#e682aa', img:'acquerir/enigma-nova.webp',   ed:'open' },
-                { name:'Glitch',    hex:'#f09678', img:'acquerir/enigma-glitch.webp', ed:'open' },
-                { name:'Loop',      hex:'#826ec8', img:'acquerir/enigma-loop.webp',   ed:'open' },
-                { name:'Vapeur',    hex:'#6e96dc', img:'acquerir/enigma-vapeur.webp', ed:'open' },
-                { name:'Éclipse',   hex:'#f3e7a0', ed:'open' },
-                { name:'Néon',      hex:'#2fd4c4', ed:'open' },
-                { name:'Écho',      hex:'#cbb6e6', ed:'open' },
-                { name:'Majorelle', hex:'#2a4bd7', img:'acquerir/enigma-azur.webp', ed:'open' },
-                { name:'Nuit',     hex:'#2a2d33', img:'acquerir/enigma.webp',   ed:'limited' },
-                { name:'Aube',     hex:'#f0c4d8', img:'acquerir/enigma-b.webp', ed:'limited' },
-                { name:'Soleil',   hex:'#d4af37', ed:'limited' },
-                { name:'Outremer', hex:'#1f3fb5', ed:'limited' },
-                { name:'Vide',     hex:'#070707', ed:'limited' },
-                { name:'Neige',    hex:'#ffffff', ed:'limited' },
-                { name:'Vague',    hex:'#2a6fd0', ed:'unique' },
-                { name:'Vibe',     hex:'#2a9fd0', ed:'unique' },
-                { name:'Zigzag',   hex:'#ffffff', ed:'unique' },
-                { name:'Pulse',    hex:'#e8c12a', ed:'unique' },
-                { name:'Plasma',   hex:'#e02828', ed:'unique' },
-                { name:'Pixel',    hex:'#f25aa0', ed:'unique' },
-                { name:'Electric', hex:'#f7d827', ed:'unique' },
-                { name:'Doodle',   hex:'#8ee0d6', ed:'unique' },
-                { name:'Glow',     hex:'#f08ca0', img:'acquerir/enigma-glow.webp', ed:'open' }
+                { name:'Nova', hex:'#e682aa', img:'acquerir/enigma-nova.webp', ed:'open' },
+                { name:'Glitch', hex:'#f09678', img:'acquerir/enigma-glitch.webp', ed:'open' },
+                { name:'Loop', hex:'#826ec8', img:'acquerir/enigma-loop.webp', ed:'open' },
+                { name:'Vapeur', hex:'#6e96dc', img:'acquerir/enigma-vapeur.webp', ed:'open' },
+                { name:'Éclipse', hex:'#f0d278', img:'acquerir/enigma-eclipse.webp', ed:'open' },
+                { name:'Néon', hex:'#3cb4b4', img:'acquerir/enigma-neon.webp', ed:'open' },
+                { name:'Écho', hex:'#bea0d2', img:'acquerir/enigma-echo.webp', ed:'open' },
+                { name:'Majorelle', hex:'#0032aa', img:'acquerir/enigma-majorelle.webp', ed:'open' },
+                { name:'Soleil', hex:'#f0e6e6', img:'acquerir/enigma-soleil.webp', ed:'limited' },
+                { name:'Outremer', hex:'#000aaa', img:'acquerir/enigma-outremer.webp', ed:'limited' },
+                { name:'Vide', hex:'#141414', img:'acquerir/enigma-vide.webp', ed:'limited' },
+                { name:'Neige', hex:'#e6e6e6', img:'acquerir/enigma-neige.webp', ed:'limited' },
+                { name:'Vague', hex:'#003caa', img:'acquerir/enigma-vague.webp', ed:'unique' },
+                { name:'Vibe', hex:'#28b4c8', img:'acquerir/enigma-vibe.webp', ed:'unique' },
+                { name:'Zigzag', hex:'#e6e6dc', img:'acquerir/enigma-zigzag.webp', ed:'unique' },
+                { name:'Pulse', hex:'#f0d26e', img:'acquerir/enigma-pulse.webp', ed:'unique' },
+                { name:'Plasma', hex:'#dc0a0a', img:'acquerir/enigma-plasma.webp', ed:'unique' },
+                { name:'Pixel', hex:'#e63c78', img:'acquerir/enigma-pixel.webp', ed:'unique' },
+                { name:'Electric', hex:'#1e1e1e', img:'acquerir/enigma-electric.webp', ed:'unique' },
+                { name:'Doodle', hex:'#e6dcd2', img:'acquerir/enigma-doodle.webp', ed:'unique' },
+                { name:'Glow', hex:'#f08ca0', img:'acquerir/enigma-glow.webp', ed:'open' },
+                { name:'Braise', hex:'#f00a5a', img:'acquerir/enigma-braise.webp', ed:'open' },
+                { name:'Kiko', hex:'#f01e5a', img:'acquerir/enigma-kiko.webp', ed:'open' },
+                { name:'Rêve', hex:'#0ab4b4', img:'acquerir/enigma-reve.webp', ed:'open' },
+                { name:'Sorbet', hex:'#b4d2c8', img:'acquerir/enigma-sorbet.webp', ed:'open' }
             ]}
         };
-        const ACQ_SEL = { io: 5, zamu: 7, enigma: 8 };
+        const ACQ_SEL = { io: 5, zamu: 3, enigma: 9 };
         const ACQ_COPY = {
             fr: { ed: {
                 open:    { head:'Éditions ouvertes',          badge:'Édition ouverte' },
