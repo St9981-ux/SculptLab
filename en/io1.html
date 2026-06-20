@@ -410,17 +410,18 @@
 
 <script id="sl-color-param">
 (function(){
-  var IMG = {"Écarlate": "acquerir/io-ecarlate.webp", "Citron": "acquerir/io-citron.webp", "Fushia": "acquerir/io-fushia.webp", "Pomme": "acquerir/io-pomme.webp", "Sorbet": "acquerir/io.webp", "Outremer": "acquerir/io-b.webp", "Poudre": "acquerir/io-poudre.webp", "Arlequin": "acquerir/io-arlequin.webp", "Berlingot": "acquerir/io-berlingot.webp", "Prairie": "acquerir/io-prairie.webp", "Cyan": "acquerir/io-cyan.webp", "Cobalt": "acquerir/io-cobalt.webp"};
+  var PROD = {"sorbet": "iov1a.webp", "outremer": "iov2a.webp"};
   var LABEL = "Io";
   var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
   var p = new URLSearchParams(location.search).get('couleur');
   if(!p) return;
-  var key = Object.keys(IMG).find(function(k){return k.toLowerCase()===p.toLowerCase();});
-  if(!key) return;
+  var main = PROD[nm(p)] || 'box.png';
+  var thumbs = PROD[nm(p)] ? [main,'box.png','box.png','box.png','box.png'] : ['box.png','box.png','box.png','box.png','box.png'];
   function apply(){
-    var main=document.getElementById('main-image'); if(main){ main.src=BASE+IMG[key]; main.alt=LABEL+' - '+key; }
-    var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=key; }
-    var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML='<img src="../'+BASE+IMG[key]+'" class="active" alt="'+key+'">'; }
+    var mi=document.getElementById('main-image'); if(mi){ mi.src=BASE+main; mi.alt=LABEL+' - '+p; }
+    var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=p; }
+    var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML=thumbs.map(function(t,i){return '<img src="../'+BASE+t+'" class="'+(i===0?'active':'')+'" alt="'+p+'">';}).join(''); }
   }
   if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
 })();

@@ -195,7 +195,9 @@
     }
 
     /* Intro */
-    .acq-intro{ background:#fff; padding:clamp(40px,5vw,72px) clamp(20px,5vw,80px) clamp(26px,3vw,44px); text-align:center; }
+    /* Espace au-dessus du texte d'intro = espace en dessous (le bandeau turquoise ne pousse plus) */
+    .content > .section-turquoise{ margin-bottom:0 !important; }
+    .acq-intro{ background:#fff; padding:clamp(26px,3vw,44px) clamp(20px,5vw,80px); text-align:center; }
     .acq-intro-text{ font-family:var(--font-body); font-size:clamp(15px,1.5vw,18px); line-height:1.7; color:#333333; max-width:62ch; margin:0 auto; text-align:center; }
 
     /* Sections œuvres */
@@ -382,17 +384,13 @@
         const ACQ_DATA = {
             io: { href: 'io1.html', colors: [
                 { name:'Écarlate', hex:'#f0000a', img:'acquerir/io-ecarlate.webp', ed:'open' },
-                { name:'Citron', hex:'#aadc00', img:'acquerir/io-citron.webp', ed:'open' },
-                { name:'Fushia', hex:'#fa78a0', img:'acquerir/io-fushia.webp', ed:'open' },
                 { name:'Pomme', hex:'#82f032', img:'acquerir/io-pomme.webp', ed:'open' },
                 { name:'Sorbet', hex:'#aee6b8', img:'acquerir/io.webp', ed:'limited' },
                 { name:'Outremer', hex:'#1f3fb5', img:'acquerir/io-b.webp', ed:'limited' },
                 { name:'Poudre', hex:'#c8f0f0', img:'acquerir/io-poudre.webp', ed:'limited' },
                 { name:'Arlequin', hex:'#00bec8', img:'acquerir/io-arlequin.webp', ed:'unique' },
                 { name:'Berlingot', hex:'#e6e600', img:'acquerir/io-berlingot.webp', ed:'unique' },
-                { name:'Prairie', hex:'#46c800', img:'acquerir/io-prairie.webp', ed:'open' },
-                { name:'Cyan', hex:'#00e6e6', img:'acquerir/io-cyan.webp', ed:'open' },
-                { name:'Cobalt', hex:'#0078fa', img:'acquerir/io-cobalt.webp', ed:'open' }
+                { name:'Cyan', hex:'#00e6e6', img:'acquerir/io-cyan.webp', ed:'open' }
             ]},
             zamu: { href: 'zamu1.html', colors: [
                 { name:'Acide', hex:'#c6e63a', img:'acquerir/zamu-acide.webp', ed:'open' },
@@ -407,8 +405,8 @@
                 { name:'Antipode', hex:'#1e1e1e', img:'acquerir/zamu-antipode.webp', ed:'unique' },
                 { name:'Anémone', hex:'#db9a78', img:'acquerir/zamu-anemone.webp', ed:'open' },
                 { name:'Parme', hex:'#a06ec8', img:'acquerir/zamu-parme.webp', ed:'open' },
-                { name:'Brume', hex:'#f4c2d4', img:'acquerir/zamu-brume.webp', ed:'limited' },
-                { name:'Primaire', hex:'#e02828', img:'acquerir/zamu-primaire.webp', ed:'limited' }
+                { name:'Brume', hex:'#f4c2d4', img:'image2a.webp', ed:'limited' },
+                { name:'Primaire', hex:'#e02828', img:'image2b.webp', ed:'limited' }
             ]},
             enigma: { href: 'enigma1.html', colors: [
                 { name:'Nova', hex:'#e682aa', img:'acquerir/enigma-nova.webp', ed:'open' },
@@ -431,11 +429,11 @@
                 { name:'Pixel', hex:'#e63c78', img:'acquerir/enigma-pixel.webp', ed:'unique' },
                 { name:'Electric', hex:'#f4d000', img:'acquerir/enigma-electric.webp', ed:'unique' },
                 { name:'Doodle', hex:'#e6dcd2', img:'acquerir/enigma-doodle.webp', ed:'unique' },
-                { name:'Nuit', hex:'#2d2d33', img:'acquerir/enigma-nuit.webp', ed:'limited' },
-                { name:'Aube', hex:'#c5b3e0', img:'acquerir/enigma-aube.webp', ed:'limited' }
+                { name:'Nuit', hex:'#2d2d33', img:'image3a.webp', ed:'limited' },
+                { name:'Aube', hex:'#c5b3e0', img:'image3b.webp', ed:'limited' }
             ]}
         };
-        const ACQ_SEL = { io: 4, zamu: 3, enigma: 9 };
+        const ACQ_SEL = { io: 2, zamu: 3, enigma: 9 };
         const ACQ_COPY = {
             fr: { ed: {
                 open:    { head:'Éditions ouvertes',          badge:'Édition ouverte' },
