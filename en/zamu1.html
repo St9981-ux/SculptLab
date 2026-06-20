@@ -416,9 +416,22 @@
 
 
 
+<script id="sl-edition">
+var ED_MAP = {"acide": "open", "albizia": "open", "dragee": "open", "corail": "open", "venin": "open", "lagon": "open", "givre": "limited", "plasma": "unique", "sable": "unique", "antipode": "unique", "anemone": "open", "parme": "open", "brume": "limited", "primaire": "limited"};
+var ED_DEFAULT = 'limited';
+var ED_CERT = {"fr": {"limited": "<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires", "unique": "<br>Pièce unique avec certificat d'authenticité en format cryptographique", "open": ""}, "en": {"limited": "<br>Numbered series with cryptographic certificate of authenticity – 25 copies", "unique": "<br>Unique piece with cryptographic certificate of authenticity", "open": ""}};
+var ED_NUM = {"fr": {"limited": "Édition limitée et numérotée sur 25.<br>", "unique": "Pièce unique.<br>", "open": ""}, "en": {"limited": "Limited edition, numbered to 25.<br>", "unique": "Unique piece.<br>", "open": ""}};
+var __curEd = ED_DEFAULT;
+function __edLang(){var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr');return l.indexOf('en')===0?'en':'fr';}
+function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').forEach(function(e){e.innerHTML=ED_CERT[L][__curEd]||'';});document.querySelectorAll('.ed-num').forEach(function(e){e.innerHTML=ED_NUM[L][__curEd]||'';});}
+(function(){var p=new URLSearchParams(location.search).get('couleur');if(p){var k=p.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(ED_MAP[k])__curEd=ED_MAP[k];}
+if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
+function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
+</script>
+
 <script id="sl-color-param">
 (function(){
-  var PROD = {"brume": "zamuv1a.webp", "primaire": "zamuv2a.webp"};
+  var PROD = {"brume": "zamuv1a.webp", "primaire": "zamuv2a.webp", "lagon": "commander/zamu-lagon.webp", "anemone": "commander/zamu-anemone.webp", "plasma": "commander/zamu-plasma.webp", "sable": "commander/zamu-sable.webp", "corail": "commander/zamu-corail.webp", "antipode": "commander/zamu-antipode.webp", "venin": "commander/zamu-venin.webp", "dragee": "commander/zamu-dragee.webp", "acide": "commander/zamu-acide.webp", "albizia": "commander/zamu-albizia.webp", "parme": "commander/zamu-parme.webp"};
   var LABEL = "Za'mu";
   var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
   function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
@@ -433,19 +446,6 @@
   }
   if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
 })();
-</script>
-
-<script id="sl-edition">
-var ED_MAP = {"acide": "open", "albizia": "open", "dragee": "open", "corail": "open", "venin": "open", "lagon": "open", "givre": "limited", "plasma": "unique", "sable": "unique", "antipode": "unique", "anemone": "open", "parme": "open", "brume": "limited", "primaire": "limited"};
-var ED_DEFAULT = 'limited';
-var ED_CERT = {"fr": {"limited": "<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires", "unique": "<br>Pièce unique avec certificat d'authenticité en format cryptographique", "open": ""}, "en": {"limited": "<br>Numbered series with cryptographic certificate of authenticity – 25 copies", "unique": "<br>Unique piece with cryptographic certificate of authenticity", "open": ""}};
-var ED_NUM = {"fr": {"limited": "Édition limitée et numérotée sur 25.<br>", "unique": "Pièce unique.<br>", "open": ""}, "en": {"limited": "Limited edition, numbered to 25.<br>", "unique": "Unique piece.<br>", "open": ""}};
-var __curEd = ED_DEFAULT;
-function __edLang(){var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr');return l.indexOf('en')===0?'en':'fr';}
-function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').forEach(function(e){e.innerHTML=ED_CERT[L][__curEd]||'';});document.querySelectorAll('.ed-num').forEach(function(e){e.innerHTML=ED_NUM[L][__curEd]||'';});}
-(function(){var p=new URLSearchParams(location.search).get('couleur');if(p){var k=p.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(ED_MAP[k])__curEd=ED_MAP[k];}
-if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
-function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
 </script>
 </body>
 </html>

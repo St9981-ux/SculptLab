@@ -427,5 +427,24 @@ function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').f
 if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
 function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
 </script>
+
+<script id="sl-color-param">
+(function(){
+  var PROD = {"nuit": "enigmav1a.webp", "aube": "enigmav2a.webp", "vibe": "commander/enigma-vibe.webp", "echo": "commander/enigma-echo.webp", "neon": "commander/enigma-neon.webp", "loop": "commander/enigma-loop.webp", "zigzag": "commander/enigma-zigzag.webp", "electric": "commander/enigma-electric.webp", "doodle": "commander/enigma-doodle.webp", "pulse": "commander/enigma-pulse.webp", "outremer": "commander/enigma-outremer.webp", "vapeur": "commander/enigma-vapeur.webp", "glitch": "commander/enigma-glitch.webp", "vague": "commander/enigma-vague.webp", "neige": "commander/enigma-neige.webp", "pixel": "commander/enigma-pixel.webp", "nova": "commander/enigma-nova.webp", "soleil": "commander/enigma-soleil.webp", "vide": "commander/enigma-vide.webp", "eclipse": "commander/enigma-eclipse.webp", "plasma": "commander/enigma-plasma.webp", "majorelle": "commander/enigma-majorelle.webp"};
+  var LABEL = "Enigma";
+  var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
+  function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+  var p = new URLSearchParams(location.search).get('couleur');
+  if(!p) return;
+  var main = PROD[nm(p)] || 'box.png';
+  var thumbs = PROD[nm(p)] ? [main,'box.png','box.png','box.png','box.png'] : ['box.png','box.png','box.png','box.png','box.png'];
+  function apply(){
+    var mi=document.getElementById('main-image'); if(mi){ mi.src=BASE+main; mi.alt=LABEL+' - '+p; }
+    var ver=document.querySelector('.product-version'); if(ver){ ver.removeAttribute('data-i18n'); ver.textContent=p; }
+    var row=document.querySelector('.thumbnail-row'); if(row){ row.innerHTML=thumbs.map(function(t,i){return '<img src="'+BASE+t+'" class="'+(i===0?'active':'')+'" alt="'+p+'">';}).join(''); }
+  }
+  if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
+})();
+</script>
 </body>
 </html>

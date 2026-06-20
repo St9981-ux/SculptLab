@@ -414,9 +414,22 @@
 
 
 
+<script id="sl-edition">
+var ED_MAP = {"nova": "open", "glitch": "open", "loop": "open", "vapeur": "open", "eclipse": "open", "neon": "open", "echo": "open", "majorelle": "open", "soleil": "limited", "outremer": "limited", "vide": "limited", "neige": "limited", "vague": "unique", "vibe": "unique", "zigzag": "unique", "pulse": "unique", "plasma": "unique", "pixel": "unique", "electric": "unique", "doodle": "unique", "nuit": "limited", "aube": "limited"};
+var ED_DEFAULT = 'limited';
+var ED_CERT = {"fr": {"limited": "<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires", "unique": "<br>Pièce unique avec certificat d'authenticité en format cryptographique", "open": ""}, "en": {"limited": "<br>Numbered series with cryptographic certificate of authenticity – 25 copies", "unique": "<br>Unique piece with cryptographic certificate of authenticity", "open": ""}};
+var ED_NUM = {"fr": {"limited": "Édition limitée et numérotée sur 25.<br>", "unique": "Pièce unique.<br>", "open": ""}, "en": {"limited": "Limited edition, numbered to 25.<br>", "unique": "Unique piece.<br>", "open": ""}};
+var __curEd = ED_DEFAULT;
+function __edLang(){var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr');return l.indexOf('en')===0?'en':'fr';}
+function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').forEach(function(e){e.innerHTML=ED_CERT[L][__curEd]||'';});document.querySelectorAll('.ed-num').forEach(function(e){e.innerHTML=ED_NUM[L][__curEd]||'';});}
+(function(){var p=new URLSearchParams(location.search).get('couleur');if(p){var k=p.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(ED_MAP[k])__curEd=ED_MAP[k];}
+if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
+function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
+</script>
+
 <script id="sl-color-param">
 (function(){
-  var PROD = {"nuit": "enigmav1a.webp", "aube": "enigmav2a.webp"};
+  var PROD = {"nuit": "enigmav1a.webp", "aube": "enigmav2a.webp", "vibe": "commander/enigma-vibe.webp", "echo": "commander/enigma-echo.webp", "neon": "commander/enigma-neon.webp", "loop": "commander/enigma-loop.webp", "zigzag": "commander/enigma-zigzag.webp", "electric": "commander/enigma-electric.webp", "doodle": "commander/enigma-doodle.webp", "pulse": "commander/enigma-pulse.webp", "outremer": "commander/enigma-outremer.webp", "vapeur": "commander/enigma-vapeur.webp", "glitch": "commander/enigma-glitch.webp", "vague": "commander/enigma-vague.webp", "neige": "commander/enigma-neige.webp", "pixel": "commander/enigma-pixel.webp", "nova": "commander/enigma-nova.webp", "soleil": "commander/enigma-soleil.webp", "vide": "commander/enigma-vide.webp", "eclipse": "commander/enigma-eclipse.webp", "plasma": "commander/enigma-plasma.webp", "majorelle": "commander/enigma-majorelle.webp"};
   var LABEL = "Enigma";
   var BASE = (location.pathname.indexOf('/en/')>=0)?'../':'';
   function nm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
@@ -431,19 +444,6 @@
   }
   if(document.readyState!=='loading') apply(); else document.addEventListener('DOMContentLoaded',apply);
 })();
-</script>
-
-<script id="sl-edition">
-var ED_MAP = {"nova": "open", "glitch": "open", "loop": "open", "vapeur": "open", "eclipse": "open", "neon": "open", "echo": "open", "majorelle": "open", "soleil": "limited", "outremer": "limited", "vide": "limited", "neige": "limited", "vague": "unique", "vibe": "unique", "zigzag": "unique", "pulse": "unique", "plasma": "unique", "pixel": "unique", "electric": "unique", "doodle": "unique", "nuit": "limited", "aube": "limited"};
-var ED_DEFAULT = 'limited';
-var ED_CERT = {"fr": {"limited": "<br>Série numérotée avec certificat d'authenticité en format cryptographique – 25 exemplaires", "unique": "<br>Pièce unique avec certificat d'authenticité en format cryptographique", "open": ""}, "en": {"limited": "<br>Numbered series with cryptographic certificate of authenticity – 25 copies", "unique": "<br>Unique piece with cryptographic certificate of authenticity", "open": ""}};
-var ED_NUM = {"fr": {"limited": "Édition limitée et numérotée sur 25.<br>", "unique": "Pièce unique.<br>", "open": ""}, "en": {"limited": "Limited edition, numbered to 25.<br>", "unique": "Unique piece.<br>", "open": ""}};
-var __curEd = ED_DEFAULT;
-function __edLang(){var l=(localStorage.getItem('lang')||document.documentElement.lang||'fr');return l.indexOf('en')===0?'en':'fr';}
-function applyEdition(){var L=__edLang();document.querySelectorAll('.ed-cert').forEach(function(e){e.innerHTML=ED_CERT[L][__curEd]||'';});document.querySelectorAll('.ed-num').forEach(function(e){e.innerHTML=ED_NUM[L][__curEd]||'';});}
-(function(){var p=new URLSearchParams(location.search).get('couleur');if(p){var k=p.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(ED_MAP[k])__curEd=ED_MAP[k];}
-if(typeof setLanguage==='function'){var o=setLanguage;setLanguage=function(l){o(l);applyEdition();};}
-function go(){applyEdition();}if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();
 </script>
 </body>
 </html>
