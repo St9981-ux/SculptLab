@@ -198,9 +198,14 @@ window.SL_PAYLINKS = {
   }
 };
 
-/* Renvoie le Payment Link pour (sculpture, coloris, langue) ou null. */
+/* Renvoie le Payment Link pour (sculpture, coloris, langue) ou null.
+   Ajoute ?locale=en|fr pour forcer la langue de TOUTE la page Stripe
+   (champs de paiement, adresse de livraison, boutons), quelle que soit
+   la langue du navigateur du client. */
 window.slPayLink = function (sculpt, colorName, lang) {
   var L = (lang || '').toLowerCase().indexOf('en') === 0 ? 'en' : 'fr';
   var table = (window.SL_PAYLINKS[L] || {})[sculpt] || {};
-  return table[window.slNormColor(colorName)] || null;
+  var url = table[window.slNormColor(colorName)];
+  if (!url) return null;
+  return url + (url.indexOf('?') >= 0 ? '&' : '?') + 'locale=' + L;
 };
