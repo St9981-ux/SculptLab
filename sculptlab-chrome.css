@@ -183,6 +183,19 @@ footer a:hover{ color:var(--orange-500) !important; }
 }
 #cookie-banner #refuse-cookie-banner:hover{ background:rgba(255,255,255,.12) !important; }
 
+/* ---- Accessibilité / SEO : visible uniquement pour lecteurs d'écran et robots ---- */
+.visually-hidden{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
 /* ---- Titre de page : Jost blanc, en bas à gauche du banneau ---- */
 .main-title{
   font-family:'Jost','Futura','Century Gothic',sans-serif !important;

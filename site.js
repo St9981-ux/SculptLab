@@ -165,3 +165,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 })();
+
+/* ============================================================
+   SculptLab — Mise à jour dynamique du titre selon ?couleur=
+   Remplace le coloris par défaut dans <title>, meta description,
+   og:title et twitter:title quand un coloris différent est chargé.
+   ============================================================ */
+(function () {
+  var DEFAULTS = {
+    io1: 'Sorbet', io2: 'Outremer',
+    zamu1: 'Brume', zamu2: 'Primaire',
+    enigma1: 'Nuit', enigma2: 'Aube'
+  };
+  var DEFAULTS_EN = { enigma1: 'Night', enigma2: 'Dawn' };
+
+  function pageKey() {
+    return (location.pathname.split('/').pop() || '').replace('.html', '');
+  }
+  function isEN() { return location.pathname.indexOf('/en/') >= 0; }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var key = pageKey();
+    if (!DEFAULTS[key]) return;
+    var couleur = new URLSearchParams(location.search).get('couleur');
+    if (!couleur) return;
+    var def = (isEN() && DEFAULTS_EN[key]) ? DEFAULTS_EN[key] : DEFAULTS[key];
+    if (couleur === def) return;
+    function rep(s) { return s.replace(' - ' + def, ' - ' + couleur); }
+    document.title = document.title.replace(' - ' + def + ',', ' - ' + couleur + ',');
+    [['meta[name="description"]', 'content', def, couleur],
+     ['meta[property="og:title"]', 'content', def, couleur],
+     ['meta[property="og:description"]', 'content', def, couleur],
+     ['meta[property="twitter:title"]', 'content', def, couleur],
+     ['meta[property="twitter:description"]', 'content', def, couleur]
+    ].forEach(function (item) {
+      var el = document.querySelector(item[0]);
+      if (el) el.setAttribute(item[1], el.getAttribute(item[1]).replace(item[2], item[3]));
+    });
+  });
+})();
