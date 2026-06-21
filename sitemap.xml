@@ -6,7 +6,7 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/</loc>
@@ -14,7 +14,7 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/about.html</loc>
@@ -22,7 +22,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/about.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/about.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/about.html</loc>
@@ -30,7 +30,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/about.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/about.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/contact.html</loc>
@@ -38,7 +38,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/contact.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/contact.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/contact.html</loc>
@@ -46,7 +46,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/contact.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/contact.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/purchase.html</loc>
@@ -54,7 +54,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/purchase.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/purchase.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/purchase.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/purchase.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/purchase.html</loc>
@@ -62,7 +62,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/purchase.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/purchase.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/purchase.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/purchase.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/io1.html</loc>
@@ -70,7 +70,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/io1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/io1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/io1.html</loc>
@@ -78,7 +78,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/io1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/io1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/io2.html</loc>
@@ -86,7 +86,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/io2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/io2.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/io2.html</loc>
@@ -94,7 +94,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/io2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/io2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/io2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/io2.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/zamu1.html</loc>
@@ -102,7 +102,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/zamu1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/zamu1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/zamu1.html</loc>
@@ -110,7 +110,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/zamu1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/zamu1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/zamu2.html</loc>
@@ -118,7 +118,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/zamu2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/zamu2.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/zamu2.html</loc>
@@ -126,7 +126,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/zamu2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/zamu2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/zamu2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/zamu2.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/enigma1.html</loc>
@@ -134,7 +134,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/enigma1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/enigma1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/enigma1.html</loc>
@@ -142,7 +142,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma1.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma1.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/enigma1.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/enigma1.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/enigma2.html</loc>
@@ -150,7 +150,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/enigma2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/enigma2.html"/>
   </url>
   <url>
     <loc>https://sculptlab.fr/en/enigma2.html</loc>
@@ -158,6 +158,6 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://sculptlab.fr/enigma2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sculptlab.fr/en/enigma2.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/enigma2.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sculptlab.fr/en/enigma2.html"/>
   </url>
 </urlset>
