@@ -109,3 +109,59 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('mouseup', function () { dot.classList.remove('is-down'); }, { passive: true });
   document.addEventListener('mouseleave', function () { dot.style.opacity = '0'; shown = false; }, { passive: true });
 })();
+
+/* ============================================================
+   SculptLab — Lien de paiement Stripe dynamique (pages _summary)
+   Choisit le bon Payment Link (table window.SL_PAYLINKS, dans sl-head.js)
+   selon :
+     • la sculpture  -> déduite du nom de fichier (io1/zamu2/enigma1…)
+     • le coloris    -> paramètre ?couleur, sinon coloris par défaut de la page
+     • la langue     -> page /en/ OU bascule FR/EN (localStorage 'lang')
+   Un visiteur anglophone (ou /en/) est ainsi envoyé vers une page Stripe dont
+   le produit (nom + description) est en anglais.
+   ============================================================ */
+(function () {
+  var DEFAULT_COLOR = {
+    io1: 'sorbet', io2: 'outremer',
+    zamu1: 'brume', zamu2: 'primaire',
+    enigma1: 'nuit', enigma2: 'aube'
+  };
+
+  function pageKey() {
+    var f = (location.pathname.split('/').pop() || '').toLowerCase();
+    return f.replace('_summary.html', '');
+  }
+  function sculptFromKey(k) {
+    if (k.indexOf('enigma') === 0) return 'enigma';
+    if (k.indexOf('zamu') === 0) return 'zamu';
+    if (k.indexOf('io') === 0) return 'io';
+    return '';
+  }
+  function curLang() {
+    if (location.pathname.indexOf('/en/') >= 0) return 'en';
+    var l = (localStorage.getItem('lang') || document.documentElement.lang || 'fr').toLowerCase();
+    return l.indexOf('en') === 0 ? 'en' : 'fr';
+  }
+  function applyPayLink() {
+    var btn = document.querySelector('a.payment-button');
+    if (!btn || typeof window.slPayLink !== 'function') return;
+    var key = pageKey();
+    var sculpt = sculptFromKey(key);
+    if (!sculpt) return;
+    var p = new URLSearchParams(location.search).get('couleur');
+    var color = p || DEFAULT_COLOR[key] || '';
+    if (!color) return;
+    var url = window.slPayLink(sculpt, color, curLang());
+    if (url) btn.setAttribute('href', url);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!document.querySelector('a.payment-button')) return;
+    applyPayLink();
+    // Re-router le lien si l'utilisateur bascule la langue sur la page
+    ['btn-fr', 'btn-en', 'btn-fr-mobile', 'btn-en-mobile'].forEach(function (id) {
+      var b = document.getElementById(id);
+      if (b) b.addEventListener('click', function () { setTimeout(applyPayLink, 0); });
+    });
+  });
+})();
