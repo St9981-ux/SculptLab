@@ -187,46 +187,20 @@ gtag('config', 'G-7BNG9RNN76');
 document.addEventListener('DOMContentLoaded', function() {
     // Récupérer la langue sauvegardée, sinon détecter la langue du navigateur
     const savedLang = localStorage.getItem('lang');
-    let targetLang = 'fr'; // Par défaut français
-    
-    if (savedLang) {
-        // Si une langue est sauvegardée, l'utiliser en priorité
-        targetLang = savedLang;
-    } else {
-        // Sinon, détecter la langue du navigateur uniquement la première fois
-        const userLang = navigator.language || navigator.userLanguage;
-        const isEnglish = userLang.startsWith('en');
-        if (isEnglish) {
-            targetLang = 'en';
-        }
-        // Sauvegarder la langue détectée pour les prochaines visites
-        localStorage.setItem('lang', targetLang);
-    }
 
-    // Appliquer la langue détectée/sauvegardée
-    if (targetLang === 'en') {
-        // Mise à jour des meta tags pour les anglophones
-        const titleEn = document.querySelector('meta[name="title-en"]');
-        const descEn = document.querySelector('meta[name="description-en"]');
-        
-        if (titleEn) {
-            document.title = titleEn.content;
+    if (!savedLang) {
+        // Première visite : détecter la langue du navigateur
+        const userLang = navigator.language || navigator.userLanguage || '';
+        if (userLang.startsWith('en')) {
+            // Anglophone sans préférence enregistrée → rediriger vers la version anglaise
+            window.location.replace('https://sculptlab.fr/en/');
+            return;
         }
-        if (descEn) {
-            document.querySelector('meta[name="description"]').content = descEn.content;
-        }
-        document.documentElement.lang = 'en';
-
-        // Mise à jour Open Graph
-        const ogTitleEn = document.querySelector('meta[property="og:title:en"]');
-        const ogDescEn = document.querySelector('meta[property="og:description:en"]');
-        
-        if (ogTitleEn) {
-            document.querySelector('meta[property="og:title"]').content = ogTitleEn.content;
-        }
-        if (ogDescEn) {
-            document.querySelector('meta[property="og:description"]').content = ogDescEn.content;
-        }
+        localStorage.setItem('lang', 'fr');
+    } else if (savedLang === 'en') {
+        // Visiteur ayant manuellement choisi l'anglais → rediriger
+        window.location.replace('https://sculptlab.fr/en/');
+        return;
     }
 });
 </script>
