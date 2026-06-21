@@ -199,13 +199,12 @@ window.SL_PAYLINKS = {
 };
 
 /* Renvoie le Payment Link pour (sculpture, coloris, langue) ou null.
-   Ajoute ?locale=en|fr pour forcer la langue de TOUTE la page Stripe
-   (champs de paiement, adresse de livraison, boutons), quelle que soit
-   la langue du navigateur du client. */
+   On ne force PAS la locale : l'interface Stripe (champs de paiement,
+   adresse de livraison, boutons) s'affiche automatiquement dans la langue
+   du navigateur du client (FR, EN, DE, IT…). La langue ne sert ici qu'à
+   choisir le bon jeu de produits (nom + description FR ou EN). */
 window.slPayLink = function (sculpt, colorName, lang) {
   var L = (lang || '').toLowerCase().indexOf('en') === 0 ? 'en' : 'fr';
   var table = (window.SL_PAYLINKS[L] || {})[sculpt] || {};
-  var url = table[window.slNormColor(colorName)];
-  if (!url) return null;
-  return url + (url.indexOf('?') >= 0 ? '&' : '?') + 'locale=' + L;
+  return table[window.slNormColor(colorName)] || null;
 };
