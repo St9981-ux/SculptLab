@@ -7,16 +7,16 @@
   "about.html": {
     "title": "About SculptLab. | Contemporary Art France",
     "description": "Discover the story of SculptLab., sculpture workshop. Unique creations combining traditional French craftsmanship with international contemporary art.",
-    "keywords": "SculptLab, sculptor, Vallauris, contemporary art, French sculpture, art studio, art gallery, private collection, unique works",
-    "og_title": "About SculptLab. - Sculptor Vallauris",
-    "og_description": "Sculpture workshop in Vallauris. Unique creations combining French tradition with international contemporary art.",
-    "tw_title": "About SculptLab. - Sculptor Vallauris",
-    "tw_description": "Sculpture workshop in Vallauris. Unique creations combining French tradition with international contemporary art."
+    "keywords": "SculptLab, sculptor, Pégomas, contemporary art, French sculpture, art studio, art gallery, private collection, unique works",
+    "og_title": "About SculptLab. - Sculptor Pégomas",
+    "og_description": "Sculpture workshop in Pégomas. Unique creations combining French tradition with international contemporary art.",
+    "tw_title": "About SculptLab. - Sculptor Pégomas",
+    "tw_description": "Sculpture workshop in Pégomas. Unique creations combining French tradition with international contemporary art."
   },
   "contact.html": {
     "title": "Contact SculptLab. | Information Request",
     "description": "Contact SculptLab., sculpture workshop in France. Information requests, custom orders. Quick response guaranteed.",
-    "keywords": "contact SculptLab, sculptor Vallauris, Cannes, information request, sculpture commission, sculpture",
+    "keywords": "contact SculptLab, sculptor Pégomas, Cannes, information request, sculpture commission, sculpture",
     "og_title": "Contact SculptLab.",
     "og_description": "Contact the sculpture workshop in France.",
     "tw_title": "Contact SculptLab.",
@@ -34,7 +34,7 @@
   "io1.html": {
     "title": "Io - Artwork | SculptLab.",
     "description": "Io sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Io sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Io sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Io, Resin Sculpture | SculptLab.",
     "og_description": "Io sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Io, Resin Sculpture | SculptLab.",
@@ -43,7 +43,7 @@
   "io2.html": {
     "title": "Io - Artwork | SculptLab.",
     "description": "Io sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Io sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Io sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Io, Resin Sculpture | SculptLab.",
     "og_description": "Io sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Io, Resin Sculpture | SculptLab.",
@@ -52,7 +52,7 @@
   "zamu1.html": {
     "title": "Za'mu - Artwork | SculptLab.",
     "description": "Za'mu sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Za'mu sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Za'mu sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Za'mu, Resin Sculpture | SculptLab.",
     "og_description": "Za'mu sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Za'mu, Resin Sculpture | SculptLab.",
@@ -61,7 +61,7 @@
   "zamu2.html": {
     "title": "Za'mu - Artwork | SculptLab.",
     "description": "Za'mu sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Za'mu sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Za'mu sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Za'mu, Resin Sculpture | SculptLab.",
     "og_description": "Za'mu sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Za'mu, Resin Sculpture | SculptLab.",
@@ -70,7 +70,7 @@
   "enigma1.html": {
     "title": "Enigma - Artwork | SculptLab.",
     "description": "Enigma sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Enigma sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Enigma sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Enigma, Resin Sculpture | SculptLab.",
     "og_description": "Enigma sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Enigma, Resin Sculpture | SculptLab.",
@@ -79,7 +79,7 @@
   "enigma2.html": {
     "title": "Enigma - Artwork | SculptLab.",
     "description": "Enigma sculpture in hand-painted resin by SculptLab. Limited edition of 25 copies, French handmade with certificate of authenticity.",
-    "keywords": "Enigma sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Vallauris, French sculpture, artwork, collection, authenticity certificate",
+    "keywords": "Enigma sculpture, SculptLab, resin sculpture, contemporary art, limited edition, Pégomas, French sculpture, artwork, collection, authenticity certificate",
     "og_title": "Enigma, Resin Sculpture | SculptLab.",
     "og_description": "Enigma sculpture in hand-painted resin. Limited edition of 25 copies, French handmade.",
     "tw_title": "Enigma, Resin Sculpture | SculptLab.",
@@ -87,13 +87,13 @@
   },
   "cgv.html": {
     "title": "Terms and Conditions | SculptLab.",
-    "description": "SculptLab. Terms and Conditions of Sale — sculpture studio in Vallauris. Ordering, delivery and return terms for your unique artworks.",
-    "keywords": "SculptLab terms and conditions, terms of sale, sculpture order, delivery, returns, Vallauris art studio"
+    "description": "SculptLab. Terms and Conditions of Sale — sculpture studio in Pégomas. Ordering, delivery and return terms for your unique artworks.",
+    "keywords": "SculptLab terms and conditions, terms of sale, sculpture order, delivery, returns, Pégomas art studio"
   },
   "mentions_legales.html": {
     "title": "Legal Notice | SculptLab.",
-    "description": "Legal notice for SculptLab., sculpture studio in Vallauris. Unique creations blending traditional French craftsmanship and international contemporary art.",
-    "keywords": "SculptLab legal notice, sculpture studio, Vallauris, publisher, hosting, contemporary art"
+    "description": "Legal notice for SculptLab., sculpture studio in Pégomas. Unique creations blending traditional French craftsmanship and international contemporary art.",
+    "keywords": "SculptLab legal notice, sculpture studio, Pégomas, publisher, hosting, contemporary art"
   },
   "io1_summary.html": {
     "title": "Order Summary | SculptLab.",
