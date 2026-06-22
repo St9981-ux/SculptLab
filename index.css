@@ -1,0 +1,469 @@
+/* ============================================================
+   SculptLab — Accueil
+   Mise en forme fidèle au design Claude Design.
+   Polices titres : Olympus (Io) · Autography (Za'mu) · Triathlon (Enigma)
+   Wordmark/nav : Jost · Corps : Helvetica Neue / Arial
+   ============================================================ */
+
+/* ---- Polices décoratives des titres d'œuvres ---- */
+@font-face { font-family:'Olympus';    src:url('fonts/Olympus.ttf')    format('truetype'); font-display:swap; }
+@font-face { font-family:'Autography';  src:url('fonts/Autography.otf')  format('opentype'); font-display:swap; }
+@font-face { font-family:'Triathlon';   src:url('fonts/Triathlon.ttf')   format('truetype'); font-display:swap; }
+
+/* ============================================================
+   Jetons de design (couleurs, typo, espacements, rayons…)
+   ============================================================ */
+:root{
+  /* Marque */
+  --turquoise-500:#64eecd;
+  --turquoise-550:#64f0e5;
+
+  /* Rose (appels à l'action) */
+  --pink-500:#ff66a3;
+  --pink-600:#f23d86;
+  --pink-hot:#ff007f;
+
+  /* Encre & neutres */
+  --ink-900:#1a1a1a;
+  --ink-800:#222222;
+  --ink-700:#333333;
+  --ink-400:#777777;
+  --line-300:rgba(0,0,0,.15);
+
+  /* Accents footer */
+  --gold-500:#ffdd00;
+  --gold-600:#ffd700;
+  --orange-500:#ff6a00;
+
+  /* Familles */
+  --font-title:'Jost','Futura','Century Gothic',sans-serif;
+  --font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+
+  /* Graisses */
+  --fw-regular:400;
+  --fw-bold:700;
+
+  /* Échelle typographique */
+  --fs-16:1rem;
+  --fs-18:1.125rem;
+
+  /* Hauteurs de ligne */
+  --lh-body:1.6;
+
+  /* Rayons */
+  --radius-sm:5px;
+  --radius-lg:10px;
+  --radius-pill:999px;
+
+  /* Gouttières */
+  --gutter-page-sm:20px;
+
+  /* Curseur (machine à écrire) */
+  --caret:var(--ink-700);
+  --caret-width-lg:27px;
+
+  /* Rôles sémantiques */
+  --type-body:var(--fw-regular) var(--fs-16)/var(--lh-body) var(--font-body);
+
+  /* Motion */
+  --ease-soft:cubic-bezier(.25,.1,.25,1);
+  --dur-base:.3s;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+*{ scrollbar-width:none; }
+*::-webkit-scrollbar{ display:none; }
+html,body{ margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font-body);
+  color:var(--ink-700);
+  line-height:1.6;
+  overflow-x:hidden;
+  position:relative;
+}
+img{ max-width:100%; }
+
+/* Bascule de langue dans la bannière cookie (gérée par body.lang-*) */
+.fr,.en{ display:none; }
+body.lang-fr .fr{ display:inline; }
+body.lang-en .en{ display:inline; }
+
+/* ============================================================
+   BLOC 1 — HERO
+   ============================================================ */
+.section-turquoise{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  overflow:hidden;
+  background:#bcb0e0;
+}
+
+/* Couches d'images en fondu enchaîné */
+.hero-layer{
+  position:absolute;
+  inset:0;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:0;
+  animation:heroCycle 16s linear infinite;
+}
+.hero-layer-1{ z-index:1; background-color:#5ce0c2; background-image:url('hero1.webp'); animation-delay:-12s; }
+.hero-layer-2{ z-index:2; background-color:#0c0a12; background-image:url('hero2.webp'); animation-delay:-8s; }
+.hero-layer-3{ z-index:3; background-image:url('hero3.webp'); animation-delay:-4s; }
+.hero-layer-4{ z-index:4; background-color:#50dbe0; background-image:url('hero4.webp'), url('data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAADwBACdASogABEAPrFMnkmnJKMhMBgMAOAWCWwAnS+gAtDWy88JAC8ffkvH0CDqE4AA/uph/bHKzauJ+1Tf/ylf7/dQD8nXxj5u8/N0Mi12zJhXfXt9wBEINlr2WrCtinnxv9ILHJ1Kbpgt6FZl6i+mr562wpvan8NPr0XF2TmRovVVJbmfqAAA'); opacity:1; animation-delay:0s; }
+
+@keyframes heroCycle{
+  0%{opacity:1} 22%{opacity:1} 27%{opacity:0} 95%{opacity:0} 100%{opacity:1}
+}
+
+/* Signature (marque) */
+.signature{
+  position:absolute;
+  top:24px;
+  left:clamp(20px,4vw,56px);
+  z-index:20;
+  height:54px;
+  width:auto;
+  filter:brightness(0) invert(1);
+}
+
+/* Navigation desktop */
+.header-menu{
+  position:absolute;
+  top:0; left:0; right:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(16px,2.2vw,34px);
+  padding:28px clamp(20px,4vw,56px);
+  flex-wrap:wrap;
+  color:#fff;
+}
+.header-menu a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+  cursor:pointer;
+}
+.header-menu a:hover{ text-decoration:underline; }
+.header-menu a:focus, .header-menu a:focus-visible,
+.mobile-menu a:focus, .mobile-menu a:focus-visible,
+.lang-toggle button:focus, .lang-toggle button:focus-visible{ outline:none; }
+.header-menu a:focus-visible, .mobile-menu a:focus-visible{ text-decoration:underline; }
+
+/* Bouton hamburger (mobile) */
+.mobile-menu-toggle{
+  display:none;
+  position:absolute;
+  top:16px;
+  right:clamp(16px,4vw,40px);
+  z-index:40;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:32px;
+  line-height:1;
+  cursor:pointer;
+  padding:6px;
+}
+
+/* Menu mobile (déroulant) */
+.mobile-menu{
+  position:absolute;
+  top:62px;
+  right:clamp(16px,4vw,40px);
+  z-index:40;
+  display:none;
+  flex-direction:column;
+  gap:16px;
+  background:#fff;
+  border-radius:12px;
+  padding:20px 22px;
+  box-shadow:0 10px 34px rgba(0,0,0,.22);
+  min-width:210px;
+}
+.mobile-menu.active{ display:flex; }
+.mobile-menu a{
+  color:var(--ink-900);
+  text-decoration:none;
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+}
+
+/* Bascule de langue (pilule FR · EN) */
+.lang-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid var(--line-300);
+  border-radius:var(--radius-pill);
+  background:rgba(255,255,255,.75);
+  padding:4px 8px;
+  font-family:var(--font-body);
+  font-weight:var(--fw-bold);
+}
+.lang-toggle span{ opacity:.5; }
+.lang-toggle button{
+  border:none;
+  background:transparent;
+  font:inherit;
+  color:var(--ink-900);
+  padding:2px 10px;
+  cursor:pointer;
+  opacity:.6;
+  border-radius:var(--radius-pill);
+  transition:opacity var(--dur-base) var(--ease-soft);
+}
+.lang-toggle button:hover{ opacity:.85; }
+.lang-toggle button.active{ opacity:1; background:var(--ink-900); color:#fff; }
+.mobile-menu .lang-toggle{ margin-top:2px; }
+
+/* Contenu du hero */
+.content-wrapper{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 clamp(20px,6vw,90px);
+  max-width:760px;
+}
+.main-title{
+  margin:0;
+  font-family:var(--font-title);
+  font-weight:var(--fw-bold);
+  color:#fff;
+  font-size:clamp(54px,9vw,112px);
+  line-height:.96;
+  letter-spacing:-.02em;
+}
+.cta-button{
+  display:inline-block;
+  align-self:flex-start;
+  margin-top:34px;
+  background:#b9982f;
+  color:#fff;
+  font-family:var(--font-body);
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+  min-width:180px;
+  text-align:center;
+  padding:14px 34px;
+  border-radius:var(--radius-pill);
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .12s ease, background .15s ease;
+}
+.cta-button:hover{ transform:translateY(-2px); background:#a9881f; }
+
+/* ============================================================
+   BLOCS 2-4 — Œuvres (Io / Za'mu / Enigma)
+   ============================================================ */
+.split-section{
+  display:flex;
+  flex-wrap:wrap;
+  min-height:100vh;
+}
+.bloc-io{     background:linear-gradient(135deg,#F4E04D 0%,#F6E27F 100%); }
+.bloc-zamu{   background:linear-gradient(135deg,#00bfff 0%,#0091ff 100%); }
+.bloc-enigma{ background:linear-gradient(135deg,#80ff9a 30%,#acff8d 100%); }
+
+.half-section{ flex:1 1 360px; min-width:0; }
+
+/* Côté image */
+.half-section:not(.text-content){
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 60px;
+}
+.image-slider{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+}
+.image-slider img{
+  display:block;
+  width:100%;
+  height:auto;
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.image-slider img:first-child{ position:relative; }
+.image-slider img.active{ opacity:1; }
+
+/* Côté texte */
+.text-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:30px;
+}
+.bloc-io .text-content,
+.bloc-enigma .text-content{ padding:40px 80px 80px 40px; }
+.bloc-zamu .text-content{ padding:40px 40px 80px 80px; }
+
+/* Titres d'œuvres */
+.artwork-title{
+  line-height:.9;
+  margin-left:clamp(16px,3vw,60px);
+  display:flex;
+  align-items:center;
+}
+.bloc-io .artwork-title{ font-family:'Olympus',var(--font-title); color:#333333; line-height:.8; }
+.bloc-io .first-letter{ font-size:clamp(120px,17vw,220px); line-height:.8; }
+.bloc-io .rest-letters{ font-size:clamp(56px,8vw,104px); }
+
+.bloc-zamu .artwork-title{ font-family:'Autography',var(--font-title); color:#fff; line-height:.9; }
+.bloc-zamu .first-letter,
+.bloc-zamu .rest-letters{ font-size:clamp(64px,10vw,140px); }
+
+.bloc-enigma .artwork-title{ font-family:'Triathlon',var(--font-title); color:#333333; line-height:.95; }
+.bloc-enigma .first-letter,
+.bloc-enigma .rest-letters{ font-size:clamp(64px,9vw,120px); }
+
+/* Carte + bouton alignés à droite */
+.artwork-content{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:20px;
+}
+
+/* Carte blanche « machine à écrire » avec curseur clignotant */
+.artwork-card{
+  position:relative;
+  width:100%;
+  background:#fff;
+  border-radius:var(--radius-lg);
+  padding:22px 70px 22px 26px;
+  color:var(--ink-700);
+  font:var(--type-body);
+  text-align:justify;
+  max-width:1000px;
+}
+.artwork-card p{ margin:0; }
+.artwork-card::after{
+  content:'';
+  position:absolute;
+  right:22px; top:20px; bottom:20px;
+  width:var(--caret-width-lg);
+  background:var(--caret);
+  animation:artcard-blink .75s step-end infinite;
+}
+@keyframes artcard-blink{
+  from,to{ background-color:transparent } 50%{ background-color:var(--caret) }
+}
+
+/* Bouton « Découvrir » (rose, pilule) */
+.artwork-order{
+  display:inline-block;
+  background:var(--pink-500);
+  color:#fff;
+  font-family:var(--font-body);
+  font-weight:var(--fw-bold);
+  font-size:var(--fs-18);
+  min-width:180px;
+  text-align:center;
+  padding:14px 34px;
+  border-radius:var(--radius-pill);
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .12s ease;
+}
+.artwork-order:hover{ transform:translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:var(--ink-700);
+  color:#fff;
+  padding:20px var(--gutter-page-sm);
+  text-align:center;
+  font-family:var(--font-body);
+}
+footer p{ margin:0; font-size:var(--fs-16); }
+footer a{
+  color:var(--gold-500);
+  text-decoration:none;
+  transition:color var(--dur-base) var(--ease-soft);
+}
+footer a:hover{ color:var(--orange-500); }
+
+/* ============================================================
+   BANNIÈRE COOKIES
+   ============================================================ */
+#cookie-banner{
+  position:fixed;
+  left:0; bottom:0;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:15px 20px;
+  background:var(--ink-800);
+  color:#fff;
+  font-family:var(--font-body);
+  z-index:9999;
+  transform:translateY(100%);
+  transition:transform .4s ease-in-out;
+}
+#cookie-banner.show{ transform:translateY(0); }
+#cookie-banner p{ margin:0; flex:1; font-size:var(--fs-16); }
+#cookie-banner a{ color:var(--gold-600); text-decoration:underline; }
+#close-cookie-banner{
+  background:var(--gold-600);
+  color:var(--ink-800);
+  border:none;
+  padding:8px 18px;
+  cursor:pointer;
+  font-weight:var(--fw-bold);
+  border-radius:var(--radius-sm);
+  font-family:inherit;
+}
+
+/* ============================================================
+   RESPONSIVE (mobile ≤ 640px)
+   ============================================================ */
+@media (max-width:640px){
+  .header-menu{ display:none !important; }
+  .mobile-menu-toggle{ display:flex !important; }
+  .signature{ height:40px !important; top:18px !important; }
+  .main-title{ font-size:46px !important; }
+  .content-wrapper{
+    padding-left:24px !important;
+    padding-right:24px !important;
+    align-items:center !important;
+    text-align:center !important;
+  }
+  .cta-button{ align-self:center !important; }
+  .hero-layer-4{ background-color:#60e6da !important; background-image:url('hero4-mobile.webp'), url('data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADQBgCdASogADgAPrVKn0mnJCKhM/ZoAOAWiWYAsSAFSYhrRrQNMrkfNeGjXDPZLJYetWmf2KjJg38zuFoZVoAA/u+qEUc//mCf1+/Pnsjn2F4AOIxzVssGx14CFGpMGkVJrCzMYPETHCwa172q54e/xbx4/X/T6066xHIDjIQAK8714UTIdBDgm2k48yGtHKG8pf5/4yMf8/bLcBT0z/X/f+okkAVk6/BNqZnbes6B7NWpIHFLlht9cfd1ArwtFMGx+R4KQ9cAAA==') !important; }
+
+  .bloc-io .text-content,
+  .bloc-zamu .text-content,
+  .bloc-enigma .text-content{ padding:30px 24px 60px !important; }
+  .half-section:not(.text-content){ padding:30px 24px !important; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+
+#refuse-cookie-banner{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); border-radius:5px; padding:8px 18px; cursor:pointer; font-weight:700; }
+#refuse-cookie-banner:hover{ background:rgba(255,255,255,.12); }

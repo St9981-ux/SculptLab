@@ -168,60 +168,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- ===== Acquérir (mise en page Claude Design) — styles propres à la page ===== -->
-  <style>
-    /* Polices de titres d'œuvres (auto-hébergées, comme l'accueil) */
-    @font-face { font-family:'Olympus';    src:url('fonts/Olympus.ttf')    format('truetype'); font-display:swap; }
-    @font-face { font-family:'Autography';  src:url('fonts/Autography.otf')  format('opentype'); font-display:swap; }
-    @font-face { font-family:'Triathlon';   src:url('fonts/Triathlon.ttf')   format('truetype'); font-display:swap; }
-
-    :root{
-      --font-title:'Jost','Futura','Century Gothic',sans-serif;
-      --font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;
-      --ease-soft:cubic-bezier(.25,.1,.25,1);
-    }
-
-    /* Intro */
-    /* Espace au-dessus du texte d'intro = espace en dessous (le bandeau turquoise ne pousse plus) */
-    .content > .section-turquoise{ margin-bottom:0 !important; }
-    .acq-intro{ background:#fff; padding:clamp(26px,3vw,44px) clamp(20px,5vw,80px); text-align:center; }
-    .acq-intro-text{ font-family:var(--font-body); font-size:clamp(15px,1.5vw,18px); line-height:1.7; color:#333333; max-width:62ch; margin:0 auto; text-align:center; }
-
-    /* Sections œuvres */
-    .acq-sec{ position:relative; overflow:hidden; scroll-margin-top:0; padding:clamp(40px,5.5vw,80px) clamp(20px,5vw,80px); }
-    .acq-io{     background:linear-gradient(135deg,#F4E04D 0%,#F6E27F 100%); color:#1a1a1a; }
-    .acq-zamu{   background:linear-gradient(135deg,#00bfff 0%,#0091ff 100%); color:#ffffff; }
-    .acq-enigma{ background:linear-gradient(135deg,#80ff9a 30%,#acff8d 100%); color:#1a1a1a; }
-
-    .acq-wrap{ position:relative; display:flex; flex-wrap:wrap; gap:clamp(28px,5vw,64px); align-items:center; max-width:1180px; margin:0 auto; }
-    .acq-media{ flex:1 1 400px; min-width:280px; display:flex; align-items:center; justify-content:center; height:clamp(360px,44vw,560px); }
-    .acq-media img{ max-width:97%; max-height:clamp(360px,44vw,560px); object-fit:contain; display:block; }
-    .acq-info{ flex:1 1 360px; min-width:280px; display:flex; flex-direction:column; gap:clamp(14px,1.8vw,20px); }
-
-    .acq-title{ display:inline-flex; align-items:baseline; font-weight:400; margin:0; color:#333333; }
-    .acq-title-io{     font-family:'Olympus',var(--font-title);    line-height:.8;  align-items:center; }
-    .acq-title-io span:first-child{ font-size:clamp(120px,17vw,220px); }
-    .acq-title-io span:last-child{  font-size:clamp(56px,8vw,104px); }
-    .acq-title-zamu{   font-family:'Autography',var(--font-title); line-height:1;   font-size:clamp(58px,8.5vw,114px); color:#ffffff; }
-    .acq-title-enigma{ font-family:'Triathlon',var(--font-title);  line-height:.95; font-size:clamp(46px,6.6vw,88px); }
-
-    .acq-name{ font-family:var(--font-title); font-weight:400; font-size:clamp(18px,2.2vw,26px); letter-spacing:.05em; min-height:1.2em; color:#777777; }
-    .acq-pill{ display:inline-flex; align-items:center; }
-
-    .acq-swatches{ display:flex; flex-direction:column; gap:16px; padding:16px; border-radius:16px; background:rgba(255,255,255,.42); max-width:440px; }
-    .acq-zamu .acq-swatches{ background:rgba(255,255,255,.16); backdrop-filter:blur(3px); }
-    .acq-group{ display:flex; flex-direction:column; gap:9px; }
-    .acq-group-head{ font-family:var(--font-body); font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; opacity:.66; }
-    .acq-zamu .acq-group-head{ opacity:.8; }
-    .acq-row{ display:flex; flex-wrap:wrap; gap:10px; }
-
-    .acq-order{ display:inline-flex; align-items:center; justify-content:center; align-self:flex-start; background:#ff66a3; color:#fff; font-family:var(--font-body); font-weight:700; font-size:clamp(17px,1.8vw,20px); padding:15px 34px; border-radius:8px; text-decoration:none; cursor:pointer; transition:transform .12s var(--ease-soft), background .2s; }
-    .acq-order:hover{ transform:translateY(-2px); background:#f23d86; }
-
-    @media (max-width:760px){
-      .acq-media{ min-height:auto; order:-1; }
-      .acq-order{ align-self:stretch; }
-    }
-  </style>
+<link rel="stylesheet" href="purchase-page.css">
 <link rel="stylesheet" href="sculptlab-chrome.css">
 <script src="site.js" defer></script>
 </head>
