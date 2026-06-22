@@ -93,15 +93,37 @@ def translate_alts(html):
         return m.group(0)
     return re.sub(r'alt="([^"]*)"', repl, html)
 
+def _extract_block(s, brace_idx):
+    """Depuis l'index du '{' ouvrant, renvoie le contenu jusqu'au '}' apparié,
+    en ignorant les accolades situées à l'intérieur de chaînes de caractères."""
+    depth, i, quote = 0, brace_idx, None
+    while i < len(s):
+        c = s[i]
+        if quote:
+            if c == '\\':
+                i += 2; continue
+            if c == quote:
+                quote = None
+        else:
+            if c in '"\'':
+                quote = c
+            elif c == '{':
+                depth += 1
+            elif c == '}':
+                depth -= 1
+                if depth == 0:
+                    return s[brace_idx+1:i]
+        i += 1
+    return ''
+
 def parse_en_dict(html):
-    """Extrait translations.en -> dict {clé: texte anglais}."""
-    m = re.search(r'const\s+translations\s*=\s*\{(.*)\};', html, re.S)
+    """Extrait translations.en -> dict {clé: texte anglais} via appariement d'accolades."""
+    m = re.search(r'const\s+translations\s*=\s*\{', html)
     if not m: return {}
-    body = m.group(1)
-    em = re.search(r'\ben\s*:\s*\{(.*?)\}\s*\}?\s*;?\s*$', body, re.S)
-    # plus robuste : prendre le bloc en: { ... } jusqu'au } qui précède la fin
-    em = re.search(r'\ben\s*:\s*\{(.*)\}\s*$', body.strip(), re.S)
-    block = em.group(1) if em else ''
+    obj = _extract_block(html, m.end()-1)          # contenu de l'objet translations
+    em = re.search(r'\ben\s*:\s*\{', obj)
+    if not em: return {}
+    block = _extract_block(obj, em.end()-1)        # contenu du sous-objet en
     out = {}
     for k, v in re.findall(r'"([\w.]+)"\s*:\s*"((?:\\.|[^"\\])*)"', block):
         try: out[k] = json.loads('"'+v+'"')
@@ -111,12 +133,15 @@ def parse_en_dict(html):
 def prerender_i18n(html, en):
     """Remplace le texte des éléments data-i18n par leur version anglaise."""
     return re.sub(
-        r'<(?P<tag>h1|h2|h3|p|a|span|button|li|label)((?:[^>]*?\s))data-i18n="([\w.]+)"([^>]*)>(.*?)</(?P=tag)>',
+        r'<(?P<tag>h1|h2|h3|p|a|span|button|li|label|div|td|th)((?:[^>]*?\s))data-i18n="([\w.]+)"([^>]*)>(.*?)</(?P=tag)>',
         lambda m: _repl_el(m, en), html, flags=re.S)
 
 def _repl_el(m, en):
     tag, pre, key, post, inner = m.group('tag'), m.group(2), m.group(3), m.group(4), m.group(5)
-    if key in en and '<' not in inner:
+    # On remplace dès que la traduction EN existe. Le contenu peut inclure des
+    # <br> ou des spans-placeholder (.ed-cert/.ed-num remplis par le JV via leur
+    # classe), mais jamais un data-i18n imbriqué (qu'on écraserait sinon).
+    if key in en and 'data-i18n' not in inner:
         return f'<{tag}{pre}data-i18n="{key}"{post}>{en[key]}</{tag}>'
     return m.group(0)
 
