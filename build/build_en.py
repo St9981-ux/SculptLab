@@ -49,6 +49,50 @@ JSONLD_TRANSLATIONS = {
 # Dedup redirect to inject at the very start of <head> for /en/index.html
 DEDUP_REDIRECT = '<script>if(location.pathname.endsWith(\'/index.html\'))location.replace(location.href.replace(\'/index.html\',\'/\'))</script>\n'
 
+def _build_alt_translations():
+    """Construit le dictionnaire de traduction des attributs alt (FR→EN)."""
+    t = {
+        "Signature de l'artiste SculptLab": "SculptLab artist's signature",
+        "Paysages et rencontres artistiques, inspiration SculptLab":
+            "Landscapes and artistic encounters, SculptLab inspiration",
+        "Modelage à la main, création sculpture SculptLab":
+            "Hand modeling, SculptLab sculpture creation",
+        "L'atelier de sculpture contemporaine SculptLab":
+            "SculptLab contemporary sculpture studio",
+        "Sculpture Io, résine peinte à la main, SculptLab":
+            "Io sculpture, hand-painted resin, SculptLab",
+        "Sculpture Za'mu, résine peinte à la main, SculptLab":
+            "Za'mu sculpture, hand-painted resin, SculptLab",
+        "Sculpture Enigma, résine peinte à la main, SculptLab":
+            "Enigma sculpture, hand-painted resin, SculptLab",
+    }
+    # (sculpture, couleur FR, couleur EN)
+    combos = [
+        ("Io", "Sorbet", "Sorbet"), ("Io", "Outremer", "Ultramarine"),
+        ("Za'mu", "Brume", "Mist"), ("Za'mu", "Primaire", "Primary"),
+        ("Enigma", "Nuit", "Night"), ("Enigma", "Aube", "Dawn"),
+    ]
+    for s, fr, en in combos:
+        t[f"{s} - {fr}"] = f"{s} - {en}"
+        t[f"Sculpture {s} {fr}, vue principale, résine peinte à la main"] = \
+            f"{s} {en} sculpture, main view, hand-painted resin"
+        for n in (2, 3, 4):
+            t[f"Sculpture {s} {fr} vue {n}"] = f"{s} {en} sculpture view {n}"
+        t[f"Boîte d'emballage sculpture {s} {fr} SculptLab"] = \
+            f"{s} {en} sculpture packaging box SculptLab"
+    return t
+
+ALT_TRANSLATIONS = _build_alt_translations()
+
+def translate_alts(html):
+    """Remplace les attributs alt statiques FR par leur version EN (correspondance exacte)."""
+    def repl(m):
+        val = m.group(1)
+        if val in ALT_TRANSLATIONS:
+            return f'alt="{ALT_TRANSLATIONS[val]}"'
+        return m.group(0)
+    return re.sub(r'alt="([^"]*)"', repl, html)
+
 def parse_en_dict(html):
     """Extrait translations.en -> dict {clé: texte anglais}."""
     m = re.search(r'const\s+translations\s*=\s*\{(.*)\};', html, re.S)
@@ -238,6 +282,8 @@ def transform(page):
     h = fix_paths(h)
     # pré-rendu des textes anglais
     h = prerender_i18n(h, en)
+    # traduction des attributs alt statiques
+    h = translate_alts(h)
     return h
 
 def main():
