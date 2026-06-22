@@ -18,6 +18,20 @@ PAGES = ['index.html','about.html','contact.html','purchase.html','io1.html','io
          'enigma1_summary.html','enigma2_summary.html']
 META = json.load(open(os.path.join(ROOT,'build','en_meta.json'), encoding='utf-8'))
 
+# --- Partials de navigation (source unique des menus, voir build/partials/) ---
+_PART = os.path.join(ROOT, 'build', 'partials')
+NAV_MOBILE = open(os.path.join(_PART, 'mobile-menu.html'), encoding='utf-8').read().strip()
+NAV_HEADER = open(os.path.join(_PART, 'header-menu.html'), encoding='utf-8').read().strip()
+RE_NAV_MOBILE = re.compile(r'<div class="mobile-menu" id="mobileMenu">.*?</div>\s*</div>', re.S)
+RE_NAV_HEADER = re.compile(r'<div class="header-menu">.*?</div>\s*</div>', re.S)
+
+def expand_nav(html):
+    """Réinjecte les menus mobile + desktop depuis les partials (idempotent :
+    le partial est lui-même le <div> ciblé)."""
+    html = RE_NAV_MOBILE.sub(lambda m: NAV_MOBILE, html)
+    html = RE_NAV_HEADER.sub(lambda m: NAV_HEADER, html)
+    return html
+
 # *2 pages whose canonical should point to their *1 counterpart in /en/
 CANONICAL_ALIAS = {
     'io2.html':     'io1.html',
@@ -224,6 +238,8 @@ def transform(page):
     src = open(os.path.join(ROOT, page), encoding='utf-8').read()
     en = parse_en_dict(src)
     h = src
+    # menus depuis les partials (avant le pré-rendu i18n qui traduira leur texte)
+    h = expand_nav(h)
     # langue
     h = h.replace('<html lang="fr">', '<html lang="en">')
     h = re.sub(r'<meta\s+name="language"\s+content="fr">', '<meta name="language" content="en">', h)
@@ -249,7 +265,23 @@ def transform(page):
     h = translate_alts(h)
     return h
 
+def sync_fr_nav():
+    """Réinjecte les menus (partials) dans les pages FR sources, en place.
+    Idempotent : à relancer après toute modification d'un partial de menu."""
+    n = 0
+    for p in PAGES:
+        path = os.path.join(ROOT, p)
+        src = open(path, encoding='utf-8').read()
+        out = expand_nav(src)
+        if out != src:
+            open(path, 'w', encoding='utf-8').write(out)
+            n += 1
+    print(f"{n} page(s) FR resynchronisée(s) (menus).")
+
 def main():
+    # 1) Source unique des menus : resynchroniser les pages FR
+    sync_fr_nav()
+    # 2) Générer les pages en/ depuis les sources FR
     n = 0
     for p in PAGES:
         out = transform(p)

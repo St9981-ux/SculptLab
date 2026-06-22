@@ -22,6 +22,12 @@ python3 build/build_en.py
 La redirection de langue et la déduplication `/index.html` ne sont PAS gérées
 par le build : elles sont centralisées et bot-safe dans `sl-head.js`.
 
+## Menus de navigation (source unique)
+Les menus mobile et desktop proviennent de `build/partials/mobile-menu.html`
+et `build/partials/header-menu.html`. Le build les réinjecte dans les pages FR
+(en place) **et** dans les pages `en/`. Pour modifier un menu : éditer le
+partial puis relancer `python3 build/build_en.py` (opération idempotente).
+
 ## Ajouter / modifier les méta SEO anglaises
 Éditer `build/en_meta.json` (une entrée par page) puis relancer le build.
 
