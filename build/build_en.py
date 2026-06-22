@@ -18,6 +18,37 @@ PAGES = ['index.html','about.html','contact.html','purchase.html','io1.html','io
          'enigma1_summary.html','enigma2_summary.html']
 META = json.load(open(os.path.join(ROOT,'build','en_meta.json'), encoding='utf-8'))
 
+# *2 pages whose canonical should point to their *1 counterpart in /en/
+CANONICAL_ALIAS = {
+    'io2.html':     'io1.html',
+    'zamu2.html':   'zamu1.html',
+    'enigma2.html': 'enigma1.html',
+}
+
+# JSON-LD string translations FR → EN (exact JSON string replacements)
+JSONLD_TRANSLATIONS = {
+    '"Résine"': '"Resin"',
+    '"Sculpture contemporaine"': '"Contemporary sculpture"',
+    '"Sculpture en résine peinte à la main, édition limitée numérotée sur 25 exemplaires. Fabrication artisanale française avec certificat d\'authenticité cryptographique."':
+        '"Hand-painted resin sculpture, numbered limited edition of 25 copies. French handcrafted with cryptographic certificate of authenticity."',
+    '"Sculpture en résine peinte à la main, édition limitée avec certificat d\'authenticité"':
+        '"Hand-painted resin sculpture, limited edition with certificate of authenticity"',
+    '"Galerie de sculptures artistiques contemporaines"': '"Gallery of contemporary artistic sculptures"',
+    '"Collection de sculptures artistiques contemporaines SculptLab. disponibles à l\'achat"':
+        '"Collection of SculptLab. contemporary artistic sculptures available for purchase"',
+    '"Édition"': '"Edition"',
+    '"Limitée à 25 exemplaires"': '"Limited to 25 copies"',
+    '"Certificat"': '"Certificate"',
+    '"Authenticité cryptographique"': '"Cryptographic authenticity"',
+    '"Fabrication"': '"Manufacturing"',
+    '"Artisanale française"': '"French handcraft"',
+    '"Accueil"': '"Home"',
+    '"Acquérir"': '"Purchase"',
+}
+
+# Dedup redirect to inject at the very start of <head> for /en/index.html
+DEDUP_REDIRECT = '<script>if(location.pathname.endsWith(\'/index.html\'))location.replace(location.href.replace(\'/index.html\',\'/\'))</script>\n'
+
 def parse_en_dict(html):
     """Extrait translations.en -> dict {clé: texte anglais}."""
     m = re.search(r'const\s+translations\s*=\s*\{(.*)\};', html, re.S)
@@ -81,6 +112,107 @@ def set_meta(html, page):
     html = rep_attr(html, r'property="twitter:description"', tw_desc)
     return html
 
+def translate_jsonld(html):
+    """Remplace les chaînes JSON-LD FR par leurs équivalents EN dans les blocs <script type="application/ld+json">."""
+    def replace_block(m):
+        block = m.group(0)
+        for fr, en in JSONLD_TRANSLATIONS.items():
+            block = block.replace(fr, en)
+        return block
+    return re.sub(
+        r'<script\s+type="application/ld\+json">.*?</script>',
+        replace_block, html, flags=re.S)
+
+def fix_canonicals(html, page):
+    """
+    Gère les URLs canoniques, OG et Twitter.
+    - Pages *2 : canonical pointe vers /en/*1 (pas vers /en/*2).
+    - Toutes les autres : remplace sculptlab.fr/<slug> → sculptlab.fr/en/<slug>.
+    """
+    if page in CANONICAL_ALIAS:
+        target1 = CANONICAL_ALIAS[page]
+        en_canonical = f'https://sculptlab.fr/en/{target1}'
+        # Remplacer le canonical (qui pointe déjà vers *1 FR)
+        html = re.sub(
+            r'(<link\b[^>]*\brel="canonical"\s+href=")[^"]*(")',
+            lambda m: m.group(1) + en_canonical + m.group(2), html)
+        # OG/Twitter URL → aussi pointer vers /en/*1
+        html = re.sub(
+            r'(<meta\b[^>]*\bproperty="og:url"\s+content=")[^"]*(")',
+            lambda m: m.group(1) + en_canonical + m.group(2), html)
+        html = re.sub(
+            r'(<meta\b[^>]*\bproperty="twitter:url"\s+content=")[^"]*(")',
+            lambda m: m.group(1) + en_canonical + m.group(2), html)
+    else:
+        slug = '' if page == 'index.html' else page
+        fr_url = f'https://sculptlab.fr/{slug}'
+        en_url = f'https://sculptlab.fr/en/{slug}'
+        for attr in ('rel="canonical" href', 'property="og:url" content', 'property="twitter:url" content'):
+            html = html.replace(f'{attr}="{fr_url}"', f'{attr}="{en_url}"')
+    return html
+
+def fix_redirect_script(html, page):
+    """
+    Neutralise le script de redirection FR→EN pour les pages /en/.
+    - Sur index.html EN : remplace le script FR par un script qui redirige
+      les utilisateurs FR vers la racine, et injecte le dedup redirect.
+    - Sur les autres pages : supprime le bloc de redirection FR (le <script> entier).
+    """
+    # Identifiant stable du bloc FR : le commentaire qui précède + le addEventListener
+    FR_SCRIPT_BLOCK = (
+        "<!-- Script de gestion dynamique des langues -->\n"
+        "<script>\n"
+        "document.addEventListener('DOMContentLoaded', function() {\n"
+        "    // Récupérer la langue sauvegardée, sinon détecter la langue du navigateur\n"
+        "    const savedLang = localStorage.getItem('lang');\n"
+        "\n"
+        "    if (!savedLang) {\n"
+        "        // Première visite : détecter la langue du navigateur\n"
+        "        const userLang = navigator.language || navigator.userLanguage || '';\n"
+        "        if (userLang.startsWith('en')) {\n"
+        "            // Anglophone sans préférence enregistrée → rediriger vers la version anglaise\n"
+        "            window.location.replace('https://sculptlab.fr/en/');\n"
+        "            return;\n"
+        "        }\n"
+        "        localStorage.setItem('lang', 'fr');\n"
+        "    } else if (savedLang === 'en') {\n"
+        "        // Visiteur ayant manuellement choisi l'anglais → rediriger\n"
+        "        window.location.replace('https://sculptlab.fr/en/');\n"
+        "        return;\n"
+        "    }\n"
+        "});\n"
+        "</script>"
+    )
+
+    EN_REDIRECT_BLOCK = (
+        "<!-- Script de gestion dynamique des langues -->\n"
+        "<script>\n"
+        "document.addEventListener('DOMContentLoaded', function() {\n"
+        "    const savedLang = localStorage.getItem('lang');\n"
+        "    if (!savedLang) {\n"
+        "        const userLang = navigator.language || navigator.userLanguage || '';\n"
+        "        if (userLang.startsWith('fr')) {\n"
+        "            window.location.replace('https://sculptlab.fr/');\n"
+        "            return;\n"
+        "        }\n"
+        "        localStorage.setItem('lang', 'en');\n"
+        "    } else if (savedLang === 'fr') {\n"
+        "        window.location.replace('https://sculptlab.fr/');\n"
+        "        return;\n"
+        "    }\n"
+        "});\n"
+        "</script>"
+    )
+
+    if page == 'index.html':
+        html = html.replace(FR_SCRIPT_BLOCK, EN_REDIRECT_BLOCK)
+        # Injecter le dedup redirect au début de <head>
+        html = html.replace('<head>', '<head>\n' + DEDUP_REDIRECT, 1)
+    else:
+        html = html.replace(FR_SCRIPT_BLOCK, '')
+
+    return html
+
 def transform(page):
     src = open(os.path.join(ROOT, page), encoding='utf-8').read()
     en = parse_en_dict(src)
@@ -88,20 +220,20 @@ def transform(page):
     # langue
     h = h.replace('<html lang="fr">', '<html lang="en">')
     h = re.sub(r'<meta\s+name="language"\s+content="fr">', '<meta name="language" content="en">', h)
-    # langue par défaut JS : défaut anglais sur /en/, mais respecte un choix de langue mémorisé
+    # langue par défaut JS : défaut anglais sur /en/
     h = h.replace("setLanguage(localStorage.getItem('lang') || 'fr');", "setLanguage(localStorage.getItem('lang') || 'en');")
     h = re.sub(r"setLanguage\(\s*localStorage\.getItem\('lang'\)\s*\|\|\s*'fr'\s*\)", "setLanguage(localStorage.getItem('lang') || 'en')", h)
-    # URLs canoniques / OG / Twitter -> /en/ (cibler uniquement ces 3 ; NE PAS toucher aux hreflang,
-    # déjà corrects dans la source FR : fr=racine, en=/en/, x-default=racine)
-    slug = '' if page == 'index.html' else page
-    fr_url, en_url = f'https://sculptlab.fr/{slug}', f'https://sculptlab.fr/en/{slug}'
-    for attr in ('rel="canonical" href', 'property="og:url" content', 'property="twitter:url" content'):
-        h = h.replace(f'{attr}="{fr_url}"', f'{attr}="{en_url}"')
+    # URLs canoniques / OG / Twitter
+    h = fix_canonicals(h, page)
     # locale
     h = h.replace('<meta property="og:locale" content="fr_FR">', '<meta property="og:locale" content="en_US">')
     h = h.replace('<meta property="og:locale:alternate" content="en_US">', '<meta property="og:locale:alternate" content="fr_FR">')
     # méta SEO anglaises
     h = set_meta(h, page)
+    # JSON-LD → anglais
+    h = translate_jsonld(h)
+    # script de redirection
+    h = fix_redirect_script(h, page)
     # chemins -> ../
     h = fix_paths(h)
     # pré-rendu des textes anglais
