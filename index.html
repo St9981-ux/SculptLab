@@ -400,12 +400,12 @@ const target = document.querySelector('.io-text');
 if (!target) return;
 if (ioTypingTimer) { clearInterval(ioTypingTimer); ioTypingTimer = null; }
 const full = translations[lang] && translations[lang]['work1.text'] ? translations[lang]['work1.text'] : '';
-target.innerHTML = '';
+target.innerHTML = '<span style="visibility:hidden">' + escapeHtml(full) + '</span>';
 let i = 0;
 const speed = 16;
 ioTypingTimer = setInterval(() => {
 i++;
-target.innerHTML = escapeHtml(full.slice(0, i));
+target.innerHTML = escapeHtml(full.slice(0, i)) + '<span style="visibility:hidden">' + escapeHtml(full.slice(i)) + '</span>';
 if (i >= full.length) {
 clearInterval(ioTypingTimer);
 ioTypingTimer = null;
@@ -418,12 +418,12 @@ const target = document.querySelector('.zamu-text');
 if (!target) return;
 if (zamuTypingTimer) { clearInterval(zamuTypingTimer); zamuTypingTimer = null; }
 const full = translations[lang] && translations[lang]['work2.text'] ? translations[lang]['work2.text'] : '';
-target.innerHTML = '';
+target.innerHTML = '<span style="visibility:hidden">' + escapeHtml(full) + '</span>';
 let i = 0;
 const speed = 16;
 zamuTypingTimer = setInterval(() => {
 i++;
-target.innerHTML = escapeHtml(full.slice(0, i));
+target.innerHTML = escapeHtml(full.slice(0, i)) + '<span style="visibility:hidden">' + escapeHtml(full.slice(i)) + '</span>';
 if (i >= full.length) {
 clearInterval(zamuTypingTimer);
 zamuTypingTimer = null;
@@ -436,12 +436,12 @@ const target = document.querySelector('.enigma-text');
 if (!target) return;
 if (enigmaTypingTimer) { clearInterval(enigmaTypingTimer); enigmaTypingTimer = null; }
 const full = translations[lang] && translations[lang]['work3.text'] ? translations[lang]['work3.text'] : '';
-target.innerHTML = '';
+target.innerHTML = '<span style="visibility:hidden">' + escapeHtml(full) + '</span>';
 let i = 0;
 const speed = 16;
 enigmaTypingTimer = setInterval(() => {
 i++;
-target.innerHTML = escapeHtml(full.slice(0, i));
+target.innerHTML = escapeHtml(full.slice(0, i)) + '<span style="visibility:hidden">' + escapeHtml(full.slice(i)) + '</span>';
 if (i >= full.length) {
 clearInterval(enigmaTypingTimer);
 enigmaTypingTimer = null;
