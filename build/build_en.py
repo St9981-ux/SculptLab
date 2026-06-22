@@ -47,7 +47,6 @@ JSONLD_TRANSLATIONS = {
 }
 
 # Dedup redirect to inject at the very start of <head> for /en/index.html
-DEDUP_REDIRECT = '<script>if(location.pathname.endsWith(\'/index.html\'))location.replace(location.href.replace(\'/index.html\',\'/\'))</script>\n'
 
 def _build_alt_translations():
     """Construit le dictionnaire de traduction des attributs alt (FR→EN)."""
@@ -220,67 +219,6 @@ def fix_canonicals(html, page):
             html = html.replace(f'{attr}="{fr_url}"', f'{attr}="{en_url}"')
     return html
 
-def fix_redirect_script(html, page):
-    """
-    Neutralise le script de redirection FR→EN pour les pages /en/.
-    - Sur index.html EN : remplace le script FR par un script qui redirige
-      les utilisateurs FR vers la racine, et injecte le dedup redirect.
-    - Sur les autres pages : supprime le bloc de redirection FR (le <script> entier).
-    """
-    # Identifiant stable du bloc FR : le commentaire qui précède + le addEventListener
-    FR_SCRIPT_BLOCK = (
-        "<!-- Script de gestion dynamique des langues -->\n"
-        "<script>\n"
-        "document.addEventListener('DOMContentLoaded', function() {\n"
-        "    // Récupérer la langue sauvegardée, sinon détecter la langue du navigateur\n"
-        "    const savedLang = localStorage.getItem('lang');\n"
-        "\n"
-        "    if (!savedLang) {\n"
-        "        // Première visite : détecter la langue du navigateur\n"
-        "        const userLang = navigator.language || navigator.userLanguage || '';\n"
-        "        if (userLang.startsWith('en')) {\n"
-        "            // Anglophone sans préférence enregistrée → rediriger vers la version anglaise\n"
-        "            window.location.replace('https://sculptlab.fr/en/');\n"
-        "            return;\n"
-        "        }\n"
-        "        localStorage.setItem('lang', 'fr');\n"
-        "    } else if (savedLang === 'en') {\n"
-        "        // Visiteur ayant manuellement choisi l'anglais → rediriger\n"
-        "        window.location.replace('https://sculptlab.fr/en/');\n"
-        "        return;\n"
-        "    }\n"
-        "});\n"
-        "</script>"
-    )
-
-    EN_REDIRECT_BLOCK = (
-        "<!-- Script de gestion dynamique des langues -->\n"
-        "<script>\n"
-        "document.addEventListener('DOMContentLoaded', function() {\n"
-        "    const savedLang = localStorage.getItem('lang');\n"
-        "    if (!savedLang) {\n"
-        "        const userLang = navigator.language || navigator.userLanguage || '';\n"
-        "        if (userLang.startsWith('fr')) {\n"
-        "            window.location.replace('https://sculptlab.fr/');\n"
-        "            return;\n"
-        "        }\n"
-        "        localStorage.setItem('lang', 'en');\n"
-        "    } else if (savedLang === 'fr') {\n"
-        "        window.location.replace('https://sculptlab.fr/');\n"
-        "        return;\n"
-        "    }\n"
-        "});\n"
-        "</script>"
-    )
-
-    if page == 'index.html':
-        html = html.replace(FR_SCRIPT_BLOCK, EN_REDIRECT_BLOCK)
-        # Injecter le dedup redirect au début de <head>
-        html = html.replace('<head>', '<head>\n' + DEDUP_REDIRECT, 1)
-    else:
-        html = html.replace(FR_SCRIPT_BLOCK, '')
-
-    return html
 
 def transform(page):
     src = open(os.path.join(ROOT, page), encoding='utf-8').read()
@@ -301,8 +239,8 @@ def transform(page):
     h = set_meta(h, page)
     # JSON-LD → anglais
     h = translate_jsonld(h)
-    # script de redirection
-    h = fix_redirect_script(h, page)
+    # (la redirection de langue et la déduplication /index.html sont gérées
+    #  de façon centralisée et bot-safe par sl-head.js, chargé sur chaque page)
     # chemins -> ../
     h = fix_paths(h)
     # pré-rendu des textes anglais

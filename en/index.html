@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>if(location.pathname.endsWith('/index.html'))location.replace(location.href.replace('/index.html','/'))</script>
-
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -63,17 +61,11 @@ gtag('config', 'G-7BNG9RNN76');
 <meta name="theme-color" content="#ffffff">
 <meta name="msapplication-TileColor" content="#ffffff">
 
-<!-- SEO Meta Tags - Version anglaise -->
-<meta name="title-en" content="SculptLab. | Contemporary Artistic Sculptures">
-<meta name="description-en" content="Discover SculptLab's contemporary artistic sculptures. Unique artworks Io, Za'mu and Enigma. Modern and mysterious sculptural art to acquire.">
-
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sculptlab.fr/en/">
 <meta property="og:title" content="SculptLab. | Contemporary Artistic Sculptures">
-<meta property="og:title:en" content="SculptLab - Contemporary Artistic Sculptures">
 <meta property="og:description" content="Discover SculptLab's contemporary artistic sculptures. Unique artworks Io, Za'mu and Enigma. Modern and mysterious sculptural art to acquire.">
-<meta property="og:description:en" content="Discover SculptLab's contemporary artistic sculptures. Unique artworks Io, Za'mu and Enigma.">
 <meta property="og:image" content="https://sculptlab.fr/image1a.webp">
 <meta property="og:site_name" content="SculptLab">
 <meta property="og:locale" content="en_US">
@@ -184,23 +176,7 @@ gtag('config', 'G-7BNG9RNN76');
 }
 </script>
 
-<!-- Script de gestion dynamique des langues -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('lang');
-    if (!savedLang) {
-        const userLang = navigator.language || navigator.userLanguage || '';
-        if (userLang.startsWith('fr')) {
-            window.location.replace('https://sculptlab.fr/');
-            return;
-        }
-        localStorage.setItem('lang', 'en');
-    } else if (savedLang === 'fr') {
-        window.location.replace('https://sculptlab.fr/');
-        return;
-    }
-});
-</script>
+<!-- Redirection de langue centralisée et bot-safe : voir sl-head.js (chargé dans le <head>) -->
 <style>
 /* ============================================================
    SculptLab — Accueil

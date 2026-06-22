@@ -9,20 +9,41 @@
    ============================================================ */
 (function () {
   try {
-    var p = location.pathname;
-    var isEn = p.indexOf('/en/') >= 0;
-    var hasChoice = false;
-    try { hasChoice = !!localStorage.getItem('lang'); } catch (e) {}
+    var loc = location;
+    var path = loc.pathname;
+
+    // 1) Déduplication d'URL : /index.html -> /  (et /en/index.html -> /en/)
+    //    Évite tout contenu dupliqué ; le canonical pointe déjà vers la version sans index.html.
+    if (/\/index\.html$/.test(path)) {
+      loc.replace(path.replace(/index\.html$/, '') + loc.search + loc.hash);
+      return;
+    }
+
+    // 2) Redirection de langue — JAMAIS pour les robots (aucun impact SEO).
     var ua = (navigator.userAgent || '');
-    var isBot = /bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|facebook|embedly|preview|lighthouse|headless/i.test(ua);
-    if (!isEn && !hasChoice && !isBot) {
+    if (/bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|facebook|embedly|preview|lighthouse|headless/i.test(ua)) return;
+
+    var isEn = path.indexOf('/en/') >= 0;
+    var saved = '';
+    try { saved = (localStorage.getItem('lang') || '').toLowerCase(); } catch (e) {}
+
+    // Préférence : choix mémorisé en priorité, sinon langue du navigateur
+    // (tout sauf le français bascule vers l'anglais = x-default).
+    var prefersEn;
+    if (saved) {
+      prefersEn = saved.indexOf('en') === 0;
+    } else {
       var nav = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
-      if (nav.indexOf('fr') !== 0) {
-        var f = p.substring(p.lastIndexOf('/') + 1);
-        if (!f) f = 'index.html';
-        location.replace('/en/' + f + location.search + location.hash);
-        return;
-      }
+      prefersEn = nav.indexOf('fr') !== 0;
+    }
+
+    var file = path.substring(path.lastIndexOf('/') + 1);
+    if (!isEn && prefersEn) {
+      // Page FR mais préférence anglaise -> version /en/ équivalente
+      loc.replace('/en/' + file + loc.search + loc.hash);
+    } else if (isEn && !prefersEn) {
+      // Page EN mais préférence française -> version FR équivalente (racine)
+      loc.replace('/' + file + loc.search + loc.hash);
     }
   } catch (e) {}
 })();

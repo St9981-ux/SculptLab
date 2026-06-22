@@ -28,17 +28,11 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="fr">
 
-    <!-- SEO Meta Tags - Version anglaise -->
-    <meta name="title-en" content="Purchase a SculptLab. Sculpture | Contemporary Art Works">
-    <meta name="description-en" content="Buy SculptLab. artistic sculptures: Io, Za'mu and Enigma. Hand-painted resin artworks, limited edition with certificate of authenticity.">
-
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sculptlab.fr/purchase.html">
     <meta property="og:title" content="Acquérir une Sculpture SculptLab. - Œuvres d'Art Contemporaines">
-    <meta property="og:title:en" content="Purchase a SculptLab. Sculpture - Contemporary Art Works">
     <meta property="og:description" content="Achetez les sculptures artistiques SculptLab : Io, Za'mu et Enigma. Œuvres en résine peintes à la main, édition limitée.">
-    <meta property="og:description:en" content="Buy SculptLab. artistic sculptures: Io, Za'mu and Enigma. Hand-painted resin artworks, limited edition.">
     <meta property="og:image" content="https://sculptlab.fr/image1a.webp">
     <meta property="og:site_name" content="SculptLab">
     <meta property="og:locale" content="fr_FR">
@@ -166,22 +160,7 @@
 </script>
 
 
-    <!-- Script de gestion dynamique des langues (meta) -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const userLang = navigator.language || navigator.userLanguage;
-        const isEnglish = userLang.startsWith('en');
-        if (isEnglish) {
-            document.title = document.querySelector('meta[name="title-en"]').content;
-            document.querySelector('meta[name="description"]').content = document.querySelector('meta[name="description-en"]').content;
-            document.documentElement.lang = 'en';
-            if (document.querySelector('meta[property="og:title:en"]')) {
-                document.querySelector('meta[property="og:title"]').content = document.querySelector('meta[property="og:title:en"]').content;
-                document.querySelector('meta[property="og:description"]').content = document.querySelector('meta[property="og:description:en"]').content;
-            }
-        }
-    });
-    </script>
+    <!-- Version anglaise servie via /en/purchase.html (build) ; redirection bot-safe dans sl-head.js -->
     <link rel="stylesheet" href="purchase.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
