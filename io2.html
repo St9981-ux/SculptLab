@@ -313,28 +313,63 @@
             }
         });
 
-        // Galerie d'images
-                const mainImage = document.getElementById("main-image");
+        // Galerie d'images : vignettes + fleches (prec./suiv.) + zoom au clic
+        const mainImage = document.getElementById("main-image");
         const thumbRow = document.querySelector(".thumbnail-row");
+        function galThumbs(){ return thumbRow ? Array.prototype.slice.call(thumbRow.querySelectorAll("img")) : []; }
         function setActiveThumb(thumb){
             if(!thumb || !thumbRow) return;
             var cur = thumbRow.querySelector("img.active"); if(cur) cur.classList.remove("active");
             thumb.classList.add("active");
             mainImage.src = thumb.src;
+            if(thumb.alt) mainImage.alt = thumb.alt;
+        }
+        function galStep(dir){
+            var imgs = galThumbs(); if(!imgs.length) return;
+            var i = imgs.indexOf(thumbRow.querySelector("img.active")); if(i < 0) i = 0;
+            setActiveThumb(imgs[(i + dir + imgs.length) % imgs.length]);
         }
         if(thumbRow){ thumbRow.addEventListener("click", function(e){ var t=e.target.closest("img"); if(t) setActiveThumb(t); }); }
-        if(mainImage){
-            mainImage.style.cursor = "pointer";
-            mainImage.addEventListener("click", function(){
-                if(!thumbRow) return;
-                var imgs = Array.prototype.slice.call(thumbRow.querySelectorAll("img"));
-                if(!imgs.length) return;
-                var i = imgs.indexOf(thumbRow.querySelector("img.active"));
-                setActiveThumb(imgs[(i+1) % imgs.length]);
-            });
+
+        // Fleches de part et d'autre de l'image principale (image precedente / suivante)
+        if(mainImage && mainImage.parentNode){
+            var galWrap = document.createElement("div");
+            galWrap.className = "main-image-wrap";
+            mainImage.parentNode.insertBefore(galWrap, mainImage);
+            galWrap.appendChild(mainImage);
+            var galPrev = document.createElement("button");
+            galPrev.type = "button"; galPrev.className = "img-nav img-nav-prev";
+            galPrev.setAttribute("aria-label", "Image precedente"); galPrev.innerHTML = "‹";
+            var galNext = document.createElement("button");
+            galNext.type = "button"; galNext.className = "img-nav img-nav-next";
+            galNext.setAttribute("aria-label", "Image suivante"); galNext.innerHTML = "›";
+            galPrev.addEventListener("click", function(e){ e.stopPropagation(); galStep(-1); });
+            galNext.addEventListener("click", function(e){ e.stopPropagation(); galStep(1); });
+            galWrap.appendChild(galPrev); galWrap.appendChild(galNext);
         }
 
-       // Dictionnaire FR / EN
+        // Zoom (lightbox) au clic sur l'image principale ; fermeture au clic ou Echap
+        if(mainImage){
+            mainImage.style.cursor = "zoom-in";
+            var galZoom = null;
+            function galCloseZoom(){ if(galZoom) galZoom.classList.remove("open"); }
+            function galOpenZoom(){
+                if(!galZoom){
+                    galZoom = document.createElement("div");
+                    galZoom.className = "img-zoom-overlay";
+                    galZoom.innerHTML = '<img alt="">';
+                    galZoom.addEventListener("click", galCloseZoom);
+                    document.body.appendChild(galZoom);
+                }
+                var zi = galZoom.querySelector("img");
+                zi.src = mainImage.src; zi.alt = mainImage.alt || "";
+                galZoom.classList.add("open");
+            }
+            mainImage.addEventListener("click", galOpenZoom);
+            document.addEventListener("keydown", function(e){ if(e.key === "Escape") galCloseZoom(); });
+        }
+
+        // Dictionnaire FR / EN
         const translations = {
             fr: {
                 "menu.works": "Œuvres.",

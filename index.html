@@ -467,10 +467,31 @@ document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 document.getElementById('btn-fr-mobile').classList.toggle('active', lang === 'fr');
 document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
 
-// Relancer toutes les animations de frappe
-startIoTyping(lang);
-startZamuTyping(lang);
-startEnigmaTyping(lang);
+// Frappe déclenchée au défilement (comme la page À propos), avec la hauteur
+// finale figée dès le départ pour éviter toute saccade avant la frappe.
+var __twMap = [
+{ el: document.querySelector('.io-text'),     run: startIoTyping,     key: 'work1.text' },
+{ el: document.querySelector('.zamu-text'),   run: startZamuTyping,   key: 'work2.text' },
+{ el: document.querySelector('.enigma-text'), run: startEnigmaTyping, key: 'work3.text' }
+];
+__twMap.forEach(function (t) {
+if (!t.el) return;
+var full = (translations[lang] && translations[lang][t.key]) ? translations[lang][t.key] : '';
+t.el.innerHTML = '<span style="visibility:hidden">' + escapeHtml(full) + '</span>';
+});
+if (window.__twObs) window.__twObs.disconnect();
+if ('IntersectionObserver' in window) {
+window.__twObs = new IntersectionObserver(function (entries) {
+entries.forEach(function (e) {
+if (!e.isIntersecting) return;
+for (var k = 0; k < __twMap.length; k++) { if (__twMap[k].el === e.target) { __twMap[k].run(lang); break; } }
+window.__twObs.unobserve(e.target);
+});
+}, { threshold: 0.2 });
+__twMap.forEach(function (t) { if (t.el) window.__twObs.observe(t.el); });
+} else {
+__twMap.forEach(function (t) { if (t.el) t.run(lang); });
+}
 }
 
         // Init langue

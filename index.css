@@ -459,6 +459,9 @@ footer a:hover{ color:var(--orange-500); }
   .bloc-zamu .text-content,
   .bloc-enigma .text-content{ padding:30px 24px 60px !important; }
   .half-section:not(.text-content){ padding:30px 24px !important; }
+
+  /* Za'mu : sur mobile, la photo passe AVANT le texte (comme Io & Enigma) */
+  .bloc-zamu .half-lightblue{ order:-1 !important; }
 }
 
 @media (prefers-reduced-motion:reduce){
