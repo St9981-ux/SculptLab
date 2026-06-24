@@ -312,7 +312,7 @@ body.lang-fr .fr { display: inline; }
 body.lang-en .en { display: inline; }
 
 /* ===== Garanties (réassurance récap) ===== */
-.guarantees { flex: 1 1 100%; margin-top: 4px; }
+.guarantees { margin-top: 42px; }
 .guarantees-head {
   display: flex;
   align-items: center;
@@ -358,7 +358,7 @@ body.lang-en .en { display: inline; }
   box-sizing: border-box;
 }
 /* Mobile : 2 colonnes pour rester lisible */
-@media (max-width: 700px) {
+@media (max-width: 560px) {
   .guarantees-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
   .guarantee:nth-child(odd) { border-left: none; }
 }
