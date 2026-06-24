@@ -341,15 +341,15 @@ body.lang-en .en { display: inline; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 14px;
-  padding: 0 12px;
+  gap: 12px;
+  padding: 0 8px;
 }
 .guarantee + .guarantee { border-left: 1px solid rgba(0, 0, 0, 0.08); }
 .guarantee svg { flex: none; }
 .guarantee-label {
-  font-size: 0.74rem;
+  font-size: 0.67rem;
   color: #555;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 /* Bouton "Finaliser ma commande" pleine largeur (comme le modèle) */
 .payment-button {
@@ -357,6 +357,16 @@ body.lang-en .en { display: inline; }
   width: 100%;
   box-sizing: border-box;
 }
+/* Lien retour vers la fiche produit */
+.summary-back {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9em;
+  color: #555;
+  text-decoration: none;
+}
+.summary-back:hover { text-decoration: underline; }
 /* Mobile : 2 colonnes pour rester lisible */
 @media (max-width: 560px) {
   .guarantees-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
