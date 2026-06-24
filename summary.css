@@ -311,29 +311,54 @@ footer {
 body.lang-fr .fr { display: inline; }
 body.lang-en .en { display: inline; }
 
-/* ===== Bandeau réassurance (récap) ===== */
-.reassure {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px 14px;
-  margin-top: 24px;
-  text-align: center;
+/* ===== Garanties (réassurance récap) ===== */
+.guarantees { margin-top: 42px; }
+.guarantees-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
 }
-.reassure-item {
+.guarantees-rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.10);
+}
+.guarantees-title {
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  color: #999;
+  white-space: nowrap;
+}
+.guarantees-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.guarantee {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
+  text-align: center;
+  gap: 14px;
+  padding: 0 12px;
 }
-.reassure-icon {
-  width: 30px;
-  height: 30px;
-  color: #1a1a1a;
-  flex: none;
+.guarantee + .guarantee { border-left: 1px solid rgba(0, 0, 0, 0.08); }
+.guarantee svg { flex: none; }
+.guarantee-label {
+  font-size: 0.74rem;
+  color: #555;
+  line-height: 1.45;
 }
-.reassure-label {
-  font-size: 0.85rem;
-  color: #333;
-  line-height: 1.35;
-  max-width: 18ch;
+/* Bouton "Finaliser ma commande" pleine largeur (comme le modèle) */
+.payment-button {
+  display: block !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* Mobile : 2 colonnes pour rester lisible */
+@media (max-width: 560px) {
+  .guarantees-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+  .guarantee:nth-child(odd) { border-left: none; }
 }
