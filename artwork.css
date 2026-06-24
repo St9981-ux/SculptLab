@@ -84,10 +84,6 @@
         .main-image-wrap {
             position: relative;
             display: block;
-            line-height: 0; /* supprime l'espace sous l'image -> centrage vertical exact des fleches */
-        }
-        .main-image-wrap img {
-            display: block; /* l'image occupe pile la hauteur du cadre (fleches parfaitement centrees) */
         }
         .img-nav {
             position: absolute;
