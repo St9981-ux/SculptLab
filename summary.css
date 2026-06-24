@@ -311,33 +311,29 @@ footer {
 body.lang-fr .fr { display: inline; }
 body.lang-en .en { display: inline; }
 
-/* ===== Bloc rassurance paiement (récap) ===== */
-.pay-trust { margin-top: 18px; }
-.pay-trust-secure {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: #2e7d5b;
-  font-weight: 600;
-  font-size: 0.92rem;
+/* ===== Bandeau réassurance (récap) ===== */
+.reassure {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 14px;
+  margin-top: 24px;
+  text-align: center;
 }
-.pay-trust-secure svg { flex: none; }
-.pay-trust-methods {
+.reassure-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-.pay-badge {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  padding: 5px 10px;
-  border: 1px solid #e3e3e3;
-  border-radius: 6px;
-  background: #fff;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: #555;
-  letter-spacing: 0.02em;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  gap: 9px;
+}
+.reassure-icon {
+  width: 30px;
+  height: 30px;
+  color: #1a1a1a;
+  flex: none;
+}
+.reassure-label {
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.35;
+  max-width: 18ch;
 }
