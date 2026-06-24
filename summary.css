@@ -359,8 +359,8 @@ body.lang-en .en { display: inline; }
 }
 /* Lien retour vers la fiche produit */
 .summary-back {
-  display: block;
-  text-align: center;
+  display: inline-block;
+  align-self: flex-start;
   margin-top: 16px;
   font-size: 0.9em;
   color: #555;
