@@ -310,3 +310,34 @@ footer {
 
 body.lang-fr .fr { display: inline; }
 body.lang-en .en { display: inline; }
+
+/* ===== Bloc rassurance paiement (récap) ===== */
+.pay-trust { margin-top: 18px; }
+.pay-trust-secure {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #2e7d5b;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.pay-trust-secure svg { flex: none; }
+.pay-trust-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.pay-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
