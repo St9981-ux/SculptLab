@@ -362,11 +362,11 @@ body.lang-en .en { display: inline; }
   display: inline-block;
   align-self: flex-start;
   margin-top: 40px;
-  font-size: 0.9em;
-  color: #555;
+  font-size: 0.82em;
+  color: #888;
   text-decoration: none;
 }
-.summary-back:hover { text-decoration: underline; }
+.summary-back:hover { color: #555; text-decoration: underline; }
 /* Sélecteur de zone de livraison (pages récapitulatif) — cartes radio */
 .ship-zone { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
 .ship-zone-label { font-size: 0.9em; color: #555; }

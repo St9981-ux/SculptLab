@@ -108,6 +108,27 @@ window.slSculptKey = function (label) {
   return '';
 };
 
+/* --- Édition par coloris : pose data-sl-edition sur <body> pour la pastille
+   doré (édition limitée) / gris (pièce unique) sur fiches & récapitulatifs --- */
+window.SL_ED_MAP = {
+  io:     { ecarlate:'open', pomme:'open', sorbet:'limited', outremer:'limited', poudre:'limited', arlequin:'unique', berlingot:'unique', cyan:'open' },
+  zamu:   { acide:'open', albizia:'open', dragee:'open', corail:'open', venin:'open', lagon:'open', givre:'limited', plasma:'unique', sable:'unique', antipode:'unique', anemone:'open', parme:'open', brume:'limited', primaire:'limited' },
+  enigma: { nova:'open', glitch:'open', loop:'open', vapeur:'open', eclipse:'open', neon:'open', echo:'open', majorelle:'open', soleil:'limited', outremer:'limited', vide:'limited', neige:'limited', vague:'unique', vibe:'unique', zigzag:'unique', pulse:'unique', plasma:'unique', pixel:'unique', electric:'unique', doodle:'unique', nuit:'limited', aube:'limited' }
+};
+(function () {
+  var DEF = { io1:'sorbet', io2:'outremer', zamu1:'brume', zamu2:'primaire', enigma1:'nuit', enigma2:'aube' };
+  function pageKey() { return (location.pathname.split('/').pop() || '').toLowerCase().replace('_summary.html', '').replace('.html', ''); }
+  function sculptOf(k) { if (k.indexOf('enigma') === 0) return 'enigma'; if (k.indexOf('zamu') === 0) return 'zamu'; if (k.indexOf('io') === 0) return 'io'; return ''; }
+  function apply() {
+    var k = pageKey(), s = sculptOf(k), m = window.SL_ED_MAP[s];
+    if (!m || !document.body) return;
+    var p = new URLSearchParams(location.search).get('couleur');
+    var ed = m[window.slNormColor(p || DEF[k] || '')];
+    if (ed === 'unique' || ed === 'limited') document.body.setAttribute('data-sl-edition', ed);
+  }
+  if (document.readyState !== 'loading') apply(); else document.addEventListener('DOMContentLoaded', apply);
+})();
+
 /* --- Payment Links Stripe (mode TEST) par langue / sculpture / coloris ---
    Clé coloris = nom FR normalisé (sans accent, minuscules), identique pour FR et EN.
    Le jeu EN pointe vers des produits Stripe dont le nom et la description sont

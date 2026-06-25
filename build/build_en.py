@@ -43,8 +43,8 @@ CANONICAL_ALIAS = {
 JSONLD_TRANSLATIONS = {
     '"Résine"': '"Resin"',
     '"Sculpture contemporaine"': '"Contemporary sculpture"',
-    '"Sculpture en résine peinte à la main, édition limitée numérotée sur 25 exemplaires. Fabrication artisanale française avec certificat d\'authenticité cryptographique."':
-        '"Hand-painted resin sculpture, numbered limited edition of 25 copies. French handcrafted with cryptographic certificate of authenticity."',
+    '"Sculpture en résine peinte à la main, édition limitée numérotée sur 25 exemplaires. Fabrication artisanale française avec certificat d\'authenticité."':
+        '"Hand-painted resin sculpture, numbered limited edition of 25 copies. French handcrafted with certificate of authenticity."',
     '"Sculpture en résine peinte à la main, édition limitée avec certificat d\'authenticité"':
         '"Hand-painted resin sculpture, limited edition with certificate of authenticity"',
     '"Galerie de sculptures artistiques contemporaines"': '"Gallery of contemporary artistic sculptures"',
@@ -53,7 +53,7 @@ JSONLD_TRANSLATIONS = {
     '"Édition"': '"Edition"',
     '"Limitée à 25 exemplaires"': '"Limited to 25 copies"',
     '"Certificat"': '"Certificate"',
-    '"Authenticité cryptographique"': '"Cryptographic authenticity"',
+    '"Authenticité"': '"Authenticity"',
     '"Fabrication"': '"Manufacturing"',
     '"Artisanale française"': '"French handcraft"',
     '"Accueil"': '"Home"',
