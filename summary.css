@@ -367,6 +367,32 @@ body.lang-en .en { display: inline; }
   text-decoration: none;
 }
 .summary-back:hover { text-decoration: underline; }
+/* Sélecteur de zone de livraison (pages récapitulatif) — cartes radio */
+.ship-zone { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.ship-zone-label { font-size: 0.9em; color: #555; }
+.ship-zone-opts { display: flex; flex-direction: column; gap: 8px; }
+.ship-zone-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.ship-zone-opt:hover { border-color: #64eecd; }
+.ship-zone-opt:focus-within { outline: 2px solid #2bbfa0; outline-offset: 1px; }
+.ship-zone-opt input { position: absolute; width: 1px; height: 1px; opacity: 0; margin: 0; }
+.ship-zone-opt .dot {
+  width: 16px; height: 16px; flex: 0 0 auto;
+  border-radius: 50%;
+  border: 2px solid #bbb;
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.ship-zone-opt.selected { border-color: #2bbfa0; background: #f4fdfb; }
+.ship-zone-opt.selected .dot { border-color: #2bbfa0; background: #2bbfa0; box-shadow: inset 0 0 0 3px #fff; }
+.ship-zone-opt-text { font-size: 0.97em; color: #222; }
 /* Mobile : 2 colonnes pour rester lisible */
 @media (max-width: 560px) {
   .guarantees-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }

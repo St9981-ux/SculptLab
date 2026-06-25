@@ -1,0 +1,14 @@
+{
+  "name": "sculptlab-checkout",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker — Stripe Checkout Sessions avec transporteur/port adaptes au pays pour SculptLab.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

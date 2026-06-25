@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Merci ! | SculptLab.</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sculptlab-chrome.css">
+  <style>
+    .merci-wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 64px; text-align: center; }
+    .merci-card { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; padding: 40px 28px; box-shadow: 0 6px 24px rgba(0,0,0,.05); }
+    .merci-emoji { font-size: 2.6em; line-height: 1; }
+    .merci-card h2 { font-size: 1.6em; margin: .4em 0 .3em; }
+    .merci-card p { line-height: 1.6; color: #333; margin: .4em 0; }
+    .merci-ref { font-size: .82em; color: #999; margin-top: 18px; word-break: break-all; }
+    .merci-actions { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .merci-btn { display: inline-block; padding: 12px 24px; border-radius: 999px; text-decoration: none; font-weight: 500; }
+    .merci-btn.primary { background: #ff66a3; color: #fff; }
+    .merci-btn.ghost { background: #f0f0f0; color: #333; }
+    [data-lang="en"] .fr, [data-lang="fr"] .en { display: none; }
+  </style>
+</head>
+<body data-lang="fr">
+  <div class="section-turquoise">
+    <img src="signature.png" alt="SculptLab." class="signature" width="256" height="256">
+    <h1 class="main-title"><span class="fr">Merci&nbsp;!</span><span class="en">Thank you!</span></h1>
+  </div>
+
+  <div class="merci-wrap">
+    <div class="merci-card">
+      <div class="merci-emoji" aria-hidden="true">🎉</div>
+      <h2><span class="fr">Commande confirmée</span><span class="en">Order confirmed</span></h2>
+      <p>
+        <span class="fr">SculptLab. vous remercie chaleureusement pour cette commande&nbsp;! À très vite&nbsp;!</span>
+        <span class="en">SculptLab. thanks you warmly for this order! See you soon!</span>
+      </p>
+      <p>
+        <span class="fr">Un e-mail de confirmation vient de vous être envoyé.</span>
+        <span class="en">A confirmation e-mail has just been sent to you.</span>
+      </p>
+      <div class="merci-ref" id="merci-ref"></div>
+      <div class="merci-actions">
+        <a class="merci-btn primary" href="index.html"><span class="fr">Retour aux œuvres</span><span class="en">Back to works</span></a>
+        <a class="merci-btn ghost" href="purchase.html"><span class="fr">Acquérir une autre pièce</span><span class="en">Acquire another piece</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© <span id="year"></span> by SculptLab. <span class="fr">Tous droits réservés.</span><span class="en">All rights reserved.</span></p>
+  </footer>
+
+  <script>
+    (function () {
+      var qp = new URLSearchParams(location.search);
+      var lang = 'fr';
+      var q = (qp.get('lang') || '').toLowerCase();
+      if (q.indexOf('en') === 0) lang = 'en';
+      else {
+        try { var s = (localStorage.getItem('lang') || '').toLowerCase(); if (s.indexOf('en') === 0) lang = 'en'; } catch (e) {}
+      }
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+      var sid = qp.get('session_id');
+      if (sid) {
+        var r = document.getElementById('merci-ref');
+        if (r) r.textContent = (lang === 'en' ? 'Reference: ' : 'Référence : ') + sid;
+      }
+    })();
+  </script>
+</body>
+</html>

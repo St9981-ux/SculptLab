@@ -1,0 +1,7 @@
+name = "sculptlab-checkout"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# La clé secrète Stripe N'EST PAS stockée ici. On la pousse comme secret :
+#   npx wrangler secret put STRIPE_SECRET_KEY
+# (coller la clé test sk_test_... puis, le jour du passage en production, la clé live sk_live_...)

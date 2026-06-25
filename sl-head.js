@@ -112,6 +112,13 @@ window.slSculptKey = function (label) {
    Clé coloris = nom FR normalisé (sans accent, minuscules), identique pour FR et EN.
    Le jeu EN pointe vers des produits Stripe dont le nom et la description sont
    en anglais (page de paiement entièrement anglaise). */
+/* --- Endpoint du Worker de paiement (Checkout Sessions, transporteur adapté au pays) ---
+   Vide = comportement historique (Payment Links ci-dessous, sans choix de transporteur).
+   À renseigner après déploiement du Worker (voir worker/README.md), ex. :
+   'https://sculptlab-checkout.<sous-domaine>.workers.dev/create-checkout-session' */
+window.SL_CHECKOUT_ENDPOINT = 'https://sculptlab-checkout.sculptlab.workers.dev/create-checkout-session';
+window.SL_CHECKOUT_LIVE = true; /* true = flux adaptatif actif pour tous ; false = uniquement avec ?checkout=test */
+
 window.SL_PAYLINKS = {
   fr: {
     io: {
