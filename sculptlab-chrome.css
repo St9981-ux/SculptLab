@@ -82,7 +82,11 @@
   line-height:1 !important;
   cursor:pointer;
   padding:6px !important;
+  -webkit-tap-highlight-color:transparent !important;  /* pas de bloc bleu au tap (mobile) */
 }
+/* Pas de halo de focus à la souris/au tap ; on garde un repère pour le clavier */
+.mobile-menu-toggle:focus{ outline:none !important; }
+.mobile-menu-toggle:focus-visible{ outline:2px solid #fff !important; outline-offset:2px !important; border-radius:6px !important; }
 
 /* ---- Menu mobile déroulant ---- */
 .mobile-menu{
