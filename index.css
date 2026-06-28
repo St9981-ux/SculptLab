@@ -175,7 +175,11 @@ body.lang-en .en{ display:inline; }
   line-height:1;
   cursor:pointer;
   padding:6px;
+  -webkit-tap-highlight-color:transparent;  /* pas de bloc bleu au tap (mobile) */
 }
+/* Pas de halo de focus à la souris/au tap ; on garde un repère pour le clavier */
+.mobile-menu-toggle:focus{ outline:none; }
+.mobile-menu-toggle:focus-visible{ outline:2px solid #fff; outline-offset:2px; border-radius:6px; }
 
 /* Menu mobile (déroulant) */
 .mobile-menu{
