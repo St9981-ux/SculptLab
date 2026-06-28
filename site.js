@@ -10,10 +10,17 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Langue d'affichage de la bannière = choix mémorisé (localStorage 'lang') en priorité,
   // sinon langue de la page (<html lang>). Suit aussi la bascule FR/EN.
+  function setPressed(id, on) {
+    var b = document.getElementById(id);
+    if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
   function applyLang(l) {
     var en = (l === 'en');
     document.body.classList.toggle('lang-en', en);
     document.body.classList.toggle('lang-fr', !en);
+    // a11y : refléter la langue active sur les boutons FR/EN (desktop + mobile)
+    setPressed('btn-fr', !en); setPressed('btn-fr-mobile', !en);
+    setPressed('btn-en', en);  setPressed('btn-en-mobile', en);
   }
   var saved = (localStorage.getItem('lang') || '').toLowerCase();
   var lang = saved || (document.documentElement.lang || 'fr').toLowerCase();
@@ -26,6 +33,24 @@ document.addEventListener('DOMContentLoaded', function () {
   ['btn-en', 'btn-en-mobile'].forEach(function (id) {
     var b = document.getElementById(id); if (b) b.addEventListener('click', function () { applyLang('en'); });
   });
+
+  // a11y : état ouvert/fermé du menu hamburger annoncé aux lecteurs d'écran.
+  // Une seule source de vérité = la classe .active du menu (gérée par les
+  // scripts inline : bouton ☰, clic extérieur, clic sur un lien). On reflète
+  // cet état via aria-expanded, quel que soit le chemin d'ouverture/fermeture.
+  (function () {
+    var toggle = document.querySelector('.mobile-menu-toggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-controls', 'mobileMenu');
+    var sync = function () {
+      toggle.setAttribute('aria-expanded', menu.classList.contains('active') ? 'true' : 'false');
+    };
+    sync();
+    if ('MutationObserver' in window) {
+      new MutationObserver(sync).observe(menu, { attributes: true, attributeFilter: ['class'] });
+    }
+  })();
 
   var banner = document.getElementById('cookie-banner');
   if (!banner) return;
