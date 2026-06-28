@@ -1,0 +1,12 @@
+# Config Wrangler à la RACINE du repo — utilisée par le build Cloudflare
+# (Workers Builds connecté à GitHub) qui s'exécute depuis la racine et lance
+# `npx wrangler versions upload`. Le point d'entrée pointe vers le sous-dossier.
+#
+# Pour le développement LOCAL, on continue d'utiliser worker/wrangler.toml :
+#   cd worker && npx wrangler deploy
+# Garder les deux fichiers cohérents (name / compatibility_date).
+#
+# La clé secrète Stripe n'est PAS ici : `npx wrangler secret put STRIPE_SECRET_KEY`.
+name = "sculptlab-checkout"
+main = "worker/src/index.js"
+compatibility_date = "2025-01-01"
