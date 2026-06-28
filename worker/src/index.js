@@ -167,6 +167,21 @@ export default {
       cancel_url: cancelUrl,
       billing_address_collection: 'required',
       phone_number_collection: { enabled: 'true' },
+      /* --- Anti-fraude (commandes à forte valeur) ---
+         Liste blanche des moyens de paiement : on n'autorise QUE des méthodes
+         à faible risque de litige. Bancontact/EPS = redirections bancaires
+         authentifiées (quasi increvables) ; Link = portefeuille Stripe
+         authentifié ; carte = protégée par 3D Secure ci-dessous.
+         Volontairement exclus : Klarna/BNPL (litiges « non reçu » élevés) et
+         les méthodes géographiquement hors sujet (kakao_pay, naver_pay, payco,
+         blik, samsung_pay…). Pour en ajouter une : compléter ce tableau ET
+         l'activer dans Dashboard → Réglages → Moyens de paiement. */
+      payment_method_types: ['card', 'link', 'bancontact', 'eps'],
+      /* 3D Secure forcé sur TOUTES les cartes (et pas seulement quand la SCA
+         UE l'impose) : l'authentification forte fait basculer la responsabilité
+         d'une fraude sur la banque émettrice, y compris pour les cartes hors UE
+         (USA, reste du monde). Indispensable vu les montants (455–1695 €). */
+      payment_method_options: { card: { request_three_d_secure: 'any' } },
       invoice_creation: {
         enabled: 'true',
         invoice_data: {

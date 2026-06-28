@@ -57,6 +57,29 @@ Carte de test Stripe : `4242 4242 4242 4242`, date future, CVC quelconque.
 Vérifier qu'en changeant de zone, le transporteur et le port changent au
 checkout, et qu'après paiement on arrive sur `/merci.html`.
 
+## Sécurité / anti-fraude
+
+Le Worker est volontairement restrictif sur les paiements (paniers à forte
+valeur) :
+
+- **Moyens de paiement en liste blanche** (`payment_method_types` dans
+  `src/index.js`) : `card`, `link`, `bancontact`, `eps`. Bancontact/EPS sont des
+  redirections bancaires authentifiées (quasi aucun chargeback possible) et ne
+  s'affichent qu'aux clients concernés. **Klarna/BNPL et les méthodes hors zone
+  (kakao_pay, naver_pay, payco, blik, samsung_pay…) sont exclus** car elles
+  augmentent le risque de litige « non reçu ». Pour ajouter une méthode :
+  compléter ce tableau **et** l'activer dans Dashboard → Réglages → Moyens de
+  paiement.
+- **3D Secure forcé** sur toutes les cartes (`request_three_d_secure: 'any'`) :
+  l'authentification forte fait basculer la responsabilité d'une fraude sur la
+  banque émettrice, y compris pour les cartes hors UE.
+- **Adresse de facturation obligatoire** + collecte du téléphone + livraison
+  limitée aux pays de la zone choisie (contrôles AVS côté Stripe).
+
+À compléter dans le **Dashboard Stripe** (non gérable par le code) :
+Radar → ajouter des règles (bloquer si risque « highest », mettre en revue si
+risque « elevated », bloquer si CVC ou code postal échoue).
+
 ## Passage en production (plus tard)
 
 1. `npx wrangler secret put STRIPE_SECRET_KEY` avec la clé **live** (`sk_live_…`).
