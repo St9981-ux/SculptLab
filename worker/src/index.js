@@ -167,6 +167,17 @@ export default {
       cancel_url: cancelUrl,
       billing_address_collection: 'required',
       phone_number_collection: { enabled: 'true' },
+      invoice_creation: {
+        enabled: 'true',
+        invoice_data: {
+          description: lang === 'en'
+            ? 'Thank you for your order at SculptLab.'
+            : 'Merci pour votre commande chez SculptLab.',
+          footer: lang === 'en'
+            ? 'SculptLab. — handcrafted art sculptures'
+            : 'SculptLab. — sculptures d’art faites main'
+        }
+      },
       line_items: [{
         quantity: 1,
         price_data: {
