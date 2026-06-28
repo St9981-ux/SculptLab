@@ -167,21 +167,17 @@ export default {
       cancel_url: cancelUrl,
       billing_address_collection: 'required',
       phone_number_collection: { enabled: 'true' },
-      /* --- Anti-fraude + compatibilité port ---
-         On force la CARTE uniquement. Raison : les autres méthodes (Bancontact,
-         EPS, iDEAL… redirections bancaires, ainsi que Link) ne sont PAS
-         compatibles avec `shipping_options` (le port adapté au pays plus bas).
-         Les inclure faisait ÉCHOUER la création de session → repli sur Payment
-         Link → port perdu. La carte est de toute façon la seule méthode que
-         Stripe proposait déjà pour ces commandes avec livraison.
-         Le risque de fraude carte est couvert par le 3D Secure forcé ci-dessous.
-         (Klarna/BNPL reste volontairement exclu : litiges « non reçu » élevés.) */
-      payment_method_types: ['card'],
-      /* 3D Secure forcé sur TOUTES les cartes (et pas seulement quand la SCA
-         UE l'impose) : l'authentification forte fait basculer la responsabilité
-         d'une fraude sur la banque émettrice, y compris pour les cartes hors UE
-         (USA, reste du monde). Indispensable vu les montants (455–1695 €). */
-      payment_method_options: { card: { request_three_d_secure: 'any' } },
+      /* IMPORTANT — NE PAS forcer payment_method_types ni request_three_d_secure.
+         C'est la configuration d'origine, la SEULE prouvée compatible avec
+         `shipping_options` (le port adapté au pays, plus bas). Les avoir forcés
+         (méthodes explicites et/ou request_three_d_secure:'any') faisait
+         ÉCHOUER la création de session côté Stripe → le site basculait sur le
+         repli Payment Link → frais de port perdus.
+         Anti-fraude : le 3D Secure est assuré par la règle Radar « Exiger
+         l'authentification 3DS » (Dashboard → Radar), déjà activée. Pour
+         restreindre les moyens de paiement (ex. exclure Klarna), le faire dans
+         Dashboard → Réglages → Moyens de paiement (pas ici, sinon on recasse
+         la compatibilité avec le port). */
       invoice_creation: {
         enabled: 'true',
         invoice_data: {
