@@ -51,10 +51,13 @@ const COLORS_EN = {
 /* Pour changer un tarif ou un transporteur : modifier ici puis redéployer
    (npx wrangler deploy). Estimations en jours ouvrés [min, max]. */
 const ZONES = {
-  fr:   { countries: ['FR', 'MC'], carrier: 'UPS Standard', amount: 990,  est: [2, 4] },
-  eu:   { countries: ['BE', 'LU', 'DE', 'NL', 'IT', 'ES', 'PT', 'AT', 'IE'], carrier: 'DHL Express', amount: 1990, est: [3, 6] },
-  chuk: { countries: ['CH', 'GB'], carrier: 'DHL Express', amount: 2990, est: [3, 6] },
-  na:   { countries: ['US', 'CA'], carrier: 'UPS Standard', amount: 4990, est: [5, 9] }
+  fr    : { countries: ['FR','MC'], carrier: 'UPS Standard', amount: 990, est: [2, 4] },
+  eu    : { countries: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'], carrier: 'DHL Express', amount: 1990, est: [3, 6] },
+  europe: { countries: ['GB','CH','NO','IS','LI','AD','SM','VA','GI','AL','BA','ME','MK','RS','MD','UA','GG','JE','IM','FO'], carrier: 'DHL Express', amount: 2990, est: [3, 7] },
+  na    : { countries: ['US','CA'], carrier: 'UPS Standard', amount: 4990, est: [5, 9] },
+  latam : { countries: ['MX','GT','BZ','SV','HN','NI','CR','PA','CO','VE','EC','PE','BR','BO','PY','UY','AR','CL','GY','SR','DO','CU','JM','TT','BS','BB','PR','GP','MQ','GF','HT','AG','DM','GD','KN','LC','VC','AW','CW','KY'], carrier: 'DHL Express', amount: 7490, est: [7, 15] },
+  asia  : { countries: ['JP','CN','KR','HK','TW','SG','MY','TH','VN','PH','ID','IN','PK','BD','LK','NP','KH','LA','MM','MN','KZ','UZ','KG','BN','MO','MV','BT','AU','NZ','FJ','PG','NC','PF','WS','TO','VU','TR','IL','AE','SA','QA','KW','BH','OM','JO','LB','GE','AM','AZ'], carrier: 'DHL Express', amount: 7490, est: [7, 15] },
+  world : { countries: ['MA','DZ','TN','LY','EG','ZA','NG','KE','GH','CI','SN','CM','ET','TZ','UG','AO','MZ','ZW','BW','NA','MU','RE','MG','RW','BJ','BF','ML','NE','TD','GA','CG','CD','GN','TG','SL','LR','MR','GM','GW','CV','DJ','SD','BI','MW','ZM','LS','SZ','KM','SC','YT'], carrier: 'DHL Express', amount: 8490, est: [8, 18] },
 };
 
 /* --- Origines autorisées (CORS) --- */

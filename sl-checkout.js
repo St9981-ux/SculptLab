@@ -1,13 +1,13 @@
 /* ============================================================
    SculptLab — Checkout dynamique (pages _summary)
-   Sélecteur « zone de livraison » + envoi vers une Stripe Checkout
+   Sélecteur « zone de livraison » (mondial) + Stripe Checkout
    Session créée par le Worker (transporteur + port adaptés au pays).
+   Le tableau récapitulatif affiche le port choisi et un TOTAL
+   = prix de la sculpture + livraison.
 
    • Actif seulement si window.SL_CHECKOUT_ENDPOINT est renseigné ET
      (window.SL_CHECKOUT_LIVE === true OU URL avec ?checkout=test).
-     Sinon : aucun changement, le bouton garde son Payment Link.
-   • Sélecteur en cartes radio (et non <select> natif) pour respecter
-     le curseur personnalisé du site (rond vert).
+   • Cartes radio (et non <select>) pour respecter le curseur du site.
    • Bouton réinitialisé au retour navigateur (cache bfcache).
    ============================================================ */
 (function () {
@@ -15,9 +15,6 @@
   var btn = document.querySelector('a.payment-button');
   if (!btn || !ENDPOINT) return;
 
-  /* Déploiement progressif : pendant la phase de test, le nouveau flux ne
-     s'active que si window.SL_CHECKOUT_LIVE === true, OU si l'URL contient
-     ?checkout=test (mémorisé ensuite). Sinon : repli sur le Payment Link. */
   var LIVE = (window.SL_CHECKOUT_LIVE === true);
   var TESTFLAG = /[?&]checkout=test\b/.test(location.search) ||
     (function () { try { return localStorage.getItem('sl_checkout_test') === '1'; } catch (e) { return false; } })();
@@ -49,16 +46,39 @@
     return p || DEFAULT_COLOR[pageKey()] || '';
   }
 
-  /* Zones (AFFICHAGE seulement ; le Worker fait foi sur prix/transporteur/pays) */
+  /* Zones (AFFICHAGE ; le Worker fait foi sur prix/transporteur/pays).
+     num = montant numérique du port, identique au Worker (amount/100). */
   var ZONES = {
-    fr:   { fr: 'France & Monaco',      en: 'France & Monaco',  carrier: 'UPS Standard', amount: '9,90 €' },
-    eu:   { fr: 'Union européenne', en: 'European Union',   carrier: 'DHL Express',  amount: '19,90 €' },
-    chuk: { fr: 'Suisse & Royaume-Uni', en: 'Switzerland & UK', carrier: 'DHL Express',  amount: '29,90 €' },
-    na:   { fr: 'Amérique du Nord', en: 'North America',    carrier: 'UPS Standard', amount: '49,90 €' }
+    fr:     { fr: 'France & Monaco',            en: 'France & Monaco',            carrier: 'UPS Standard', amount: '9,90 €',  num: 9.90 },
+    eu:     { fr: 'Union européenne',           en: 'European Union',             carrier: 'DHL Express',  amount: '19,90 €', num: 19.90 },
+    europe: { fr: 'Europe hors UE',             en: 'Non-EU Europe',              carrier: 'DHL Express',  amount: '29,90 €', num: 29.90 },
+    na:     { fr: 'Amérique du Nord',           en: 'North America',              carrier: 'UPS Standard', amount: '49,90 €', num: 49.90 },
+    latam:  { fr: 'Amérique latine & Caraïbes', en: 'Latin America & Caribbean',  carrier: 'DHL Express',  amount: '74,90 €', num: 74.90 },
+    asia:   { fr: 'Asie, Océanie & Moyen-Orient', en: 'Asia, Oceania & Middle East', carrier: 'DHL Express', amount: '74,90 €', num: 74.90 },
+    world:  { fr: 'Afrique & reste du monde',   en: 'Africa & rest of world',     carrier: 'DHL Express',  amount: '84,90 €', num: 84.90 }
   };
-  var ORDER = ['fr', 'eu', 'chuk', 'na'];
+  var ORDER = ['fr', 'eu', 'europe', 'na', 'latam', 'asia', 'world'];
 
-  /* --- Sélecteur de zone en cartes radio (inséré avant le bouton) --- */
+  /* --- Prix de la sculpture (via slPrice de sl-head.js), repli sur la cellule --- */
+  function productPrice() {
+    var s = sculptFromKey(pageKey());
+    var raw = color();
+    var ck = window.slNormColor ? window.slNormColor(raw) : raw.toLowerCase();
+    var ed = (window.SL_ED_MAP && window.SL_ED_MAP[s]) ? window.SL_ED_MAP[s][ck] : null;
+    var p = (window.slPrice && ed) ? window.slPrice(s, raw, ed) : null;
+    if (p == null) {
+      var c0 = document.querySelector('.order-summary-table td.price-column');
+      if (c0) p = parseFloat(c0.textContent.replace(/[^0-9.,]/g, '').replace(',', '.')) || 0;
+    }
+    return p || 0;
+  }
+  function fmtEur(v) {
+    var r = Math.round(v * 100) / 100;
+    var s = (Math.abs(r % 1) < 0.005) ? String(Math.round(r)) : r.toFixed(2).replace('.', ',');
+    return s + ' €';
+  }
+
+  /* --- Sélecteur de zone en cartes radio --- */
   var wrap = document.createElement('div'); wrap.className = 'ship-zone';
   var lab = document.createElement('div'); lab.className = 'ship-zone-label';
   var opts = document.createElement('div'); opts.className = 'ship-zone-opts'; opts.setAttribute('role', 'radiogroup');
@@ -83,13 +103,20 @@
   }
   function selectZone(z) {
     ORDER.forEach(function (k) { radios[k].opt.classList.toggle('selected', k === z); });
-    updateShippingRow();
+    updateTable();
   }
-  function updateShippingRow() {
-    var zz = ZONES[selectedZone()];
-    if (!zz) return;
-    var cell = document.querySelector('td[data-i18n="summary.shippingFree"]');
-    if (cell) { cell.removeAttribute('data-i18n'); cell.textContent = zz.carrier + ' · ' + zz.amount; }
+  /* Met à jour la ligne Livraison + le Total (sculpture + port) + le libellé */
+  function updateTable() {
+    var z = ZONES[selectedZone()]; if (!z) return;
+    var cells = document.querySelectorAll('.order-summary-table td.price-column');
+    if (cells.length >= 3) {
+      cells[1].removeAttribute('data-i18n');
+      cells[1].textContent = z.carrier + ' · ' + z.amount;
+      cells[2].removeAttribute('data-i18n');
+      cells[2].textContent = fmtEur(productPrice() + z.num);
+    }
+    var totalLabel = document.querySelector('.order-summary-table tr:last-child td:first-child');
+    if (totalLabel) { totalLabel.removeAttribute('data-i18n'); totalLabel.textContent = 'Total'; }
   }
   function renderLabels() {
     var L = curLang();
@@ -98,10 +125,10 @@
       var zz = ZONES[z];
       radios[z].txt.textContent = (L === 'en' ? zz.en : zz.fr) + ' — ' + zz.carrier + ' · ' + zz.amount;
     });
-    updateShippingRow();
+    updateTable();
   }
 
-  /* Rafraîchir au changement de langue */
+  /* Rafraîchir au changement de langue (après le script de coloris/prix) */
   if (typeof window.setLanguage === 'function') {
     var prev = window.setLanguage;
     window.setLanguage = function (l) { prev(l); renderLabels(); };
@@ -110,7 +137,12 @@
     var b = document.getElementById(id);
     if (b) b.addEventListener('click', function () { setTimeout(renderLabels, 0); });
   });
-  renderLabels();
+  /* Rendu initial APRÈS le script inline de coloris/prix (qui tourne au DOMContentLoaded) */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(renderLabels, 0); });
+  } else {
+    setTimeout(renderLabels, 0);
+  }
 
   /* --- Bouton « Finaliser ma commande » : interception + reset robuste --- */
   var busy = false;
@@ -121,9 +153,6 @@
     btn.style.opacity = '';
     if (savedLabel !== null) { btn.textContent = savedLabel; savedLabel = null; }
   }
-  /* Réinitialise le bouton quand la page est restaurée depuis le cache
-     navigateur (bouton « Précédent » depuis Stripe) — sinon il reste figé
-     sur « Redirection… » et non cliquable. */
   window.addEventListener('pageshow', function () { resetBtn(); });
 
   btn.addEventListener('click', function (e) {
