@@ -167,16 +167,16 @@ export default {
       cancel_url: cancelUrl,
       billing_address_collection: 'required',
       phone_number_collection: { enabled: 'true' },
-      /* --- Anti-fraude (commandes à forte valeur) ---
-         Liste blanche des moyens de paiement : on n'autorise QUE des méthodes
-         à faible risque de litige. Bancontact/EPS = redirections bancaires
-         authentifiées (quasi increvables) ; Link = portefeuille Stripe
-         authentifié ; carte = protégée par 3D Secure ci-dessous.
-         Volontairement exclus : Klarna/BNPL (litiges « non reçu » élevés) et
-         les méthodes géographiquement hors sujet (kakao_pay, naver_pay, payco,
-         blik, samsung_pay…). Pour en ajouter une : compléter ce tableau ET
-         l'activer dans Dashboard → Réglages → Moyens de paiement. */
-      payment_method_types: ['card', 'link', 'bancontact', 'eps'],
+      /* --- Anti-fraude + compatibilité port ---
+         On force la CARTE uniquement. Raison : les autres méthodes (Bancontact,
+         EPS, iDEAL… redirections bancaires, ainsi que Link) ne sont PAS
+         compatibles avec `shipping_options` (le port adapté au pays plus bas).
+         Les inclure faisait ÉCHOUER la création de session → repli sur Payment
+         Link → port perdu. La carte est de toute façon la seule méthode que
+         Stripe proposait déjà pour ces commandes avec livraison.
+         Le risque de fraude carte est couvert par le 3D Secure forcé ci-dessous.
+         (Klarna/BNPL reste volontairement exclu : litiges « non reçu » élevés.) */
+      payment_method_types: ['card'],
       /* 3D Secure forcé sur TOUTES les cartes (et pas seulement quand la SCA
          UE l'impose) : l'authentification forte fait basculer la responsabilité
          d'une fraude sur la banque émettrice, y compris pour les cartes hors UE
