@@ -9,13 +9,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="legal.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="sculptlab-chrome.css">
   <style>
-    body { margin: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #fff; }
-    .merci { max-width: 620px; margin: 0 auto; padding: 18px 24px 80px; text-align: center; }
+    /* Contenu de la page de remerciement (le chrome vient de legal.css + sculptlab-chrome.css) */
+    .merci { max-width: 620px; margin: 0 auto; padding: 26px 24px 60px; text-align: center; }
     .merci-check { width: 78px; height: 78px; margin: 6px auto 26px; }
     .merci h2 {
       font-family: 'Jost', 'Futura', 'Century Gothic', sans-serif;
@@ -29,75 +30,75 @@
     .merci-btn {
       display: inline-block; margin-top: 38px;
       background: #ff66a3; color: #fff;
-      font-family: inherit; font-weight: 700; font-size: 1.05em;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 1.05em;
       padding: 15px 40px; border-radius: 999px; text-decoration: none;
       transition: transform .12s cubic-bezier(.25,.1,.25,1), background .15s ease;
     }
     .merci-btn:hover { transform: translateY(-2px); background: #f23d86; }
-    @media (max-width: 480px) { .merci h2 { font-size: 1.6em; } .merci { padding: 10px 20px 64px; } }
+    @media (max-width: 480px) { .merci h2 { font-size: 1.6em; } .merci { padding: 18px 20px 48px; } }
   </style>
   <script src="site.js" defer></script>
 </head>
-<body>
+<body class="lang-fr">
 
-  <!-- Bandeau turquoise (identique au reste du site) -->
-  <div class="section-turquoise">
-    <img src="signature.png" alt="Signature de l'artiste SculptLab" class="signature" width="256" height="256">
+  <div class="content">
+    <!-- Bandeau turquoise (identique au reste du site) -->
+    <div class="section section-turquoise">
+      <img src="signature.png" alt="Signature de l'artiste SculptLab" class="signature" width="256" height="256">
 
-    <button class="mobile-menu-toggle" aria-label="Menu" aria-haspopup="true" onclick="toggleMobileMenu()">☰</button>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" data-i18n="menu.works">Œuvres.</a>
-      <a href="about.html" data-i18n="menu.about">À propos.</a>
-      <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-      <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
-      <div class="lang-toggle">
-        <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
-        <span>·</span>
-        <button type="button" id="btn-en-mobile" aria-label="English" lang="en">EN</button>
+      <button class="mobile-menu-toggle" aria-label="Menu" aria-haspopup="true" onclick="toggleMobileMenu()">☰</button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+        <a href="about.html" data-i18n="menu.about">À propos.</a>
+        <a href="contact.html" data-i18n="menu.contact">Contact.</a>
+        <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
+        <div class="lang-toggle">
+          <button type="button" id="btn-fr-mobile" aria-label="Français" lang="fr" class="active">FR</button>
+          <span>·</span>
+          <button type="button" id="btn-en-mobile" aria-label="English" lang="en">EN</button>
+        </div>
       </div>
+
+      <div class="header-menu">
+        <a href="index.html" data-i18n="menu.works">Œuvres.</a>
+        <a href="about.html" data-i18n="menu.about">À propos.</a>
+        <a href="contact.html" data-i18n="menu.contact">Contact.</a>
+        <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
+        <div class="lang-toggle">
+          <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
+          <span>·</span>
+          <button type="button" id="btn-en" aria-label="English" lang="en">EN</button>
+        </div>
+      </div>
+
+      <h1 class="main-title" data-i18n="merci.title">Merci.</h1>
     </div>
 
-    <div class="header-menu">
-      <a href="index.html" data-i18n="menu.works">Œuvres.</a>
-      <a href="about.html" data-i18n="menu.about">À propos.</a>
-      <a href="contact.html" data-i18n="menu.contact">Contact.</a>
-      <a href="purchase.html" data-i18n="menu.purchase">Acquérir.</a>
-      <div class="lang-toggle">
-        <button type="button" id="btn-fr" aria-label="Français" lang="fr" class="active">FR</button>
-        <span>·</span>
-        <button type="button" id="btn-en" aria-label="English" lang="en">EN</button>
+    <!-- Confirmation -->
+    <main class="merci">
+      <div class="merci-check" aria-hidden="true">
+        <svg viewBox="0 0 78 78" width="78" height="78" role="img" aria-label="Commande confirmée">
+          <circle cx="39" cy="39" r="39" fill="#2bbfa0"></circle>
+          <path d="M23 40 L34 51 L56 27" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
       </div>
-    </div>
 
-    <h1 class="main-title" data-i18n="merci.title">Merci.</h1>
+      <h2 data-i18n="merci.heading">Votre commande est confirmée</h2>
+      <p class="merci-lead" data-i18n="merci.message">SculptLab. vous remercie chaleureusement pour cette commande&nbsp;! À très vite&nbsp;!</p>
+      <p class="merci-sub" data-i18n="merci.email">Un e-mail de confirmation vous a été envoyé.</p>
+      <div class="merci-ref" id="merci-ref"></div>
+
+      <a class="merci-btn" href="index.html" data-i18n="merci.back">Retour aux œuvres</a>
+    </main>
   </div>
-
-  <!-- Confirmation -->
-  <main class="merci">
-    <div class="merci-check" aria-hidden="true">
-      <svg viewBox="0 0 78 78" width="78" height="78" role="img" aria-label="Commande confirmée">
-        <circle cx="39" cy="39" r="39" fill="#2bbfa0"></circle>
-        <path d="M23 40 L34 51 L56 27" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </div>
-
-    <h2 data-i18n="merci.heading">Votre commande est confirmée</h2>
-    <p class="merci-lead" data-i18n="merci.message">SculptLab. vous remercie chaleureusement pour cette commande&nbsp;! À très vite&nbsp;!</p>
-    <p class="merci-sub" data-i18n="merci.email">Un e-mail de confirmation vous a été envoyé.</p>
-    <div class="merci-ref" id="merci-ref"></div>
-
-    <a class="merci-btn" href="index.html" data-i18n="merci.back">Retour aux œuvres</a>
-  </main>
 
   <footer>
     <p>© <span id="year"></span> by SculptLab. <span data-i18n="footer.rights">Tous droits réservés.</span> | <a href="mentions_legales.html" data-i18n="footer.legal">Mentions légales</a></p>
   </footer>
 
   <script>
-    // Année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Menu mobile
     function toggleMobileMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
     }
@@ -109,7 +110,6 @@
       }
     });
 
-    // Dictionnaire FR / EN
     var translations = {
       fr: {
         "menu.works": "Œuvres.", "menu.about": "À propos.", "menu.contact": "Contact.", "menu.purchase": "Acquérir.",
@@ -141,6 +141,8 @@
     function setLanguage(lang) {
       try { localStorage.setItem('lang', lang); } catch (e) {}
       document.documentElement.lang = lang;
+      document.body.classList.remove('lang-fr', 'lang-en');
+      document.body.classList.add('lang-' + lang);
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var key = el.getAttribute('data-i18n');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
@@ -153,7 +155,7 @@
       updateRef(lang);
     }
 
-    // Langue initiale : ?lang= (transmis par le checkout) > choix mémorisé > français
+    // Langue : ?lang= (transmis par le checkout) > choix mémorisé > français
     (function () {
       var qp = new URLSearchParams(location.search);
       var q = (qp.get('lang') || '').toLowerCase();
@@ -164,13 +166,11 @@
       setLanguage(lang);
     })();
 
-    // Bascule FR / EN
     document.getElementById('btn-fr').addEventListener('click', function () { setLanguage('fr'); });
     document.getElementById('btn-en').addEventListener('click', function () { setLanguage('en'); });
     document.getElementById('btn-fr-mobile').addEventListener('click', function () { setLanguage('fr'); document.getElementById('mobileMenu').classList.remove('active'); });
     document.getElementById('btn-en-mobile').addEventListener('click', function () { setLanguage('en'); document.getElementById('mobileMenu').classList.remove('active'); });
 
-    // Fermer le menu mobile au clic sur un lien
     document.querySelectorAll('.mobile-menu a').forEach(function (link) {
       link.addEventListener('click', function () { document.getElementById('mobileMenu').classList.remove('active'); });
     });
