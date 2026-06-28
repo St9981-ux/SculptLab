@@ -49,15 +49,13 @@
   /* Zones (AFFICHAGE ; le Worker fait foi sur prix/transporteur/pays).
      num = montant numérique du port, identique au Worker (amount/100). */
   var ZONES = {
-    fr:     { fr: 'France & Monaco',            en: 'France & Monaco',            carrier: 'UPS Standard', amount: '9,90 €',  num: 9.90 },
-    eu:     { fr: 'Union européenne',           en: 'European Union',             carrier: 'DHL Express',  amount: '19,90 €', num: 19.90 },
-    europe: { fr: 'Europe hors UE',             en: 'Non-EU Europe',              carrier: 'DHL Express',  amount: '29,90 €', num: 29.90 },
-    na:     { fr: 'Amérique du Nord',           en: 'North America',              carrier: 'UPS Standard', amount: '49,90 €', num: 49.90 },
-    latam:  { fr: 'Amérique latine & Caraïbes', en: 'Latin America & Caribbean',  carrier: 'DHL Express',  amount: '74,90 €', num: 74.90 },
-    asia:   { fr: 'Asie, Océanie & Moyen-Orient', en: 'Asia, Oceania & Middle East', carrier: 'DHL Express', amount: '74,90 €', num: 74.90 },
-    world:  { fr: 'Afrique & reste du monde',   en: 'Africa & rest of world',     carrier: 'DHL Express',  amount: '84,90 €', num: 84.90 }
+    fr:     { fr: 'France & Monaco',  en: 'France & Monaco',     carrier: 'UPS Standard', amount: '9,90 €',  num: 9.90 },
+    eu:     { fr: 'Union européenne', en: 'European Union',      carrier: 'DHL Express',  amount: '19,90 €', num: 19.90 },
+    europe: { fr: 'Europe hors UE',   en: 'Non-EU Europe',       carrier: 'DHL Express',  amount: '29,90 €', num: 29.90 },
+    na:     { fr: 'Amérique du Nord', en: 'North America',       carrier: 'UPS Standard', amount: '49,90 €', num: 49.90 },
+    world:  { fr: 'Reste du monde',   en: 'Rest of the world',   carrier: 'DHL Express',  amount: '89,90 €', num: 89.90 }
   };
-  var ORDER = ['fr', 'eu', 'europe', 'na', 'latam', 'asia', 'world'];
+  var ORDER = ['fr', 'eu', 'europe', 'na', 'world'];
 
   /* --- Prix de la sculpture (via slPrice de sl-head.js), repli sur la cellule --- */
   function productPrice() {
