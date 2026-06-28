@@ -280,7 +280,7 @@ body[data-sl-edition="unique"] #sl-ed-note::before{
   content:"";
   display:inline-block;
   width:1.1em;height:1.1em;border-radius:50%;
-  margin-right:.4em;vertical-align:middle;position:relative;top:-0.04em;
+  margin-right:.4em;vertical-align:middle;position:relative;top:-0.08em;
   background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpolygon%20points='12.00,1.00%2014.59,8.44%2022.46,8.60%2016.18,13.36%2018.47,20.90%2012.00,16.40%205.53,20.90%207.82,13.36%201.54,8.60%209.41,8.44'%20fill='white'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:center;background-size:62%;
 }
