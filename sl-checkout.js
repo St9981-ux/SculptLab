@@ -186,13 +186,13 @@
       })
       .catch(function () {
         resetBtn();
-        if (fallback && fallback.indexOf('http') === 0) {
-          window.location.href = fallback;
-        } else {
-          alert(L === 'en'
-            ? 'Payment temporarily unavailable. Please try again.'
-            : 'Paiement momentanément indisponible. Merci de réessayer.');
-        }
+        // Volontairement : on NE bascule PAS sur le href de repli (Payment Link).
+        // Ce lien ne collecte pas les frais de port (sous-facturation) et, en
+        // mode live, les liens configurés sont en test (paiement cassé). Mieux
+        // vaut une erreur visible qu'un paiement sans livraison ou non réel.
+        alert(L === 'en'
+          ? 'Payment is temporarily unavailable. Please try again in a moment.'
+          : 'Le paiement est momentanément indisponible. Merci de réessayer dans un instant.');
       });
   });
 })();
