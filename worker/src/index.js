@@ -118,8 +118,111 @@ function encodeForm(obj, prefix, out) {
   return out;
 }
 
+/* ============================================================
+   Webhook Stripe — confirmation FIABLE du paiement (server-to-server).
+   Stripe appelle POST /webhook après chaque paiement. On VÉRIFIE la
+   signature (sinon n'importe qui pourrait fabriquer de fausses
+   confirmations), puis sur `checkout.session.completed` payé on envoie
+   un récap de commande vers ORDER_NOTIFY_URL. Ça te prévient sans
+   dépendre du retour du client sur /merci.html.
+   Secret requis : STRIPE_WEBHOOK_SECRET (signing secret « whsec_… »).
+   Optionnel : ORDER_NOTIFY_URL (URL de webhook Discord OU Slack).
+   ============================================================ */
+function timingSafeEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let r = 0;
+  for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+
+async function verifyStripeSignature(rawBody, sigHeader, secret) {
+  if (!sigHeader || !secret) return false;
+  let t = null;
+  const v1 = [];
+  sigHeader.split(',').forEach((part) => {
+    const i = part.indexOf('=');
+    if (i < 0) return;
+    const k = part.slice(0, i), val = part.slice(i + 1);
+    if (k === 't') t = val;
+    else if (k === 'v1') v1.push(val);
+  });
+  if (!t || v1.length === 0) return false;
+  // Tolérance anti-rejeu : 5 minutes
+  if (Math.abs(Math.floor(Date.now() / 1000) - Number(t)) > 300) return false;
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const mac = await crypto.subtle.sign('HMAC', key, enc.encode(`${t}.${rawBody}`));
+  const expected = [...new Uint8Array(mac)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  return v1.some((sig) => timingSafeEqual(expected, sig));
+}
+
+async function notifyOrder(session, env) {
+  if (!env.ORDER_NOTIFY_URL) return;
+  const m = session.metadata || {};
+  const cust = session.customer_details || {};
+  const ci = session.collected_information || {};
+  const ship = (session.shipping_details && session.shipping_details.address)
+    || (ci.shipping_details && ci.shipping_details.address)
+    || {};
+  const amount = session.amount_total != null
+    ? (session.amount_total / 100).toFixed(2) + ' ' + String(session.currency || 'eur').toUpperCase()
+    : '?';
+  const addr = [ship.line1, ship.line2, ship.postal_code, ship.city, ship.country].filter(Boolean).join(', ');
+  const text = [
+    '🟢 Nouvelle commande SculptLab',
+    `Sculpture : ${m.sculpture || '?'} – ${m.color || '?'} (${m.edition || '?'})`,
+    `Montant payé : ${amount}`,
+    `Transport : ${m.carrier || '?'} (zone ${m.zone || '?'})`,
+    `Client : ${cust.name || '?'} <${cust.email || '?'}>`,
+    `Livraison : ${addr || '?'}`,
+    `Session : ${session.id}`
+  ].join('\n');
+  try {
+    // "content" = format Discord ; "text" = format Slack. Compatible avec les deux.
+    await fetch(env.ORDER_NOTIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: text, text })
+    });
+  } catch (e) { /* notification best-effort : ne JAMAIS faire échouer le webhook */ }
+}
+
+async function handleStripeWebhook(request, env, ctx) {
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { 'Content-Type': 'application/json' } });
+  }
+  if (!env.STRIPE_WEBHOOK_SECRET) {
+    return new Response(JSON.stringify({ error: 'Webhook not configured' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+  }
+  const raw = await request.text();
+  const ok = await verifyStripeSignature(raw, request.headers.get('Stripe-Signature') || '', env.STRIPE_WEBHOOK_SECRET);
+  if (!ok) {
+    return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  }
+  let event;
+  try { event = JSON.parse(raw); } catch (e) {
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  }
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data && event.data.object;
+    // payé immédiatement (carte) ou statut absent : on notifie. Méthodes
+    // différées (non utilisées ici) passeraient par async_payment_succeeded.
+    if (session && (session.payment_status === 'paid' || session.payment_status == null)) {
+      ctx.waitUntil(notifyOrder(session, env));
+    }
+  }
+  return new Response(JSON.stringify({ received: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+
+    // Webhook Stripe : confirmation de paiement (server-to-server, pas de CORS).
+    if (url.pathname.endsWith('/webhook')) {
+      return handleStripeWebhook(request, env, ctx);
+    }
+
     const origin = request.headers.get('Origin') || '';
 
     if (request.method === 'OPTIONS') {

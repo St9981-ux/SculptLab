@@ -80,6 +80,31 @@ valeur) :
 Radar → ajouter des règles (bloquer si risque « highest », mettre en revue si
 risque « elevated », bloquer si CVC ou code postal échoue).
 
+## Webhook de confirmation de commande
+
+Le worker expose aussi `POST /webhook` : Stripe l'appelle après chaque
+paiement, c'est la **confirmation fiable** (indépendante du retour du client
+sur `/merci.html`). La signature est vérifiée (HMAC-SHA256) ; sur
+`checkout.session.completed` payé, un récap de commande est envoyé vers
+`ORDER_NOTIFY_URL` si défini.
+
+**Mise en place :**
+1. Dashboard Stripe → **Développeurs → Webhooks → Add endpoint**
+   - URL : `https://sculptlab-checkout.<sous-domaine>.workers.dev/webhook`
+   - Événement : `checkout.session.completed`
+   - Copier le **signing secret** affiché (`whsec_…`).
+2. L'ajouter au worker **en type Secret (chiffré)** :
+   - Dashboard Cloudflare → worker → Settings → Variables and Secrets →
+     `STRIPE_WEBHOOK_SECRET` = `whsec_…` (type **Secret**, pas Texte), ou
+     `npx wrangler secret put STRIPE_WEBHOOK_SECRET`.
+3. (Optionnel) Pour être notifié à chaque commande, ajouter `ORDER_NOTIFY_URL`
+   = l'URL d'un webhook **Discord** ou **Slack** (le message est compatible avec
+   les deux). Sans cette variable, le webhook vérifie et répond 200 sans notifier.
+
+> ⚠️ Toujours mettre `STRIPE_SECRET_KEY` et `STRIPE_WEBHOOK_SECRET` en type
+> **Secret (chiffré)**. Une variable en clair est réécrite/vidée à chaque
+> déploiement Wrangler — un Secret chiffré, jamais.
+
 ## Passage en production (plus tard)
 
 1. `npx wrangler secret put STRIPE_SECRET_KEY` avec la clé **live** (`sk_live_…`).
