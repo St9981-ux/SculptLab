@@ -10,6 +10,9 @@ Usage :  python3 build/build_en.py
 """
 import re, json, os, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_pricing
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ['index.html','about.html','contact.html','purchase.html','io1.html','io2.html',
          'zamu1.html','zamu2.html','enigma1.html','enigma2.html',
@@ -279,6 +282,9 @@ def sync_fr_nav():
     print(f"{n} page(s) FR resynchronisée(s) (menus).")
 
 def main():
+    # 0) Garde-fou : prix / éditions / port cohérents entre le site et le worker.
+    #    check_pricing.main() s'arrête (exit 1) en cas de divergence → build avorté.
+    check_pricing.main()
     # 1) Source unique des menus : resynchroniser les pages FR
     sync_fr_nav()
     # 2) Générer les pages en/ depuis les sources FR
