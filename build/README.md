@@ -33,3 +33,17 @@ partial puis relancer `python3 build/build_en.py` (opération idempotente).
 
 Pages générées (18) : index, about, contact, purchase, io1, io2, zamu1, zamu2,
 enigma1, enigma2, cgv, mentions_legales, et les 6 `*_summary`.
+
+## Vérifier la cohérence des prix / du port
+Les prix, éditions et tarifs de port sont **dupliqués** (par nécessité) entre :
+- `sl-head.js` (prix + éditions, affichage),
+- `sl-checkout.js` (montants de port, affichage),
+- `worker/src/index.js` (prix + éditions + port, facturation côté serveur).
+
+Pour éviter qu'un prix **affiché** diffère du prix **débité**, lancer après toute
+modification de prix/port :
+```bash
+python3 build/check_pricing.py
+```
+Le script affiche `✓` si tout concorde, sinon il liste les écarts et sort en
+erreur (code 1). À lancer avant de déployer.
