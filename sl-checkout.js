@@ -21,6 +21,14 @@
   if (!LIVE && !TESTFLAG) return;
   if (TESTFLAG) { try { localStorage.setItem('sl_checkout_test', '1'); } catch (e) {} }
 
+  /* Checkout dynamique actif : on neutralise l'ancien Payment Link du bouton.
+     - href '#' : sans ça, un clic-molette / Ctrl+clic ouvre le lien statique en
+       contournant l'intercepteur ci-dessous → paiement SANS frais de port.
+     - slPayLink -> null : empêche site.js (applyPayLink) de reposer le lien au
+       DOMContentLoaded ou à la bascule de langue. */
+  btn.setAttribute('href', '#');
+  window.slPayLink = function () { return null; };
+
   /* Détection sculpture / coloris / langue (aligné sur site.js) */
   var DEFAULT_COLOR = {
     io1: 'Sorbet', io2: 'Outremer',
@@ -160,10 +168,14 @@
     var sculpt = sculptFromKey(pageKey());
     var col = color();
     var zone = selectedZone();
-    var fallback = btn.getAttribute('href');
 
     if (!sculpt || !col || !zone) {
-      if (fallback) window.location.href = fallback;
+      // Cas normalement inatteignable (valeurs par défaut partout) : même
+      // message que l'échec réseau — surtout ne pas rediriger vers un
+      // Payment Link sans frais de port.
+      alert(curLang() === 'en'
+        ? 'Payment is temporarily unavailable. Please try again in a moment.'
+        : 'Le paiement est momentanément indisponible. Merci de réessayer dans un instant.');
       return;
     }
 

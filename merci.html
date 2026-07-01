@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7BNG9RNN76"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
+    gtag('config', 'G-7BNG9RNN76');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
@@ -147,6 +157,20 @@
     };
 
     var SID = new URLSearchParams(location.search).get('session_id') || '';
+
+    // Conversion GA4 : un événement `purchase` par session Checkout, dédupliqué
+    // via localStorage (recharger la page ne recompte pas la vente).
+    // Pas de montant côté client (le prix n'est pas exposé ici) : l'événement
+    // sert à l'attribution source/campagne -> vente, pas au chiffre d'affaires.
+    if (SID && typeof gtag === 'function') {
+      var __pDone = null;
+      try { __pDone = localStorage.getItem('sl_purchase_' + SID); } catch (e) {}
+      if (!__pDone) {
+        gtag('event', 'purchase', { transaction_id: SID, currency: 'EUR' });
+        try { localStorage.setItem('sl_purchase_' + SID, '1'); } catch (e) {}
+      }
+    }
+
     function updateRef(lang) {
       var r = document.getElementById('merci-ref');
       if (!r) return;
