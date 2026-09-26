@@ -2562,9 +2562,9 @@ svg {
     font-size: 14px;
     align-items: baseline;
   }
+  /* On phones the price is shown under the photograph (.preview-selection), with the chosen finish. */
   .product-subline .price {
-    font-size: 23px;
-    white-space: nowrap;
+    display: none;
   }
   .product-gallery {
     grid-column: 1;
