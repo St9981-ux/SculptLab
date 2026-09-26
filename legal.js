@@ -103,7 +103,7 @@ const LEGAL = {
       },
       {
         "title": "4. Données personnelles",
-        "body": "Le responsable de traitement est SculptLab. Les données collectées (formulaire de contact, commande et paiement) servent uniquement à traiter vos demandes, commandes et livraisons. Elles sont traitées, en qualité de sous-traitants, par GitHub (hébergement du site), FormSubmit (envoi du formulaire de contact), Cloudflare (préparation du paiement), Stripe (paiement) et, uniquement avec votre consentement, Google Analytics (mesure d'audience). Certains de ces prestataires sont établis hors de l'Union européenne. Vos données ne sont jamais revendues. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition, que vous pouvez exercer à l'adresse info@sculptlab.fr. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+        "body": "Le responsable de traitement est SculptLab. Les données collectées (formulaire de contact, commande et paiement) servent uniquement à traiter vos demandes, commandes et livraisons. Elles sont traitées, en qualité de sous-traitants, par GitHub (hébergement du site), FormSubmit (envoi du formulaire de contact), Cloudflare (préparation du paiement), Stripe (paiement) et, uniquement avec votre consentement, Google Analytics (mesure d'audience). Certains de ces prestataires sont établis hors de l'Union européenne. Vos données ne sont jamais revendues.<br><br>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition, que vous pouvez exercer à l'adresse info@sculptlab.fr. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr)."
       },
       {
         "title": "5. Cookies",
@@ -133,7 +133,7 @@ const LEGAL = {
       },
       {
         "title": "4. Personal Data",
-        "body": "The data controller is SculptLab. The data collected (contact form, orders and payment) is used solely to process your requests, orders and deliveries. It is processed, as processors, by GitHub (website hosting), FormSubmit (contact form delivery), Cloudflare (payment preparation), Stripe (payment) and, only with your consent, Google Analytics (audience measurement). Some of these providers are based outside the European Union. Your data is never resold. In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to your data, which you can exercise at info@sculptlab.fr. You may also lodge a complaint with the French data protection authority, the CNIL (www.cnil.fr)."
+        "body": "The data controller is SculptLab. The data collected (contact form, orders and payment) is used solely to process your requests, orders and deliveries. It is processed, as processors, by GitHub (website hosting), FormSubmit (contact form delivery), Cloudflare (payment preparation), Stripe (payment) and, only with your consent, Google Analytics (audience measurement). Some of these providers are based outside the European Union. Your data is never resold.<br><br>In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to your data, which you can exercise at info@sculptlab.fr. You may also lodge a complaint with the French data protection authority, the CNIL (www.cnil.fr)."
       },
       {
         "title": "5. Cookies",
