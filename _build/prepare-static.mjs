@@ -37,14 +37,19 @@ const abs=u=>origin+u;
 const jsonLd=data=>'<script type="application/ld+json">'+JSON.stringify(data).replace(/</g,'\\u003c')+'</script>';
 const norm=v=>String(v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-|-$/g,'').toUpperCase();
 const sameAs=['https://www.instagram.com/sculptlab','https://www.facebook.com/sculptlab'];
+const address={'@type':'PostalAddress','streetAddress':'1364 route de la Fènerie','postalCode':'06580','addressLocality':'Pégomas','addressRegion':'Alpes-Maritimes','addressCountry':'FR'};
+const returnPolicy={'@type':'MerchantReturnPolicy','applicableCountry':'FR','returnPolicyCategory':'https://schema.org/MerchantReturnFiniteReturnWindow','merchantReturnDays':14,'returnMethod':'https://schema.org/ReturnByMail','returnFees':'https://schema.org/ReturnFeesCustomerResponsibility'};
+// 1200×630 JPEG share images (assets/og/), readable by every social network.
+function ogImage(p){const w=p.match(/^\/(?:oeuvres|acquerir)\/(io|zamu|enigma)\/$/);if(w)return '/assets/og/'+w[1]+'.jpg';if(p==='/collection/'||p==='/acquerir/')return '/assets/og/collection.jpg';if(p==='/atelier/')return '/assets/og/atelier.jpg';return '/assets/og/sculptlab.jpg'}
 // Metadata that depends on the page: shared preview image, indexing and structured data.
 function pageMeta(p,lang){
  const en=lang==='en',work=p.match(/^\/(oeuvres|acquerir)\/(io|zamu|enigma)\/$/),w=work&&WORKS_DATA[work[2]];
  const noindex=Boolean(work&&work[1]==='acquerir')||p==='/merci/';
- let image='/assets/acquerir-enigma-outremer.webp',imageAlt='Enigma — Outremer',type='website';const ld=[];
- if(p==='/atelier/'){image='/assets/about1.webp';imageAlt=en?'In the SculptLab studio':'Dans l’atelier SculptLab'}
+ let image=ogImage(p),imageAlt=en?'Enigma, sculpture by SculptLab':'Enigma, sculpture SculptLab',type='website';const ld=[];
+ if(p==='/collection/'||p==='/acquerir/')imageAlt=en?'Io, Za’mu and Enigma, sculptures by SculptLab':'Io, Za’mu et Enigma, sculptures SculptLab';
+ if(p==='/atelier/')imageAlt=en?'A sculpture being modelled in the SculptLab studio':'Une sculpture en cours de modelage dans l’atelier SculptLab';
  if(w){
-  const v=w.variants.find(x=>x.name===w.default)||w.variants[0];image=v.image;imageAlt=w.name+' — '+(en?v.nameEn||v.name:v.name);
+  const v=w.variants.find(x=>x.name===w.default)||w.variants[0];imageAlt=w.name+' — '+(en?v.nameEn||v.name:v.name);
   if(work[1]==='oeuvres'){
    type='product';
    const page=origin+localized(p,lang),param=en?'finish':'finition';
@@ -52,9 +57,9 @@ function pageMeta(p,lang){
     'description':en?(w.descriptionEn||w.description):w.description,'image':abs(v.image),'brand':{'@type':'Brand','name':'SculptLab'},
     'category':'Sculpture','material':en?'Hand-painted resin':'Résine peinte à la main','variesBy':['https://schema.org/color'],
     'height':{'@type':'QuantitativeValue','value':30,'unitCode':'CMT'},'width':{'@type':'QuantitativeValue','value':15,'unitCode':'CMT'},'depth':{'@type':'QuantitativeValue','value':15,'unitCode':'CMT'},
-    'hasVariant':w.variants.map(x=>({'@type':'Product','sku':norm(w.id)+'-'+norm(x.name),'name':w.name+' — '+(en?x.nameEn||x.name:x.name),'color':en?x.nameEn||x.name:x.name,'image':abs(x.image),
+    'hasVariant':w.variants.map(x=>({'@type':'Product','inProductGroupWithID':w.id.toUpperCase(),'sku':norm(w.id)+'-'+norm(x.name),'name':w.name+' — '+(en?x.nameEn||x.name:x.name),'color':en?x.nameEn||x.name:x.name,'image':abs(x.image),
      'offers':{'@type':'Offer','url':page+'?'+param+'='+encodeURIComponent(x.name),'price':x.price.toFixed(2),'priceCurrency':'EUR','availability':'https://schema.org/InStock','itemCondition':'https://schema.org/NewCondition',
-      'seller':{'@type':'Organization','name':'SculptLab'},
+      'seller':{'@type':'Organization','name':'SculptLab'},'hasMerchantReturnPolicy':returnPolicy,
       'shippingDetails':{'@type':'OfferShippingDetails','shippingRate':{'@type':'MonetaryAmount','value':'9.90','currency':'EUR'},'shippingDestination':{'@type':'DefinedRegion','addressCountry':'FR'},
        'deliveryTime':{'@type':'ShippingDeliveryTime','handlingTime':{'@type':'QuantitativeValue','minValue':7,'maxValue':10,'unitCode':'DAY'},'transitTime':{'@type':'QuantitativeValue','minValue':2,'maxValue':4,'unitCode':'DAY'}}}}}))});
    ld.push({'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[
@@ -64,17 +69,17 @@ function pageMeta(p,lang){
   }
  }
  if(p==='/'){
-  ld.push({'@context':'https://schema.org','@type':'Organization','name':'SculptLab','alternateName':'SculptLab.','url':origin+'/','logo':abs('/favicon-512x512.png'),'email':'info@sculptlab.fr','sameAs':sameAs});
+  ld.push({'@context':'https://schema.org','@type':'Organization','name':'SculptLab','alternateName':'SculptLab.','url':origin+'/','logo':abs('/favicon-512x512.png'),'image':abs('/assets/og/sculptlab.jpg'),'description':en?'Contemporary resin sculptures shaped and painted by hand.':'Sculptures contemporaines en résine façonnées et peintes à la main.','email':'info@sculptlab.fr','address':address,'contactPoint':{'@type':'ContactPoint','contactType':'customer service','email':'info@sculptlab.fr','availableLanguage':['French','English']},'hasMerchantReturnPolicy':returnPolicy,'sameAs':sameAs});
   ld.push({'@context':'https://schema.org','@type':'WebSite','name':'SculptLab','url':origin+'/','inLanguage':['fr','en']});
  }
  return {noindex,image,imageAlt,type,ld};
 }
 function html(result,p,neutral=false){const meta=pageMeta(p,result.lang),canonicalPath=p==='/acquerir/'?'/collection/':p,url=origin+localized(canonicalPath,result.lang),en=result.lang==='en',description=result.description.replaceAll('"','&quot;'),title=result.title.replaceAll('"','&quot;');return `<!doctype html>
 <html lang="${result.lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${result.title}</title><meta name="description" content="${description}"><meta name="theme-color" content="#f4f4ef">${meta.noindex?'<meta name="robots" content="noindex,follow">':''}
+<title>${result.title}</title><meta name="description" content="${description}"><meta name="theme-color" content="#f4f4ef"><meta name="robots" content="${meta.noindex?'noindex,follow':'index,follow,max-image-preview:large'}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png"><link rel="manifest" href="/site.webmanifest">
-<link rel="alternate" hreflang="fr" href="${origin+localized(canonicalPath,'fr')}"><link rel="alternate" hreflang="en" href="${origin+localized(canonicalPath,'en')}"><link rel="alternate" hreflang="x-default" href="${origin+canonicalPath}"><link rel="canonical" href="${url}">
-<meta property="og:site_name" content="SculptLab"><meta property="og:type" content="${meta.type}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${abs(meta.image)}"><meta property="og:image:alt" content="${meta.imageAlt.replaceAll('"','&quot;')}"><meta property="og:locale" content="${en?'en_US':'fr_FR'}"><meta property="og:locale:alternate" content="${en?'fr_FR':'en_US'}"><meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="${origin+localized(canonicalPath,'fr')}"><link rel="alternate" hreflang="en" href="${origin+localized(canonicalPath,'en')}"><link rel="alternate" hreflang="x-default" href="${origin+localized(canonicalPath,'en')}"><link rel="canonical" href="${url}">
+<meta property="og:site_name" content="SculptLab"><meta property="og:type" content="${meta.type}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${abs(meta.image)}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${meta.imageAlt.replaceAll('"','&quot;')}"><meta property="og:locale" content="${en?'en_US':'fr_FR'}"><meta property="og:locale:alternate" content="${en?'fr_FR':'en_US'}"><meta name="twitter:card" content="summary_large_image">
 ${neutral?'':meta.ld.map(jsonLd).join('')}
 ${neutral?'<script src="/language.js"></script>':''}<script src="/arrival.js"></script><link rel="preload" href="/assets/display.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"><script src="/data.js" defer></script><script src="/legal.js" defer></script><script src="/consent.js" defer></script><script src="/privacy-ui.js" defer></script><script src="/app.js" defer></script><script src="/cursor.js" defer></script></head>
 <body id="top"><a class="skip-link" href="#main">${result.lang==='en'?'Skip to content':'Aller au contenu'}</a><div id="app">${result.html}</div></body></html>`}
@@ -412,22 +417,16 @@ await import('./verify-consent.mjs');
 
 // ---------- Publication files for sculptlab.fr (GitHub Pages) ----------
 // Sitemap: indexable FR/EN pages with their language alternates (order pages, the /acquerir/ duplicate and the thank-you page are excluded).
+function sitemapImages(p){const m=p.match(/^\/oeuvres\/(io|zamu|enigma)\/$/);if(!m)return '';const w=WORKS_DATA[m[1]];return [...new Set(w.variants.flatMap(v=>[v.image,...(v.photos||[]).map(x=>x.src)]))].map(src=>`<image:image><image:loc>${origin+src}</image:loc></image:image>`).join('')}
 const indexable=paths.filter(p=>!/^\/acquerir\//.test(p)&&p!=='/merci/');
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${indexable.flatMap(p=>['fr','en'].map(lang=>`<url><loc>${origin+localized(p,lang)}</loc><xhtml:link rel="alternate" hreflang="fr" href="${origin+localized(p,'fr')}"/><xhtml:link rel="alternate" hreflang="en" href="${origin+localized(p,'en')}"/><xhtml:link rel="alternate" hreflang="x-default" href="${origin+p}"/></url>`)).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${indexable.flatMap(p=>['fr','en'].map(lang=>`<url><loc>${origin+localized(p,lang)}</loc><xhtml:link rel="alternate" hreflang="fr" href="${origin+localized(p,'fr')}"/><xhtml:link rel="alternate" hreflang="en" href="${origin+localized(p,'en')}"/><xhtml:link rel="alternate" hreflang="x-default" href="${origin+localized(p,'en')}"/>${sitemapImages(p)}</url>`)).join('\n')}
 </urlset>
 `;
 fs.writeFileSync(path.join(root,'sitemap.xml'),sitemap);
 fs.writeFileSync(path.join(root,'robots.txt'),`User-agent: *
 Allow: /
-Disallow: /acquerir/*/
-Disallow: /fr/acquerir/*/
-Disallow: /en/acquire/*/
-Disallow: /merci/
-Disallow: /fr/merci/
-Disallow: /en/thanks/
-Disallow: /*_summary.html$
 
 Sitemap: ${origin}/sitemap.xml
 `);
@@ -459,6 +458,26 @@ for(const lang of ['fr','en'])for(const [file,entry] of Object.entries(legacyPag
 // Stripe returns to /merci.html?session_id=…&lang=… (success_url in worker/src/index.js).
 fs.writeFileSync(path.join(root,'merci.html'),legacyPage('/fr/merci/','fr',`(function(){var q=new URLSearchParams(location.search),en=/^en/i.test(q.get('lang')||''),id=q.get('session_id');location.replace((en?'/en/thanks/':'/fr/merci/')+(id?'?session_id='+encodeURIComponent(id):''))})()`,'/fr/merci/'));legacyCount++;
 
+routes.push('/fr/page-introuvable/','/en/page-introuvable/'); // its language switch points to the same unknown address
+const notFound=generate('/fr/page-introuvable/');
+fs.writeFileSync(path.join(root,'404.html'),html(notFound,'/').replace(/<link rel="(?:alternate|canonical)"[^>]*>/g,'').replace(/<meta property="og:url"[^>]*>/,'').replace(/<meta name="robots" content="[^"]*">/,'<meta name="robots" content="noindex">').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,''));
+assert.ok(notFound.html.includes('404'),'404 page renders');
+
+// Search checks on indexable pages: unique, reasonably sized titles and descriptions; consistent language alternates.
+const seen={title:new Map(),description:new Map()};
+for(const p of indexable)for(const lang of ['fr','en']){
+ const file=path.join(root,localized(p,lang),'index.html'),page=fs.readFileSync(file,'utf8');
+ const title=page.match(/<title>([^<]*)<\/title>/)[1],description=page.match(/<meta name="description" content="([^"]*)"/)[1];
+ assert.ok(title.length>=15&&title.length<=70,'Title length '+title.length+' '+localized(p,lang));
+ assert.ok(description.length>=70&&description.length<=170,'Description length '+description.length+' '+localized(p,lang));
+ for(const [kind,value] of [['title',title],['description',description]]){assert.ok(!seen[kind].has(value),'Duplicate '+kind+': '+localized(p,lang)+' = '+seen[kind].get(value));seen[kind].set(value,localized(p,lang))}
+ assert.ok(page.includes(`<link rel="canonical" href="${origin+localized(p,lang)}">`),'Self canonical '+localized(p,lang));
+ assert.ok(page.includes(`hreflang="x-default" href="${origin+localized(p,'en')}"`),'x-default '+localized(p,lang));
+ assert.ok(page.includes('index,follow,max-image-preview:large'),'Indexable '+localized(p,lang));
+ assert.equal((page.match(/<h1[\s>]/g)||[]).length,1,'One h1 '+localized(p,lang));
+ const og=page.match(/og:image" content="https:\/\/sculptlab\.fr([^"]+)"/)[1];assert.ok(fs.existsSync(path.join(root,og)),'Share image '+og);
+}
+
 // Final checks on everything that will be published.
 const published=[];(function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(e.name.startsWith('.')||e.name.startsWith('_')||['node_modules','worker'].includes(e.name))continue;const f=path.join(dir,e.name);if(e.isDirectory())walk(f);else if(/\.(html|js|css|xml|txt|webmanifest)$/.test(e.name))published.push(f)}})(root);
 for(const f of published){const text=fs.readFileSync(f,'utf8');assert.ok(!/chatgpt\.site|cohmanon/.test(text),'Former ChatGPT address left in '+path.relative(root,f));
@@ -467,4 +486,4 @@ assert.ok(!fs.existsSync(path.join(root,'premiere'))&&!fs.existsSync(path.join(r
 for(const f of ['CNAME','favicon.ico','favicon-32x32.png','apple-touch-icon-180x180.png','favicon-192x192.png','favicon-512x512.png','site.webmanifest'])assert.ok(fs.existsSync(path.join(root,f)),'Missing '+f);
 assert.equal(fs.readFileSync(path.join(root,'CNAME'),'utf8').trim(),'sculptlab.fr');
 console.log(`Publication: sitemap (${indexable.length*2} URLs), robots.txt, ${legacyCount} former addresses redirected, structured data parsed, no ChatGPT address left.`);
-console.log(`${routes.length} translated pages and ${count} finish/language combinations checked. All 44 mobile finishes and their 3 edition groups, finish selection without scrolling, language detection, legacy links, galleries and assets validated.`);
+console.log(`${paths.length*2} translated pages and ${count} finish/language combinations checked. All 44 mobile finishes and their 3 edition groups, finish selection without scrolling, language detection, legacy links, galleries and assets validated.`);

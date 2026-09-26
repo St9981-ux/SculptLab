@@ -38,6 +38,13 @@ La conversion Google Analytics `purchase` n'est envoyée qu'avec le consentement
 
 Le Worker affiche le montant réellement facturé ; le site n'affiche qu'une estimation.
 
+## Référencement
+
+- Titres et descriptions de chaque page (FR/EN) : fonction `pageSeo()` dans `app.js`. `npm run build` refuse un titre ou une description en double, trop courte ou trop longue.
+- Chaque page indexable a une URL canonique, ses versions `fr` / `en`, et `x-default` vers l'anglais. Les pages de commande, de remerciement et 404 sont en `noindex`.
+- Images de partage 1200×630 : `assets/og/`. Données structurées : `ProductGroup` (44 finitions, prix, livraison France, retour 14 jours) sur les fiches, `Organization` et `WebSite` sur l'accueil.
+- `sitemap.xml` (avec les photos des œuvres) et `robots.txt` sont régénérés par `npm run build`.
+
 ## Historique
 
 Cette version a été conçue avec ChatGPT (septembre 2026), puis finalisée pour sculptlab.fr : paiement direct, adresse sculptlab.fr, sitemap, icônes, redirections, données structurées, retrait des brouillons `/mythes/` et `/premiere/`.

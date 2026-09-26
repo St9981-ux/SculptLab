@@ -11,6 +11,7 @@ La version retenue (direction 03, commit ChatGPT `33d59a7`) remplace l'ancien si
 - Anciennes adresses (`io1.html`, `zamu2_summary.html`, `about.html`, `en/…`) : pages de redirection générées, qui conservent la couleur (`?couleur=`) ou reprennent la couleur par défaut de l'ancienne page. Les anciennes images restent à leur adresse.
 - Retirés de la publication : `/mythes/` (direction 02) et `/premiere/`. Ils restent dans l'historique Git ChatGPT.
 - `restore-first.mjs` et `.openai/hosting.json` (hébergement ChatGPT) ne sont pas repris.
+- Référencement : titre et description propres à chaque page (FR/EN), `x-default` vers l'anglais, images de partage JPEG 1200×630, politique de retour et adresse dans les données structurées, sitemap avec images, robots.txt sans blocage, page 404. Les robots d'indexation ne sont pas redirigés par la détection de langue.
 
 ## Direction retenue — première proposition, évolutions FR / EN
 

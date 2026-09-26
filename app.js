@@ -128,6 +128,31 @@ function trackPurchase(){
 }
 function legal(type){const terms=type==='cgv',sections=LEGAL[terms?'cgv':'legal'][language];return `${header()}<main id="main" tabindex="-1" class="route-fade"><article class="legal"><p class="eyebrow">SculptLab.</p><h1>${terms?t('Conditions<br>de vente.','Terms<br>of sale.'):t('Mentions<br>légales.','Legal<br>notice.')}</h1>${sections.map(section=>`<section><h2>${esc(section.title)}</h2><p>${section.body}</p></section>`).join('')}${terms?'':cookieLegalDetails()}</article></main>${footer()}`}
 
+// Titles and descriptions shown by search engines and link previews (one per page and language).
+function pageSeo(path,title,description){
+ const works=Object.values(WORKS),prices=works.flatMap(w=>w.variants.map(v=>v.price)).filter(n=>n!=null),finishes=works.reduce((n,w)=>n+w.variants.length,0);
+ const pages={
+  '/':[t('SculptLab — Sculptures contemporaines peintes à la main','SculptLab — Hand-painted contemporary sculptures'),t('Io, Za’mu et Enigma : sculptures contemporaines en résine façonnées et peintes à la main dans les Alpes-Maritimes. Éditions limitées et pièces uniques.','Io, Za’mu and Enigma: contemporary resin sculptures shaped and painted by hand in the South of France. Limited editions and one-of-a-kind pieces.')],
+  '/collection':[t('Collection de sculptures en résine — SculptLab','Resin sculpture collection — SculptLab'),t(`Trois sculptures en résine peinte à la main, ${finishes} finitions : édition ouverte dès ${money(Math.min(...prices))}, édition limitée à 25 exemplaires et pièces uniques.`,`Three hand-painted resin sculptures in ${finishes} finishes: open edition from ${money(Math.min(...prices))}, limited editions of 25 and one-of-a-kind pieces.`)],
+  '/atelier':[t('L’atelier — Sculptures faites main | SculptLab','The studio — Handmade sculptures | SculptLab'),t('Dans l’atelier SculptLab, chaque sculpture est modelée à la main, reproduite en résine puis peinte au spray, à l’aérographe et au pinceau.','In the SculptLab studio, each sculpture is modelled by hand, cast in resin, then painted with spray, airbrush and brush.')],
+  '/contact':[t('Contact — SculptLab, sculptures contemporaines','Contact — SculptLab, contemporary sculptures'),t('Une question sur une sculpture, une finition ou une livraison ? Écrivez à SculptLab avec le formulaire ou à info@sculptlab.fr.','A question about a sculpture, a finish or delivery? Write to SculptLab with the form or at info@sculptlab.fr.')],
+  '/mentions-legales':[t('Mentions légales — SculptLab','Legal notice — SculptLab'),t('Mentions légales de SculptLab : éditeur du site, hébergeur, propriété intellectuelle, données personnelles et cookies.','SculptLab legal notice: site publisher, host, intellectual property, personal data and cookies.')],
+  '/cgv':[t('Conditions générales de vente — SculptLab','Terms of sale — SculptLab'),t('Conditions générales de vente SculptLab : prix, commande, paiement, livraison, droit de rétractation de 14 jours et garanties.','SculptLab terms of sale: prices, orders, payment, delivery, 14-day right of withdrawal and warranties.')],
+  '/merci':[t('Merci — SculptLab','Thank you — SculptLab'),t('Confirmation de votre commande SculptLab.','Confirmation of your SculptLab order.')]
+ };
+ pages['/acquerir']=pages['/collection'];
+ if(pages[path])return {title:pages[path][0],description:pages[path][1]};
+ const m=path.match(/^\/(oeuvres|acquerir)\/(io|zamu|enigma)$/);
+ if(!m)return {title,description};
+ const w=WORKS[m[2]],v=selectedVariant(w),own=w.variants.map(x=>x.price).filter(n=>n!=null),picked=w.variants.some(x=>x.name===chosenName());
+ if(m[1]==='acquerir')return {title:t('Acquérir ','Acquire ')+w.name+' '+finish(v)+' — SculptLab',description};
+ return {
+  title:(picked?w.name+' '+finish(v):w.name)+t(' — Sculpture en résine peinte à la main | SculptLab',' — Hand-painted resin sculpture | SculptLab'),
+  description:picked
+   ?t(`${w.name} ${finish(v)}, sculpture contemporaine en résine peinte à la main (H. 30 cm). ${editionName(v.edition)}, ${money(v.price)}. ${w.variants.length} finitions au choix.`,`${w.name} ${finish(v)}, a contemporary hand-painted resin sculpture (H. 30 cm). ${editionName(v.edition)}, ${money(v.price)}. ${w.variants.length} finishes to choose from.`)
+   :t(`${w.name}, sculpture contemporaine en résine peinte à la main (H. 30 cm). ${w.variants.length} finitions en édition ouverte, limitée ou pièce unique, de ${money(Math.min(...own))} à ${money(Math.max(...own))}.`,`${w.name}, a contemporary hand-painted resin sculpture (H. 30 cm). ${w.variants.length} finishes in open or limited edition or one of a kind, from ${money(Math.min(...own))} to ${money(Math.max(...own))}.`)
+ };
+}
 function render({scroll=true}={}){
  const state=routeInfo();language=state.lang;const path=state.path;let html,title,description=t('Sculptures contemporaines façonnées et peintes à la main. Découvrez les histoires de Io, Za’mu et Enigma.','Contemporary sculptures shaped and painted by hand. Discover the stories of Io, Za’mu and Enigma.');
  if(paletteRoute!==path){expandedPalette=null;paletteRoute=path}
@@ -138,12 +163,13 @@ function render({scroll=true}={}){
  else if(path==='/merci'){html=thanks();title=t('Merci — SculptLab','Thank you — SculptLab')}
  else if(path==='/mentions-legales'||path==='/cgv'){html=legal(path.slice(1));title=path==='/cgv'?t('Conditions de vente — SculptLab','Terms of sale — SculptLab'):t('Mentions légales — SculptLab','Legal notice — SculptLab')}
  else{const match=path.match(/^\/(oeuvres|acquerir)\/(io|zamu|enigma)$/);if(match){const w=WORKS[match[2]],v=selectedVariant(w);html=match[1]==='oeuvres'?product(w):checkout(w);title=w.name+' — '+finish(v)+' · SculptLab';description=field(w,'description')}else{html=header()+`<main id="main" tabindex="-1" class="shell"><section class="page-intro"><p class="eyebrow">404</p><h1>${t('Hors cadre.','Beyond the frame.')}</h1><p>${t('Cette page n’existe pas.','This page does not exist.')}</p><a class="text-link" href="${href('/collection/')}">${t('Revenir aux œuvres','Return to the works')} ${arrow}</a></section></main>`+footer();title=t('Page introuvable — SculptLab','Page not found — SculptLab')}}
+ ({title,description}=pageSeo(path,title,description));
  document.getElementById('app').innerHTML=html;document.title=title;document.documentElement.lang=language;document.body.id='top';
  document.querySelector('meta[name="description"]')?.setAttribute('content',description);
  const pagePath=path==='/'?'/':path+'/',canonicalPath=pagePath==='/acquerir/'?'/collection/':pagePath;
  document.querySelector('link[rel="canonical"]')?.setAttribute('href',location.origin+localizedPath(canonicalPath,language));
- for(const lang of ['fr','en'])document.querySelector('link[hreflang="'+lang+'"]')?.setAttribute('href',location.origin+localizedPath(pagePath,lang));
- document.querySelector('link[hreflang="x-default"]')?.setAttribute('href',location.origin+pagePath);
+ for(const lang of ['fr','en'])document.querySelector('link[hreflang="'+lang+'"]')?.setAttribute('href',location.origin+localizedPath(canonicalPath,lang));
+ document.querySelector('link[hreflang="x-default"]')?.setAttribute('href',location.origin+localizedPath(canonicalPath,'en'));
  document.querySelector('.skip-link')?.replaceChildren(document.createTextNode(t('Aller au contenu','Skip to content')));
 
  if(scroll){if(location.hash)document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();else window.scrollTo({top:0,behavior:'instant'})}else document.getElementById('main')?.classList.remove('route-fade');
