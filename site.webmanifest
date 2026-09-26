@@ -1,33 +1,13 @@
 {
-  "name": "SculptLab.",
-  "short_name": "SculptLab.",
-  "description": "Sculptures Artistiques Contemporaines",
+  "name": "SculptLab",
+  "short_name": "SculptLab",
+  "description": "Sculptures contemporaines façonnées et peintes à la main",
   "icons": [
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/favicon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
   ],
-  "theme_color": "#64eecd",
-  "background_color": "#ffffff",
+  "theme_color": "#f4f4ef",
+  "background_color": "#f4f4ef",
   "display": "standalone",
   "start_url": "/"
 }

@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /acquerir/*/
+Disallow: /fr/acquerir/*/
+Disallow: /en/acquire/*/
+Disallow: /merci/
+Disallow: /fr/merci/
+Disallow: /en/thanks/
 Disallow: /*_summary.html$
 
 Sitemap: https://sculptlab.fr/sitemap.xml
