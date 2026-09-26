@@ -1,4 +1,5 @@
-// Full wording reproduced from the original SculptLab legal pages (24 September 2026).
+// Wording from the original SculptLab legal pages (24 September 2026), updated 26 September 2026:
+// hosting provider (GitHub Pages), processors, closed EU ODR platform, Consumer Code numbering.
 const LEGAL = {
   "cgv": {
     "fr": [
@@ -12,11 +13,11 @@ const LEGAL = {
       },
       {
         "title": "3. Commandes",
-        "body": "Toute commande passée sur le site implique l'acceptation des présentes CGV. Un email de confirmation est envoyé après validation et paiement de la commande. Il est recommandé de vérifier l'exactitude des informations saisies (adresse de livraison, contact…).<br><br>Chaque pièce unique (1 exemplaire) ou en édition limitée numérotée (25 exemplaires) est retirée ou décomptée du site manuellement par SculptLab. après prise en compte et validation de la commande : le paiement en ligne ne réserve donc pas automatiquement l'exemplaire. Si une pièce unique a déjà été vendue ou réservée, ou si une édition numérotée est épuisée, SculptLab. en informe le client dans les meilleurs délais et procède au remboursement intégral de la commande concernée."
+        "body": "Toute commande passée sur le site implique l'acceptation des présentes CGV. Un email de confirmation est envoyé après validation et paiement de la commande. Il est recommandé de vérifier l'exactitude des informations saisies (adresse de livraison, contact…).<br><br>Chaque pièce unique (1 exemplaire) ou en édition limitée numérotée (25 exemplaires) est retirée ou décomptée du site manuellement par SculptLab. après prise en compte et validation de la commande : le paiement en ligne ne réserve donc pas automatiquement l'exemplaire. Si une pièce unique a déjà été vendue ou réservée, ou si une édition numérotée est épuisée, SculptLab. en informe le client dans les meilleurs délais et procède au remboursement intégral de la commande concernée."
       },
       {
         "title": "4. Paiement",
-        "body": "Le paiement est exigible immédiatement à la commande. Les paiements par carte bancaire sont traités de manière sécurisée par notre prestataire de paiement Stripe ; SculptLab. n'a jamais accès aux données complètes de votre carte. Les transactions sont protégées par des protocoles de chiffrement conformes aux standards en vigueur."
+        "body": "Le paiement est exigible immédiatement à la commande. Les paiements par carte bancaire sont traités de manière sécurisée par notre prestataire de paiement Stripe ; SculptLab. n'a jamais accès aux données complètes de votre carte. Les transactions sont protégées par des protocoles de chiffrement conformes aux standards en vigueur."
       },
       {
         "title": "5. Livraison",
@@ -24,11 +25,11 @@ const LEGAL = {
       },
       {
         "title": "6. Droit de rétractation",
-        "body": "Conformément à la loi, vous disposez d'un délai de 14 jours à compter de la réception de votre commande pour exercer votre droit de rétractation, sans justification.<br>• Les frais de retour sont à la charge du client.<br>• Les retours doivent se faire dans leur <strong>emballage d'origine et en parfait état</strong>.<br>• Le remboursement sera effectué dans un délai de 14 jours après réception du retour.<br>⚠️ <strong>Exceptions</strong> : le droit de rétractation ne s'applique pas aux œuvres personnalisées ou réalisées sur mesure."
+        "body": "Conformément à la loi, vous disposez d'un délai de 14 jours à compter de la réception de votre commande pour exercer votre droit de rétractation, sans justification.<br>• Les frais de retour sont à la charge du client.<br>• Les retours doivent se faire dans leur <strong>emballage d'origine et en parfait état</strong>.<br>• Le remboursement sera effectué dans un délai de 14 jours après réception du retour.<br>⚠️ <strong>Exceptions</strong> : le droit de rétractation ne s'applique pas aux œuvres personnalisées ou réalisées sur mesure."
       },
       {
         "title": "7. Garanties légales",
-        "body": "Les produits bénéficient des garanties légales de conformité (articles L.217-4 et suivants du Code de la consommation) et de la garantie contre les vices cachés (articles 1641 et suivants du Code civil)."
+        "body": "Les produits bénéficient des garanties légales de conformité (articles L.217-3 et suivants du Code de la consommation) et de la garantie contre les vices cachés (articles 1641 et suivants du Code civil)."
       },
       {
         "title": "8. Responsabilité",
@@ -40,7 +41,7 @@ const LEGAL = {
       },
       {
         "title": "10. Droit applicable et litiges",
-        "body": "Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire. À défaut d'accord, le litige sera porté devant le tribunal compétent selon le domicile du consommateur.<br><br>Conformément aux articles L.612-1 et suivants du Code de la consommation, le consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un éventuel litige. Il peut également déposer une réclamation sur la plateforme européenne de Règlement en Ligne des Litiges : https://ec.europa.eu/consumers/odr."
+        "body": "Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire. À défaut d'accord, le litige sera porté devant le tribunal compétent selon le domicile du consommateur.<br><br>Conformément aux articles L.612-1 et suivants du Code de la consommation, le consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un éventuel litige."
       }
     ],
     "en": [
@@ -70,7 +71,7 @@ const LEGAL = {
       },
       {
         "title": "7. Legal warranties",
-        "body": "Products benefit from legal warranties of conformity (articles L.217-4 et seq. of the Consumer Code) and warranty against hidden defects (articles 1641 et seq. of the Civil Code)."
+        "body": "Products benefit from legal warranties of conformity (articles L.217-3 et seq. of the Consumer Code) and warranty against hidden defects (articles 1641 et seq. of the Civil Code)."
       },
       {
         "title": "8. Responsibility",
@@ -82,7 +83,7 @@ const LEGAL = {
       },
       {
         "title": "10. Applicable law and disputes",
-        "body": "These T&C are subject to French law. In case of dispute, an amicable solution will be sought before any legal action. Failing agreement, the dispute will be brought before the competent court according to the consumer's domicile.<br><br>In accordance with articles L.612-1 et seq. of the French Consumer Code, the consumer may use, free of charge, a consumer mediator to seek an amicable resolution of any dispute. The consumer may also file a complaint on the European Online Dispute Resolution platform: https://ec.europa.eu/consumers/odr."
+        "body": "These T&C are subject to French law. In case of dispute, an amicable solution will be sought before any legal action. Failing agreement, the dispute will be brought before the competent court according to the consumer's domicile.<br><br>In accordance with articles L.612-1 et seq. of the French Consumer Code, the consumer may use, free of charge, a consumer mediator to seek an amicable resolution of any dispute."
       }
     ]
   },
@@ -90,11 +91,11 @@ const LEGAL = {
     "fr": [
       {
         "title": "1. Éditeur du site",
-        "body": "Le site SculptLab. est édité par :<br>Nom de l'entreprise : SculptLab.<br>Siège social : 1364 route de la Fènerie, 06580 Pégomas, France<br>SIRET: 411 678 261 00032<br>Email : info@sculptlab.fr<br>"
+        "body": "Le site SculptLab. est édité par :<br>Nom de l'entreprise : SculptLab.<br>Siège social : 1364 route de la Fènerie, 06580 Pégomas, France<br>SIRET : 411 678 261 00032<br>Email : info@sculptlab.fr<br>"
       },
       {
         "title": "2. Hébergeur",
-        "body": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>Téléphone : +33 9 72 10 10 07<br>Site web : www.ovh.com"
+        "body": "GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis<br>Téléphone : +1 415 448 6673<br>Site web : github.com<br><br>Le nom de domaine sculptlab.fr est enregistré auprès d’OVH SAS, 2 rue Kellermann, 59100 Roubaix, France."
       },
       {
         "title": "3. Propriété intellectuelle",
@@ -102,7 +103,7 @@ const LEGAL = {
       },
       {
         "title": "4. Données personnelles",
-        "body": "Le responsable de traitement est SculptLab. Les données collectées (formulaire de contact, commande et paiement) servent uniquement à traiter vos demandes, commandes et livraisons. Le paiement est géré par Stripe et la mesure d'audience, soumise à votre consentement, par Google Analytics, qui agissent en qualité de sous-traitants. Vos données ne sont jamais revendues. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition, que vous pouvez exercer à l'adresse info@sculptlab.fr. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+        "body": "Le responsable de traitement est SculptLab. Les données collectées (formulaire de contact, commande et paiement) servent uniquement à traiter vos demandes, commandes et livraisons. Elles sont traitées, en qualité de sous-traitants, par GitHub (hébergement du site), FormSubmit (envoi du formulaire de contact), Cloudflare (préparation du paiement), Stripe (paiement) et, uniquement avec votre consentement, Google Analytics (mesure d'audience). Certains de ces prestataires sont établis hors de l'Union européenne. Vos données ne sont jamais revendues. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition, que vous pouvez exercer à l'adresse info@sculptlab.fr. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr)."
       },
       {
         "title": "5. Cookies",
@@ -110,7 +111,7 @@ const LEGAL = {
       },
       {
         "title": "6. Conditions de vente (CGV)",
-        "body": "En tant que site de vente en ligne, les Conditions Générales de Vente (CGV) sont accessibles <a href=\"/fr/cgv/\">ici</a>. Elles précisent notamment :<br>• les prix,<br>• les modalités de commande et de paiement,<br>• la livraison,<br>• le droit de rétractation (14 jours),<br>• les remboursements,<br>• les responsabilités."
+        "body": "En tant que site de vente en ligne, les Conditions Générales de Vente (CGV) sont accessibles <a href=\"/fr/cgv/\">ici</a>. Elles précisent notamment :<br>• les prix,<br>• les modalités de commande et de paiement,<br>• la livraison,<br>• le droit de rétractation (14 jours),<br>• les remboursements,<br>• les responsabilités."
       },
       {
         "title": "7. Droit applicable",
@@ -124,7 +125,7 @@ const LEGAL = {
       },
       {
         "title": "2. Hosting Provider",
-        "body": "OVH SAS, 2 rue Kellermann, 59100 Roubaix, France<br>Phone: +33 9 72 10 10 07<br>Website: www.ovh.com"
+        "body": "GitHub, Inc. (GitHub Pages service), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States<br>Phone: +1 415 448 6673<br>Website: github.com<br><br>The sculptlab.fr domain name is registered with OVH SAS, 2 rue Kellermann, 59100 Roubaix, France."
       },
       {
         "title": "3. Intellectual Property",
@@ -132,7 +133,7 @@ const LEGAL = {
       },
       {
         "title": "4. Personal Data",
-        "body": "The data controller is SculptLab. The data collected (contact form, orders and payment) is used solely to process your requests, orders and deliveries. Payment is handled by Stripe and audience measurement, subject to your consent, by Google Analytics, which act as processors. Your data is never resold. In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to your data, which you can exercise at info@sculptlab.fr. You may also lodge a complaint with the French data protection authority, the CNIL (www.cnil.fr)."
+        "body": "The data controller is SculptLab. The data collected (contact form, orders and payment) is used solely to process your requests, orders and deliveries. It is processed, as processors, by GitHub (website hosting), FormSubmit (contact form delivery), Cloudflare (payment preparation), Stripe (payment) and, only with your consent, Google Analytics (audience measurement). Some of these providers are based outside the European Union. Your data is never resold. In accordance with the GDPR, you have the right to access, rectify, erase, restrict and object to your data, which you can exercise at info@sculptlab.fr. You may also lodge a complaint with the French data protection authority, the CNIL (www.cnil.fr)."
       },
       {
         "title": "5. Cookies",

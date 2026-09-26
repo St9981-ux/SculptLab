@@ -34,6 +34,7 @@ function generate(url,search=''){
 }
 const WORKS_DATA=(()=>{const c=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(root,'data.js'),'utf8')+';globalThis.__works=WORKS;',c);return c.__works})();
 const abs=u=>origin+u;
+const heroImage=WORKS_DATA.enigma.variants.find(v=>v.name==='Outremer').image; // first photograph of the home page (app.js home())
 const jsonLd=data=>'<script type="application/ld+json">'+JSON.stringify(data).replace(/</g,'\\u003c')+'</script>';
 const norm=v=>String(v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-|-$/g,'').toUpperCase();
 const sameAs=['https://www.instagram.com/sculptlab','https://www.facebook.com/sculptlab'];
@@ -81,7 +82,7 @@ function html(result,p,neutral=false){const meta=pageMeta(p,result.lang),canonic
 <link rel="alternate" hreflang="fr" href="${origin+localized(canonicalPath,'fr')}"><link rel="alternate" hreflang="en" href="${origin+localized(canonicalPath,'en')}"><link rel="alternate" hreflang="x-default" href="${origin+localized(canonicalPath,'en')}"><link rel="canonical" href="${url}">
 <meta property="og:site_name" content="SculptLab"><meta property="og:type" content="${meta.type}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${abs(meta.image)}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${meta.imageAlt.replaceAll('"','&quot;')}"><meta property="og:locale" content="${en?'en_US':'fr_FR'}"><meta property="og:locale:alternate" content="${en?'fr_FR':'en_US'}"><meta name="twitter:card" content="summary_large_image">
 ${neutral?'':meta.ld.map(jsonLd).join('')}
-${neutral?'<script src="/language.js"></script>':''}<script src="/arrival.js"></script><link rel="preload" href="/assets/display.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"><script src="/data.js" defer></script><script src="/legal.js" defer></script><script src="/consent.js" defer></script><script src="/privacy-ui.js" defer></script><script src="/app.js" defer></script><script src="/cursor.js" defer></script></head>
+${neutral?'<script src="/language.js"></script>':''}<script src="/arrival.js"></script>${p==='/'?`<link rel="preload" href="${heroImage}" as="image" fetchpriority="high">`:''}<link rel="preload" href="/assets/display.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"><script src="/data.js" defer></script><script src="/legal.js" defer></script><script src="/consent.js" defer></script><script src="/privacy-ui.js" defer></script><script src="/app.js" defer></script><script src="/cursor.js" defer></script></head>
 <body id="top"><a class="skip-link" href="#main">${result.lang==='en'?'Skip to content':'Aller au contenu'}</a><div id="app">${result.html}</div></body></html>`}
 function write(route,content){const file=path.join(root,route,'index.html');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,content)}
 for(const p of paths){
@@ -147,7 +148,7 @@ for(const lang of ['fr','en'])for(const work of Object.values(works)){
   for(const v of variants){
    const name=vm.runInContext('esc('+JSON.stringify(v.name)+')',mobile.context);
    assert.ok(markup.includes('data-variant="'+name+'"'),'Finish in correct edition: '+v.name);
-   assert.ok(markup.includes('src="'+v.image+'"'),'Finish has its thumbnail');
+   assert.ok(markup.includes('src="'+v.image.replace('/assets/','/assets/thumbs/')+'"'),'Finish has its thumbnail');
   }
  }
  let scrolled=false,focused=false,selected;
@@ -315,7 +316,7 @@ for(const lang of ['fr','en'])for(const work of Object.values(works))for(const v
   assert.equal((page.html.match(/id="product-image"/g)||[]).length,1,'One primary gallery');
   const thumbnails=page.html.match(/<div class="photo-thumbnails"[\s\S]*?<\/div>/)[0];
   assert.equal((thumbnails.match(/data-photo="/g)||[]).length,v.photos.length,'Every supplied angle has a thumbnail');
-  for(const photo of v.photos)assert.ok(thumbnails.includes(photo.src));
+  for(const photo of v.photos)assert.ok(thumbnails.includes(photo.src.replace('/assets/','/assets/thumbs/')));
   const controls=page.html.match(/<div class="photo-arrows">([\s\S]*?)<\/div>/)[1];
   assert.equal((controls.match(/data-photo-step=/g)||[]).length,2);
   assert.equal((controls.match(/disabled/g)||[]).length,v.photos.length===1?2:0,'Navigation is active when another view exists');

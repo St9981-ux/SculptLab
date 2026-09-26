@@ -18,4 +18,4 @@ Chaque galerie affiche les miniatures disponibles et les flèches précédent / 
 
 Les photos existantes en situation sont associées uniquement aux finitions correspondantes : Io Sorbet, Za’mu Brume et Enigma Nuit. Aucune vue fictive n’est utilisée.
 
-Après modification, exécuter `npm run build` dans `_build/` pour vérifier les références et régénérer les pages FR / EN.
+Après modification, créer les miniatures avec `python3 _build/make-thumbs.py` (320 px, dans `assets/thumbs/`), puis exécuter `npm run build` dans `_build/` pour vérifier les références et régénérer les pages FR / EN.

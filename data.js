@@ -401,7 +401,7 @@ const WORKS = {
     "background": "#e1e4eb",
     "description": "Une silhouette demeure, longtemps après que les yeux se sont fermés. Quelque chose nous regarde encore.",
     "storyTitle": "Cette présence…",
-    "story": "Cette présence.. Son souvenir me glace encore, même aujourd'hui. Il se dressait, imposant, avec des cornes recourbées qui découpaient la nuit comme un croissant de lune. Son œil unique me transperçait, sondant les replis les plus secrets de mon être, comme s’il en était le maître. Autour de moi, tous se prosternaient, tremblants, et moi aussi je n'ai pas pu résister. Ce n’était ni de la foi ni seulement de la peur, mais la certitude d’être face à quelque chose qui me dépassait infiniment.",
+    "story": "Cette présence… Son souvenir me glace encore, même aujourd'hui. Il se dressait, imposant, avec des cornes recourbées qui découpaient la nuit comme un croissant de lune. Son œil unique me transperçait, sondant les replis les plus secrets de mon être, comme s’il en était le maître. Autour de moi, tous se prosternaient, tremblants, et moi aussi je n'ai pas pu résister. Ce n’était ni de la foi ni seulement de la peur, mais la certitude d’être face à quelque chose qui me dépassait infiniment.",
     "id": "enigma",
     "legacy": "enigma1",
     "variants": [

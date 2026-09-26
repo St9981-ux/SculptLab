@@ -23,6 +23,8 @@ Node.js 20 ou plus récent.
     npm run build     # régénère les pages FR/EN, le sitemap, robots.txt, les redirections, et lance toutes les vérifications
     npm ci && npm run dev   # aperçu local (Vite)
 
+Après l’ajout ou le remplacement d’une photo : `python3 _build/make-thumbs.py` (miniatures des finitions, `assets/thumbs/`).
+
 Toujours lancer `npm run build` après une modification de `app.js`, `data.js` ou `legal.js`, puis publier les fichiers régénérés avec le reste.
 
 ## Paiement

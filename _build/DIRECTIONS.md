@@ -11,6 +11,7 @@ La version retenue (direction 03, commit ChatGPT `33d59a7`) remplace l'ancien si
 - Anciennes adresses (`io1.html`, `zamu2_summary.html`, `about.html`, `en/…`) : pages de redirection générées, qui conservent la couleur (`?couleur=`) ou reprennent la couleur par défaut de l'ancienne page. Les anciennes images restent à leur adresse.
 - Retirés de la publication : `/mythes/` (direction 02) et `/premiere/`. Ils restent dans l'historique Git ChatGPT.
 - `restore-first.mjs` et `.openai/hosting.json` (hébergement ChatGPT) ne sont pas repris.
+- Audit du 26 septembre 2026 : contraste du gris de texte porté à 4,5:1 minimum (`--muted` #62635b), titre de section pour lecteurs d'écran sur la collection, miniatures 320 px pour les finitions et galeries (fiche Enigma : 1 Mo → 390 Ko sur mobile), préchargement de la photo d'accueil, espaces insécables françaises, élisions « d'Io », « d'Enigma », mentions légales corrigées (hébergeur GitHub Pages, sous-traitants, plateforme européenne RLL fermée le 20 juillet 2025, articles L.217-3 et suivants).
 - Référencement : titre et description propres à chaque page (FR/EN), `x-default` vers l'anglais, images de partage JPEG 1200×630, politique de retour et adresse dans les données structurées, sitemap avec images, robots.txt sans blocage, page 404. Les robots d'indexation ne sont pas redirigés par la détection de langue.
 
 ## Direction retenue — première proposition, évolutions FR / EN
