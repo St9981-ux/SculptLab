@@ -1,0 +1,12 @@
+# Generated pages and redirects (npm run build)
+*.html
+sitemap.xml
+robots.txt
+# Content files kept as plain data
+data.js
+legal.js
+# Payment service: deployed separately by Cloudflare
+worker/
+_build/package-lock.json
+# Documentation kept as written
+*.md

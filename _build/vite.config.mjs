@@ -4,5 +4,5 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   root: fileURLToPath(new URL('..', import.meta.url)),
   appType: 'mpa',
-  server: { host: '0.0.0.0' }
+  server: { host: '0.0.0.0' },
 });

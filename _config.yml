@@ -4,3 +4,4 @@ exclude:
   - README.md
   - worker
   - wrangler.toml
+  - eslint.config.mjs

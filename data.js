@@ -9,12 +9,10 @@ const WORKS = {
     "storyTitle": "Là veille Io.",
     "story": "À l'extrême occident du monde, là où l'horizon se dissout dans le néant, s'étend une prairie qu'aucun atlas n'ose nommer. Là veille Io, génisse mythique, immobile au seuil des choses. Son regard, vaste comme l'éternité, pénètre l'âme de quiconque ose s'y aventurer. Plonger dans cette immensité, murmure-t-on, c'est se révéler tout entier, dépouillé de mensonges. Certains fuient, d'autres s'attardent… mais tous finissent par se perdre dans son silence.",
     "id": "io",
-    "legacy": "io1",
     "variants": [
       {
         "name": "Écarlate",
         "hex": "#f0000a",
-        "source": "acquerir/io-ecarlate.webp",
         "edition": "open",
         "image": "/assets/acquerir-io-ecarlate.webp",
         "price": 455,
@@ -30,7 +28,6 @@ const WORKS = {
       {
         "name": "Pomme",
         "hex": "#82f032",
-        "source": "acquerir/io-pomme.webp",
         "edition": "open",
         "image": "/assets/acquerir-io-pomme.webp",
         "price": 455,
@@ -46,7 +43,6 @@ const WORKS = {
       {
         "name": "Sorbet",
         "hex": "#aee6b8",
-        "source": "acquerir/io.webp",
         "edition": "limited",
         "image": "/assets/acquerir-io.webp",
         "price": 855,
@@ -67,7 +63,6 @@ const WORKS = {
       {
         "name": "Outremer",
         "hex": "#1f3fb5",
-        "source": "acquerir/io-b.webp",
         "edition": "limited",
         "image": "/assets/acquerir-io-b.webp",
         "price": 855,
@@ -83,7 +78,6 @@ const WORKS = {
       {
         "name": "Poudre",
         "hex": "#c8f0f0",
-        "source": "acquerir/io-poudre.webp",
         "edition": "limited",
         "image": "/assets/acquerir-io-poudre.webp",
         "price": 855,
@@ -99,7 +93,6 @@ const WORKS = {
       {
         "name": "Arlequin",
         "hex": "#00bec8",
-        "source": "acquerir/io-arlequin.webp",
         "edition": "unique",
         "image": "/assets/acquerir-io-arlequin.webp",
         "price": 1455,
@@ -115,7 +108,6 @@ const WORKS = {
       {
         "name": "Berlingot",
         "hex": "#e6e600",
-        "source": "acquerir/io-berlingot.webp",
         "edition": "unique",
         "image": "/assets/acquerir-io-berlingot.webp",
         "price": 1455,
@@ -131,7 +123,6 @@ const WORKS = {
       {
         "name": "Cyan",
         "hex": "#00e6e6",
-        "source": "acquerir/io-cyan.webp",
         "edition": "open",
         "image": "/assets/acquerir-io-cyan.webp",
         "price": 455,
@@ -158,12 +149,10 @@ const WORKS = {
     "storyTitle": "Tout masque est une porte.",
     "story": "Tout ce qui est profond aime le masque, et tout masque est une porte. Ce que tu vois n'est qu'un visage offert à la lumière. L'autre, le vrai, demeure dans l'ombre et attend que le souffle du monde lui rende vie. Il ne se livre pas, il se révèle par fragments, et dans ces fragments, celui qui approche découvre que l'ombre danse, bien souvent, avec le feu des étoiles.",
     "id": "zamu",
-    "legacy": "zamu1",
     "variants": [
       {
         "name": "Acide",
         "hex": "#c6e63a",
-        "source": "acquerir/zamu-acide.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-acide.webp",
         "price": 455,
@@ -179,7 +168,6 @@ const WORKS = {
       {
         "name": "Albizia",
         "hex": "#dc1e64",
-        "source": "acquerir/zamu-albizia.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-albizia.webp",
         "price": 455,
@@ -195,7 +183,6 @@ const WORKS = {
       {
         "name": "Dragée",
         "hex": "#bfe6d4",
-        "source": "acquerir/zamu-dragee.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-dragee.webp",
         "price": 455,
@@ -211,7 +198,6 @@ const WORKS = {
       {
         "name": "Corail",
         "hex": "#fa8200",
-        "source": "acquerir/zamu-corail.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-corail.webp",
         "price": 455,
@@ -227,7 +213,6 @@ const WORKS = {
       {
         "name": "Venin",
         "hex": "#7b3fa0",
-        "source": "acquerir/zamu-venin.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-venin.webp",
         "price": 455,
@@ -243,7 +228,6 @@ const WORKS = {
       {
         "name": "Lagon",
         "hex": "#00a0a0",
-        "source": "acquerir/zamu-lagon.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-lagon.webp",
         "price": 455,
@@ -259,7 +243,6 @@ const WORKS = {
       {
         "name": "Givre",
         "hex": "#c9e2ef",
-        "source": "acquerir/zamu-givre.webp",
         "edition": "limited",
         "image": "/assets/acquerir-zamu-givre.webp",
         "price": 855,
@@ -275,7 +258,6 @@ const WORKS = {
       {
         "name": "Plasma",
         "hex": "#1f6dff",
-        "source": "acquerir/zamu-plasma.webp",
         "edition": "unique",
         "image": "/assets/acquerir-zamu-plasma.webp",
         "price": 1455,
@@ -291,7 +273,6 @@ const WORKS = {
       {
         "name": "Sable",
         "hex": "#f0c88c",
-        "source": "acquerir/zamu-sable.webp",
         "edition": "unique",
         "image": "/assets/acquerir-zamu-sable.webp",
         "price": 1455,
@@ -307,7 +288,6 @@ const WORKS = {
       {
         "name": "Antipode",
         "hex": "#1e1e1e",
-        "source": "acquerir/zamu-antipode.webp",
         "edition": "unique",
         "image": "/assets/acquerir-zamu-antipode.webp",
         "price": 1455,
@@ -323,7 +303,6 @@ const WORKS = {
       {
         "name": "Anémone",
         "hex": "#db9a78",
-        "source": "acquerir/zamu-anemone.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-anemone.webp",
         "price": 455,
@@ -339,7 +318,6 @@ const WORKS = {
       {
         "name": "Parme",
         "hex": "#a06ec8",
-        "source": "acquerir/zamu-parme.webp",
         "edition": "open",
         "image": "/assets/acquerir-zamu-parme.webp",
         "price": 455,
@@ -355,7 +333,6 @@ const WORKS = {
       {
         "name": "Brume",
         "hex": "#f4c2d4",
-        "source": "image2a.webp",
         "edition": "limited",
         "image": "/assets/image2a.webp",
         "price": 855,
@@ -376,7 +353,6 @@ const WORKS = {
       {
         "name": "Primaire",
         "hex": "#e02828",
-        "source": "image2b.webp",
         "edition": "limited",
         "image": "/assets/image2b.webp",
         "price": 855,
@@ -403,12 +379,10 @@ const WORKS = {
     "storyTitle": "Cette présence…",
     "story": "Cette présence… Son souvenir me glace encore, même aujourd'hui. Il se dressait, imposant, avec des cornes recourbées qui découpaient la nuit comme un croissant de lune. Son œil unique me transperçait, sondant les replis les plus secrets de mon être, comme s’il en était le maître. Autour de moi, tous se prosternaient, tremblants, et moi aussi je n'ai pas pu résister. Ce n’était ni de la foi ni seulement de la peur, mais la certitude d’être face à quelque chose qui me dépassait infiniment.",
     "id": "enigma",
-    "legacy": "enigma1",
     "variants": [
       {
         "name": "Nova",
         "hex": "#e682aa",
-        "source": "acquerir/enigma-nova.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-nova.webp",
         "price": 475,
@@ -424,7 +398,6 @@ const WORKS = {
       {
         "name": "Glitch",
         "hex": "#f09678",
-        "source": "acquerir/enigma-glitch.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-glitch.webp",
         "price": 475,
@@ -440,7 +413,6 @@ const WORKS = {
       {
         "name": "Loop",
         "hex": "#826ec8",
-        "source": "acquerir/enigma-loop.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-loop.webp",
         "price": 475,
@@ -456,7 +428,6 @@ const WORKS = {
       {
         "name": "Vapeur",
         "hex": "#6e96dc",
-        "source": "acquerir/enigma-vapeur.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-vapeur.webp",
         "price": 475,
@@ -472,7 +443,6 @@ const WORKS = {
       {
         "name": "Éclipse",
         "hex": "#f0d278",
-        "source": "acquerir/enigma-eclipse.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-eclipse.webp",
         "price": 475,
@@ -488,7 +458,6 @@ const WORKS = {
       {
         "name": "Néon",
         "hex": "#3cb4b4",
-        "source": "acquerir/enigma-neon.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-neon.webp",
         "price": 475,
@@ -504,7 +473,6 @@ const WORKS = {
       {
         "name": "Écho",
         "hex": "#bea0d2",
-        "source": "acquerir/enigma-echo.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-echo.webp",
         "price": 475,
@@ -520,7 +488,6 @@ const WORKS = {
       {
         "name": "Majorelle",
         "hex": "#0032aa",
-        "source": "acquerir/enigma-majorelle.webp",
         "edition": "open",
         "image": "/assets/acquerir-enigma-majorelle.webp",
         "price": 475,
@@ -536,7 +503,6 @@ const WORKS = {
       {
         "name": "Soleil",
         "hex": "#d4af37",
-        "source": "acquerir/enigma-soleil.webp",
         "edition": "limited",
         "image": "/assets/acquerir-enigma-soleil.webp",
         "price": 925,
@@ -552,7 +518,6 @@ const WORKS = {
       {
         "name": "Outremer",
         "hex": "#000aaa",
-        "source": "acquerir/enigma-outremer.webp",
         "edition": "limited",
         "image": "/assets/acquerir-enigma-outremer.webp",
         "price": 925,
@@ -568,7 +533,6 @@ const WORKS = {
       {
         "name": "Vide",
         "hex": "#141414",
-        "source": "acquerir/enigma-vide.webp",
         "edition": "limited",
         "image": "/assets/acquerir-enigma-vide.webp",
         "price": 925,
@@ -584,7 +548,6 @@ const WORKS = {
       {
         "name": "Neige",
         "hex": "#e6e6e6",
-        "source": "acquerir/enigma-neige.webp",
         "edition": "limited",
         "image": "/assets/acquerir-enigma-neige.webp",
         "price": 925,
@@ -600,7 +563,6 @@ const WORKS = {
       {
         "name": "Vague",
         "hex": "#003caa",
-        "source": "acquerir/enigma-vague.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-vague.webp",
         "price": 1695,
@@ -616,7 +578,6 @@ const WORKS = {
       {
         "name": "Vibe",
         "hex": "#28b4c8",
-        "source": "acquerir/enigma-vibe.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-vibe.webp",
         "price": 1695,
@@ -632,7 +593,6 @@ const WORKS = {
       {
         "name": "Zigzag",
         "hex": "#e6e6dc",
-        "source": "acquerir/enigma-zigzag.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-zigzag.webp",
         "price": 1755,
@@ -648,7 +608,6 @@ const WORKS = {
       {
         "name": "Pulse",
         "hex": "#f0d26e",
-        "source": "acquerir/enigma-pulse.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-pulse.webp",
         "price": 1695,
@@ -664,7 +623,6 @@ const WORKS = {
       {
         "name": "Plasma",
         "hex": "#dc0a0a",
-        "source": "acquerir/enigma-plasma.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-plasma.webp",
         "price": 1455,
@@ -680,7 +638,6 @@ const WORKS = {
       {
         "name": "Pixel",
         "hex": "#e63c78",
-        "source": "acquerir/enigma-pixel.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-pixel.webp",
         "price": 1755,
@@ -696,7 +653,6 @@ const WORKS = {
       {
         "name": "Electric",
         "hex": "#f4d000",
-        "source": "acquerir/enigma-electric.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-electric.webp",
         "price": 1455,
@@ -712,7 +668,6 @@ const WORKS = {
       {
         "name": "Doodle",
         "hex": "#e6dcd2",
-        "source": "acquerir/enigma-doodle.webp",
         "edition": "unique",
         "image": "/assets/acquerir-enigma-doodle.webp",
         "price": 1695,
@@ -728,7 +683,6 @@ const WORKS = {
       {
         "name": "Nuit",
         "hex": "#2d2d33",
-        "source": "image3a.webp",
         "edition": "limited",
         "image": "/assets/image3a.webp",
         "price": 925,
@@ -749,7 +703,6 @@ const WORKS = {
       {
         "name": "Aube",
         "hex": "#c5b3e0",
-        "source": "image3b.webp",
         "edition": "limited",
         "image": "/assets/image3b.webp",
         "price": 925,

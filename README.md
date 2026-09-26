@@ -40,6 +40,15 @@ La conversion Google Analytics `purchase` n'est envoyée qu'avec le consentement
 
 Le Worker affiche le montant réellement facturé ; le site n'affiche qu'une estimation.
 
+## Qualité du code
+
+    cd _build
+    npm run lint      # ESLint (règles recommandées + ===, const, pas de var)
+    npm run format    # Prettier (.prettierrc.json)
+    npm run check     # lint + mise en forme + génération et toutes les vérifications
+
+`npm run build` vérifie aussi que le service de paiement (`worker/src/index.js`) applique exactement les prix, éditions et zones de livraison affichés par le site : une divergence bloque la génération.
+
 ## Référencement
 
 - Titres et descriptions de chaque page (FR/EN) : fonction `pageSeo()` dans `app.js`. `npm run build` refuse un titre ou une description en double, trop courte ou trop longue.

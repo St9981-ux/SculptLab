@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node prepare-static.mjs"
+    "build": "node prepare-static.mjs",
+    "lint": "cd .. && eslint .",
+    "format": "cd .. && prettier --write .",
+    "check": "cd .. && eslint . && prettier --check . && cd _build && node prepare-static.mjs"
   },
   "devDependencies": {
     "vite": "8.0.13"
