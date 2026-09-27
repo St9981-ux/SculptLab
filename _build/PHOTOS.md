@@ -22,6 +22,6 @@ Les photos existantes en situation sont associées uniquement aux finitions corr
 
 Chaque sculpture a cinq vues provisoires, en blanc, ajoutées à la galerie de toutes ses finitions après la photo de la finition : `assets/vue-io-1.webp` à `vue-io-5.webp`, `vue-zamu-1…5`, `vue-enigma-1…5`, dans l’ordre face, trois quarts, profil, dos (ou autre côté), en situation. Elles portent `"placeholder": true` dans `data.js` et ne sont pas envoyées au sitemap.
 
-Pour mettre les vraies photos : remplacer chaque fichier en gardant son nom (image carrée, 1200 px conseillés, WebP), ajuster si besoin la légende (`caption` / `captionEn`, utilisée pour le texte alternatif), retirer `"placeholder": true`, puis lancer `python3 _build/make-thumbs.py` et `npm run build`.
+Pour mettre les vraies photos : remplacer chaque fichier en gardant son nom (image carrée, 1600 px ou plus conseillés, WebP qualité 95 ; ne pas compresser davantage : les textures deviennent floues), ajuster si besoin la légende (`caption` / `captionEn`, utilisée pour le texte alternatif), retirer `"placeholder": true`, puis lancer `python3 _build/make-thumbs.py` et `npm run build`.
 
-Après modification, créer les miniatures avec `python3 _build/make-thumbs.py` (320 px, dans `assets/thumbs/`), puis exécuter `npm run build` dans `_build/` pour vérifier les références et régénérer les pages FR / EN.
+Après modification, créer les miniatures avec `python3 _build/make-thumbs.py` (400 px, qualité 90, dans `assets/thumbs/`), puis exécuter `npm run build` dans `_build/` pour vérifier les références et régénérer les pages FR / EN.
