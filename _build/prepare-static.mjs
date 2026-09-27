@@ -353,9 +353,10 @@ g.context.document.querySelectorAll = () => [];
 g.context.document.querySelector = () => null;
 vm.runInContext('setPhoto(1)', g.context);
 assert.equal(elements['product-image'].src, '/assets/iov1a.webp');
-assert.equal(elements['photo-status'].textContent, 'Photo 2 / 2');
+const sorbetPhotos = works.io.variants.find(v => v.name === 'Sorbet').photos.length;
+assert.equal(elements['photo-status'].textContent, 'Photo 2 / ' + sorbetPhotos);
 assert.equal(vm.runInContext('selectedVariant(WORKS.io).name', g.context), 'Sorbet');
-vm.runInContext('setPhoto(2)', g.context);
+vm.runInContext('setPhoto(' + sorbetPhotos + ')', g.context); // past the last view: back to the first
 assert.equal(elements['product-image'].src, works.io.variants.find(v => v.name === 'Sorbet').image);
 
 // Every mobile finish is visible in its edition, including the last unique pieces.
@@ -1070,7 +1071,10 @@ function sitemapImages(p) {
   const m = p.match(/^\/oeuvres\/(io|zamu|enigma)\/$/);
   if (!m) return '';
   const w = WORKS_DATA[m[1]];
-  return [...new Set(w.variants.flatMap(v => [v.image, ...(v.photos || []).map(x => x.src)]))]
+  // Temporary placeholder views ("placeholder": true in data.js) are not submitted to search engines.
+  return [
+    ...new Set(w.variants.flatMap(v => [v.image, ...(v.photos || []).filter(x => !x.placeholder).map(x => x.src)])),
+  ]
     .map(src => `<image:image><image:loc>${origin + src}</image:loc></image:image>`)
     .join('');
 }

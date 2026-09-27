@@ -3050,9 +3050,13 @@ svg {
   .product-gallery .photo-thumbnails {
     margin-top: 8px;
     padding: 2px 2px 4px;
+    gap: 6px;
   }
+  /* Up to seven views stay on one line, from 36 to 48 px wide; beyond that the row scrolls. */
   .product-gallery .photo-thumbnails button {
-    flex-basis: 48px;
+    flex: 1 1 0;
+    min-width: 36px;
+    max-width: 48px;
     height: 50px;
   }
   .preview-selection {

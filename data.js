@@ -1,4 +1,6 @@
-/* Collection SculptLab. Add views to each finish’s photos array; images are loaded on demand. */
+/* Collection SculptLab. Add views to each finish’s photos array; images are loaded on demand.
+   Views with "placeholder": true (assets/vue-<sculpture>-<1..5>.webp) are temporary white photographs, shared by every finish:
+   replace the files, keeping their names, then run python3 _build/make-thumbs.py and npm run build. */
 const WORKS = {
   "io": {
     "name": "Io",
@@ -22,6 +24,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-ecarlate.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -37,6 +69,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-pomme.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -57,6 +119,36 @@ const WORKS = {
             "src": "/assets/iov1a.webp",
             "caption": "La sculpture dans son espace",
             "captionEn": "The sculpture in its setting"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -72,6 +164,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-b.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -87,6 +209,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-poudre.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -102,6 +254,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-arlequin.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -117,6 +299,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-berlingot.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -132,6 +344,36 @@ const WORKS = {
             "src": "/assets/acquerir-io-cyan.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-io-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-io-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       }
@@ -162,6 +404,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-acide.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -177,6 +449,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-albizia.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -192,6 +494,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-dragee.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -207,6 +539,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-corail.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -222,6 +584,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-venin.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -237,6 +629,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-lagon.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -252,6 +674,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-givre.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -267,6 +719,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-plasma.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -282,6 +764,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-sable.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -297,6 +809,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-antipode.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -312,6 +854,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-anemone.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -327,6 +899,36 @@ const WORKS = {
             "src": "/assets/acquerir-zamu-parme.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -347,6 +949,36 @@ const WORKS = {
             "src": "/assets/zamuv1a.webp",
             "caption": "La sculpture dans son espace",
             "captionEn": "The sculpture in its setting"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -362,6 +994,36 @@ const WORKS = {
             "src": "/assets/image2b.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-zamu-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-3.webp",
+            "caption": "Vue de profil",
+            "captionEn": "Side view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-4.webp",
+            "caption": "Vue arrière de trois quarts",
+            "captionEn": "Three-quarter rear view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-zamu-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       }
@@ -392,6 +1054,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-nova.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -407,6 +1099,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-glitch.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -422,6 +1144,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-loop.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -437,6 +1189,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-vapeur.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -452,6 +1234,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-eclipse.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -467,6 +1279,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-neon.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -482,6 +1324,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-echo.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -497,6 +1369,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-majorelle.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -512,6 +1414,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-soleil.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -527,6 +1459,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-outremer.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -542,6 +1504,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-vide.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -557,6 +1549,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-neige.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -572,6 +1594,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-vague.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -587,6 +1639,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-vibe.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -602,6 +1684,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-zigzag.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -617,6 +1729,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-pulse.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -632,6 +1774,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-plasma.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -647,6 +1819,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-pixel.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -662,6 +1864,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-electric.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -677,6 +1909,36 @@ const WORKS = {
             "src": "/assets/acquerir-enigma-doodle.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -697,6 +1959,36 @@ const WORKS = {
             "src": "/assets/enigmav1a.webp",
             "caption": "La sculpture dans son espace",
             "captionEn": "The sculpture in its setting"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       },
@@ -712,6 +2004,36 @@ const WORKS = {
             "src": "/assets/image3b.webp",
             "caption": "Vue de la sculpture",
             "captionEn": "Sculpture view"
+          },
+          {
+            "src": "/assets/vue-enigma-1.webp",
+            "caption": "Vue de face",
+            "captionEn": "Front view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-2.webp",
+            "caption": "Vue de trois quarts",
+            "captionEn": "Three-quarter view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-3.webp",
+            "caption": "Vue de l’autre côté",
+            "captionEn": "Other side",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-4.webp",
+            "caption": "Vue de dos",
+            "captionEn": "Back view",
+            "placeholder": true
+          },
+          {
+            "src": "/assets/vue-enigma-5.webp",
+            "caption": "En situation",
+            "captionEn": "In situ",
+            "placeholder": true
           }
         ]
       }
