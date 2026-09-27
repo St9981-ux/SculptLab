@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 // The published site is the repository root (GitHub Pages). This script lives in _build/.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -1079,9 +1080,20 @@ function sitemapImages(p) {
     .join('');
 }
 const indexable = paths.filter(p => !/^\/acquerir\//.test(p) && p !== '/merci/');
+// Date of the last change to the site's content, from Git when available (otherwise the build date).
+const lastmod = (() => {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', 'app.js', 'data.js', 'legal.js', 'style.css'], {
+      cwd: root,
+      encoding: 'utf8',
+    }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(out)) return out;
+  } catch {}
+  return new Date().toISOString().slice(0, 10);
+})();
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${indexable.flatMap(p => ['fr', 'en'].map(lang => `<url><loc>${origin + localized(p, lang)}</loc><xhtml:link rel="alternate" hreflang="fr" href="${origin + localized(p, 'fr')}"/><xhtml:link rel="alternate" hreflang="en" href="${origin + localized(p, 'en')}"/><xhtml:link rel="alternate" hreflang="x-default" href="${origin + localized(p, 'en')}"/>${sitemapImages(p)}</url>`)).join('\n')}
+${indexable.flatMap(p => ['fr', 'en'].map(lang => `<url><loc>${origin + localized(p, lang)}</loc><lastmod>${lastmod}</lastmod><xhtml:link rel="alternate" hreflang="fr" href="${origin + localized(p, 'fr')}"/><xhtml:link rel="alternate" hreflang="en" href="${origin + localized(p, 'en')}"/><xhtml:link rel="alternate" hreflang="x-default" href="${origin + localized(p, 'en')}"/>${sitemapImages(p)}</url>`)).join('\n')}
 </urlset>
 `;
 fs.writeFileSync(path.join(root, 'sitemap.xml'), sitemap);
@@ -1091,6 +1103,7 @@ fs.writeFileSync(
 Allow: /
 
 Sitemap: ${origin}/sitemap.xml
+Sitemap: ${origin}/sitemap-anciennes-adresses.xml
 `
 );
 
@@ -1124,6 +1137,7 @@ function legacyPage(target, lang, script, fallback) {
 `;
 }
 let legacyCount = 0;
+const formerAddresses = [];
 for (const lang of ['fr', 'en'])
   for (const [file, entry] of Object.entries(legacyPages)) {
     const p = typeof entry === 'string' ? entry : entry.path,
@@ -1141,6 +1155,7 @@ for (const lang of ['fr', 'en'])
     const file_ = path.join(root, lang === 'en' ? 'en' : '', file);
     fs.writeFileSync(file_, legacyPage(target, lang, script, fallback));
     legacyCount++;
+    if (!file.endsWith('_summary.html')) formerAddresses.push(origin + (lang === 'en' ? '/en/' : '/') + file);
     assert.ok(fs.existsSync(path.join(root, target, 'index.html')), 'Legacy target exists ' + target);
   }
 // Stripe returns to /merci.html?session_id=…&lang=… (success_url in worker/src/index.js).
@@ -1154,6 +1169,17 @@ fs.writeFileSync(
   )
 );
 legacyCount++;
+
+// Migration of 26 September 2026: the former addresses, so that search engines revisit them quickly and follow their
+// redirections. Remove this file and its line in robots.txt once Search Console shows the new pages indexed (2–3 months).
+fs.writeFileSync(
+  path.join(root, 'sitemap-anciennes-adresses.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${formerAddresses.map(u => `<url><loc>${u}</loc><lastmod>${lastmod}</lastmod></url>`).join('\n')}
+</urlset>
+`
+);
 
 routes.push('/fr/page-introuvable/', '/en/page-introuvable/'); // its language switch points to the same unknown address
 const notFound = generate('/fr/page-introuvable/');

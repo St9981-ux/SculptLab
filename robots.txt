@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://sculptlab.fr/sitemap.xml
+Sitemap: https://sculptlab.fr/sitemap-anciennes-adresses.xml
