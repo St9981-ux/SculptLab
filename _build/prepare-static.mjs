@@ -32,6 +32,7 @@ const pairs = [
   ['merci', 'thanks'],
 ];
 function localized(p, lang) {
+  if (lang === 'fr' && p === '/') return '/'; // the French home page is the root address (see app.js localizedPath)
   if (lang === 'en') for (const [fr, en] of pairs) p = p.replace(new RegExp('^/' + fr + '(?=/|$)'), '/' + en);
   return '/' + lang + p;
 }
@@ -270,7 +271,7 @@ function html(result, p, neutral = false) {
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" hreflang="fr" href="${origin + localized(canonicalPath, 'fr')}"><link rel="alternate" hreflang="en" href="${origin + localized(canonicalPath, 'en')}"><link rel="alternate" hreflang="x-default" href="${origin + localized(canonicalPath, 'en')}"><link rel="canonical" href="${url}">
 <meta property="og:site_name" content="SculptLab"><meta property="og:type" content="${meta.type}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${abs(meta.image)}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${meta.imageAlt.replaceAll('"', '&quot;')}"><meta property="og:locale" content="${en ? 'en_US' : 'fr_FR'}"><meta property="og:locale:alternate" content="${en ? 'fr_FR' : 'en_US'}"><meta name="twitter:card" content="summary_large_image">
-${neutral ? '' : meta.ld.map(jsonLd).join('')}
+${neutral && p !== '/' ? '' : meta.ld.map(jsonLd).join('')}
 ${neutral ? '<script src="/language.js"></script>' : ''}<script src="/arrival.js"></script>${p === '/' ? `<link rel="preload" href="${heroImage}" as="image" fetchpriority="high">` : ''}<link rel="preload" href="/assets/display.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"><script src="/data.js" defer></script><script src="/legal.js" defer></script><script src="/consent.js" defer></script><script src="/privacy-ui.js" defer></script><script src="/app.js" defer></script><script src="/cursor.js" defer></script></head>
 <body id="top"><a class="skip-link" href="#main">${result.lang === 'en' ? 'Skip to content' : 'Aller au contenu'}</a><div id="app">${result.html}</div></body></html>`;
 }
@@ -331,11 +332,11 @@ function redirect(pathname, browser, stored, search = '', hash = '', storageThro
   vm.runInNewContext(languageSource, context);
   return result;
 }
-assert.equal(redirect('/', 'fr-FR', null), '/fr/');
-assert.equal(redirect('/', 'fr-CA', null), '/fr/');
+assert.equal(redirect('/', 'fr-FR', null), null);
+assert.equal(redirect('/', 'fr-CA', null), null);
 assert.equal(redirect('/', 'en-US', null), '/en/');
 assert.equal(redirect('/', 'de-DE', null), '/en/');
-assert.equal(redirect('/', 'ja-JP', 'fr'), '/fr/');
+assert.equal(redirect('/', 'ja-JP', 'fr'), null);
 assert.equal(redirect('/', 'fr-FR', 'en'), '/en/');
 assert.equal(redirect('/en/works/io/', 'fr-FR', 'fr'), null);
 assert.equal(redirect('/fr/oeuvres/io/', 'en-US', 'en'), null);
@@ -343,7 +344,7 @@ assert.equal(
   redirect('/oeuvres/io/', 'en-GB', null, '?finition=Sorbet', '#histoire'),
   '/en/works/io/?finition=Sorbet#histoire'
 );
-assert.equal(redirect('/', 'fr-FR', null, '', '', true), '/fr/');
+assert.equal(redirect('/', 'fr-FR', null, '', '', true), null);
 assert.equal(redirect('/', 'de-DE', null, '', '', true), '/en/');
 
 // Real gallery handlers: the second photo changes the image without changing finish.
@@ -1158,6 +1159,13 @@ for (const lang of ['fr', 'en'])
     if (!file.endsWith('_summary.html')) formerAddresses.push(origin + (lang === 'en' ? '/en/' : '/') + file);
     assert.ok(fs.existsSync(path.join(root, target, 'index.html')), 'Legacy target exists ' + target);
   }
+// /fr/ was the French home page's address from 26 to 27 September 2026: it now leads to the root address.
+fs.mkdirSync(path.join(root, 'fr'), { recursive: true });
+fs.writeFileSync(
+  path.join(root, 'fr', 'index.html'),
+  legacyPage('/', 'fr', `location.replace('/'+location.search+location.hash)`, '/')
+);
+legacyCount++;
 // Stripe returns to /merci.html?session_id=…&lang=… (success_url in worker/src/index.js).
 fs.writeFileSync(
   path.join(root, 'merci.html'),

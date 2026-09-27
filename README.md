@@ -52,6 +52,7 @@ Le Worker affiche le montant réellement facturé ; le site n'affiche qu'une est
 ## Référencement
 
 - Titres et descriptions de chaque page (FR/EN) : fonction `pageSeo()` dans `app.js`. `npm run build` refuse un titre ou une description en double, trop courte ou trop longue.
+- L'accueil français est à l'adresse racine `https://sculptlab.fr/` (son adresse historique) ; `/fr/` y renvoie. Les autres pages françaises sont sous `/fr/`, les pages anglaises sous `/en/`.
 - Chaque page indexable a une URL canonique, ses versions `fr` / `en`, et `x-default` vers l'anglais. Les pages de commande, de remerciement et 404 sont en `noindex`.
 - Images de partage 1200×630 : `assets/og/`. Données structurées : `ProductGroup` (44 finitions, prix, livraison France, retour 14 jours) sur les fiches, `Organization` et `WebSite` sur l'accueil.
 - `sitemap.xml` (avec les photos des œuvres) et `robots.txt` sont régénérés par `npm run build`.

@@ -1,9 +1,9 @@
 /* Explicit language URLs win. A visitor's manual choice is saved locally. */
 (() => {
   if (/^\/(fr|en)(\/|$)/.test(location.pathname)) return;
-  // Search engines and link previews read the page as published (French, canonical /fr/), without a language redirect.
+  // Search engines, testing tools and link previews read the page as published (French), without a language redirect.
   if (
-    /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview/i.test(
+    /bot|crawl|spider|slurp|google|lighthouse|facebookexternalhit|embedly|preview/i.test(
       (typeof navigator !== 'undefined' && navigator.userAgent) || ''
     )
   )
@@ -19,6 +19,8 @@
       ? 'fr'
       : 'en';
   let path = location.pathname || '/';
+  // The root address is the French home page itself: French visitors stay there.
+  if (language === 'fr' && path === '/') return;
   if (language === 'en')
     path = path
       .replace(/^\/oeuvres(?=\/|$)/, '/works')

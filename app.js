@@ -27,7 +27,9 @@ const routePairs = [
   ['cgv', 'terms'],
   ['merci', 'thanks'],
 ];
+// French is the site's main language: its home page is the root address https://sculptlab.fr/ (indexed for years).
 function localizedPath(path, lang) {
+  if (lang === 'fr' && path === '/') return '/';
   if (lang === 'en')
     for (const [fr, en] of routePairs) path = path.replace(new RegExp('^/' + fr + '(?=/|$)'), '/' + en);
   return '/' + lang + (path === '/' ? '/' : path);
@@ -778,7 +780,7 @@ document.addEventListener('click', event => {
   if (
     next.origin !== location.origin ||
     !['http:', 'https:'].includes(next.protocol) ||
-    !/^\/(fr|en)(\/|$)/.test(next.pathname)
+    !(next.pathname === '/' || /^\/(fr|en)(\/|$)/.test(next.pathname))
   )
     return;
   if (link.dataset.language) {
