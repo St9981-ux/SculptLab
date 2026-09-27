@@ -439,6 +439,34 @@ for (const lang of ['fr', 'en'])
     }
   }
 
+// Colour section of the home page: three steps whose finishes exist and are not already shown by the home loops.
+const featureHome = generate('/');
+const featureData = JSON.parse(
+  vm.runInContext(
+    'JSON.stringify({ steps: featureSteps.map((s, i) => ({ ...s, image: featureStep(i).v?.image })), loops: homeFinishNames, hero: heroItems })',
+    featureHome.context
+  )
+);
+assert.deepEqual(
+  featureData.steps.map(s => s.tone),
+  ['blue', 'acid', 'ink'],
+  'Colour section uses the three SculptLab colours'
+);
+for (const s of featureData.steps) {
+  assert.ok(s.image && fs.existsSync(path.join(root, s.image)), 'Colour section finish exists: ' + s.id + ' ' + s.name);
+  assert.ok(
+    !featureData.loops[s.id].includes(s.name) && !featureData.hero.some(h => h.id === s.id && h.name === s.name),
+    'Colour section finish is not already looping on the home page: ' + s.id + ' ' + s.name
+  );
+}
+assert.deepEqual(
+  Array.from(featureHome.html.matchAll(/data-feature-image="(\d)"/g), m => m[1]),
+  ['0', '1', '2'],
+  'Colour section holds its three photographs'
+);
+assert.ok(featureHome.html.includes('Découvrir Enigma Doodle'), 'Colour section link names the first finish');
+assert.ok(generate('/en/').html.includes('Discover Enigma Doodle'), 'Colour section link is translated');
+
 // Horizontal swiping changes the featured work; vertical scrolling does not.
 const featured = generate('/fr/');
 const heroElements = {

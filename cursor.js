@@ -25,26 +25,43 @@
       document.body.appendChild(dot);
     }
   }
-  document.addEventListener(
-    'mousemove',
-    e => {
-      if (!dot) return;
-      const target = document.elementFromPoint(e.clientX, e.clientY);
-      if (!target || target.closest('input,textarea,[contenteditable=true]')) {
-        hide();
-        return;
-      }
-      const dpr = window.devicePixelRatio || 1,
-        x = Math.round(e.clientX * dpr) / dpr,
-        y = Math.round(e.clientY * dpr) / dpr;
-      dot.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
-      dot.classList.toggle('is-hover', Boolean(target.closest('a,button,select,label,summary,[role=button]')));
-      dot.classList.toggle(
-        'on-dark',
-        Boolean(target.closest('.feature,.site-footer,.atelier-quote,.button,.language-switch a[aria-current=true]'))
-      );
-      dot.style.opacity = '1';
-      document.documentElement.classList.add('sl-cursor-active');
+  let pointer = null,
+    frame = 0;
+  function place(clientX, clientY) {
+    if (!dot) return;
+    pointer = { clientX, clientY };
+    const target = document.elementFromPoint(clientX, clientY);
+    if (!target || target.closest('input,textarea,[contenteditable=true]')) {
+      hide();
+      return;
+    }
+    const dpr = window.devicePixelRatio || 1,
+      x = Math.round(clientX * dpr) / dpr,
+      y = Math.round(clientY * dpr) / dpr;
+    dot.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
+    dot.classList.toggle('is-hover', Boolean(target.closest('a,button,select,label,summary,[role=button]')));
+    // The colour section turns acid yellow at one step: the circle stays blue there.
+    dot.classList.toggle(
+      'on-dark',
+      Boolean(
+        target.closest(
+          '.feature:not([data-tone=acid]),.site-footer,.atelier-quote,.button,.language-switch a[aria-current=true]'
+        )
+      )
+    );
+    dot.style.opacity = '1';
+    document.documentElement.classList.add('sl-cursor-active');
+  }
+  document.addEventListener('mousemove', e => place(e.clientX, e.clientY), { passive: true });
+  // Scrolling moves the page under a still mouse: check again what lies beneath the circle.
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!dot || !pointer || dot.style.opacity !== '1' || frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        place(pointer.clientX, pointer.clientY);
+      });
     },
     { passive: true }
   );

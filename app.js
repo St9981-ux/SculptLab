@@ -205,10 +205,34 @@ function updateCardFinish(card, w, v, animate = false) {
 function home() {
   const w = WORKS.enigma,
     v = w.variants.find(c => c.name === 'Outremer');
-  return `${header()}<main id="main" tabindex="-1" class="home-main"><div class="shell"><section class="hero"><div class="hero-copy"><span class="eyebrow">${t('Sculptures contemporaines', 'Contemporary sculptures')}</span><h1><span class="hero-title-line"><span>${t('L’étrange', 'The unknown')}</span></span> <span class="hero-title-line"><em>${t('prend forme.', 'takes shape.')}</em></span></h1><p>${t('Il est des présences que l’on ne rencontre<br>qu’au bord du rêve.', 'Some presences are encountered<br>only at the edge of dreams.')}</p><a class="button" href="${href('/collection/')}">${t('Explorer les œuvres', 'Explore the works')} ${arrowRight}</a></div><div class="hero-stage" id="hero-stage" data-slideshow-root="hero"><span class="hero-stage-label">${t('LA COLLECTION', 'THE COLLECTION')}</span><div class="hero-seal">${signature()}</div><img class="hero-art" id="hero-art" src="${v.image}" alt="${esc(w.name + ' — ' + finish(v))}" width="900" height="1000" fetchpriority="high"><div class="hero-caption"><a id="hero-link" href="${urlFor(w, v)}"><strong id="hero-name">Enigma</strong><span id="hero-finish">${finish(v)}</span></a><div class="hero-controls" aria-label="${t('Sculpture à la une', 'Featured sculpture')}">${heroItems.map((item, i) => `<button data-hero="${i}" aria-label="${t('Afficher', 'Show')} ${WORKS[item.id].name}" aria-pressed="${i === 0}">0${i + 1}</button>`).join('')}</div></div></div><a class="button mobile-hero-link" href="${href('/collection/')}">${t('Explorer les œuvres', 'Explore the works')} ${arrowRight}</a></section><div class="manifesto-strip"><span>${t('SCULPTURES EN RÉSINE', 'RESIN SCULPTURES')}</span><span>${t('ÉDITIONS LIMITÉES & PIÈCES UNIQUES', 'LIMITED EDITIONS & ONE-OF-A-KIND WORKS')}</span><span>${t('FAÇONNÉES & PEINTES À LA MAIN', 'SHAPED & PAINTED BY HAND')}</span><a href="${href('/atelier/')}" aria-label="${t('Découvrir la fabrication', 'Discover the making')}">${arrow}</a></div><section class="collection-section"><div class="section-head"><div><p class="eyebrow">${t('01 — Rencontres singulières', '01 — Unfamiliar encounters')}</p><h2>${t('Trois formes.<br>Des mondes à part.', 'Three forms.<br>Worlds of their own.')}</h2></div><a class="text-link" href="${href('/collection/')}">${t('Toute la collection', 'The full collection')} ${arrow}</a></div><div class="work-grid">${Object.values(WORKS).map(workCard).join('')}</div></section></div><section class="feature"><div class="feature-image"><img src="${WORKS.enigma.variants.find(v => v.name === 'Doodle').image}" alt="Enigma — Doodle" loading="lazy" width="900" height="900"></div><div class="feature-copy"><span class="eyebrow">${t('Les métamorphoses de la couleur', 'The transformations of colour')}</span><h2>${t('Une forme.<br>D’autres murmures.', 'One form.<br>Other whispers.')}</h2><p>${t('Une même silhouette, et pourtant une autre présence. La couleur déplace le souvenir, fait apparaître ce que l’on n’avait pas encore vu.', 'The same silhouette, and yet a different presence. Colour shifts the memory, revealing what had remained unseen.')}</p><a class="text-link" href="${urlFor(
-    WORKS.enigma,
-    WORKS.enigma.variants.find(v => v.name === 'Doodle')
-  )}">${t('Découvrir Enigma Doodle', 'Discover Enigma Doodle')} ${arrow}</a></div></section><div class="shell"><section class="atelier-teaser"><figure><img src="/assets/about2.webp" alt="${t('Une sculpture prend forme dans l’atelier', 'A sculpture taking shape in the studio')}" loading="lazy" width="900" height="1000"><figcaption>${t('Le geste, avant la couleur.', 'The gesture, before the colour.')}</figcaption></figure><div><p class="eyebrow">${t('02 — Dans l’atelier', '02 — Inside the studio')}</p><h2>${t('Ce qui revient<br>du silence.', 'What returns<br>from silence.')}</h2><p>${t('Une image demeure au réveil. Les mains en cherchent les contours, la matière lui prête un corps. Peu à peu, ce qui semblait lointain trouve sa place parmi nous.', 'An image lingers upon waking. Hands search for its contours; matter lends it a body. Little by little, what once seemed distant finds a place among us.')}</p><a class="text-link" href="${href('/atelier/')}">${t('Entrer dans l’atelier', 'Enter the studio')} ${arrow}</a></div></section></div>${closing()}</main>${footer()}`;
+  return `${header()}<main id="main" tabindex="-1" class="home-main"><div class="shell"><section class="hero"><div class="hero-copy"><span class="eyebrow">${t('Sculptures contemporaines', 'Contemporary sculptures')}</span><h1><span class="hero-title-line"><span>${t('L’étrange', 'The unknown')}</span></span> <span class="hero-title-line"><em>${t('prend forme.', 'takes shape.')}</em></span></h1><p>${t('Il est des présences que l’on ne rencontre<br>qu’au bord du rêve.', 'Some presences are encountered<br>only at the edge of dreams.')}</p><a class="button" href="${href('/collection/')}">${t('Explorer les œuvres', 'Explore the works')} ${arrowRight}</a></div><div class="hero-stage" id="hero-stage" data-slideshow-root="hero"><span class="hero-stage-label">${t('LA COLLECTION', 'THE COLLECTION')}</span><div class="hero-seal">${signature()}</div><img class="hero-art" id="hero-art" src="${v.image}" alt="${esc(w.name + ' — ' + finish(v))}" width="900" height="1000" fetchpriority="high"><div class="hero-caption"><a id="hero-link" href="${urlFor(w, v)}"><strong id="hero-name">Enigma</strong><span id="hero-finish">${finish(v)}</span></a><div class="hero-controls" aria-label="${t('Sculpture à la une', 'Featured sculpture')}">${heroItems.map((item, i) => `<button data-hero="${i}" aria-label="${t('Afficher', 'Show')} ${WORKS[item.id].name}" aria-pressed="${i === 0}">0${i + 1}</button>`).join('')}</div></div></div><a class="button mobile-hero-link" href="${href('/collection/')}">${t('Explorer les œuvres', 'Explore the works')} ${arrowRight}</a></section><div class="manifesto-strip"><span>${t('SCULPTURES EN RÉSINE', 'RESIN SCULPTURES')}</span><span>${t('ÉDITIONS LIMITÉES & PIÈCES UNIQUES', 'LIMITED EDITIONS & ONE-OF-A-KIND WORKS')}</span><span>${t('FAÇONNÉES & PEINTES À LA MAIN', 'SHAPED & PAINTED BY HAND')}</span><a href="${href('/atelier/')}" aria-label="${t('Découvrir la fabrication', 'Discover the making')}">${arrow}</a></div><section class="collection-section"><div class="section-head"><div><p class="eyebrow">${t('01 — Rencontres singulières', '01 — Unfamiliar encounters')}</p><h2>${t('Trois formes.<br>Des mondes à part.', 'Three forms.<br>Worlds of their own.')}</h2></div><a class="text-link" href="${href('/collection/')}">${t('Toute la collection', 'The full collection')} ${arrow}</a></div><div class="work-grid">${Object.values(WORKS).map(workCard).join('')}</div></section></div>${featureSection()}<div class="shell"><section class="atelier-teaser"><figure><img src="/assets/about2.webp" alt="${t('Une sculpture prend forme dans l’atelier', 'A sculpture taking shape in the studio')}" loading="lazy" width="900" height="1000"><figcaption>${t('Le geste, avant la couleur.', 'The gesture, before the colour.')}</figcaption></figure><div><p class="eyebrow">${t('02 — Dans l’atelier', '02 — Inside the studio')}</p><h2>${t('Ce qui revient<br>du silence.', 'What returns<br>from silence.')}</h2><p>${t('Une image demeure au réveil. Les mains en cherchent les contours, la matière lui prête un corps. Peu à peu, ce qui semblait lointain trouve sa place parmi nous.', 'An image lingers upon waking. Hands search for its contours; matter lends it a body. Little by little, what once seemed distant finds a place among us.')}</p><a class="text-link" href="${href('/atelier/')}">${t('Entrer dans l’atelier', 'Enter the studio')} ${arrow}</a></div></section></div>${closing()}</main>${footer()}`;
+}
+// Les métamorphoses de la couleur (home page). The section stays in place while the page scrolls through
+// these steps; each background colour becomes the colour of the next sculpture (blue → Io Outremer, acid → Za’mu Acide).
+const featureSteps = [
+  { id: 'enigma', name: 'Doodle', tone: 'blue' },
+  { id: 'io', name: 'Outremer', tone: 'acid' },
+  { id: 'zamu', name: 'Acide', tone: 'ink' },
+];
+function featureStep(index) {
+  const step = featureSteps[index],
+    w = WORKS[step.id];
+  return { ...step, w, v: w.variants.find(v => v.name === step.name) };
+}
+function featureLabel({ w, v }) {
+  return `<span class="feature-name">${w.name} · ${esc(finish(v))}</span><span class="feature-count">${w.variants.length} ${t('finitions', 'finishes')}</span>`;
+}
+function featureSection() {
+  const steps = featureSteps.map((s, i) => featureStep(i)),
+    first = steps[0];
+  return `<section class="feature" data-tone="${first.tone}" data-step="0" style="--feature-steps:${steps.length}"><div class="feature-stage"><div class="feature-copy"><span class="eyebrow">${t('Les métamorphoses de la couleur', 'The transformations of colour')}</span><h2>${t('Une forme.<br>D’autres murmures.', 'One form.<br>Other whispers.')}</h2><p>${t('Chaque silhouette porte d’autres présences. La couleur déplace le souvenir, fait apparaître ce que l’on n’avait pas encore vu.', 'Each silhouette holds other presences. Colour shifts the memory, revealing what had remained unseen.')}</p><a class="text-link feature-link" href="${urlFor(first.w, first.v)}"><span class="feature-link-label">${t('Découvrir', 'Discover')} ${first.w.name} ${esc(finish(first.v))}</span> ${arrow}</a></div><a class="feature-image" href="${urlFor(first.w, first.v)}" aria-label="${t('Découvrir', 'Discover')} ${esc(first.w.name + ' — ' + finish(first.v))}">${steps
+    .map(
+      (s, i) =>
+        `<img src="${s.v.image}" alt="${esc(s.w.name + ' — ' + finish(s.v))}" loading="lazy" width="900" height="900" data-feature-image="${i}"${i ? '' : ' class="is-active"'}>`
+    )
+    .join(
+      ''
+    )}<span class="feature-steps"><span class="feature-bars" aria-hidden="true">${steps.map((s, i) => `<i${i ? '' : ' class="is-active"'}></i>`).join('')}</span><span class="feature-label">${featureLabel(first)}</span>${arrow}</span></a><div class="feature-track" aria-hidden="true"></div></div></section>`;
 }
 function collection() {
   return `${header('collection')}<main id="main" tabindex="-1" class="route-fade"><div class="shell"><section class="page-intro"><p class="eyebrow">${t('La collection', 'The collection')}</p><h1>${t('Choisir une<br>présence.', 'Choose a<br>presence.')}</h1><p>${t('Io, Za’mu, Enigma. Trois noms rapportés de lieux dont il ne reste que des fragments.', 'Io, Za’mu, Enigma. Three names brought back from places of which only fragments remain.')}</p></section><div class="catalog-bar"><nav class="filter-list" aria-label="${t('Accès aux œuvres', 'Browse the works')}"><a href="#io">Io</a><a href="#zamu">Za’mu</a><a href="#enigma">Enigma</a></nav><span>03 ${t('sculptures', 'sculptures')} · 44 ${t('finitions', 'finishes')}</span></div><section class="catalog-grid"><h2 class="sr-only">${t('Les trois sculptures', 'The three sculptures')}</h2><div class="work-grid">${Object.values(
@@ -561,6 +585,7 @@ function render({ scroll = true } = {}) {
     else window.scrollTo({ top: 0, behavior: 'instant' });
   } else document.getElementById('main')?.classList.remove('route-fade');
   setupHomeSlides();
+  setupFeature();
   window.sculptlabArrival?.start();
   window.sculptlabConsent?.start();
   trackPurchase();
@@ -615,11 +640,12 @@ function setHero(index, animate = false) {
     .forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.hero) === i)));
 }
 // Simple home loops. Manual choices restart the countdown; hovering never stops it.
+// Io Outremer, Za’mu Acide and Enigma Doodle are left out: they appear in the colour section below (featureSteps).
 const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 const homeFinishNames = {
-  io: ['Sorbet', 'Outremer', 'Arlequin', 'Écarlate'],
+  io: ['Sorbet', 'Berlingot', 'Arlequin', 'Écarlate'],
   zamu: ['Primaire', 'Corail', 'Plasma', 'Dragée'],
-  enigma: ['Outremer', 'Éclipse', 'Doodle', 'Néon'],
+  enigma: ['Outremer', 'Éclipse', 'Vague', 'Néon'],
 };
 let homeSlides = [],
   homeSlideTimer = null;
@@ -696,6 +722,57 @@ function setupHomeSlides() {
   }));
   homeSlideTimer = window.setInterval(tickHomeSlides, 500);
 }
+function setFeatureStep(section, index) {
+  const step = featureStep(index),
+    link = section.querySelector('.feature-link'),
+    stage = section.querySelector('.feature-image');
+  section.dataset.step = String(index);
+  section.dataset.tone = step.tone;
+  section
+    .querySelectorAll('[data-feature-image]')
+    .forEach(img => img.classList.toggle('is-active', Number(img.dataset.featureImage) === index));
+  section.querySelectorAll('.feature-bars i').forEach((bar, i) => bar.classList.toggle('is-active', i === index));
+  section.querySelector('.feature-label').innerHTML = featureLabel(step);
+  link.href = stage.href = urlFor(step.w, step.v);
+  link.querySelector('.feature-link-label').textContent =
+    t('Découvrir', 'Discover') + ' ' + step.w.name + ' ' + finish(step.v);
+  stage.setAttribute('aria-label', t('Découvrir', 'Discover') + ' ' + step.w.name + ' — ' + finish(step.v));
+}
+// Share of the pinned distance already scrolled (0 before the section is pinned, 1 once it is released).
+// Wide screens pin the whole section; phones let the text scroll by, then pin the photograph.
+function featureProgress(section) {
+  const stage = section.querySelector('.feature-stage'),
+    pinned = getComputedStyle(stage).position === 'sticky' ? stage : section.querySelector('.feature-image'),
+    lead = pinned === stage ? 0 : section.querySelector('.feature-copy').offsetHeight,
+    top = parseFloat(getComputedStyle(pinned).top) || 0,
+    box = pinned.parentElement.getBoundingClientRect(),
+    range = box.height - lead - pinned.offsetHeight;
+  return range > 0 ? Math.min(1, Math.max(0, (top - box.top - lead) / range)) : 0;
+}
+let featureFrame = 0;
+function updateFeature() {
+  featureFrame = 0;
+  const section = document.querySelector('.feature.is-scrolly');
+  if (!section) return;
+  const index = Math.min(featureSteps.length - 1, Math.floor(featureProgress(section) * featureSteps.length));
+  if (section.dataset.step !== String(index)) setFeatureStep(section, index);
+}
+function queueFeature() {
+  if (!featureFrame) featureFrame = requestAnimationFrame(updateFeature);
+}
+// Still version (first step only) when animations are reduced or the screen is too short to hold the section.
+const featureMotion = window.matchMedia?.('(prefers-reduced-motion: no-preference) and (min-height: 500px)');
+function setupFeature() {
+  const section = document.querySelector('.feature');
+  if (!section) return;
+  const scrolly = Boolean(featureMotion?.matches);
+  section.classList.toggle('is-scrolly', scrolly);
+  if (scrolly) updateFeature();
+  else if (section.dataset.step !== '0') setFeatureStep(section, 0);
+}
+window.addEventListener('scroll', queueFeature, { passive: true });
+window.addEventListener('resize', queueFeature, { passive: true });
+featureMotion?.addEventListener?.('change', setupFeature);
 let heroActive = 0;
 document.addEventListener('click', event => {
   const target = event.target;

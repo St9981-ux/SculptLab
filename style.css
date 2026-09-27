@@ -459,27 +459,63 @@ svg {
   border-radius: 50%;
   background: var(--swatch);
 }
+/* Les métamorphoses de la couleur. Each step (data-tone) takes its colours from the SculptLab palette. */
 .feature {
+  --feature-bg: var(--blue);
+  --feature-stage: #2529e8;
+  --feature-ink: #fff;
+  --feature-accent: var(--acid);
+  --feature-text: #e3e4ff;
+  background: var(--feature-bg);
+  color: var(--feature-ink);
+  transition:
+    background-color 0.7s ease,
+    color 0.7s ease;
+}
+.feature[data-tone='acid'] {
+  --feature-bg: var(--acid);
+  --feature-stage: #d8f566;
+  --feature-ink: var(--ink);
+  --feature-accent: var(--blue);
+  --feature-text: #33352b;
+}
+.feature[data-tone='ink'] {
+  --feature-bg: var(--ink);
+  --feature-stage: #202124;
+  --feature-ink: #fff;
+  --feature-accent: var(--acid);
+  --feature-text: #c9cac4;
+}
+.feature-stage {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: var(--blue);
-  color: white;
   min-height: 680px;
-  overflow: hidden;
 }
 .feature-image {
+  grid-column: 1;
+  grid-row: 1;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2529e8;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--feature-stage);
+  transition: background-color 0.7s ease;
 }
 .feature-image img {
+  grid-area: 1 / 1;
   height: 650px;
   padding: 45px;
   filter: drop-shadow(0 28px 12px #0002);
+  transition: opacity 0.7s ease;
+}
+.feature-image img:not(.is-active),
+.feature-steps,
+.feature-track {
+  display: none;
 }
 .feature-copy {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -493,13 +529,80 @@ svg {
 .feature-copy p {
   max-width: 350px;
   margin-bottom: 35px;
-  color: #e3e4ff;
+  color: var(--feature-text);
+  transition: color 0.7s ease;
 }
 .feature-copy .text-link:hover {
-  color: var(--acid);
+  color: var(--feature-accent);
 }
 .feature-copy .eyebrow {
-  color: var(--acid);
+  color: var(--feature-accent);
+  transition: color 0.7s ease;
+}
+
+/* While the page scrolls, the section stays in place and moves through its steps (setupFeature in app.js).
+   Each step gets half a screen of scrolling. */
+.feature.is-scrolly {
+  height: calc(100vh + var(--feature-steps) * 50vh);
+  height: calc(100svh + var(--feature-steps) * 50svh);
+}
+.feature.is-scrolly .feature-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+}
+.feature.is-scrolly .feature-image img {
+  display: block;
+  height: min(650px, calc(100svh - 90px), 56vw);
+  opacity: 0;
+}
+.feature.is-scrolly .feature-image img.is-active {
+  opacity: 1;
+}
+.feature.is-scrolly .feature-copy {
+  padding: min(70px, 7svh) 10%;
+}
+.feature.is-scrolly .feature-copy h2 {
+  margin: min(30px, 3svh) 0;
+  font-size: clamp(44px, min(6vw, 10svh), 90px);
+}
+.feature.is-scrolly .feature-steps {
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: 600 12px/1 var(--font);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.feature-bars {
+  display: flex;
+  gap: 6px;
+}
+.feature-bars i {
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+.feature-bars i.is-active {
+  opacity: 1;
+}
+.feature-label {
+  display: flex;
+  gap: 14px;
+}
+.feature-count {
+  opacity: 0.7;
+}
+.feature-steps svg {
+  display: none;
 }
 .atelier-teaser {
   display: grid;
@@ -1269,8 +1372,12 @@ svg {
   .work-info > span {
     font-size: 14px;
   }
-  .feature {
+  .feature-stage {
     grid-template-columns: 1fr;
+  }
+  .feature-copy {
+    grid-column: 1;
+    grid-row: 2;
   }
   .feature-image img {
     height: 450px;
@@ -1825,9 +1932,13 @@ svg {
 /* Sculpture enlargement, with no rotation. */
 @media (hover: hover) and (pointer: fine) {
   .work-visual > img,
-  .hero-art,
-  .feature-image > img {
+  .hero-art {
     transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .feature-image > img {
+    transition:
+      opacity 0.7s ease,
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
   }
   .work-visual:hover > img,
   .work-visual:focus-visible > img {
@@ -2745,8 +2856,58 @@ svg {
   .feature-copy {
     padding: 36px 20px 44px;
   }
-  .feature-copy h2 {
+  .feature-copy h2,
+  .feature.is-scrolly .feature-copy h2 {
+    margin: 23px 0;
     font-size: clamp(40px, 10vw, 58px);
+  }
+  .feature.is-scrolly {
+    height: auto;
+  }
+  .feature.is-scrolly .feature-stage {
+    display: block;
+    position: static;
+    height: auto;
+  }
+  .feature.is-scrolly .feature-copy {
+    padding: 36px 20px 20px;
+  }
+  .feature.is-scrolly .feature-image {
+    position: sticky;
+    top: calc(68px + env(safe-area-inset-top));
+    height: calc(100vh - 68px);
+    height: calc(100svh - 68px - env(safe-area-inset-top));
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    background: transparent;
+  }
+  .feature.is-scrolly .feature-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 560px;
+    object-fit: contain;
+    padding: 16px 20px 64px;
+  }
+  .feature.is-scrolly .feature-track {
+    display: block;
+    height: calc(var(--feature-steps) * 50vh);
+    height: calc(var(--feature-steps) * 50svh);
+  }
+  .feature.is-scrolly .feature-steps {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+    gap: 10px;
+    font-size: 11px;
+  }
+  .feature-label {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .feature.is-scrolly .feature-steps svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin-left: auto;
   }
   .atelier-teaser {
     padding: 52px 0;
